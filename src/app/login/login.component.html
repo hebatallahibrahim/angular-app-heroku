@@ -1,1 +1,40 @@
-<p>login works!</p>
+<div class="con container d-flex justify-content-center align-items-center">
+  <div class="row-login row rounded p-3 shadow-lg bg-body">
+    <div class="col m-5">
+      <form action="#" method="post" class="form_class">
+        <div class="form_class-title d-flex justify-content-center">
+          <h1 class="title">Login</h1>
+        </div>
+        <div class="row mb-3 p-2">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            type="email"
+            class="form_class-input form-control"
+            id="email"
+            aria-describedby="emailHelp"
+            required
+          />
+        </div>
+        <div class="row mb-3 p-2">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" required />
+        </div>
+        <div
+          class="row form_class-last mb-3 form-check d-flex justify-content-between"
+        >
+          <div class="col-6 col-md-12">
+            <input type="checkbox" class="form-check-input" id="remember" />
+            <label class="form-check-label" for="remember"> Remember me</label>
+          </div>
+          <a href="#" class="form_class-forget col-6 col-md-12 p-0"
+            >Forget password?</a
+          >
+        </div>
+
+        <button type="submit" class="form-login_submit btn shadow-sm mb-2 mt-1">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
