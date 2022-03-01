@@ -1,0 +1,75 @@
+<header class="p-3 mb-3 border-bottom">
+  <div class="container-fluid">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <a
+        href="/"
+        class="d-flex align-items-center mb-2 me-4 mb-lg-0 text-dark text-decoration-none"
+      >
+        <div class="div-logo d-flex">
+          <p class="fs-2 me-1 pt-1">Homo</p>
+          <i class="fa-solid fa-house-chimney fs-4 pt-3"></i>
+        </div>
+      </a>
+
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+      >
+        <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">About us</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">Contact us</a></li>
+        <li><a href="#" class="nav-link px-2 link-dark">Blogs</a></li>
+      </ul>
+
+      <form class="col-12 col-lg-auto mb-3 me-3 mb-lg-0 me-lg-3">
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search"
+        />
+      </form>
+      <div role="button" class="button-group me-4" ngbDropdown>
+        <div
+          href="/"
+          class="d-flex align-items-center mb-2 me-2 mb-lg-0 text-dark text-decoration-none"
+          id="dropdownConfig"
+          ngbDropdownToggle
+        >
+          <i class="fa-solid fa-circle-user fs-3"></i>
+          <p class="ms-2 mb-0">Mahmoud</p>
+        </div>
+
+        <ul ngbDropdownMenu class="text-small" aria-labelledby="dropdownConfig">
+          <li>
+            <a ngbDropdownItem href="#"> New project </a>
+          </li>
+          <li>
+            <a ngbDropdownItem href="#"> Settings </a>
+          </li>
+          <li>
+            <a ngbDropdownItem href="#"> Profile </a>
+          </li>
+          <li>
+            <hr ngbDropdownDivider />
+          </li>
+          <li>
+            <a ngbDropdownItem href="#"> Sign out </a>
+          </li>
+        </ul>
+      </div>
+
+      <div ro>
+        <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
+          <span
+            class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
+          >
+            1
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </i>
+      </div>
+    </div>
+  </div>
+</header>

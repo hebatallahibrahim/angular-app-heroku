@@ -8,6 +8,8 @@ import { ForgetPasswordComponent } from './login/forget-password/forget-password
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 
 
@@ -17,6 +19,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     LoginComponent,
     ForgetPasswordComponent,
     RegisterComponent,
+    HeaderComponent,
+    FooterComponent,
     ContactUsComponent
   ],
   imports: [
@@ -25,7 +29,8 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     NgbModule,
     ReactiveFormsModule
   ],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
