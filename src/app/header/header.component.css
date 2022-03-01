@@ -1,0 +1,11 @@
+.div-logo {
+  color: #ca965c;
+  transition: all 0.5s ease;
+}
+.div-logo:hover {
+  color: #876445;
+}
+.cart-num {
+  font-size: 0.6rem;
+}
+
