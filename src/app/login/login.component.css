@@ -30,4 +30,5 @@
 .form-login_submit:hover {
   background-color: #cb985d;
   color: white;
+  cursor: pointer;
 }
