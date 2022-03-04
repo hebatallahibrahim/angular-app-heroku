@@ -1,0 +1,10 @@
+.con-item {
+  background-color: #f4dfba;
+}
+.one-item {
+  width: 30%;
+  transition: all 0.5s ease;
+}
+.one-item:hover {
+  transform: scale(0.9);
+}

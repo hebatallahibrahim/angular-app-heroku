@@ -3,6 +3,7 @@
   height: 100vh;
   font-family: "Nunito";
   color: white;
+  background-color: #f4dfba;
 }
 .row-login {
   background-image: linear-gradient(270deg, #876445, #cb985d);

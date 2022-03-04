@@ -1,4 +1,4 @@
-<header class="p-3 mb-3 border-bottom">
+<header class="p-3 border-bottom">
   <div class="container-fluid">
     <div
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -60,7 +60,7 @@
         </ul>
       </div>
 
-      <div ro>
+      <div role="button" ngbDropdown ngbDropdownToggle>
         <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
           <span
             class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
@@ -73,3 +73,39 @@
     </div>
   </div>
 </header>
+<p>
+  You can easily control dropdowns programmatically using the exported dropdown
+  instance.
+</p>
+
+<div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+  <button
+    class="btn btn-outline-primary me-2"
+    id="dropdownManual"
+    ngbDropdownAnchor
+    (focus)="myDrop.open()"
+  >
+    Toggle dropdown
+  </button>
+  <div ngbDropdownMenu aria-labelledby="dropdownManual">
+    <button ngbDropdownItem>Action - 1</button>
+    <button ngbDropdownItem>Another Action</button>
+    <button ngbDropdownItem>Something else is here</button>
+  </div>
+</div>
+
+<button
+  class="btn btn-outline-success me-2"
+  (click)="$event.stopPropagation(); myDrop.open()"
+>
+  Open from outside
+</button>
+<button
+  class="btn btn-outline-danger me-2"
+  (click)="$event.stopPropagation(); myDrop.close()"
+>
+  Close from outside
+</button>
+
+
+

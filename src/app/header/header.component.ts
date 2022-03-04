@@ -9,6 +9,7 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeaderComponent implements OnInit {
   accountDropdown = false;
+  togle: string = 'ngbDropdownToggle';
   constructor(config: NgbDropdownConfig) {
     // customize default values of dropdowns used by this component tree
 

@@ -11,7 +11,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-
+import { ProductListComponent } from './product-list/product-list.component';
+import { ProductItemComponent } from './product-list/product-item/product-item.component';
+import { ProductDetailsComponent } from './product-list/product-details/product-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { ProductFilterComponent } from './product-list/product-filter/product-filter.component';
+import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { ProductListService } from './Service/product-list.service';
 
 @NgModule({
   declarations: [
@@ -21,16 +31,25 @@ import { ContactUsComponent } from './contact-us/contact-us.component';
     RegisterComponent,
     HeaderComponent,
     FooterComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    ProductListComponent,
+    ProductItemComponent,
+    ProductDetailsComponent,
+    NotFoundComponent,
+    ProductFilterComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    BrowserAnimationsModule,
+    CarouselModule,
+    NgxUsefulSwiperModule,
+    NgxStarRatingModule,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule],
-  providers: [],
+  providers: [ProductListService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
