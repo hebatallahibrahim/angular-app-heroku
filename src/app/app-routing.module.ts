@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import { BlogsPageComponent } from './blogs-page/blogs-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full' },
@@ -12,6 +14,7 @@ const routes: Routes = [
   { path: 'resetPassword', component: FooterComponent },
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
+  { path: 'blogs', component: BlogsPageComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

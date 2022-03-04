@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,6 +21,14 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ProductListService } from './Service/product-list.service';
+import { ProductsComponent } from './products/products.component';
+import { HomeComponent } from './home/home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { BlogsPageComponent } from './blogs-page/blogs-page.component';
+import { CarousalComponent } from './home/carousal/carousal.component';
+import { ProductItemsComponent } from './home/product-items/product-items.component';
+import { ProductSetsComponent } from './home/product-sets/product-sets.component';
+import { BlogsComponent } from './home/blogs/blogs.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +44,13 @@ import { ProductListService } from './Service/product-list.service';
     ProductDetailsComponent,
     NotFoundComponent,
     ProductFilterComponent,
+    ProductsComponent,
+    HomeComponent,
+    BlogsPageComponent,
+    CarousalComponent,
+    ProductItemsComponent,
+    ProductSetsComponent,
+    BlogsComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,8 +62,10 @@ import { ProductListService } from './Service/product-list.service';
     CarouselModule,
     NgxUsefulSwiperModule,
     NgxStarRatingModule,
+    HttpClientModule,
   ],
   providers: [ProductListService],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
