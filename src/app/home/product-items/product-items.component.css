@@ -1,4 +1,4 @@
-.section6 h2{
+.itemsproduct h2{
     font-size: 40px;
     font-family: "Nunito";
     /* font-weight: 900; */
@@ -12,18 +12,18 @@
     width: 100%;
     height: 260px;
 } */
-.section6 h2{  
+.itemsproduct h2{  
     margin-bottom: 60px;
 }
-.parentsection6 {
+.parentitemsproduct {
     /* background-image: linear-gradient(270deg,#876445 ,#cb985d);	 */
     margin: 10px 0px;
 }
 
-.section6{
+.itemsproduct{
     padding: 80px 0px;
 }
-.section6 h5{
+.itemsproduct h5{
     font-size: 18px;
     font-weight: 700;
     color: rgba(0, 0, 0, 0.8);
@@ -40,26 +40,26 @@
 {
     border: 1px  #cb985d dashed;     
 }
-.section6 .gray{
+.itemsproduct .gray{
     font-size: 14px;
     color: rgba(0, 0, 0, 0.3);
     margin-bottom: 8px;
 }
-.section6 .card-text {
+.itemsproduct .card-text {
     color:gray;
     line-height: 2;
     margin-bottom: 16px;
 }
-.section6 .card{
+.itemsproduct .card{
     border: none;
     border-radius: 0px;
 }
-.section6 .card-body{
+.itemsproduct .card-body{
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 8px;    
 }
-.section6 .card-img-top{
+.itemsproduct .card-img-top{
     border-radius: 0px;
 }
 .anchor
@@ -71,7 +71,7 @@
     transform:scale(0.9);
    
 }
-.section6 .btn1{
+.itemsproduct .btn1{
     background-color: #cb985d;
     border: 1px solid #cb985d;
     color: #fff;
@@ -83,7 +83,7 @@
     text-decoration: none; 
     
 }
-.section6 .btn1:hover{
+.itemsproduct .btn1:hover{
     background-color: transparent;
     color: #876445;
 }

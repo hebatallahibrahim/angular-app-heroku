@@ -3,6 +3,11 @@ a
     /* text-decoration: none; */
     color: black;
 }
+ngb-panel
+{
+    border: none;
+    outline: none;
+}
 .blogs_section h2{
     font-size: 40px;
     font-family: "Nunito";

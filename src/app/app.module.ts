@@ -29,6 +29,7 @@ import { CarousalComponent } from './home/carousal/carousal.component';
 import { ProductItemsComponent } from './home/product-items/product-items.component';
 import { ProductSetsComponent } from './home/product-sets/product-sets.component';
 import { BlogsComponent } from './home/blogs/blogs.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { BlogsComponent } from './home/blogs/blogs.component';
     ProductItemsComponent,
     ProductSetsComponent,
     BlogsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,6 +2,10 @@
 {
     font-family: "Nunito";
 }
+.carousal
+{
+    transition: all 0.5s ease;
+}
 h3{
 
     font-size: 3rem;
@@ -19,17 +23,18 @@ h3{
 }
 button
 {
-    background-color: #876445;
+    background-color: #876445bf;
     font-size: 30px;
     color: white;
     border: none;
-    width: 21%;
+  
+    width: 18%;
     margin: 0 auto;
     padding: 10px;
     transition: all 0.5s ease;
     position: absolute;
-    top: 252%;
-    left: -1%;
+    top: 80%;
+    left: 38%;
 }
 button:hover 
 {

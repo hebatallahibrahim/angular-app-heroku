@@ -12,18 +12,28 @@
            </div> 
          <div class="row"> 
      
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-5"*ngFor="let i of arr" >                  
+          <div class="col-lg-4 col-md-6 col-sm-12 mb-5"*ngFor="let i of arr" >  
+              
                 <div class="card">
-                  <div class="photo"></div>
-                    <!-- <img src="/src/assets/images/background2.png" class="card-img-top" alt="..." height="350px"> -->
+                  <div class="card rounded ">
+                    <img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg" alt="" />
                     <div class="card-body">
                         <a class="admin" href="#">March 2, 2022</a>
                         <a class="admin" href="#">Admin</a>
                         <h3>Lorem ipsum dolor sit consectetur ipsum amet adipisicing elit</h3>
-                      <a href="#" class="btn1">Read more <div class="right">
-                        <i class="fas fa-comment"></i>
-                        <span>3</span>
-                      </div></a>
+                        <ngb-accordion #acc="ngbAccordion">
+                          <ngb-panel id="toggle-1" title="Read More">
+                            <ng-template ngbPanelContent>
+                              Anim pariatur cliche reprehenderit, 
+                              enim eiusmod high life accusamus terry 
+                              richardson ad squid. 3 wolf moon officia
+                              aute, non cupidatat skateboard dolor brunch. 
+                          
+                            </ng-template>
+                          </ngb-panel>
+                        </ngb-accordion>
+                          
+                      </div>
                     </div>
                   </div>
                   <div class="border"></div>              
