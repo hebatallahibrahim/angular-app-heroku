@@ -1,0 +1,33 @@
+
+.container{
+    font-family: "Nunito";
+}
+.icon
+{
+    background-color: grey;
+    width: 14rem; height: 14rem;
+}
+.row
+{
+    
+}
+.favourits
+{
+    
+    width: 19rem; height: 20rem;
+    color: #876445;
+}
+.fav-items li
+{
+    color: #876445;
+    font-size:1.25rem;
+}
+input
+{
+    width: 50%;
+}
+.user-info
+{
+    outline: none;
+    border:none;
+}

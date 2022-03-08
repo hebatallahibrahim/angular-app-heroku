@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../Model/product.model';
-import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',

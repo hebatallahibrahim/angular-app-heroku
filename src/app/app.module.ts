@@ -36,6 +36,7 @@ import { CheckoutComponent } from './cart/checkout/checkout.component';
 import { PaymentComponent } from './cart/payment/payment.component';
 import { FormComponent } from './form/form.component';
 import { MatInputModule } from '@angular/material/input';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { MatInputModule } from '@angular/material/input';
     CheckoutComponent,
     PaymentComponent,
     FormComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
