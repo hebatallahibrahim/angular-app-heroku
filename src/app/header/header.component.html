@@ -17,23 +17,22 @@
         class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
       >
         <li>
-          <a routerLink="/product-list" class="nav-link px-2 link-dark"
+          <a href="#" class="nav-link px-2 link-dark" routerLink="/product-list"
             >Products</a
           >
         </li>
         <li>
-          <a routerLink="/aboutUs" class="nav-link px-2 link-dark">About us</a>
+          <a href="#" class="nav-link px-2 link-dark" routerLink="/about-us"
+            >About us</a
+          >
         </li>
         <li>
-          <a routerLink="/contactUs" class="nav-link px-2 link-dark"
+          <a href="#" class="nav-link px-2 link-dark" routerLink="/contact-us"
             >Contact us</a
           >
         </li>
         <li>
-          <a
-            routerLink="/blogs"
-            class="nav-link px-2 link-dark"
-            routerLink="blogs"
+          <a href="#" class="nav-link px-2 link-dark" routerLink="blogs"
             >Blogs</a
           >
         </li>
@@ -62,7 +61,7 @@
             <a ngbDropdownItem href="#"> Settings </a>
           </li>
           <li>
-            <a ngbDropdownItem href="#"> Profile </a>
+            <a ngbDropdownItem routerLink="/profile"> Profile </a>
           </li>
           <li>
             <hr ngbDropdownDivider />
@@ -72,6 +71,7 @@
           </li>
         </ul>
       </div>
+      <<<<<<< HEAD
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
@@ -90,6 +90,18 @@
           <span>product</span>
         </button>
       </mat-menu>
+      =======
+      <div role="button" ngbDropdown ngbDropdownToggle>
+        <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
+          <span
+            class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
+          >
+            1
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </i>
+      </div>
+      >>>>>>> origin/profile-page-and-blogs-page
     </div>
   </div>
 </header>
