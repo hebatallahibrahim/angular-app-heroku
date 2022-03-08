@@ -31,6 +31,18 @@ import { ProductSetsComponent } from './home/product-sets/product-sets.component
 import { BlogsComponent } from './home/blogs/blogs.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AllProductsComponent } from './admin-page/all-products/all-products.component';
+import { UpdateProductComponent } from './admin-page/update-product/update-product.component';
+import { DashboardComponent } from './admin-page/dashboard/dashboard.component';
+import { AcountsComponent } from './admin-page/acounts/acounts.component';
+import { NavnarComponent } from './admin-page/navnar/navnar.component';
+import { AddProductsComponent } from './admin-page/add-products/add-products.component';
+import { LogInComponent } from './admin-page/log-in/log-in.component';
+import { AddCategoryComponent } from './admin-page/add-category/add-category.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +65,18 @@ import { ProfileComponent } from './profile/profile.component';
     ProductSetsComponent,
     BlogsComponent,
     ProfileComponent,
+   
+    AdminPageComponent,
+    AllProductsComponent,
+    UpdateProductComponent,
+    DashboardComponent,
+    AcountsComponent,
+    NavnarComponent,
+    AddProductsComponent,
+    LogInComponent,
+    AddCategoryComponent,
+    AboutUsComponent,
+    CheckOutComponent,
   ],
   imports: [
     BrowserModule,

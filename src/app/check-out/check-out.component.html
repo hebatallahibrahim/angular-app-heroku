@@ -1,0 +1,50 @@
+<main class="page payment-page">
+    <section class="payment-form dark">
+      <div class="container">
+        <div class="block-heading">
+          <h2>Check Out</h2>
+        </div>
+        <form>
+          <div class="products">
+            <div class="item mb-4" >
+                <span class="price">#num </span>
+                <p class="item-name">Code : </p>
+              </div>
+
+              <div class="item mb-4" >
+                <span class="price">Nour </span>
+                <p class="item-name">Name : </p>
+              </div>
+             
+              <div class="item mb-4" >
+                <span class="price">maadi </span>
+                <p class="item-name">Address : </p>
+              </div>
+              <div class="item mb-4" >
+                <span class="price">0114778325 </span>
+                <p class="item-name">Phone : </p>
+              </div>
+              <hr>
+            <div class="item mb-4" *ngFor="let i of products">
+              <span class="price">$200</span>
+              <p class="item-name">Product Name : </p>
+            </div>
+             <hr>
+             <div class="item mb-4" >
+                <span class="price">credit</span>
+                <p class="item-name">Payment Type : </p>
+              </div>
+              <hr>
+            <div class="total mb-4">Total : <span class="price">$320</span></div>
+            <a
+            routerLink="/home"
+            class="btn btn-primary btn-block 
+            text-uppercase d-flex justify-content-center
+             mt-5">back to homepage</a>
+           
+          </div>
+         
+        </form>
+      </div>
+    </section>
+  </main>
