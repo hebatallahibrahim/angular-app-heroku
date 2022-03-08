@@ -34,3 +34,6 @@
   color: white;
   cursor: pointer;
 }
+.link-item:hover {
+  color: #876445;
+}

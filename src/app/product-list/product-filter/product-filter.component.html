@@ -1,1 +1,46 @@
-<p>product-filter works!</p>
+<div class="container">
+  <div class="row">
+    <h2 class="m-3">Filter By</h2>
+    <div class="d-flex">
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Color</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let color of colors" [value]="color">
+              {{ color }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Price</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let price of prices" [value]="price">
+              {{ price }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Category</mat-label>
+          <mat-select>
+            <mat-option *ngFor="let category of categorys" [value]="category">
+              {{ category }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Sub Category</mat-label>
+          <mat-select>
+            <mat-option
+              *ngFor="let sub_category of sub_categorys"
+              [value]="sub_category"
+            >
+              {{ sub_category }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</div>

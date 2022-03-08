@@ -1,1 +1,109 @@
-<p>product-details works!</p>
+<app-header></app-header>
+<div class="container">
+  <div class="row m-3">
+    <div class="col-6">
+      <swiper [config]="config">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="https://loremflickr.com/g/600/400/paris" alt="img 1" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://loremflickr.com/600/400/brazil,rio" alt="img 2" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://loremflickr.com/600/400/paris,girl/all"
+              alt="img 3"
+            />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://loremflickr.com/g/600/400/paris" alt="img 4" />
+          </div>
+          <div class="swiper-slide">
+            <img src="https://loremflickr.com/600/400/brazil,rio" alt="img 5" />
+          </div>
+          <div class="swiper-slide">
+            <img
+              src="https://loremflickr.com/600/400/paris,girl/all"
+              alt="img 6"
+            />
+          </div>
+        </div>
+
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </swiper>
+      <div class="product-info">
+        <h3>product info</h3>
+        <ul>
+          <li>Brand Name:</li>
+          <li>Color:</li>
+          <li>Material:</li>
+          <li>Height in cm:</li>
+          <li>Width in cm:</li>
+          <li>Length in cm:</li>
+          <li>Warranty:</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-6">
+      <h1>product name</h1>
+      <h4>$255</h4>
+      <button class="cart-button btn mb-4">Add to cart</button>
+      <h3>product details</h3>
+      <table style="width: 100%">
+        <tr>
+          <th>Company</th>
+          <td>Alfreds Futterkiste</td>
+        </tr>
+        <tr>
+          <th>Contact</th>
+          <td>Alfreds Futterkiste</td>
+        </tr>
+      </table>
+      <form [formGroup]="form">
+        <p>Rating this product</p>
+        <ngx-star-rating
+          formControlName="rating"
+          [id]="'rating'"
+        ></ngx-star-rating>
+        <div>Rating: {{ form.value.rating }}</div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <h4>similar products</h4>
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let slide of slidesStore">
+        <div class="one-item m-2">
+          <div class="img-overlay text-center fs-5 rounded">
+            <a href="#">
+              <img src="https://picsum.photos/200" class="rounded" alt="item" />
+            </a>
+            <div class="love">
+              <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="container-fluid">
+              <div class="row p-1">
+                <a href="#" class="link-item text-decoration-none link-dark">
+                  <p class="text-center name-item p-0">Product name</p>
+                  <p class="text-center">$255</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</div>
+<div
+  id="carouselExampleDark"
+  class="carousel carousel-dark slide"
+  data-bs-ride="carousel"
+></div>
+<app-footer></app-footer>

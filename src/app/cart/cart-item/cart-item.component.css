@@ -1,0 +1,26 @@
+.counter {
+  position: relative;
+}
+.counter__input {
+  border: 0.1rem solid black;
+  border-radius: 1rem;
+  height: 1.8rem;
+  text-align: center;
+  padding-left: 1.1rem;
+}
+.counter__button {
+  margin: 0.2rem;
+  outline: 0;
+  cursor: pointer;
+  height: 1.4rem;
+  width: 1.4rem;
+  border: 0;
+  border-radius: 3px;
+  background: #876445;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.counter__button:hover {
+  background-color: #cb985d;
+  color: black;
+}

@@ -4,24 +4,40 @@
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
     >
       <a
-        href="/"
+        routerLink="/home"
         class="d-flex align-items-center mb-2 me-4 mb-lg-0 text-dark text-decoration-none"
       >
         <div class="div-logo d-flex">
-          <p class="fs-2 me-1 pt-1">Homo</p>
-          <i class="fa-solid fa-house-chimney fs-4 pt-3"></i>
+          <p class="fs-2 me-1 pt-2">Homo</p>
+          <i class="fa-solid fa-house-chimney pb-3 fs-4 pt-2"></i>
         </div>
       </a>
 
       <ul
         class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
       >
-        <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">About us</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark">Contact us</a></li>
-        <li><a href="#" class="nav-link px-2 link-dark" routerLink="blogs">Blogs</a></li>
+        <li>
+          <a routerLink="/product-list" class="nav-link px-2 link-dark"
+            >Products</a
+          >
+        </li>
+        <li>
+          <a routerLink="/aboutUs" class="nav-link px-2 link-dark">About us</a>
+        </li>
+        <li>
+          <a routerLink="/contactUs" class="nav-link px-2 link-dark"
+            >Contact us</a
+          >
+        </li>
+        <li>
+          <a
+            routerLink="/blogs"
+            class="nav-link px-2 link-dark"
+            routerLink="blogs"
+            >Blogs</a
+          >
+        </li>
       </ul>
-
       <form class="col-12 col-lg-auto mb-3 me-3 mb-lg-0 me-lg-3">
         <input
           type="search"
@@ -43,9 +59,6 @@
 
         <ul ngbDropdownMenu class="text-small" aria-labelledby="dropdownConfig">
           <li>
-            <a ngbDropdownItem href="#"> New project </a>
-          </li>
-          <li>
             <a ngbDropdownItem href="#"> Settings </a>
           </li>
           <li>
@@ -59,53 +72,24 @@
           </li>
         </ul>
       </div>
-
-      <div role="button" ngbDropdown ngbDropdownToggle>
-        <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
-          <span
-            class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
-          >
-            1
-            <span class="visually-hidden">unread messages</span>
-          </span>
-        </i>
-      </div>
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon matBadge="1" matBadgeColor="warn">
+          add_shopping_cart
+        </mat-icon>
+        <span class="cdk-visually-hidden">
+          Example with a home icon with overlaid badge showing the number 15
+        </span>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>add_shopping_cart</mat-icon>
+          <span>product</span>
+        </button>
+      </mat-menu>
     </div>
   </div>
 </header>
-<p>
-  You can easily control dropdowns programmatically using the exported dropdown
-  instance.
-</p>
-
-<div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
-  <button
-    class="btn btn-outline-primary me-2"
-    id="dropdownManual"
-    ngbDropdownAnchor
-    (focus)="myDrop.open()"
-  >
-    Toggle dropdown
-  </button>
-  <div ngbDropdownMenu aria-labelledby="dropdownManual">
-    <button ngbDropdownItem>Action - 1</button>
-    <button ngbDropdownItem>Another Action</button>
-    <button ngbDropdownItem>Something else is here</button>
-  </div>
-</div>
-
-<button
-  class="btn btn-outline-success me-2"
-  (click)="$event.stopPropagation(); myDrop.open()"
->
-  Open from outside
-</button>
-<button
-  class="btn btn-outline-danger me-2"
-  (click)="$event.stopPropagation(); myDrop.close()"
->
-  Close from outside
-</button>
-
-
-

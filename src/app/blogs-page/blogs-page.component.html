@@ -1,51 +1,49 @@
+<app-header></app-header>
 <section class="parentblogs_section">
-    <section class="blogs_section">
-      <div class="container">
-        <div class="text" style="text-align: center;">                
-        </div>
-        <div class="address mb-5">
-            
-            <a class="home" href="#">HOME</a>
-            <i class="fas fa-chevron-right m-1 "style="color: #cb985d; "></i>
-            <a class="about" href="#">BLOG</a>
-            <i class="fas fa-chevron-right m-1 "style="color: #cb985d; "></i>
-           </div> 
-         <div class="row"> 
-     
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-5"*ngFor="let i of arr" >                  
-                <div class="card">
-                  <div class="photo"></div>
-                    <!-- <img src="/src/assets/images/background2.png" class="card-img-top" alt="..." height="350px"> -->
-                    <div class="card-body">
-                        <a class="admin" href="#">March 2, 2022</a>
-                        <a class="admin" href="#">Admin</a>
-                        <h3>Lorem ipsum dolor sit consectetur ipsum amet adipisicing elit</h3>
-                      <a href="#" class="btn1">Read more <div class="right">
-                        <i class="fas fa-comment"></i>
-                        <span>3</span>
-                      </div></a>
-                    </div>
-                  </div>
-                  <div class="border"></div>              
-            
-          </div>
-        
-
-         </div>
-         <div class="row no-gutters">
-             <div class="col" style="text-align: center;">
-              <div style="padding-top: 50px;">
-                
-                  <a class="pages active" href="">1</a>
-                  <a class="pages " href="">2</a>
-                  <a class="pages " href="">3</a>
-                  <a class="pages " href="">4</a>
-                  <a class="pages " href="">5</a>
-                 
-              </div>
-             </div>
-
-         </div>
+  <section class="blogs_section">
+    <div class="container">
+      <div class="text" style="text-align: center"></div>
+      <div class="address mb-5">
+        <a class="home" href="#">HOME</a>
+        <i class="fas fa-chevron-right m-1" style="color: #cb985d"></i>
+        <a class="about" href="#">BLOG</a>
+        <i class="fas fa-chevron-right m-1" style="color: #cb985d"></i>
       </div>
-    </section>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-5" *ngFor="let i of arr">
+          <div class="card">
+            <div class="photo"></div>
+            <!-- <img src="/src/assets/images/background2.png" class="card-img-top" alt="..." height="350px"> -->
+            <div class="card-body">
+              <a class="admin" href="#">March 2, 2022</a>
+              <a class="admin" href="#">Admin</a>
+              <h3>
+                Lorem ipsum dolor sit consectetur ipsum amet adipisicing elit
+              </h3>
+              <a href="#" class="btn1"
+                >Read more
+                <div class="right">
+                  <i class="fas fa-comment"></i>
+                  <span>3</span>
+                </div></a
+              >
+            </div>
+          </div>
+          <div class="border"></div>
+        </div>
+      </div>
+      <div class="row no-gutters">
+        <div class="col" style="text-align: center">
+          <div style="padding-top: 50px">
+            <a class="pages active" href="">1</a>
+            <a class="pages" href="">2</a>
+            <a class="pages" href="">3</a>
+            <a class="pages" href="">4</a>
+            <a class="pages" href="">5</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
+</section>
+<app-footer></app-footer>

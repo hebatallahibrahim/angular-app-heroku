@@ -27,7 +27,7 @@
             <label class="form-check-label" for="remember"> Remember me</label>
           </div>
           <div class="col-6 col-md-12"></div>
-          <a href="#" class="form_class-forget col-6 col-md-12 p-0"
+          <a routerLink="/forgetPass" class="form_class-forget col-6 col-md-12 p-0"
             >Forget password?</a
           >
         </div>
@@ -35,6 +35,12 @@
         <button type="submit" class="form-login_submit btn shadow-sm mb-2 mt-1">
           Submit
         </button>
+        <p class="d-flex justify-content-center">
+          or go to
+          <a routerLink="/signUp" class="text-decoration-none"
+            ><span>Sign up</span></a
+          >
+        </p>
       </form>
     </div>
   </div>

@@ -1,0 +1,31 @@
+.img-link {
+  transform: scale(1);
+  transition: all 0.2s ease;
+}
+.img-link:hover {
+  transform: scale(1.1);
+  border: thick double black;
+}
+.cart-button {
+  background-color: #876445 !important;
+  color: white;
+  transition: all 0.2s ease;
+}
+.cart-button:hover {
+  background-color: #cb985d !important;
+  color: black;
+}
+.img-overlay {
+  position: relative;
+  background-color: white;
+}
+.love {
+  position: absolute;
+  top: 5%;
+  left: 75%;
+  transition: all 0.1s ease;
+}
+.love:hover {
+  transform: scale(1.1);
+  color: red;
+}

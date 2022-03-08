@@ -12,7 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
-import { ProductDetailsComponent } from './product-list/product-details/product-details.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductFilterComponent } from './product-list/product-filter/product-filter.component';
 import { RouterModule } from '@angular/router';
@@ -21,7 +21,6 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgxUsefulSwiperModule } from 'ngx-useful-swiper';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { ProductListService } from './Service/product-list.service';
-import { ProductsComponent } from './products/products.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BlogsPageComponent } from './blogs-page/blogs-page.component';
@@ -29,6 +28,14 @@ import { CarousalComponent } from './home/carousal/carousal.component';
 import { ProductItemsComponent } from './home/product-items/product-items.component';
 import { ProductSetsComponent } from './home/product-sets/product-sets.component';
 import { BlogsComponent } from './home/blogs/blogs.component';
+import { CartComponent } from './cart/cart.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MaterialExampleModule } from '../matrial.module';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { CheckoutComponent } from './cart/checkout/checkout.component';
+import { PaymentComponent } from './cart/payment/payment.component';
+import { FormComponent } from './form/form.component';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -44,13 +51,17 @@ import { BlogsComponent } from './home/blogs/blogs.component';
     ProductDetailsComponent,
     NotFoundComponent,
     ProductFilterComponent,
-    ProductsComponent,
     HomeComponent,
     BlogsPageComponent,
     CarousalComponent,
     ProductItemsComponent,
     ProductSetsComponent,
     BlogsComponent,
+    CartComponent,
+    CartItemComponent,
+    CheckoutComponent,
+    PaymentComponent,
+    FormComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +74,9 @@ import { BlogsComponent } from './home/blogs/blogs.component';
     NgxUsefulSwiperModule,
     NgxStarRatingModule,
     HttpClientModule,
+    MatNativeDateModule,
+    MaterialExampleModule,
+    MatInputModule,
   ],
   providers: [ProductListService],
 

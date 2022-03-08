@@ -1,27 +1,27 @@
 <div class="img-overlay text-end fs-5 rounded">
-  <img
-    src="https://picsum.photos/200"
-    class="card-img-top rounded-top"
-    alt="item"
-    width="100%"
-  />
+  <a href="/product-details">
+    <img
+      src="https://picsum.photos/200"
+      class="card-img-top rounded-top"
+      alt="item"
+      width="100%"
+    />
+  </a>
   <div class="love">
     <i class="fa-solid fa-heart"></i>
   </div>
   <div class="container-fluid">
     <div class="row p-3">
-      <a href="#" class="link-item text-decoration-none link-dark">
+      <a
+        href="/product-details"
+        class="link-item text-decoration-none link-dark"
+      >
         <p class="text-center name-item p-0">Product name</p>
         <p class="text-center">$255</p>
       </a>
       <div class="buttons d-flex justify-content-between">
-        <button class="col-6 btn button-item rounded me-1">
-          Add to cart
-        </button>
-        <button
-          class="col-6 btn button-item rounded"
-          (click)="open(content)"
-        >
+        <button class="col-6 btn button-item rounded me-1">Add to cart</button>
+        <button class="col-6 btn button-item rounded" (click)="open(content)">
           More details
         </button>
       </div>

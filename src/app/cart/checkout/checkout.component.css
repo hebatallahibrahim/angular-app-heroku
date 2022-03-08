@@ -1,0 +1,10 @@
+mat-form-field:hover {
+  border: #876445 !important;
+}
+mat-option {
+  color: #876445;
+}
+mat-option:hover {
+  background-color: #876445 !important;
+  color: white;
+}

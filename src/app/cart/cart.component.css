@@ -1,0 +1,11 @@
+
+.checkout-button {
+  background: #876445;
+  color: #fff;
+  height: 2.3rem;
+  transition: all 0.2s ease;
+}
+.checkout-button:hover {
+  background-color: #cb985d;
+  color: black;
+}
