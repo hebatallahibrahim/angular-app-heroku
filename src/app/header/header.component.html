@@ -32,7 +32,7 @@
           >
         </li>
         <li>
-          <a href="#" class="nav-link px-2 link-dark" routerLink="blogs"
+          <a href="#" class="nav-link px-2 link-dark" routerLink="/blogs"
             >Blogs</a
           >
         </li>
@@ -71,37 +71,41 @@
           </li>
         </ul>
       </div>
-      <<<<<<< HEAD
+    
+    
       <button
-        mat-icon-button
-        [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with a menu"
-      >
-        <mat-icon matBadge="1" matBadgeColor="warn">
-          add_shopping_cart
-        </mat-icon>
-        <span class="cdk-visually-hidden">
-          Example with a home icon with overlaid badge showing the number 15
-        </span>
+      routerLink="/cart"
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon matBadge="1" matBadgeColor="warn">
+        add_shopping_cart
+      </mat-icon>
+      <span class="cdk-visually-hidden">
+        Example with a home icon with overlaid badge showing the number 15
+      </span>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>add_shopping_cart</mat-icon>
+        <span>product</span>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>add_shopping_cart</mat-icon>
-          <span>product</span>
-        </button>
-      </mat-menu>
-      =======
+    </mat-menu>
+<!--     
       <div role="button" ngbDropdown ngbDropdownToggle>
-        <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
-          <span
-            class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
-          >
-            1
-            <span class="visually-hidden">unread messages</span>
-          </span>
-        </i>
-      </div>
-      >>>>>>> origin/profile-page-and-blogs-page
+       <a routerLink="">
+          <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
+            <span
+              class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
+            >
+              1
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </i>
+      </a> 
+      </div> -->
+   
     </div>
   </div>
 </header>

@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-details', component: ProductDetailsComponent }, //don't forgrt to put /:id
-  { path: 'cart', component: ProductListComponent }, //add cart page
+  { path: 'cart', component: Car }, //add cart page
   { path: 'blogs', component: BlogsPageComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: ContactUsComponent }, // add about us component

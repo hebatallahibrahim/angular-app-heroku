@@ -1,6 +1,8 @@
 *
 {
     font-family: "Nunito";
+    padding: 0px;
+    margin: 0px;
 }
 .carousal
 {
@@ -11,14 +13,13 @@ h3{
     font-size: 3rem;
 }
 .carousel-caption
-{
-    
+{  
     font-weight: 900;
     margin-bottom: 20px;
     width: 50%;
     height: 25px;
     position: absolute;
-    top: 29%;
+    top: 31%;
     left: 24%;
 }
 button
