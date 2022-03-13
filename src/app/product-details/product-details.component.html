@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
   <div class="row m-3">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-7 col-12">
       <swiper [config]="config">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -38,7 +38,7 @@
         <div class="swiper-button-prev"></div>
       </swiper>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-5 col-12">
       <h1>product name</h1>
       <h4>$255</h4>
       <button class="cart-button btn mb-4" routerLink="/cart">Add to cart</button>
@@ -58,7 +58,7 @@
     </div>
   </div>
   <div class="row m-3">
-    <div class="col-6 product-info">
+    <div class="col-lg-6 col-md-4 col-12 product-info">
       <h3>product info</h3>
       <ul>
         <li>Brand Name:</li>
@@ -71,7 +71,7 @@
       </ul>
     </div>
     
-    <div class="col-6 rate-comment">
+    <div class="col-lg-6 col-md-8 col-12 rate-comment">
       <form [formGroup]="form">
         <p>Rating this product</p>
         <ngx-star-rating
@@ -80,7 +80,7 @@
         ></ngx-star-rating>
         <div>Rating: {{ form.value.rating }}</div>
         <div class="add-comment">
-          <h3>Add Comment</h3>
+          <h3 class="col-12">Add Comment</h3>
           <mat-form-field class="col-12">
             <input matInput>
           </mat-form-field>
