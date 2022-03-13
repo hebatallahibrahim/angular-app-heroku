@@ -37,18 +37,6 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </swiper>
-      <div class="product-info">
-        <h3>product info</h3>
-        <ul>
-          <li>Brand Name:</li>
-          <li>Color:</li>
-          <li>Material:</li>
-          <li>Height in cm:</li>
-          <li>Width in cm:</li>
-          <li>Length in cm:</li>
-          <li>Warranty:</li>
-        </ul>
-      </div>
     </div>
     <div class="col-6">
       <h1>product name</h1>
@@ -65,6 +53,25 @@
           <td>Alfreds Futterkiste</td>
         </tr>
       </table>
+      
+      
+    </div>
+  </div>
+  <div class="row m-3">
+    <div class="col-6 product-info">
+      <h3>product info</h3>
+      <ul>
+        <li>Brand Name:</li>
+        <li>Color:</li>
+        <li>Material:</li>
+        <li>Height in cm:</li>
+        <li>Width in cm:</li>
+        <li>Length in cm:</li>
+        <li>Warranty:</li>
+      </ul>
+    </div>
+    
+    <div class="col-6 rate-comment">
       <form [formGroup]="form">
         <p>Rating this product</p>
         <ngx-star-rating
@@ -72,6 +79,12 @@
           [id]="'rating'"
         ></ngx-star-rating>
         <div>Rating: {{ form.value.rating }}</div>
+        <div class="add-comment">
+          <h3>Add Comment</h3>
+          <mat-form-field class="col-12">
+            <input matInput>
+          </mat-form-field>
+        </div>
       </form>
     </div>
   </div>
