@@ -1,65 +1,54 @@
 <section class="container">
     <div class="row mt-5">
-        <!-- div1 -->
-        <div class="col-xl-4 col-lg-4 col-sm-6 col-md-6 ">
-                     
-        <div class="container ">
-            <div class=" text-light mt-3 mb-3 ">
-                <div class="card shadow-sm  d-flex justify-content-center align-items-center"   > 
-                        <h3 class="text-center text-black pt-4">User Name</h3>
-                        <div class="icon rounded-circle d-flex justify-content-center mb-5  px-4 py-2">
-                            <i class="fa-solid fa-user " style="font-size: 10rem;color: white; "></i> 
-                        </div>
-                </div>   
-            </div>
-
-            <div class=" text-light mt-3 mb-3 shadow-lg favourits" >
-
-                <div class="p-3 bg-white">
-                    <h3 class="text-center text-black  p-3">Favourit List</h3>
-                    <ul class="fav-items">
-                        <li *ngFor="i of fav " class="p-2"> favourites test</li>
-                      
-                    </ul>
+        <div class=" col-lg-4 col-sm-6 col-md-12 ">              
+            <div class="container ">
+                <div class=" text-light  mt-3 mb-3 ">
+                    <div class="card shadow-sm  d-flex justify-content-center align-items-center"   > 
+                            <h3 class="text-center text-black pt-4">User Name</h3>
+                            <div class="icon rounded-circle d-flex justify-content-center mb-5  px-4 py-2">
+                                <i class="fa-solid fa-user " style="font-size: 10rem;color: white; "></i> 
+                            </div>
+                    </div>   
+                </div>
+                <div class=" text-light mt-3 mb-3 shadow-lg favourits" >
+                    <div class="p-3 bg-white">
+                        <h3 class="text-center text-black  p-3">Favourit List</h3>
+                        <ul class="fav-items">
+                            <li *ngFor="i of fav " class="p-2"> favourites test</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-        </div>
-
-        
-             
-    <div class="col-xl-8 col-lg-8 col-sm-6 col-md-6 mt-3">
-    
-            <div class="text-black shadow-lg  shadow-sm p-5" style="background-color: white;">
-                <h3 class="text-center text-black p-3">User information</h3>
-
+               
+    <div class=" col-lg-8 col-sm-6 col-md-6 mt-12">
+        <div class="text-black shadow-lg  shadow-sm p-5" style="background-color: white;">
+            <h3 class="text-center text-black p-3">User information</h3>
                 <div class="panel panel-default">
-                    <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" >
+                <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" >
                     
                     
-                <div class="m-3">
+                <div class="m-3 col-sm-12">
                     <label class=" d-inline">Name :</label> 
                     <input type="text"class="form-control d-inline user-info" value="" >
                 </div>
-                <div class="m-3">
+                <div class="m-3 col-sm-12">
                     <label class=" d-inline">Email :</label> 
                     <input type="text"class="form-control d-inline user-info" value="" >
                 </div>
-                <div class="m-3">
+                <div class="m-3 col-sm-12">
                     <label class=" d-inline">phone :</label> 
                     <input type="text"class="form-control d-inline user-info" value="" >
                 </div>
-                <div class="m-3">
+                <div class="m-3 col-sm-12">
                     <label class=" d-inline">address :</label> 
                     <input type="text"class="form-control d-inline user-info" value="" >
                 </div>
-                <div class="m-3">
+                <div class="m-3 col-sm-12">
                     <label class=" d-inline">city :</label> 
                     <input type="text"class="form-control d-inline user-info" value="" >
                 </div>
-                <div class="m-3">
+                <div class="m-3 col-sm-12">
                     <label class=" d-inline">region :</label> 
                     <input type="text"class="form-control d-inline user-info" value="" >
                 </div>
@@ -71,32 +60,49 @@
                     <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
                         <ngb-panel title="" id="config-panel-one">
                         <ng-template ngbPanelContent>
-                            <div class="m-3">
+                            <form 
+                            [formGroup]="formRegistration"
+                            (ngSubmit)="getFormData(formRegistration)"
+                             action="#" method="post">
+                                <div class="m-3">
                                 <label class=" ">Name</label> 
-                                <input type="text"class="form-control  " value="" >
+                                <input 
+                                formControlName="Name"
+                                type="text"class="form-control" value="" >
                                 </div>
                                 <div class="m-3">
                                     <label class=" ">Email </label> 
-                                    <input type="text"class="form-control " value="" >
+                                    <input
+                                    formControlName="Email" 
+                                    type="text"class="form-control " value="" >
                                 </div>
                                 <div class="m-3">
                                     <label class=" ">address </label> 
-                                    <input type="text"class="form-control " value="" >
+                                    <input 
+                                    formControlName="Address" 
+                                    type="text"class="form-control " value="" >
                                 </div>
                                 <div class="m-3">
                                     <label class=" ">city </label> 
-                                    <input type="text"class="form-control  " value="" >
+                                    <input 
+                                    formControlName="City"
+                                    type="text"class="form-control  " value="" >
                                 </div>
                                 <div class="m-3">
                                     <label class=" ">region </label> 
-                                    <input type="text"class="form-control  " value="" >
+                                    <input 
+                                    formControlName="Region"
+                                    type="text"class="form-control  " value="" >
                                 </div>
                                 <p>
-                                    <button type="button" class="btn btn-outline-secondary" 
-                                    (click)="collapse.toggle() ; aollapse.toggle() ;  " [attr.aria-expanded]="!isCollapsed"
-                                    aria-controls="collapseExample"> submit</button>
+                                    <button type="submit" 
+                                    class="btn btn-outline-secondary" 
+                                    (click)="collapse.toggle(); aollapse.toggle();" 
+                                    [attr.aria-expanded]="!isCollapsed"
+                                    aria-controls="collapseExample">
+                                     submit</button>
                                 </p>
-                                <!-- <button type="submit" class="btn btn-primary ">Submit</button> -->
+                            </form>
                         </ng-template>
                         </ngb-panel>
                 

@@ -1,13 +1,18 @@
-<div class="con container d-flex justify-content-center align-items-center">
+<div class="con container-fluid d-flex justify-content-center align-items-center">
   <div class="row">
     <div class="cart shadow-lg rounded">
       <div class="d-flex justify-content-center">
         <h3>SignUp</h3>
       </div>
       <div>
+                   <!-- error message  -->
+        <!-- <div class="alert alert-danger m-2">
+          {{err}}
+        </div> -->
         <form
           [formGroup]="formRegistration"
           (ngSubmit)="getFormData(formRegistration)"
+           action="#" method="post"
         >
           <div class="form-group mb-3">
             <label for="name" class="form-label">Name</label>
@@ -138,14 +143,15 @@
             </div>
           </div>
           <button
-            [disabled]="formRegistration.invalid == true"
-            type="submit"
-            class="btn_signup shadow-lg"
-            routerLink="/login"
+          [disabled]="formRegistration.invalid == true"
+          type="submit"
+          class="btn_signup shadow-lg"
+          
           >
-            SignUp
-          </button>
-        </form>
+          SignUp
+        </button>
+        <!-- routerLink="/login" -->
+      </form>
       </div>
     </div>
   </div>

@@ -20,7 +20,12 @@
         <p class="text-center">$255</p>
       </a>
       <div class="buttons d-flex justify-content-between">
-        <button class="col-6 btn button-item rounded me-1">Add to cart</button>
+        <button 
+        class="
+         col-6 btn button-item 
+        rounded me-1"
+         routerLink="/cart">
+        Add to cart</button>
         <button class="col-6 btn button-item rounded" (click)="open(content)">
           More details
         </button>
@@ -68,6 +73,7 @@
   </div>
   <div class="modal-footer">
     <button
+      routerLink="/cart"
       type="button"
       class="btn btn-outline-dark"
       (click)="modal.close('Save click')"

@@ -5,16 +5,20 @@
 .icon
 {
     background-color: grey;
-    width: 14rem; height: 14rem;
+    width: 12rem; 
+    height: 12rem;
 }
-.row
+.card
 {
-    
+    width: 15rem; 
+    height: 20rem;
+  
 }
 .favourits
 {
     
-    width: 19rem; height: 20rem;
+    width: 15rem; 
+    height: 20rem;
     color: #876445;
 }
 .fav-items li

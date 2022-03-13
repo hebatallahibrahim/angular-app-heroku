@@ -1,5 +1,27 @@
 .container-fluid
 {
-    background-color: #cb985d;
+    background-color: #B78D65;
    
 }
+a
+{
+    color:black;
+    font-size: 13px;
+}
+a:hover
+{
+    color:white;
+}
+.btn {
+    background-color: #876445;
+    color: white;
+    width: 100%;
+    margin: 0 auto;
+    transition: all 0.5s ease;
+    border: none;
+  }
+  .btn:hover {
+    background-color: #cb985d;
+    color: white;
+    cursor: pointer;
+  }

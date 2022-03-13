@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-forget-password',
   templateUrl: './forget-password.component.html',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForgetPasswordComponent implements OnInit {
 
-  constructor() { }
+  
+  formRegistration: FormGroup = new FormGroup({
+    Email: new FormControl(null)  
+  });
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  getFormData(FormData: any) {
+    console.log(FormData.value);
   }
-
 }

@@ -5,7 +5,8 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [NgbDropdownConfig],
+  providers: [NgbDropdownConfig ],
+ 
 })
 export class HeaderComponent implements OnInit {
   accountDropdown = false;

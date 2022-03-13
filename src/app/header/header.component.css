@@ -23,6 +23,8 @@ i:hover
 a
 {
   font-size: 1rem;
+  color: black;
+  text-decoration: none;
 }
 a:hover
 {
