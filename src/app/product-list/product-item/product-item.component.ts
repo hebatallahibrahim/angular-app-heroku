@@ -11,6 +11,7 @@ import { ProductListService } from 'src/app/Service/product-list.service';
 export class ProductItemComponent implements OnInit {
   @Input()
   productItem!: Product;
+  item_hearted=false;
 
   closeResult = '';
   constructor(

@@ -97,7 +97,7 @@
             <a href="#">
               <img src="https://picsum.photos/200" class="rounded" alt="item" />
             </a>
-            <div class="love">
+            <div class="love" (click)="item_hearted=!item_hearted" [ngClass]="{'love-red':item_hearted}" >
               <i class="fa-solid fa-heart"></i>
             </div>
             <div class="container-fluid">

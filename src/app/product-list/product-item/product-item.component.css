@@ -26,6 +26,9 @@
   transform: scale(1.1);
   color: red;
 }
+.love-red{
+  color:red;
+}
 .link-item:hover {
   color: #876445;
 }

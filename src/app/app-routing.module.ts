@@ -39,7 +39,8 @@ const routes: Routes = [
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
-  { path: 'cart',canActivate:[AuthGuard] ,component: CartComponent },
+  //{ path: 'cart',canActivate:[AuthGuard] ,component: CartComponent },
+  { path: 'cart',component: CartComponent },
  
   { path: 'payment', component: PaymentComponent },
   { path: 'admin', component: AdminPageComponent },
