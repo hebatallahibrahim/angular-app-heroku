@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="container">
   <div class="row m-3">
-    <div class="col-6">
+    <div class="col-lg-6 col-md-7 col-12">
       <swiper [config]="config">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
@@ -37,20 +37,8 @@
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
       </swiper>
-      <div class="product-info">
-        <h3>product info</h3>
-        <ul>
-          <li>Brand Name:</li>
-          <li>Color:</li>
-          <li>Material:</li>
-          <li>Height in cm:</li>
-          <li>Width in cm:</li>
-          <li>Length in cm:</li>
-          <li>Warranty:</li>
-        </ul>
-      </div>
     </div>
-    <div class="col-6">
+    <div class="col-lg-6 col-md-5 col-12">
       <h1>product name</h1>
       <h4>$255</h4>
       <button class="cart-button btn mb-4" routerLink="/cart">Add to cart</button>
@@ -65,6 +53,25 @@
           <td>Alfreds Futterkiste</td>
         </tr>
       </table>
+      
+      
+    </div>
+  </div>
+  <div class="row m-3">
+    <div class="col-lg-6 col-md-4 col-12 product-info">
+      <h3>product info</h3>
+      <ul>
+        <li>Brand Name:</li>
+        <li>Color:</li>
+        <li>Material:</li>
+        <li>Height in cm:</li>
+        <li>Width in cm:</li>
+        <li>Length in cm:</li>
+        <li>Warranty:</li>
+      </ul>
+    </div>
+    
+    <div class="col-lg-6 col-md-8 col-12 rate-comment">
       <form [formGroup]="form">
         <p>Rating this product</p>
         <ngx-star-rating
@@ -72,6 +79,12 @@
           [id]="'rating'"
         ></ngx-star-rating>
         <div>Rating: {{ form.value.rating }}</div>
+        <div class="add-comment">
+          <h3 class="col-12">Add Comment</h3>
+          <mat-form-field class="col-12">
+            <input matInput>
+          </mat-form-field>
+        </div>
       </form>
     </div>
   </div>
@@ -84,7 +97,7 @@
             <a href="#">
               <img src="https://picsum.photos/200" class="rounded" alt="item" />
             </a>
-            <div class="love">
+            <div class="love" (click)="item_hearted=!item_hearted" [ngClass]="{'love-red':item_hearted}" >
               <i class="fa-solid fa-heart"></i>
             </div>
             <div class="container-fluid">

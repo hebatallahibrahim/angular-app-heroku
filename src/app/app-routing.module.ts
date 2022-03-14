@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'product-details', component: ProductDetailsComponent }, //don't forgrt to put /:id
   { path: 'blogs', component: BlogsPageComponent },
   { path: 'contactUs', component: ContactUsComponent },
-  { path: 'aboutUs', component: ContactUsComponent }, // add about us component
+  { path: 'aboutUs', component: AboutUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
   { path: 'cart', canActivate: [AuthGuard], component: CartComponent },
   { path: 'payment', component: PaymentComponent },

@@ -13,6 +13,7 @@ export class ProductItemComponent implements OnInit {
   @Input()
   productItem!: Product;
   itemAddToCart: EventEmitter<Product> = new EventEmitter<Product>();
+  item_hearted = false;
   closeResult = '';
   constructor(
     private modalService: NgbModal,

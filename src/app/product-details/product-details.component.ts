@@ -10,6 +10,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
+  item_hearted=false;
   arr = [1, 2, 3, 4];
   array = [1, 2, 3, 4];
   images = [944, 1011, 984].map(
