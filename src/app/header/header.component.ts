@@ -7,8 +7,7 @@ import { ProductListService } from '../Service/product-list.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [NgbDropdownConfig ],
- 
+  providers: [NgbDropdownConfig],
 })
 export class HeaderComponent implements OnInit {
   accountDropdown = false;
@@ -29,7 +28,7 @@ export class HeaderComponent implements OnInit {
   calculateTotal(): number {
     let totalPrice = 0;
     this.addedProducts.forEach((element) => {
-      totalPrice += element.Count * element.price;
+      // totalPrice += element.name * element.price;
     });
     return totalPrice;
   }

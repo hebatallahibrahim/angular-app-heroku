@@ -9,20 +9,12 @@ import { ProductListService } from 'src/app/Service/product-list.service';
 })
 export class CheckoutComponent implements OnInit {
   listof = [];
-  constructor(productListService: ProductListService) {
-    productListService.updateProduct().subscribe(
-      (data: any) => {
-        this.listof = data.results;
-        console.log(this.listof);
-
-        // console.log(data);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  constructor(productListService: ProductListService, http: HttpClient) {
+   
   }
-
-  ngOnInit(): void {}
-  getData() {}
+  ngOnInit(): void{
+  }
+  testNow() {
+   
+  }
 }
