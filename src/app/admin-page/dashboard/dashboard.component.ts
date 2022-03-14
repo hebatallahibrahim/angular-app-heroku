@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-//  arr=[1,2,3,4,5,6,7,8,9,10];
+ arr=[1,2,3,4];
   constructor() { }
 
   ngOnInit(): void {

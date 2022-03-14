@@ -24,6 +24,7 @@ import { DashboardComponent } from './admin-page/dashboard/dashboard.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -33,12 +34,12 @@ const routes: Routes = [
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent }, //don't forgrt to put /:id
   { path: 'cart', component: ProductListComponent }, //add cart page
+  { path: 'product-details', component: ProductDetailsComponent }, //don't forgrt to put /:id
   { path: 'blogs', component: BlogsPageComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: ContactUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
-  { path: 'Cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  { path: 'cart', canActivate: [AuthGuard], component: CartComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'all-product', component: AllProductsComponent },
@@ -50,7 +51,7 @@ const routes: Routes = [
   { path: 'dashbord', component: DashboardComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
-  { path: 'checkout', component: CheckOutComponent },
+  { path: 'check-out', component: CheckOutComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '**', component: NotFoundComponent },
 ];

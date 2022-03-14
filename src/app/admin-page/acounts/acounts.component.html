@@ -20,10 +20,15 @@
       <div class="tm-block-col tm-col-account-settings ">
         <div class="tm-bg-primary-dark tm-block tm-block-settings">
           <h2 class="tm-block-title">Account Settings</h2>
-          <form action="" class="tm-signup-form row">
+          <form 
+            [formGroup]="formRegistration"
+            (ngSubmit)="getFormData(formRegistration)"
+             action="#" method="post"
+          >
             <div class="form-group col-lg-6">
               <label for="name">Account Name</label>
               <input
+                formControlName="name"
                 id="name"
                 name="name"
                 type="text"
@@ -33,6 +38,7 @@
             <div class="form-group col-lg-6">
               <label for="email">Account Email</label>
               <input
+              formControlName="email"
                 id="email"
                 name="email"
                 type="email"
@@ -42,6 +48,7 @@
             <div class="form-group col-lg-6">
               <label for="password">Password</label>
               <input
+              formControlName="password"
                 id="password"
                 name="password"
                 type="password"
@@ -51,6 +58,7 @@
             <div class="form-group col-lg-6">
               <label for="password2">Re-enter Password</label>
               <input
+              formControlName="rePassword"
                 id="password2"
                 name="password2"
                 type="password"
@@ -60,6 +68,7 @@
             <div class="form-group col-lg-6">
               <label for="phone">Phone</label>
               <input
+              formControlName="phone"
                 id="phone"
                 name="phone"
                 type="tel"
@@ -74,7 +83,7 @@
               <button
                 type="submit"
                 class="btn btn-primary btn-block text-uppercase "
-                routerLink="/admin"
+                
               >
               Add 
               </button>

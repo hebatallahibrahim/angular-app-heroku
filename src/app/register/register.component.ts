@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { AuthService } from '../auth.service';
+import{ Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -26,11 +27,26 @@ export class RegisterComponent implements OnInit {
     City: new FormControl(null, Validators.required),
     Region: new FormControl(null, Validators.required),
   });
-
-  constructor() {}
+   err:string | undefined;
+  constructor(public _AuthService:AuthService , public  _Router:Router ) {}
 
   ngOnInit(): void {}
   getFormData(FormData: any) {
-    console.log(FormData);
+    // console.log(FormData.value);
+    
+    if(FormData.valid=='success' ) {
+      
+      this._AuthService.signup(FormData.value).subscribe(data=> {
+        // console.log(data);
+        if(data.message=='success')
+        {
+         this._Router.navigate(['/login']);      
+        }
+        else 
+        {
+          this.err='not valid data';
+        }
+      });
+    }
   }
 }

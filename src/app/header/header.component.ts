@@ -7,7 +7,8 @@ import { ProductListService } from '../Service/product-list.service';
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [NgbDropdownConfig],
+  providers: [NgbDropdownConfig ],
+ 
 })
 export class HeaderComponent implements OnInit {
   accountDropdown = false;

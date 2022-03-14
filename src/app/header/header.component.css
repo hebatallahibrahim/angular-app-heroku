@@ -1,9 +1,13 @@
+*
+{
+  font-size: 1rem;
+}
 .div-logo {
-  color: #ca965c;
+  color:#B78D65;
   transition: all 0.5s ease;
 }
 .div-logo:hover {
-  color: #876445;
+  color: #e4c6aa;
 }
 
 ::ng-deep .menuCart {
@@ -11,6 +15,24 @@
 }
 ::ng-deep .mat-menu-content {
   width: 80% !important;
+}
+i:hover
+{
+  color:#B78D65;
+}
+.button-group p:hover
+{
+  color:#B78D65;
+}
+a
+{
+  font-size: 1rem;
+  color: black;
+  text-decoration: none;
+}
+a:hover
+{
+  color:#B78D65;
 }
 
 .cart_p {

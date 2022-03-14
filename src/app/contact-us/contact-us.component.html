@@ -1,57 +1,90 @@
 <app-header></app-header>
-<div class="bg-contact100">
-    <div class="container-contact100">
-        <div class="wrap-contact100 row shadow-lg rounded ">
-            <div class="col-xl-6 col-lg-6 col-sm-12 col-md-12 " >
-            <form class="contact100-form">
-                <span class="contact100-form-title">
-                    Get in touch
-                </span>
-                <div class="row">
-                <div class="col-md-6 wrap-input100 ">
-                    <input class="input100" type="text" name="name" placeholder="First Name">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="col-md-6 wrap-input100 ">
-                    <input class="input100" type="text" name="name" placeholder="Last Name">
-                    <span class="focus-input100"></span>
-                </div>
-              </div>
-                <div class="wrap-input100 ">
-                    <input class="input100" type="text" name="email" placeholder="Email">
-                    <span class="focus-input100"></span>
-                  
-                </div>
-                <div class="wrap-input100 ">
-                    <textarea class="input100" name="message" placeholder="Message"></textarea>
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="container-contact100-form-btn pt-4">
-                    <button class="contact100-form-btn" type="submit">
-                        Send
-                    </button>
-                </div>
-            </form>
+
+<div
+  class="container-contact100 d-flex justify-content-center align-items-center"
+>
+  <div
+    class="wrap-contact100 row shadow-lg rounded d-flex justify-content-center align-items-center m-5"
+  >
+    <div class="form-content col-xl-5 col-lg-5 col-sm-12 col-md-12 p-5">
+      <form
+        [formGroup]="formRegistration"
+        (ngSubmit)="getFormData(formRegistration)"
+        action="#"
+        method="post"
+      >
+        <span class="contact100-form-title"> Get in touch </span>
+        <div class="row">
+          <div class="wrap-input100">
+            <input
+              class="input100"
+              formControlName="firstname"
+              type="text"
+              placeholder="First Name"
+            />
+            <span class="focus-input100"></span>
+          </div>
+          <div class="wrap-input100">
+            <input
+              class="input100"
+              formControlName="lastname"
+              type="text"
+              placeholder="Last Name"
+            />
+            <span class="focus-input100"></span>
+          </div>
+          <div class="wrap-input100">
+            <input
+              class="input100"
+              formControlName="email"
+              type="text"
+              placeholder="Email"
+            />
+            <span class="focus-input100"></span>
+          </div>
+          <div class="wrap-input100">
+            <textarea
+              class="input100"
+              formControlName="message"
+              placeholder="Message"
+              col="15"
+              rows="5"
+            >
+            </textarea>
+            <span class="focus-input100"></span>
+          </div>
+          <div class="container-contact100-form-btn pt-4">
+            <button class="contact100-form-btn" type="submit">Send</button>
+          </div>
         </div>
-            
-        <div class="info-body col-xl-6 col-lg-6 col-sm-12 col-md-12 ">
-                <div class="row info_data container d-flex justify-content-center align-items-center mt-5">
-                <div class="info">
-                    <i class="fas fa-home m-5  " style="font-size: 2rem;color: #cb985d; "></i>
-                    <p class="d-inline">Maadi-Cairo-Egypt </p>
-                </div>
-                <div class=" info">
-                    <i class="fa-solid fa-mobile-screen-button m-5 " style="font-size: 2rem;color: #cb985d; "></i>
-                    <p class="d-inline">(+02) 01147783654</p>
-                </div>
-                <div class="info">
-                    <i class="fas fa-envelope m-5" style="font-size: 2rem;color: #cb985d; "></i>
-                    <p class="d-inline">nourelnaggar@gmail.com</p>
-                </div>
-                </div>
-            </div>
-            
-        </div>
+      </form>
     </div>
+    <div class="icon-content col-xl-5 col-lg-5 col-sm-12 col-md-12 p-5">
+      <div
+        class="row info_data container d-flex justify-content-center align-items-center"
+      >
+        <div class="info col-xl-12 col-lg-12 col-sm-12 col-md-12 mb-4 p-3">
+          <i class="fas fa-home" style="font-size: 2rem; color: #cb985d"></i>
+          <p class="d-inline">Maadi-Cairo-Egypt</p>
+        </div>
+        <div class="info col-xl-12 col-lg-12 col-sm-12 col-md-12 mb-4 p-3">
+          <i
+            class="fa-solid fa-mobile-screen-button"
+            style="font-size: 2rem; color: #cb985d"
+          ></i>
+          <p class="d-inline">(+02) 01147783654</p>
+        </div>
+        <div class="info col-xl-12 col-lg-12 col-sm-12 col-md-12 mb-4 p-3">
+          <i
+            class="fas fa-envelope"
+            style="font-size: 2rem; color: #cb985d"
+          ></i>
+
+          <p class="d-inline">nourelnaggar@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <app-footer></app-footer>

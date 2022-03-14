@@ -10,10 +10,15 @@
           </div>
           <div class="row mt-2">
             <div class="col-12">
-              <form action="index.html" method="post" class="tm-login-form">
+              <form 
+                  [formGroup]="formRegistration"
+                  (ngSubmit)="getFormData(formRegistration)"
+                  action="#" method="post"
+               class="tm-login-form">
                 <div class="form-group">
                   <label for="username">Username</label>
                   <input
+                   formControlName="email"
                     name="username"
                     type="text"
                     class="form-control validate"
@@ -25,6 +30,7 @@
                 <div class="form-group mt-3">
                   <label for="password">Password</label>
                   <input
+                    formControlName="password"
                     name="password"
                     type="password"
                     class="form-control validate"
@@ -41,9 +47,7 @@
                     Login
                   </button>
                 </div>
-                <button class="mt-5 btn btn-primary btn-block text-uppercase">
-                  Forgot your password?
-                </button>
+               
               </form>
             </div>
           </div>

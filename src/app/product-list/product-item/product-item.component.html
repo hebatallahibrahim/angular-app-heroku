@@ -26,6 +26,7 @@
         >
           Add to cart
         </button>
+
         <button class="col-6 btn button-item rounded" (click)="open(content)">
           More details
         </button>
@@ -74,6 +75,7 @@
   </div>
   <div class="modal-footer">
     <button
+      routerLink="/cart"
       type="button"
       class="btn btn-outline-dark"
       (click)="modal.close('Save click')"

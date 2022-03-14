@@ -1,13 +1,11 @@
-<!-- <app-navnar></app-navnar> -->
+
 <div class="container">
     <div class="row">
         <div class="col">
-            <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
+            <p class="text-black mt-5 mb-5">Welcome back, <b>Admin</b></p>
         </div>
     </div>
-    <!-- row -->
     <div class="row tm-content-row">
-       
         <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
                 <h2 class="tm-block-title">Orders List</h2>
@@ -60,7 +58,7 @@
                             <td>11:00, 7 MAR 2022</td>
                             <td>04:00,7 MAR 2022</td>
                         </tr>
-                        <tr>
+                        <tr *ngFor="let i of arr">
                             <th scope="row"><b>#4</b></th>
                             <td>
                                 <div class="tm-status-circle moving">
@@ -72,90 +70,7 @@
                             <td>11:00, 7 MAR 2022</td>
                             <td>04:00,7 MAR 2022</td>
                         </tr>
-                        <tr>
-                            <th scope="row"><b>#5</b></th>
-                            <td>
-                                <div class="tm-status-circle pending">
-                                </div>Pending
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>#6</b></th>
-                            <td>
-                                <div class="tm-status-circle pending">
-                                </div>Pending
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>#7</b></th>
-                            <td>
-                                <div class="tm-status-circle moving">
-                                </div>Moving
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>#8</b></th>
-                            <td>
-                                <div class="tm-status-circle moving">
-                                </div>Moving
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>#9</b></th>
-                            <td>
-                                <div class="tm-status-circle moving">
-                                </div>Moving
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>#10</b></th>
-                            <td>
-                                <div class="tm-status-circle cancelled">
-                                </div>Cancelled
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><b>#11</b></th>
-                            <td>
-                                <div class="tm-status-circle moving">
-                                </div>Moving
-                            </td>
-                            <td><b>Nour</b></td>
-                            <td><b>cairo,</b></td>
-                            <td><b>360 km</b></td>
-                            <td>11:00, 7 MAR 2022</td>
-                            <td>04:00,7 MAR 2022</td>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>

@@ -1,96 +1,38 @@
-<h1 class="d-flex justify-content-center mt-5 mb-5">Our shop Sets</h1>
-<div class="row">
-  <div class="cot col">
-    <div class="row">
-      <ul class="slides col-4">
-        <li id="slide1">
-          <a href="#">
-            <img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw1.jpg"
-              alt=""
-            />
-          </a>
-        </li>
-        <li id="slide2">
-          <a href="#">
-            <img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg"
-              alt=""
-            />
-          </a>
-        </li>
-        <li id="slide3">
-          <a href="#">
-            <img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw3.jpg"
-              alt=""
-            />
-          </a>
-        </li>
-        <li id="slide4">
-          <a href="#">
-            <img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw4.jpg"
-              alt=""
-            />
-          </a>
-        </li>
-        <li id="slide5">
-          <a href="#">
-            <img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw5.jpg"
-              alt=""
-            />
-          </a>
-        </li>
-      </ul>
-
-      <ul class="thumbnails col-4">
-        <li>
-          <a routerLink="#slide1"
-            ><img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw1.jpg"
-          /></a>
-        </li>
-        <li>
-          <a href="#slide2"
-            ><img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg"
-          /></a>
-        </li>
-        <li>
-          <a href="#slide3"
-            ><img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw3.jpg"
-          /></a>
-        </li>
-        <li>
-          <a href="#slide4"
-            ><img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw4.jpg"
-          /></a>
-        </li>
-        <li>
-          <a href="#slide5"
-            ><img
-              src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw5.jpg"
-          /></a>
-        </li>
-      </ul>
-    </div>
+<div class="con">
+  <h1 class="d-flex justify-content-center m-5 p-5">Our shop Sets</h1>
+  <div class="row m-3">
+    <div class="col-lg-6 col-md-6 col-sm-12 ">
+      <h2 class ="d-flex justify-content-center m-5"> Our Shop Sets</h2>
+      <div class="set_paragraph m-4 p-3">
+        We provide online solutions for all your 
+        interior décor requirements. Every piece 
+        of furniture is designed in-house through 
+        our manufacturing unit in Egypt. You can 
+        save up to 30% on all furniture deals as there 
+        are no intermediary entities involved.
+        The skill and effort of our experienced 
+        artisans is applied to the process of creation. 
+      </div>
   </div>
-  <div class="content col-6">
-    <div class="shop-sets">
-      <h2 class="d-flex justify-content-center p-3 m-3 set_title">
-        Our Shop Sets
-      </h2>
-      <p class="set_paragraph d-flex justify-content-center">
-        Lorem ipsum dolor sit amet consectetur elitt, adipisicing . Ea sint
-        magni laudantium similiq. Eos, quibusdam veniam ipsam alias commodi
-        repellat obcaecati, minima id laboriosamadrti repudiandae amet assumenda
-        laboreab maxe repudiandae amet assumenda laboreab maxe , repudiandae
-        amet assumenda laboreab maxe
-      </p>
+    <div class="col-lg-6 col-md-6 col-sm-12 ">
+    <ngb-carousel #carousel [interval]="1000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
+      <ng-template ngbSlide *ngFor="let img of images; index as i">
+    <div class="carousel-caption">
+      <h3>My slide {{i + 1}} title</h3>
     </div>
+    <a routerLink="/product-details" target="_blank" 
+      rel="nofollow noopener noreferrer">
+      <div class="picsum-img-wrapper">
+        <img [src]="img" alt="My image {{i + 1}} description">
+      </div>
+    </a>
+      </ng-template>
+    </ngb-carousel>
+    </div>
+  
   </div>
 </div>
+
+
+   
+

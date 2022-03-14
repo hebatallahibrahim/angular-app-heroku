@@ -1,66 +1,77 @@
-<div class="con container d-flex justify-content-center align-items-center">
+<div
+  class="con container-fluid d-flex justify-content-center align-items-center"
+>
   <div class="row-login row rounded p-3 shadow-lg bg-body">
     <div class="col m-5">
-      <form
-        #logdata="ngForm"
-        class="form_class"
-        (ngSubmit)="onLogIn(logdata.value)"
-      >
-        <div class="formGroup">
-          <div class="form_class-title d-flex justify-content-center">
-            <h1 class="title">Login</h1>
-          </div>
-          <div class="row mb-3 p-2">
-            <label for="email" class="form-label">Email address</label>
-            <input
-              type="email"
-              name="email"
-              class="form_class-input form-control"
-              id="email"
-              ngModel
-              aria-describedby="emailHelp"
-              required
-            />
-          </div>
-          <div class="row mb-3 p-2">
-            <label for="password" class="form-label">Password</label>
-            <input
-              type="password"
-              name="password"
-              ngModel
-              class="form-control"
-              id="password"
-              required
-            />
-          </div>
-          <div
-            class="row form_class-last mb-3 form-check d-flex justify-content-between"
-          >
-            <div class="col-6 col-md-12">
-              <input type="checkbox" class="form-check-input" id="remember" />
-              <label class="form-check-label" for="remember">
-                Remember me</label
-              >
-            </div>
-            <div class="col-6 col-md-12"></div>
-            <a
-              routerLink="/forgetPass"
-              class="form_class-forget col-6 col-md-12 p-0"
-              >Forget password?</a
-            >
-          </div>
 
-          <button
-            type="submit"
-            [disabled]="!logdata.valid"
-            class="form-login_submit btn shadow-sm mb-2 mt-1"
-          >
-            Submit
-          </button>
+      <form
+        [formGroup]="formLogin"
+        (ngSubmit)="getFormData(formLogin)"
+        action="#"
+        method="post"
+        class="form_class"
+      >
+        <div class="form_class-title d-flex justify-content-center">
+          <h1 class="title">Login</h1>
         </div>
+        <div class="row mb-3 p-2">
+          <label for="email" class="form-label">Email address</label>
+          <input
+            [class.is-invalid]="
+              formLogin.get('Email')?.invalid && formLogin.get('Email')?.touched
+            "
+            type="email"
+            class="form-control"
+            id="Email"
+            formControlName="Email"
+          />
+        </div>
+        <div class="row mb-3 p-2">
+          <label for="password" class="form-label">Password</label>
+          <input
+            [class.is-invalid]="
+              formLogin.get('Password')?.invalid &&
+              formLogin.get('Password')?.touched
+            "
+            type="password"
+            class="form-control"
+            id="Password"
+            formControlName="Password"
+          />
+        </div>
+        <div
+          class="row form_class-last mb-3 form-check d-flex justify-content-between"
+        >
+          <div class="col-6 col-md-12">
+            <input type="checkbox" class="form-check-input" id="remember" />
+            <label class="form-check-label" for="remember"> Remember me</label>
+          </div>
+          <div class="col-6 col-md-12"></div>
+          <a
+            routerLink="/forgetPass"
+            class="form_class-link col-6 col-md-12 p-0"
+            >Forget password?</a>
+          <div class="col-6 col-md-12">
+            <input type="checkbox" class="form-check-input" id="remember" />
+            <label class="form-check-label" for="remember"> Remember me</label>
+          </div>
+          <div class="col-6 col-md-12"></div>
+          <a
+            routerLink="/forgetPass"
+            class="form_class-forget col-6 col-md-12 p-0"
+            >Forget password?</a
+          >
+        </div>
+
+        <button type="submit" class="form-login_submit btn shadow-sm mb-2 mt-1">
+          Log In
+        </button>
+
         <p class="d-flex justify-content-center">
           or go to
-          <a routerLink="/signUp" class="text-decoration-none"
+          <a
+            routerLink="/signUp"
+            class="form_class-link signup-link text-decoration-none"
             ><span>Sign up</span></a
           >
         </p>
