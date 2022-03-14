@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductDetailsService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  getProductByID(id: any) {
+    this.http.get<any>(`http://127.0.0.1:8000/api/show/${id}`);
+  }
 }

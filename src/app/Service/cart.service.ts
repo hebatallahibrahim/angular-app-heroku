@@ -1,11 +1,10 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Product } from '../Model/product.model';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
-  constructor() { }
+  constructor() {}
   private cartArray: Product[] = [];
   //
   cartHasBeenChanged: EventEmitter<Product[]> = new EventEmitter<Product[]>();
@@ -13,7 +12,7 @@ export class CartService {
   addToCart(product: Product) {
     console.log(product);
     if (this.cartArray.includes(product)) {
-      product!.Count++;
+      product.count!++;
     } else {
       this.cartArray.push(product);
       console.log(this.cartArray);

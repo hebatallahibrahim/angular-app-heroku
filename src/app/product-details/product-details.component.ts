@@ -3,6 +3,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SwiperOptions } from 'swiper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ProductDetailsService } from './../Service/product-details.service';
 
 @Component({
   selector: 'app-product-details',
@@ -10,7 +11,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  item_hearted=false;
+  item_hearted = false;
   arr = [1, 2, 3, 4];
   array = [1, 2, 3, 4];
   images = [944, 1011, 984].map(
@@ -19,8 +20,13 @@ export class ProductDetailsComponent implements OnInit {
   public form: FormGroup;
   rating3: number;
   productId: any;
+  productDetails: any;
 
-  constructor(private fb: FormBuilder, private activetedRoute: ActivatedRoute) {
+  constructor(
+    private fb: FormBuilder,
+    private activetedRoute: ActivatedRoute,
+    private _productDetailsService: ProductDetailsService
+  ) {
     this.rating3 = 0;
     this.form = this.fb.group({
       rating: ['', Validators.required],
@@ -72,12 +78,13 @@ export class ProductDetailsComponent implements OnInit {
     spaceBetween: 50,
   };
 
-  ngOnInit(): void {
-    this.productId = this.activetedRoute.paramMap.subscribe(
-      (params: ParamMap) => {
-        this.productId = params.get('id');
-        console.log(this.productId);
-      }
-    );
+  ngOnInit() {
+    this.productId = this.activetedRoute.snapshot.paramMap.get('id');
+    console.log(this.productId);
+
+    this._productDetailsService.getProductByID(this.productId);
+    // .subscribe((data: any) => {
+    //   this.productDetails = data;
+    // });
   }
 }

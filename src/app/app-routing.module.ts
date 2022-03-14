@@ -33,13 +33,11 @@ const routes: Routes = [
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent }, //don't forgrt to put /:id
-  { path: 'cart', component: ProductListComponent }, //add cart page
-  { path: 'product-details', component: ProductDetailsComponent }, //don't forgrt to put /:id
   { path: 'blogs', component: BlogsPageComponent },
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
-  { path: 'cart', canActivate: [AuthGuard], component: CartComponent },
+  { path: 'cart', component: CartComponent }, // canActivate: [AuthGuard],
   { path: 'payment', component: PaymentComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'all-product', component: AllProductsComponent },

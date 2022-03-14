@@ -14,10 +14,7 @@ export class HeaderComponent implements OnInit {
   accountDropdown = false;
   addedProducts: Product[] = [];
   togle: string = 'ngbDropdownToggle';
-  constructor(
-    config: NgbDropdownConfig,
-    private cartService: CartService
-  ) {
+  constructor(config: NgbDropdownConfig, private cartService: CartService) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
   }
@@ -29,13 +26,11 @@ export class HeaderComponent implements OnInit {
   calculateTotal(): number {
     let totalPrice = 0;
     this.addedProducts.forEach((element) => {
-      totalPrice += element.Count * element.price;
+      totalPrice += element.count! * element.selling_price;
     });
     return totalPrice;
   }
   removeItem(item: Product): void {
-    // delete this.addedProducts[0]
-    // this.addedProducts.pop();
     this.addedProducts.splice(this.addedProducts.indexOf(item), 1);
   }
 
