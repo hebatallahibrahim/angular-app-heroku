@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SwiperOptions } from 'swiper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-product-details',
@@ -11,11 +12,19 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class ProductDetailsComponent implements OnInit {
   arr = [1, 2, 3, 4];
   array = [1, 2, 3, 4];
-
   images = [944, 1011, 984].map(
     (n) => `https://picsum.photos/id/${n}/1200/500`
   );
+  public form: FormGroup;
+  rating3: number;
+  productId: any;
 
+  constructor(private fb: FormBuilder, private activetedRoute: ActivatedRoute) {
+    this.rating3 = 0;
+    this.form = this.fb.group({
+      rating: ['', Validators.required],
+    });
+  }
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: true,
@@ -61,14 +70,13 @@ export class ProductDetailsComponent implements OnInit {
     },
     spaceBetween: 50,
   };
-  public form: FormGroup;
-  rating3: number;
 
-  constructor(private fb: FormBuilder) {
-    this.rating3 = 0;
-    this.form = this.fb.group({
-      rating: ['', Validators.required],
-    });
+  ngOnInit(): void {
+    this.productId = this.activetedRoute.paramMap.subscribe(
+      (params: ParamMap) => {
+        this.productId = params.get('id');
+        console.log(this.productId);
+      }
+    );
   }
-  ngOnInit() {}
 }

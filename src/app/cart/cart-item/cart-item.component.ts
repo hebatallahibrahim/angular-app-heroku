@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/app/Model/product.model';
+import { ProductListService } from 'src/app/Service/product-list.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartItemComponent implements OnInit {
   countries = COUNTRIES;
+  addedProducts: Product[] = [];
   counterValue: number = 0;
   increment() {
     this.counterValue++;
@@ -14,9 +17,19 @@ export class CartItemComponent implements OnInit {
   decrement() {
     this.counterValue--;
   }
-  constructor() {}
+  constructor(private productListService: ProductListService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productListService.cartHasBeenChanged.subscribe(
+      (res) => {
+        this.addedProducts = res;
+      },
+      (err) => {},
+      () => {}
+    );
+    console.log(this.addedProducts);
+    
+  }
 }
 
 interface Country {

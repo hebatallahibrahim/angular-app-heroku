@@ -7,7 +7,6 @@ import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { BlogsPageComponent } from './blogs-page/blogs-page.component';
-
 import { HomeComponent } from './home/home.component';
 import { ForgetPasswordComponent } from './login/forget-password/forget-password.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
@@ -32,7 +31,7 @@ const routes: Routes = [
   { path: 'resetPassword', component: FooterComponent },
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
-  { path: 'product-details', component: ProductDetailsComponent }, //don't forgrt to put /:id
+  { path: 'product-details/:id', component: ProductDetailsComponent }, //don't forgrt to put /:id
   { path: 'cart', component: ProductListComponent }, //add cart page
   { path: 'blogs', component: BlogsPageComponent },
   { path: 'contactUs', component: ContactUsComponent },

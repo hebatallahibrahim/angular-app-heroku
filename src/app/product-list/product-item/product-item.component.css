@@ -1,4 +1,3 @@
-
 .card-img-top {
   transform: scale(1);
   backface-visibility: hidden;
@@ -23,6 +22,7 @@
   transition: all 0.1s ease;
 }
 .love:hover {
+  content: "";
   transform: scale(1.1);
   color: red;
 }

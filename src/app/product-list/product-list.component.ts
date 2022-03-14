@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { Product } from '../Model/product.model';
 import { ProductListService } from '../Service/product-list.service';
 
@@ -9,6 +9,7 @@ import { ProductListService } from '../Service/product-list.service';
 })
 export class ProductListComponent implements OnInit {
   productArray!: Product[];
+  // itemAdd: EventEmitter<Product> = new EventEmitter<Product>();
   constructor(private productListService: ProductListService) {
     this.productArray = this.productListService.productArray;
   }

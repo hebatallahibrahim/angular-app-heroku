@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { ForgetPasswordComponent } from './login/forget-password/forget-password.component';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
@@ -37,7 +37,6 @@ import { PaymentComponent } from './cart/payment/payment.component';
 import { FormComponent } from './form/form.component';
 import { MatInputModule } from '@angular/material/input';
 import { ProfileComponent } from './profile/profile.component';
-
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AllProductsComponent } from './admin-page/all-products/all-products.component';
 import { UpdateProductComponent } from './admin-page/update-product/update-product.component';
@@ -49,6 +48,8 @@ import { LogInComponent } from './admin-page/log-in/log-in.component';
 import { AddCategoryComponent } from './admin-page/add-category/add-category.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { TestComponent } from './test/test.component';
+import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,6 @@ import { CheckOutComponent } from './check-out/check-out.component';
     PaymentComponent,
     FormComponent,
     ProfileComponent,
-   
     AdminPageComponent,
     AllProductsComponent,
     UpdateProductComponent,
@@ -88,6 +88,8 @@ import { CheckOutComponent } from './check-out/check-out.component';
     AddCategoryComponent,
     AboutUsComponent,
     CheckOutComponent,
+    TestComponent,
+    DropdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,6 +105,7 @@ import { CheckOutComponent } from './check-out/check-out.component';
     MatNativeDateModule,
     MaterialExampleModule,
     MatInputModule,
+    FormsModule,
   ],
   providers: [ProductListService],
 

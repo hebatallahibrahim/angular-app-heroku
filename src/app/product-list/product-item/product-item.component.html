@@ -1,5 +1,5 @@
 <div class="img-overlay text-end fs-5 rounded">
-  <a href="/product-details">
+  <a (click)="goTodetails(productItem)">
     <img
       src="https://picsum.photos/200"
       class="card-img-top rounded-top"
@@ -13,14 +13,19 @@
   <div class="container-fluid">
     <div class="row p-3">
       <a
-        href="/product-details"
+        (click)="goTodetails(productItem)"
         class="link-item text-decoration-none link-dark"
       >
-        <p class="text-center name-item p-0">Product name</p>
-        <p class="text-center">$255</p>
+        <p class="text-center name-item p-0">{{ productItem.name }}</p>
+        <p class="text-center">{{ productItem.price }}</p>
       </a>
       <div class="buttons d-flex justify-content-between">
-        <button class="col-6 btn button-item rounded me-1">Add to cart</button>
+        <button
+          class="col-6 btn button-item rounded me-1"
+          (click)="onItemAdded()"
+        >
+          Add to cart
+        </button>
         <button class="col-6 btn button-item rounded" (click)="open(content)">
           More details
         </button>
@@ -32,7 +37,7 @@
 <!-- /////////////////////////////////////////////////////// -->
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Product details</h4>
+    <h3 class="modal-title" id="modal-basic-title">Product details</h3>
     <button
       type="button"
       class="btn-close"
@@ -52,7 +57,8 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <h5 class="card-title">Product name</h5>
+            <h4 class="card-title">{{ productItem.name }}</h4>
+            <h5 class="card-title">{{ productItem.price }}</h5>
             <p class="card-text">
               This is a wider card with supporting text below as a natural
               lead-in to additional content. This content is a little bit

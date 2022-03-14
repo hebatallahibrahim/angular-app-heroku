@@ -71,37 +71,52 @@
           </li>
         </ul>
       </div>
-      <<<<<<< HEAD
       <button
         mat-icon-button
         [matMenuTriggerFor]="menu"
         aria-label="Example icon-button with a menu"
       >
-        <mat-icon matBadge="1" matBadgeColor="warn">
+        <mat-icon matBadge="{{ addedProducts.length }}" matBadgeColor="warn">
           add_shopping_cart
         </mat-icon>
-        <span class="cdk-visually-hidden">
-          Example with a home icon with overlaid badge showing the number 15
-        </span>
       </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>add_shopping_cart</mat-icon>
-          <span>product</span>
-        </button>
+      <mat-menu
+        #menu="matMenu"
+        class="menuCart d-flex justify-content-center align-items-center"
+      >
+        <div
+          mat-menu-item
+          *ngFor="let item of addedProducts"
+          class="container-fluid p-0"
+        >
+          <div class="row mt-2 d-flex justify-content-between">
+            <div class="col-md-1 ms-2 me-0 p-0">
+              <mat-icon (click)="removeItem(item)">delete_forever</mat-icon>
+            </div>
+            <div
+              class="col-md-5 d-flex justify-content-start align-items-start"
+            >
+              <span class="cart_p me-2">{{ item.name }}</span>
+              <span class="text-muted small"
+                >{{ item.Count }} X {{ item.price }}</span
+              >
+            </div>
+            <div class="col-md-5 d-flex justify-content-center align-items-end">
+              <img [src]="item.imageUrl" alt="image" width="50" height="50" />
+            </div>
+          </div>
+        </div>
+        <hr class="mt-3 mb-1" />
+        <div class="block d-flex justify-content-between align-items-center">
+          <span class="lable fw-bold">Total:</span>
+          <span class="lable fw-bold"> ${{ calculateTotal() }} </span>
+        </div>
+        <div class="row d-flex justify-content-center">
+          <button routerLink="/Cart" type="button" class="row btn btn-primary">
+            View Cart
+          </button>
+        </div>
       </mat-menu>
-      =======
-      <div role="button" ngbDropdown ngbDropdownToggle>
-        <i class="fa-solid fa-cart-shopping position-relative fs-3 me-3">
-          <span
-            class="cart-num position-absolute top-00 start-85 translate-middle badge rounded-pill bg-danger"
-          >
-            1
-            <span class="visually-hidden">unread messages</span>
-          </span>
-        </i>
-      </div>
-      >>>>>>> origin/profile-page-and-blogs-page
     </div>
   </div>
 </header>

@@ -5,6 +5,7 @@
     <app-product-item
       class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
       *ngFor="let item of productArray"
+      [productItem]="item"
     >
     </app-product-item>
   </div>

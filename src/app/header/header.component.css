@@ -5,7 +5,30 @@
 .div-logo:hover {
   color: #876445;
 }
-.cart-num {
-  font-size: 0.6rem;
+
+::ng-deep .menuCart {
+  min-width: 275px !important;
+}
+::ng-deep .mat-menu-content {
+  width: 80% !important;
 }
 
+.cart_p {
+  font-size: 15px;
+  height: 10%;
+}
+.cart_price {
+  font-size: 12px;
+  color: rgb(185, 185, 185);
+}
+.imag-item {
+  position: relative;
+}
+.delete-item {
+  position: absolute;
+  top: 13px;
+  left: 156px;
+}
+/* .cdk-overlay-connected-position-bounding-box {
+  right: 64px !important;
+} */
