@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import{ Router } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,26 +27,34 @@ export class RegisterComponent implements OnInit {
     City: new FormControl(null, Validators.required),
     Region: new FormControl(null, Validators.required),
   });
-   err:string | undefined;
-  constructor(public _AuthService:AuthService , public  _Router:Router ) {}
+  err: string | undefined;
+  constructor(public _AuthService: AuthService, public _Router: Router) {}
 
   ngOnInit(): void {}
-  getFormData(FormData: any) {
+  getFormData(data: any) {
     // console.log(FormData.value);
-    
-    if(FormData.valid=='success' ) {
-      
-      this._AuthService.signup(FormData.value).subscribe(data=> {
-        // console.log(data);
-        if(data.message=='success')
-        {
-         this._Router.navigate(['/login']);      
+
+    var formData: any = new FormData();
+    formData.append('name', data.get('Name').value);
+    formData.append('email', data.get('Email').value);
+    formData.append('phone', data.get('Phone').value);
+    formData.append('address', data.get('Address').value);
+    formData.append('city', data.get('City').value);
+    formData.append('region', data.get('Region').value);
+    formData.append('password', data.get('Password').value);
+
+    this._AuthService.signup(formData).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.message == 'success') {
+          this._Router.navigate(['/login']);
+        } else {
+          this.err = 'not valid data';
         }
-        else 
-        {
-          this.err='not valid data';
-        }
-      });
-    }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

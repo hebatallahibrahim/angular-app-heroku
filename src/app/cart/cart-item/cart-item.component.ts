@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/Model/product.model';
-import { ProductListService } from 'src/app/Service/product-list.service';
+
+import { CartService } from './../../Service/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -17,10 +18,10 @@ export class CartItemComponent implements OnInit {
   decrement() {
     this.counterValue--;
   }
-  constructor(private productListService: ProductListService) {}
+  constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.productListService.cartHasBeenChanged.subscribe(
+    this.cartService.cartHasBeenChanged.subscribe(
       (res) => {
         this.addedProducts = res;
       },
@@ -28,7 +29,6 @@ export class CartItemComponent implements OnInit {
       () => {}
     );
     console.log(this.addedProducts);
-    
   }
 }
 

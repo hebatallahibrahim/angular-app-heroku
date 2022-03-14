@@ -34,7 +34,6 @@ import { MaterialExampleModule } from '../matrial.module';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CheckoutComponent } from './cart/checkout/checkout.component';
 import { PaymentComponent } from './cart/payment/payment.component';
-import { FormComponent } from './form/form.component';
 import { MatInputModule } from '@angular/material/input';
 import { ProfileComponent } from './profile/profile.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
@@ -75,7 +74,6 @@ import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component
     CartItemComponent,
     CheckoutComponent,
     PaymentComponent,
-    FormComponent,
     ProfileComponent,
     AdminPageComponent,
     AllProductsComponent,

@@ -9,10 +9,20 @@ import { ProductListService } from '../Service/product-list.service';
 })
 export class ProductListComponent implements OnInit {
   productArray!: Product[];
-  // itemAdd: EventEmitter<Product> = new EventEmitter<Product>();
-  constructor(private productListService: ProductListService) {
-    // this.productArray = this.productListService.productArray;
-  }
 
-  ngOnInit(): void {}
+  // itemAdd: EventEmitter<Product> = new EventEmitter<Product>();
+  constructor(private productListService: ProductListService) {}
+
+  ngOnInit(): void {
+    this.productListService.getAllProduct().subscribe(
+      (result) => {
+        this.productArray = result.products;
+        console.log(result);
+        console.log(this.productArray);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
 }

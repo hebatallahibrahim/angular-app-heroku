@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { EventEmitter, Injectable } from '@angular/core';
+import { EventEmitter, Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProductListService {
+export class ProductListService implements OnInit {
   productArray = [
     {
       id: 1,
@@ -51,15 +50,13 @@ export class ProductListService {
       Count: 1,
     },
   ];
-  
+
   constructor(private http: HttpClient) {}
+  ngOnInit(): void {}
+
   //
   getAllProduct() {
-    this.http
-      .get<any>('http://127.0.0.1:8000/api/product/view')
-      .subscribe((res) => {
-        console.log(res.products[0]);
-      });
+    return this.http.get<any>('http://127.0.0.1:8000/api/product/view');
   }
 
   getProductByID() {
@@ -69,6 +66,4 @@ export class ProductListService {
         console.log(res.products[0]);
       });
   }
-
-  
 }

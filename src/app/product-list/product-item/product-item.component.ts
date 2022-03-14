@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Service/cart.service';
+import { ProductListService } from 'src/app/Service/product-list.service';
 
 @Component({
   selector: 'app-product-item',
@@ -18,9 +19,9 @@ export class ProductItemComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private CartService: CartService,
-    private router: Router
+    private router: Router,
+    private productListService: ProductListService
   ) {}
-
   ngOnInit(): void {}
   onItemAdded() {
     this.CartService.addToCart(this.productItem);

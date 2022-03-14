@@ -6,4 +6,5 @@ export interface Product {
   discount?: number; // (?) Means optional more like Nullable
   imageUrl?: string;
   Count: number;
+  discount_price: string;
 }
