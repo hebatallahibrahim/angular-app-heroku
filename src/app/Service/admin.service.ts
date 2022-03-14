@@ -6,29 +6,32 @@ import { Injectable } from '@angular/core';
 })
 export class AdminService {
   constructor(private http: HttpClient) {}
-  addProduct(logData: any) {
+  addProduct(addProduct: any) {
     this.http
-      .post(
-        'https://nth-observer-335811-default-rtdb.firebaseio.com/posts.json',
-        logData
-      )
+      .post('http://127.0.0.1:8000/api/product/store', addProduct)
       .subscribe((respons) => {
         console.log(respons);
       });
   }
-  updateProduct() {
+  updateProduct(postProduct: any) {
     this.http
-      .get('http://127.0.0.1:8000/api/update/{id}')
+      .post('http://127.0.0.1:8000/api/product/update/{id}', postProduct)
       .subscribe((respons) => {
         console.log(respons);
       });
   }
   editProduct() {
     this.http
-      .get('http://127.0.0.1:8000/api/update/{id}')
+      .get('http://127.0.0.1:8000/api/product/update/{id}')
       .subscribe((respons) => {
         console.log(respons);
       });
   }
-  deleteProduct() {}
+  deleteProduct() {
+    this.http
+      .delete('http://127.0.0.1:8000/api/product/update/{id}')
+      .subscribe((respons) => {
+        console.log(respons);
+      });
+  }
 }
