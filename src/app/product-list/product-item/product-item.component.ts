@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/app/Model/product.model';
-import { ProductListService } from 'src/app/Service/product-list.service';
+import { CartService } from 'src/app/Service/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -17,13 +17,13 @@ export class ProductItemComponent implements OnInit {
   closeResult = '';
   constructor(
     private modalService: NgbModal,
-    private productListService: ProductListService,
+    private CartService: CartService,
     private router: Router
   ) {}
 
   ngOnInit(): void {}
   onItemAdded() {
-    this.productListService.addToCart(this.productItem);
+    this.CartService.addToCart(this.productItem);
   }
   goTodetails(productItem: any) {
     this.router.navigate(['/product-details', productItem.id]);

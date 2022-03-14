@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../Model/product.model';
-import { ProductListService } from '../Service/product-list.service';
+
+import { CartService } from './../Service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   togle: string = 'ngbDropdownToggle';
   constructor(
     config: NgbDropdownConfig,
-    private productListService: ProductListService
+    private cartService: CartService
   ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
@@ -28,7 +29,7 @@ export class HeaderComponent implements OnInit {
   calculateTotal(): number {
     let totalPrice = 0;
     this.addedProducts.forEach((element) => {
-      // totalPrice += element.name * element.price;
+      totalPrice += element.Count * element.price;
     });
     return totalPrice;
   }
@@ -39,7 +40,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productListService.cartHasBeenChanged.subscribe(
+    this.cartService.cartHasBeenChanged.subscribe(
       (res) => {
         this.addedProducts = res;
       },
