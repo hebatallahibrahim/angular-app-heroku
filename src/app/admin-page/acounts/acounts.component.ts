@@ -17,10 +17,21 @@ export class AcountsComponent implements OnInit {
     phone: new FormControl(null),
     region: new FormControl(null),
   });
+  arr2 = [1,2,3,4,5,6,7,8,9,10];
+  usersArray:any[]=[];
   err: string | undefined;
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
+    this._AdminService.getAllUsers().subscribe(
+      (res) => {
+        this.usersArray=res.user;
+        console.log(this.usersArray);
+      },
+      (err:any) => {
+        console.log(err);
+      }
+    );
   }
   getFormData(data: any) {
     var formData: any = new FormData();
@@ -36,7 +47,7 @@ export class AcountsComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'User added succesfully') {
-          this._Router.navigate(['/login']);
+          this._Router.navigate(['/accounts']);
         } else {
           this.err = 'not valid data';
         }

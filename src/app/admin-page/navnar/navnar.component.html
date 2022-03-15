@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl">
+<nav class="navbar navbar-expand-xl sticky-top">
     <div class="container h-100">
       <a class="navbar-brand" routerLink="/admin">
         <h1 class="tm-site-title mb-0">Admin</h1>
@@ -19,8 +19,20 @@
        
        
           <li class="nav-item">
-            <a class="nav-link active" routerLink="/all-product">
+            <a class="nav-link active" href="/all-product#products">
               <i class="fas fa-shopping-cart" style=" font-size: 1.5rem;"></i> Products
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/all-product#categories">
+              <i class="fa-solid fa-list" style=" font-size: 1.5rem;"></i> Categories
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active" href="/all-product#subcategories">
+              <i class="fa-solid fa-sitemap" style=" font-size: 1.5rem;"></i> Sub Categories
             </a>
           </li>
 

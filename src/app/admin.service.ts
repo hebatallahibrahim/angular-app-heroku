@@ -39,6 +39,11 @@ export class AdminService {
     ); //wating api
   }
 
+  getAllUsers(): Observable<any> {
+    return this._HttpClient
+      .get<any>('http://127.0.0.1:8000/api/adminuser/all');
+  }
+
   getAllCategories(): Observable<any> {
     return this._HttpClient
       .get<any>('http://127.0.0.1:8000/api/category/view');
