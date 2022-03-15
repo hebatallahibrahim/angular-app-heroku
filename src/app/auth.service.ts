@@ -9,21 +9,12 @@ import { UserData } from 'userData';
 export class AuthService {
   constructor(public _HttpClient: HttpClient) {}
   UserData = new BehaviorSubject(null);
-
   signup(data: any): Observable<any> {
     return this._HttpClient.post(
       'http://127.0.0.1:8000/api/admin/create',
       data
     ); //wating api
   }
- 
-
-
-
-
-
-
-
 
   signin(data: any): Observable<any> {
     return this._HttpClient.post(
