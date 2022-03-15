@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { profileUserService } from '../Service/user-profile.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -20,10 +21,24 @@ formRegistration: FormGroup = new FormGroup({
   Region: new FormControl(null),
 });
 
-constructor() {}
 
-ngOnInit(): void {}
 getFormData(FormData: any) {
   console.log(FormData);
 }
+
+
+ResposneObj : any ;
+  constructor(public  _service:profileUserService ) { }
+
+ngOnInit(): void {
+  this._service.getthemoviedb()
+    .subscribe((data: any) => {
+      this.ResposneObj = data;
+      console.log(data)
+
+    }, (err: any) => {
+      console.log(err)
+    });
+  
+  }
 }
