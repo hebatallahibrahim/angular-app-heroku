@@ -6,6 +6,14 @@ import { Injectable } from '@angular/core';
 })
 export class AdminService {
   constructor(private http: HttpClient) {}
+
+  getAllCategory(): any {
+    return this.http.get<any>('http://127.0.0.1:8000/api/category/view');
+  }
+
+  getAllProduct(): any {
+    return this.http.get<any>('http://127.0.0.1:8000/api/product/view');
+  }
   addProduct(addProduct: any) {
     this.http
       .post('http://127.0.0.1:8000/api/product/store', addProduct)
@@ -13,9 +21,10 @@ export class AdminService {
         console.log(respons);
       });
   }
+
   updateProduct(update: any, postProduct: any) {
     this.http
-      .post(`http://127.0.0.1:8000/api/product/update/{${update}}`, postProduct)
+      .post(`http://127.0.0.1:8000/api/product/update/${update}`, postProduct)
       .subscribe((respons) => {
         console.log(respons);
       });
@@ -27,6 +36,7 @@ export class AdminService {
         console.log(respons);
       });
   }
+
   deleteProduct(deleteProduct: any) {
     this.http
       .delete(`http://127.0.0.1:8000/api/product/update/{${deleteProduct}}`)
