@@ -1,25 +1,12 @@
 <app-navnar></app-navnar>
 <div class="container mt-5">
-    <div class="row tm-content-row">
-      <div class="col-12 tm-block-col">
-        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-          <h2 class="tm-block-title">List of Accounts</h2>
-          <p class="text-white">Accounts</p>
-          <select class="custom-select">
-            <option value="0">Select account</option>
-            <option value="2">user</option>
-            <option value="3">supplyer</option>
-           
-          </select>
-        </div>
-      </div>
-    </div>
+
     <!-- row -->
     <div class="row tm-content-row d-flex justify-content-center align-items-center">
    
       <div class="tm-block-col tm-col-account-settings ">
         <div class="tm-bg-primary-dark tm-block tm-block-settings">
-          <h2 class="tm-block-title">Account Settings</h2>
+          <h2 class="tm-block-title">Add User</h2>
           <form 
             [formGroup]="formRegistration"
             (ngSubmit)="getFormData(formRegistration)"

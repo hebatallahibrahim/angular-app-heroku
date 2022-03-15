@@ -50,6 +50,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { TestComponent } from './test/test.component';
 import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component';
+import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component
     CheckOutComponent,
     TestComponent,
     DropdownComponent,
+    AddSubcategoryComponent,
   ],
   imports: [
     BrowserModule,
