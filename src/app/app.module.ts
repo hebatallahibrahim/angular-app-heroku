@@ -49,6 +49,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { TestComponent } from './test/test.component';
 import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component';
+import { ItemsComponent } from './product-list/items/items.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component
     CheckOutComponent,
     TestComponent,
     DropdownComponent,
+    ItemsComponent,
   ],
   imports: [
     BrowserModule,

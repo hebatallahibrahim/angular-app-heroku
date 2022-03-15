@@ -51,6 +51,7 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'check-out', component: CheckOutComponent },
   { path: 'profile', component: ProfileComponent },
+  
   { path: '**', component: NotFoundComponent },
 ];
 
