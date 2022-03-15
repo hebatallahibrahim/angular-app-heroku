@@ -41,7 +41,9 @@
     <div class="col-lg-6 col-md-5 col-12">
       <h1>product name</h1>
       <h4>$255</h4>
-      <button class="cart-button btn mb-4" routerLink="/cart">Add to cart</button>
+      <button class="cart-button btn mb-4" routerLink="/cart">
+        Add to cart
+      </button>
       <h3>product details</h3>
       <table style="width: 100%">
         <tr>
@@ -53,8 +55,6 @@
           <td>Alfreds Futterkiste</td>
         </tr>
       </table>
-      
-      
     </div>
   </div>
   <div class="row m-3">
@@ -70,7 +70,7 @@
         <li>Warranty:</li>
       </ul>
     </div>
-    
+
     <div class="col-lg-6 col-md-8 col-12 rate-comment">
       <form [formGroup]="form">
         <p>Rating this product</p>
@@ -82,8 +82,9 @@
         <div class="add-comment">
           <h3 class="col-12">Add Comment</h3>
           <mat-form-field class="col-12">
-            <input matInput>
+            <input matInput />
           </mat-form-field>
+          <button class="btn btn-primary">Submit</button>
         </div>
       </form>
     </div>
@@ -97,7 +98,11 @@
             <a href="#">
               <img src="https://picsum.photos/200" class="rounded" alt="item" />
             </a>
-            <div class="love" (click)="item_hearted=!item_hearted" [ngClass]="{'love-red':item_hearted}" >
+            <div
+              class="love"
+              (click)="item_hearted = !item_hearted"
+              [ngClass]="{ 'love-red': item_hearted }"
+            >
               <i class="fa-solid fa-heart"></i>
             </div>
             <div class="container-fluid">

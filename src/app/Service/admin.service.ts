@@ -13,23 +13,23 @@ export class AdminService {
         console.log(respons);
       });
   }
-  updateProduct(postProduct: any) {
+  updateProduct(update: any, postProduct: any) {
     this.http
-      .post('http://127.0.0.1:8000/api/product/update/{id}', postProduct)
+      .post(`http://127.0.0.1:8000/api/product/update/{${update}}`, postProduct)
       .subscribe((respons) => {
         console.log(respons);
       });
   }
-  editProduct() {
+  editProduct(edit: any) {
     this.http
-      .get('http://127.0.0.1:8000/api/product/update/{id}')
+      .get(`http://127.0.0.1:8000/api/product/update/{${edit}}`)
       .subscribe((respons) => {
         console.log(respons);
       });
   }
-  deleteProduct() {
+  deleteProduct(deleteProduct: any) {
     this.http
-      .delete('http://127.0.0.1:8000/api/product/update/{id}')
+      .delete(`http://127.0.0.1:8000/api/product/update/{${deleteProduct}}`)
       .subscribe((respons) => {
         console.log(respons);
       });

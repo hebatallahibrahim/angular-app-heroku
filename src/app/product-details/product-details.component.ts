@@ -79,12 +79,14 @@ export class ProductDetailsComponent implements OnInit {
   };
 
   ngOnInit() {
-    this.productId = this.activetedRoute.snapshot.paramMap.get('id');
-    console.log(this.productId);
+    this.productId = this.activetedRoute.snapshot.paramMap.get('id'); // get id from url
 
-    this._productDetailsService.getProductByID(this.productId);
-    // .subscribe((data: any) => {
-    //   this.productDetails = data;
-    // });
+    console.log(this.productId);
+    this._productDetailsService
+      .getProductByID(this.productId)
+      .subscribe((data: any) => {
+        this.productDetails = data;
+        console.log(this.productDetails);
+      });
   }
 }
