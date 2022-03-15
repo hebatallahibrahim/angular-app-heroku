@@ -13,6 +13,7 @@ import { ProductListService } from 'src/app/Service/product-list.service';
 export class ProductItemComponent implements OnInit {
   @Input()
   productItem!: Product;
+  imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   itemAddToCart: EventEmitter<Product> = new EventEmitter<Product>();
   item_hearted = false;
   closeResult = '';
