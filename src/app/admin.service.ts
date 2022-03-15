@@ -24,4 +24,21 @@ export class AdminService {
       data
     ); //wating api
   }
+
+  addProduct(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'http://127.0.0.1:8000/api/product/store',
+      data
+    ); //wating api
+  }
+
+  getAllCategories(): Observable<any> {
+    return this._HttpClient
+      .get<any>('http://127.0.0.1:8000/api/category/view');
+  }
+
+  getAllSubCategories(): Observable<any> {
+    return this._HttpClient
+      .get<any>('http://127.0.0.1:8000/api/category/sub/view');
+  }
 }

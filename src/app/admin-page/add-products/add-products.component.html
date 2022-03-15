@@ -21,7 +21,7 @@
                     >Product Name
                   </label>
                   <input
-                   formControlName="prodname"
+                   formControlName="name"
                     id="name"
                     name="name"
                     type="text"
@@ -41,6 +41,18 @@
                     formControlName="description"
                   ></textarea>
                 </div>
+                <div class="form-group mb-4">
+                  <label
+                    for="shortdesc"
+                    >Short Description</label
+                  >
+                  <textarea
+                    class="form-control "
+                    rows="3"
+                    required
+                    formControlName="shortdesc"
+                  ></textarea>
+                </div>
                 <div class="row">
                     <div class="form-group mb-4">
                       <label
@@ -51,23 +63,34 @@
                         class="custom-select tm-select-accounts"
                         id="category"  formControlName="category"
                       >
-                        <option selected>Select category</option>
-                        <option value="category 1" >category 1</option>
-                        <option value="category 2">category 2</option>
-                        <option value="category 3">category 3</option>
+                        <option *ngFor="let item of categoryArray" [value]="item.id">{{item.name}}</option>
+                        
                       </select>
                     </div>
-                  </div>
+                    <div class="form-group mb-4">
+                      <label
+                        for="subcategory"
+                        >Sub Category</label
+                      >
+                      <select
+                        class="custom-select tm-select-accounts"
+                        id="subcategory"  formControlName="subcategory"
+                      >
+                        <option *ngFor="let item of subCategoryArray" [value]="item.id">{{item.name}}</option>
+                        
+                      </select>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="form-group mb-4 col-xs-12 col-sm-6">
                         <label
-                          for="expire_date"
+                          for="price"
                           >Price
                         </label>
                         <input
-                          id="expire_date"
-                          name="expire_date"
-                          type="text"
+                          id="price"
+                          name="price"
+                          type="number"
                           class="form-control validate"
                           data-large-mode="true"
                           formControlName="price"
@@ -75,66 +98,91 @@
                       </div>
                       <div class="form-group mb-4 col-xs-12 col-sm-6">
                         <label
-                          for="stock"
-                          >Units In Stock
+                          for="discount"
+                          >Discount
                         </label>
                         <input
-                          id="stock"
-                          name="stock"
-                          type="text"
-                          class="form-control validate"
-                          formControlName="stock"
+                          id="discount"
+                          name="discount"
+                          type="number"
+                          class="form-control "
+                          formControlName="discount"
                         />
-                      </div>
+                      </div>  
                 </div>
                 <div class="row">
                     <div class="form-group mb-4 col-xs-12 col-sm-6">
                         <label
-                          for="expire_date"
+                          for="quantity"
                           >Quantity
                         </label>
                         <input
-                          id="expire_date"
-                          name="expire_date"
-                          type="text"
+                          id="quantity"
+                          name="quantity"
+                          type="number"
                           class="form-control "
                           data-large-mode="true"
-                          formControlName="quentity"
+                          formControlName="quantity"
                         />
-                      </div>
-                      <div class="form-group mb-4 col-xs-12 col-sm-6">
-                        <label
-                          for="stock"
-                          >Discount
-                        </label>
-                        <input
-                          id="stock"
-                          name="stock"
-                          type="text"
-                          class="form-control "
-                          formControlName="discount"
-                        />
-                      </div>
+                    </div>
+                    <div class="form-group mb-4 col-xs-12 col-sm-6">
+                      <label
+                        for="brand"
+                        >Brand
+                      </label>
+                      <input
+                        id="brand"
+                        name="brand"
+                        type="text"
+                        class="form-control "
+                        data-large-mode="true"
+                        formControlName="brand"
+                      />
+                    </div>  
+                </div>
+                <div class="row">
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                      <label
+                        for="productsize"
+                        >Product Size
+                      </label>
+                      <input
+                        id="productsize"
+                        name="productsize"
+                        type="text"
+                        class="form-control "
+                        data-large-mode="true"
+                        formControlName="productsize"
+                      />
+                  </div>
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label
+                      for="color"
+                      >Color
+                    </label>
+                    <input
+                      id="color"
+                      name="color"
+                      type="text"
+                      class="form-control "
+                      data-large-mode="true"
+                      formControlName="color"
+                    />
+                  </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
-                  <div  class="form-group">
-                    <label class="mb-3"
-                    > UPLOAD PRODUCT IMAGE
-                  </label>
-                      <div class="tm-product-img-dummy mx-auto 
-                      d-flex justify-content-center align-items-center">
-                       
-                        <i
-                          class="fas fa-cloud-upload-alt tm-upload-icon"
-                          onclick="document.getElementById('fileInput').click();"
-                         style="font-size:1rem"></i>
-                      </div>
-                      <div class="custom-file mt-3 mb-3">
-                        <input id="fileInput"
-                        formControlName="image" 
-                            type="file" style="display:none;" />
-                      </div>
-                    </div>
+                  <div class="form-group">
+  
+                    <label class="mb-3" for="file">UPLOAD PRODUCT IMAGE</label>
+            
+                    <input 
+                        formControlName="file"
+                        id="file" 
+                        type="file" 
+                        class="form-control"
+                        (change)="onFileChange($event)">
+            
+                  </div>
                 </div>
             
             <div class="col-12 d-flex justify-content-center align-items-center">
