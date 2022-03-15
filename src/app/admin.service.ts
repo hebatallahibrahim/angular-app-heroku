@@ -11,8 +11,16 @@ export class AdminService {
   constructor(public _HttpClient: HttpClient) { }
   AdminData = new BehaviorSubject(null);
   addUser(data: any): Observable<any> {
+    console.log(data);
     return this._HttpClient.post(
       'http://127.0.0.1:8000/api/adminuser/store',
+      data
+    ); //wating api
+  }
+
+  addCategory(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'http://127.0.0.1:8000/api/category/store',
       data
     ); //wating api
   }

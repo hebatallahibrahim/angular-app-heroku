@@ -18,10 +18,10 @@
               <div class="form-group mb-4">
                 <label
                   for="name"
-                  > English Product Name
+                  > Name
                 </label>
                 <input
-                 formControlName="englishProduct"
+                 formControlName="name"
                   id="name"
                   name="name"
                   type="text"
@@ -31,13 +31,13 @@
               </div>
               <div class="form-group mb-4">
                 <label
-                  for="arabicname"
-                  > Arabic Product Name
+                  for="description"
+                  > Description
                 </label>
                 <input
-                 formControlName="arabicProduct"
-                  id="name"
-                  name="arabicname"
+                 formControlName="description"
+                  id="description"
+                  name="description"
                   type="text"
                   class="form-control "
                   required
@@ -47,24 +47,18 @@
              
              
               <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
-                <div  class="form-group">
-                  <label class="mb-3"
-                  > UPLOAD PRODUCT IMAGE
-                </label>
-                    <div class="tm-product-img-dummy mx-auto 
-                    d-flex justify-content-center align-items-center">
-                     
-                      <i
-                        class="fas fa-cloud-upload-alt tm-upload-icon"
-                        onclick="document.getElementById('fileInput').click();"
-                       style="font-size:1rem"></i>
-                    </div>
-                    <div class="custom-file mt-3 mb-3">
-                      <input id="fileInput"
-                      formControlName="image" 
-                          type="file" style="display:none;" />
-                    </div>
-                  </div>
+                <div class="form-group">
+
+                  <label class="mb-3" for="file">UPLOAD PRODUCT IMAGE</label>
+          
+                  <input 
+                      formControlName="file"
+                      id="file" 
+                      type="file" 
+                      class="form-control"
+                      (change)="onFileChange($event)">
+          
+                </div>
               </div>
           
           <div class="col-12 d-flex justify-content-center align-items-center">
