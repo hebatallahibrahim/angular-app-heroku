@@ -8,7 +8,7 @@ import { AdminData } from './adminData';
 })
 export class AdminService {
 
-  constructor(public _HttpClient: HttpClient) { }
+  constructor(private _HttpClient: HttpClient) { }
   AdminData = new BehaviorSubject(null);
   addUser(data: any): Observable<any> {
     console.log(data);

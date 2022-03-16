@@ -16,6 +16,7 @@ export class SliderComponent implements OnInit {
     fileSource: new FormControl(null)
   });
   err: string | undefined;
+  dangerAlertShow=false;
   sliderArray:any[]=[];
   imagUrlSlider: string = 'http://127.0.0.1:8000/uploads/slider/';
   constructor(private _AdminService: AdminService, private _Router: Router) { }
@@ -51,12 +52,14 @@ export class SliderComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'Slider added succesfully') {
+          this.dangerAlertShow=false;
           this._Router.navigate(['/home']);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
+        this.dangerAlertShow=true;
         console.log(err);
       }
     );

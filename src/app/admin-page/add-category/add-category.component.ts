@@ -16,6 +16,7 @@ export class AddCategoryComponent implements OnInit {
     fileSource: new FormControl(null)
   });
   err: string | undefined;
+  dangerAlertShow=false;
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
@@ -47,12 +48,14 @@ export class AddCategoryComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'category added succesfully') {
+          this.dangerAlertShow=false;
           this._Router.navigate(['/all-product']);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
+        this.dangerAlertShow=true;
         console.log(err);
       }
     );

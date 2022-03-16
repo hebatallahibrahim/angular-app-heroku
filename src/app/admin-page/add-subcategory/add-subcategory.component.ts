@@ -17,6 +17,7 @@ export class AddSubcategoryComponent implements OnInit {
   });
 
   err: string | undefined;
+  dangerAlertShow=false;
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
@@ -41,12 +42,15 @@ export class AddSubcategoryComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'Subcategory added succesfully') {
+          this.dangerAlertShow=false;
           this._Router.navigate(['/all-product']);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
+        this.dangerAlertShow=true;
+        console.log(this.dangerAlertShow);
         console.log(err);
       }
     );
