@@ -52,6 +52,7 @@ import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { ItemsComponent } from './product-list/items/items.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
+import { SliderComponent } from './admin-page/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { CategoryProductsComponent } from './category-products/category-products
     AddSubcategoryComponent,
     ItemsComponent,
     CategoryProductsComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,

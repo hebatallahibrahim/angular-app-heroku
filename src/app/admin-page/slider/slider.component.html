@@ -1,10 +1,11 @@
+<app-navnar></app-navnar>
 <div class="container tm-mt-big tm-mb-big">
     <div class="row ">
       <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto ">
         <div class="tm-bg-primary-dark tm-block tm-block-h-auto  ">
           <div class="row ">
             <div class="col-12">
-              <h2 class="tm-block-title d-flex justify-content-center mb-3">Add Sub Category</h2>
+              <h2 class="tm-block-title d-flex justify-content-center mb-3">Add Slider</h2>
             </div>
           </div>
           <div class="row tm-edit-product-row">
@@ -49,7 +50,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
                   <div class="form-group">
   
-                    <label class="mb-3" for="file">UPLOAD SUB CATEGORY IMAGE</label>
+                    <label class="mb-3" for="file">UPLOAD SLIDER IMAGE</label>
             
                     <input 
                         formControlName="file"
@@ -64,7 +65,7 @@
             <div class="col-12 d-flex justify-content-center align-items-center">
               <button type="submit" class="btn btn-primary btn-block text-uppercase" 
              >
-                Add Sub Category </button>
+                Add Slider </button>
             </div>
           
              </form>
@@ -75,6 +76,47 @@
       </div>
     </div>
     </div>
+    <div class="col-12 mt-5">
+        <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+          <h2 class="tm-block-title">Slider</h2>
+          <div class="tm-product-table-container">
+            <table class="table tm-table-small tm-product-table">
+              <thead>
+                <tr>
+                  <th scope="col">&nbsp;</th>
+                  <th scope="col">NAME</th>
+                  <th scope="col">DESCRIPTION</th>
+                  <th scope="col">IMAGE</th>
+                  <th scope="col">&nbsp;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let slider of sliderArray">
+                  <th scope="row"><input type="checkbox"/></th>
+                  <td>{{slider.name}}</td>
+                  <td>{{slider.description}}</td>
+                  <td><img
+                    height="100px"
+                    width="100px"
+                    src="{{ imagUrlSlider + slider.image }}"
+                    class="img-fluid rounded-start"
+                    alt="item"
+                  /></td>
+                  <td class="text-center">
+                    <a href="#" class="tm-product-delete-link">
+                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                    </a>
+                  </td>
+                </tr>
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
   </div>
+  
+  
+
   
   

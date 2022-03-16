@@ -39,6 +39,13 @@ export class AdminService {
     ); //wating api
   }
 
+  addSlider(data: any): Observable<any> {
+    return this._HttpClient.post(
+      'http://127.0.0.1:8000/api/slider/store',
+      data
+    ); //wating api
+  }
+
   getAllUsers(): Observable<any> {
     return this._HttpClient
       .get<any>('http://127.0.0.1:8000/api/adminuser/all');
@@ -52,5 +59,10 @@ export class AdminService {
   getAllSubCategories(): Observable<any> {
     return this._HttpClient
       .get<any>('http://127.0.0.1:8000/api/category/sub/view');
+  }
+
+  getSlider(): Observable<any> {
+    return this._HttpClient
+      .get<any>('http://127.0.0.1:8000/api/slider/view');
   }
 }

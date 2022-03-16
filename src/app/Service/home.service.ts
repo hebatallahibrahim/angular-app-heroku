@@ -22,5 +22,9 @@ export class HomeService {
     return this._HttpClient.get<any>('http://127.0.0.1:8000/api/product/view');
   }
 
+  getSlider(): Observable<any> {
+    return this._HttpClient
+      .get<any>('http://127.0.0.1:8000/api/slider/view');
+  }
 
 }
