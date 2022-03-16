@@ -1,6 +1,8 @@
 <app-navnar></app-navnar>
 <div class="container mt-5">
   <div class="row tm-content-row">
+
+                <!-- product  -->
     <div class="col-12 tm-block-col" id="products">
       <div class="tm-bg-primary-dark tm-block tm-block-products">
         <h2 class="tm-block-title">Products</h2>
@@ -47,7 +49,7 @@
                   <mat-icon> border_color</mat-icon>
                 </td>
                 <td class="text-center">
-                  <mat-icon (click)="removeProdItem(i)">delete</mat-icon>
+                  <mat-icon (click)="removeProdItem(i.id)">delete</mat-icon>
                 </td>
               </tr>
             </tbody>
@@ -68,6 +70,8 @@
         </div>
       </div>
     </div>
+
+               <!-- category  -->
     <div class="col-12 tm-block-col" id="categories">
       <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
         <h2 class="tm-block-title">Product Categories</h2>
@@ -75,17 +79,21 @@
           <table class="table table-hover tm-table-small tm-product-table">
             <thead>
               <tr>
-                <!-- <th scope="col"> Id</th> -->
-                <th scope="col">Name</th>
+                <th scope="col">Id</th>
+                <th scope="col">NAME</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+            
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let i of categoryArray">
-                <td class="tm-product-name">{{ i.name }}</td>
+                <td class="tm-product-name">{{i.id}}</td>
+                <td class="tm-product-name">{{i.name}}</td>
+                <td class="tm-product-name">{{i.descripition}}</td>
+                <td class="tm-product-name">{{i.image}}</td>
                 <td class="text-center">
-                  <!-- <button> -->
-                  <mat-icon (click)="removeProdItem(i.id)">delete</mat-icon>
-                  <!-- </button> -->
+                  <mat-icon (click)="removeCatItem(i.id)">delete</mat-icon> 
                 </td>
               </tr>
             </tbody>
@@ -100,21 +108,35 @@
         </button>
       </div>
     </div>
+      
+
+              <!-- subcategory -->
 
     <div class="col-12 tm-block-col" id="subcategories">
       <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
         <h2 class="tm-block-title">Product Sub Categories</h2>
         <div class="tm-product-table-container">
-          <table class="table tm-table-small tm-product-table">
+          <table class="table table-hover tm-table-small tm-product-table">
+            <thead>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">NAME</th>
+                <th scope="col">Description</th>
+                <th scope="col">Image</th>
+            
+              </tr>
+            </thead>
             <tbody>
-              <tr *ngFor="let i of arr2">
-                <td class="tm-product-name">Product Sub Category</td>
+              <tr *ngFor="let i of SubCatArray">
+                <td class="tm-product-name">{{i.id}}</td>
+                <td class="tm-product-name">{{i.name}}</td>
+                <td class="tm-product-name">{{i.description}}</td>
+                <td class="tm-product-name">{{i.image}}</td>
                 <td class="text-center">
-                  <a href="#" class="tm-product-delete-link">
-                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                  </a>
+                  <mat-icon (click)="removeSubCatItem(i.id)">delete</mat-icon> 
                 </td>
               </tr>
+             
             </tbody>
           </table>
         </div>
