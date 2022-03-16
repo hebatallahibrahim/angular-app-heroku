@@ -1,38 +1,23 @@
-<div class="con">
-  <h1 class="d-flex justify-content-center m-5 p-5">Our shop Sets</h1>
-  <div class="row m-3">
-    <div class="col-lg-6 col-md-6 col-sm-12 ">
-      <h2 class ="d-flex justify-content-center m-5"> Our Shop Sets</h2>
-      <div class="set_paragraph m-4 p-3">
-        We provide online solutions for all your 
-        interior décor requirements. Every piece 
-        of furniture is designed in-house through 
-        our manufacturing unit in Egypt. You can 
-        save up to 30% on all furniture deals as there 
-        are no intermediary entities involved.
-        The skill and effort of our experienced 
-        artisans is applied to the process of creation. 
-      </div>
-  </div>
-    <div class="col-lg-6 col-md-6 col-sm-12 ">
-    <ngb-carousel #carousel [interval]="1000" [pauseOnHover]="pauseOnHover" [pauseOnFocus]="pauseOnFocus" (slide)="onSlide($event)">
-      <ng-template ngbSlide *ngFor="let img of images; index as i">
-    <div class="carousel-caption">
-      <h3>My slide {{i + 1}} title</h3>
-    </div>
-    <a routerLink="/product-details" target="_blank" 
-      rel="nofollow noopener noreferrer">
-      <div class="picsum-img-wrapper">
-        <img [src]="img" alt="My image {{i + 1}} description">
-      </div>
-    </a>
+<div class="container mt-5">
+  <div class="row">
+    <h2>Categories</h2>
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide *ngFor="let category of categoryArray">
+        <div class="one-item m-2">
+          <div class="img-overlay text-center fs-5 rounded">
+            <a (click)="goToCategoryProducts(category)">
+              <img src="{{imagUrlCategory+category.image}}" class="rounded category-img" alt="item" />
+            </a>
+            <div class="container-fluid">
+              <div class="row p-1">
+                <a (click)="goToCategoryProducts(category)" class="link-item text-decoration-none link-dark">
+                  <p class="text-center name-item p-0">{{category.name}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </ng-template>
-    </ngb-carousel>
-    </div>
-  
+    </owl-carousel-o>
   </div>
 </div>
-
-
-   
-

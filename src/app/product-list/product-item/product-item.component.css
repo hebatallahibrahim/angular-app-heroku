@@ -11,6 +11,7 @@
 .img-overlay {
   position: relative;
   background-color: white;
+  height: 530px;
 }
 .con-details {
   width: 100%;

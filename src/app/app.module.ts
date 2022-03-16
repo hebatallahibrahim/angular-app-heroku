@@ -51,6 +51,7 @@ import { TestComponent } from './test/test.component';
 import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { ItemsComponent } from './product-list/items/items.component';
+import { CategoryProductsComponent } from './category-products/category-products.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { ItemsComponent } from './product-list/items/items.component';
     DropdownComponent,
     AddSubcategoryComponent,
     ItemsComponent,
+    CategoryProductsComponent,
   ],
   imports: [
     BrowserModule,

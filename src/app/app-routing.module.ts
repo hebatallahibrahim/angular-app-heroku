@@ -26,9 +26,11 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
+import { CategoryProductsComponent } from './category-products/category-products.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'category-products/:id/:name', component: CategoryProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'resetPassword', component: FooterComponent },
   { path: 'signUp', component: RegisterComponent },
