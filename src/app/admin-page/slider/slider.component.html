@@ -84,13 +84,12 @@
     </div>
     </div>
     <div class="col-12 mt-5">
-        <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+        <div class="tm-bg-primary-dark p-5">
           <h2 class="tm-block-title">Slider</h2>
           <div class="tm-product-table-container">
             <table class="table tm-table-small tm-product-table">
               <thead>
                 <tr>
-                  <th scope="col">&nbsp;</th>
                   <th scope="col">NAME</th>
                   <th scope="col">DESCRIPTION</th>
                   <th scope="col">IMAGE</th>
@@ -99,14 +98,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let slider of sliderArray">
-                  <th scope="row"><input type="checkbox"/></th>
                   <td>{{slider.name}}</td>
                   <td>{{slider.description}}</td>
                   <td><img
-                    height="100px"
-                    width="100px"
                     src="{{ imagUrlSlider + slider.image }}"
-                    class="img-fluid rounded-start"
+                    class="img-fluid rounded-start slider-img"
                     alt="item"
                   /></td>
                   <td class="text-center">
