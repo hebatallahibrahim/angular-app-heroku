@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminPageComponent },
   { path: 'all-product', component: AllProductsComponent },
   { path: 'add-product', component: AddProductsComponent },
-  { path: 'update-product', component: UpdateProductComponent },
+  { path: 'update-product/:postId', component: UpdateProductComponent },
   { path: 'accounts', component: AcountsComponent },
   { path: 'log-in', component: LogInComponent },
   { path: 'add-category', component: AddCategoryComponent },

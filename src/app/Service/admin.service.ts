@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AdminService {
+export class adminservice {
   constructor(private http: HttpClient) {}
 
   getAllCategory(): any {
@@ -35,13 +35,13 @@ export class AdminService {
   addProduct(addProduct: any) {
     this.http.post('http://127.0.0.1:8000/api/product/store', addProduct)
   }
+  find(id:any): Observable<any> {
+  
+    return this.http.get(`http://127.0.0.1:8000/api/product/edit/${id}`)
+  }
 
-  updateProduct(id: any, postProduct: any) {
-    this.http
-      .post(`http://127.0.0.1:8000/api/product/update/${id}`, postProduct)
-      .subscribe((respons) => {
-        console.log(respons);
-      });
+  updateProduct(id: any, postProduct: any): Observable<any>  {
+    return this.http.post(`http://127.0.0.1:8000/api/product/update/${id}`, postProduct);
   }
   editProduct(edit: any) {
     this.http
@@ -50,9 +50,5 @@ export class AdminService {
         console.log(respons);
       });
   }
-
-  
-
-
 
 }
