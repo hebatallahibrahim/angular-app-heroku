@@ -5,7 +5,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Color</mat-label>
-          <mat-select>
+          <mat-select (selectionChange)="onColorChange($event)">
             <mat-option *ngFor="let color of colors" [value]="color">
               {{ color }}
             </mat-option>
@@ -15,7 +15,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Price</mat-label>
-          <mat-select>
+          <mat-select >
             <mat-option *ngFor="let price of prices" [value]="price">
               {{ price }}
             </mat-option>
@@ -23,7 +23,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Category</mat-label>
-          <mat-select>
+          <mat-select (selectionChange)="onCategoryChange($event)">
             <mat-option *ngFor="let category of categorys" [value]="category">
               {{ category }}
             </mat-option>
@@ -31,7 +31,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Sub Category</mat-label>
-          <mat-select>
+          <mat-select (selectionChange)="onSubCategoryChange($event)">
             <mat-option
               *ngFor="let sub_category of sub_categorys"
               [value]="sub_category"

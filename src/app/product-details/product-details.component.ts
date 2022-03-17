@@ -4,6 +4,7 @@ import { SwiperOptions } from 'swiper';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductDetailsService } from './../Service/product-details.service';
+import { ProductListService } from './../Service/product-list.service';
 
 @Component({
   selector: 'app-product-details',
@@ -19,13 +20,16 @@ export class ProductDetailsComponent implements OnInit {
   );
   public form: FormGroup;
   rating3: number;
-  productId: any;
-  productDetails: any;
+  productId!: any;
+  productDetails!: any;
+  relativeProduct!: any[];
+  imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
 
   constructor(
     private fb: FormBuilder,
     private activetedRoute: ActivatedRoute,
-    private _productDetailsService: ProductDetailsService
+    private _productDetailsService: ProductDetailsService,
+    private productListService: ProductListService
   ) {
     this.rating3 = 0;
     this.form = this.fb.group({
@@ -77,16 +81,30 @@ export class ProductDetailsComponent implements OnInit {
     },
     spaceBetween: 50,
   };
-
   ngOnInit() {
     this.productId = this.activetedRoute.snapshot.paramMap.get('id'); // get id from url
+    this._productDetailsService.getProductByID(this.productId).subscribe(
+      (result) => {
+        this.productDetails = result.$product;
 
-    console.log(this.productId);
-    this._productDetailsService
-      .getProductByID(this.productId)
-      .subscribe((data: any) => {
-        this.productDetails = data;
-        console.log(this.productDetails);
-      });
+        this.productListService
+          .getProductBySubcategory(this.productDetails.sub_category_id)
+          .subscribe(
+            (result) => {
+              console.log(result);
+              this.relativeProduct = result.message;
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
+  // productCrusal(item: any) {
+  //   console.log(item.id);
+  // }
 }

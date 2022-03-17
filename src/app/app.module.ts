@@ -48,9 +48,9 @@ import { AddCategoryComponent } from './admin-page/add-category/add-category.com
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { TestComponent } from './test/test.component';
-import { DropdownComponent } from './shared/dropdown/dropdown/dropdown.component';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { ItemsComponent } from './product-list/items/items.component';
+import { FilterPipe } from './shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -89,9 +89,9 @@ import { ItemsComponent } from './product-list/items/items.component';
     AboutUsComponent,
     CheckOutComponent,
     TestComponent,
-    DropdownComponent,
     AddSubcategoryComponent,
     ItemsComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

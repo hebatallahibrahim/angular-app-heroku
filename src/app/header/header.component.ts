@@ -3,6 +3,7 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../Model/product.model';
 
 import { CartService } from './../Service/cart.service';
+import { SearchService } from './../Service/search.service';
 
 @Component({
   selector: 'app-header',
@@ -11,10 +12,15 @@ import { CartService } from './../Service/cart.service';
   providers: [NgbDropdownConfig],
 })
 export class HeaderComponent implements OnInit {
+  searchTerm: string = '';
   accountDropdown = false;
   addedProducts: Product[] = [];
   togle: string = 'ngbDropdownToggle';
-  constructor(config: NgbDropdownConfig, private cartService: CartService) {
+  constructor(
+    config: NgbDropdownConfig,
+    private cartService: CartService,
+    private searchService: SearchService
+  ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
   }
@@ -42,5 +48,10 @@ export class HeaderComponent implements OnInit {
       (err) => {},
       () => {}
     );
+  }
+  search(event: any) {
+    this.searchTerm = (event.target as HTMLInputElement).value;
+    this.searchService.search.next(this.searchTerm);
+   
   }
 }

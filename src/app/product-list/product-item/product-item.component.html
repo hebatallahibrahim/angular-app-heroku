@@ -1,7 +1,7 @@
 <div class="img-overlay text-end fs-5 rounded">
   <a (click)="goTodetails(productItem)">
     <img
-      [src]="imagUrlProduct + productItem.image"
+      src="{{ imagUrlProduct + productItem.image }}"
       class="card-img-top rounded-top"
       alt="item"
       width="150"

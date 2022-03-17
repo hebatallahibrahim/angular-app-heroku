@@ -1,5 +1,5 @@
 <app-header></app-header>
-<app-product-filter></app-product-filter>
+<app-product-filter (changeFilterEvent)="onchangeFilter($event)"></app-product-filter>
 <div class="con-item container-fluid pt-5 pb-5">
   <div class="row row-item d-flex justify-content-center">
     <app-product-item

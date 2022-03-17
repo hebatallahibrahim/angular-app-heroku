@@ -38,21 +38,22 @@
         </li>
       </ul>
 
-      <form class="col-12 col-lg-auto mb-3 me-3 mb-lg-0 me-lg-3">
-        <div class="row gx-0">
-          <div class="search-btn col-2 p-0 m-0 m-auto text-center">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </div>
-          <div class="col-10">
-            <input
-              type="search"
-              class="form-control"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-          </div>
+      <div class="row gx-0">
+        <div class="search-btn col-2 p-0 m-0 m-auto text-center">
+          <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-      </form>
+        <div class="form-group col-10">
+          <input
+            [(ngModel)]="searchTerm"
+            (keyup)="search($event)"
+            type="text"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </div>
+      </div>
+
       <div role="button" class="button-group me-4" ngbDropdown>
         <div
           href="/"

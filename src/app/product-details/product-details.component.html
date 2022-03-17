@@ -2,83 +2,53 @@
 <div class="container">
   <div class="row m-3">
     <div class="col-lg-6 col-md-7 col-12">
-      <swiper [config]="config">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img src="https://loremflickr.com/g/600/400/paris" alt="img 1" />
-          </div>
-          <div class="swiper-slide">
-            <img src="https://loremflickr.com/600/400/brazil,rio" alt="img 2" />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="https://loremflickr.com/600/400/paris,girl/all"
-              alt="img 3"
-            />
-          </div>
-          <div class="swiper-slide">
-            <img src="https://loremflickr.com/g/600/400/paris" alt="img 4" />
-          </div>
-          <div class="swiper-slide">
-            <img src="https://loremflickr.com/600/400/brazil,rio" alt="img 5" />
-          </div>
-          <div class="swiper-slide">
-            <img
-              src="https://loremflickr.com/600/400/paris,girl/all"
-              alt="img 6"
-            />
-          </div>
-        </div>
-
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
-
-        <!-- Add Arrows -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </swiper>
+      <img
+        src="{{ imagUrlProduct + productDetails.image }}"
+        width="500"
+        height="500"
+        alt="img 1"
+      />
     </div>
     <div class="col-lg-6 col-md-5 col-12">
-      <h1>product name</h1>
-      <h4>$255</h4>
+      <h1>{{ productDetails.name }}</h1>
+      <h4>{{ productDetails.selling_price }} EGP</h4>
       <button class="cart-button btn mb-4" routerLink="/cart">
         Add to cart
       </button>
       <h3>product details</h3>
       <table style="width: 100%">
         <tr>
-          <th>Company</th>
-          <td>Alfreds Futterkiste</td>
+          <th>Description:</th>
+          <td>{{ productDetails.description }}</td>
         </tr>
         <tr>
-          <th>Contact</th>
-          <td>Alfreds Futterkiste</td>
+          <th>Stock:</th>
+          <td>{{ productDetails.product_qty }}</td>
+        </tr>
+        <tr>
+          <th>Brand Name:</th>
+          <td>{{ productDetails.brand }}</td>
+        </tr>
+        <tr>
+          <th>Color:</th>
+          <td>{{ productDetails.color }}</td>
+        </tr>
+        <tr>
+          <th>Contact:</th>
+          <td>{{ productDetails.product_size }}</td>
         </tr>
       </table>
     </div>
   </div>
   <div class="row m-3">
-    <div class="col-lg-6 col-md-4 col-12 product-info">
-      <h3>product info</h3>
-      <ul>
-        <li>Brand Name:</li>
-        <li>Color:</li>
-        <li>Material:</li>
-        <li>Height in cm:</li>
-        <li>Width in cm:</li>
-        <li>Length in cm:</li>
-        <li>Warranty:</li>
-      </ul>
-    </div>
-
-    <div class="col-lg-6 col-md-8 col-12 rate-comment">
+    <div class="mb-3 col-lg-12 col-md-12 col-12 rate-comment">
       <form [formGroup]="form">
         <p>Rating this product</p>
         <ngx-star-rating
           formControlName="rating"
           [id]="'rating'"
         ></ngx-star-rating>
-        <div>Rating: {{ form.value.rating }}</div>
+        <div class="fs-3">Rating: {{ form.value.rating }}</div>
         <div class="add-comment">
           <h3 class="col-12">Add Comment</h3>
           <mat-form-field class="col-12">
@@ -90,13 +60,19 @@
     </div>
   </div>
   <div class="row">
-    <h4>similar products</h4>
+    <h3>Relative products</h3>
     <owl-carousel-o [options]="customOptions">
-      <ng-template carouselSlide *ngFor="let slide of slidesStore">
+      <ng-template carouselSlide *ngFor="let item of relativeProduct">
         <div class="one-item m-2">
           <div class="img-overlay text-center fs-5 rounded">
             <a href="#">
-              <img src="https://picsum.photos/200" class="rounded" alt="item" />
+              <img
+                src="{{ imagUrlProduct + item.image }}"
+                class="rounded"
+                width="100"
+                height="200"
+                alt="item"
+              />
             </a>
             <div
               class="love"
@@ -108,8 +84,8 @@
             <div class="container-fluid">
               <div class="row p-1">
                 <a href="#" class="link-item text-decoration-none link-dark">
-                  <p class="text-center name-item p-0">Product name</p>
-                  <p class="text-center">$255</p>
+                  <p class="text-center name-item p-0">{{ item.name }}</p>
+                  <p class="text-center">{{ item.selling_price }} EGP</p>
                 </a>
               </div>
             </div>
