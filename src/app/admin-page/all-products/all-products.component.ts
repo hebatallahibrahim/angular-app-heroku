@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/Service/admin.service';
+import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-all-products',
   templateUrl: './all-products.component.html',
@@ -14,7 +15,7 @@ export class AllProductsComponent implements OnInit {
   SubCatArray : any[]=[];
   activetedRoute: any;
   productId: any;
-  constructor(private _service : AdminService ) { 
+  constructor(private _service : adminservice , private rout : Router) { 
 
     this._service.getAllCategory()
     .subscribe((data: any) => {
@@ -60,7 +61,7 @@ export class AllProductsComponent implements OnInit {
       })
     
   }
-
+  
   removeSubCatItem(id: any): void {
     this._service.deleteSubCat(id).subscribe(res => {
       console.log(res);
@@ -68,6 +69,13 @@ export class AllProductsComponent implements OnInit {
       })
     
   }
+
+  gitId(item:any)
+  {
+    this.rout.navigate(['/update-product',item.id])
+       console.log(item)
+  }
+
   ngOnInit(): void {
     
   

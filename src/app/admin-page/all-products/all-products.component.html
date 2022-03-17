@@ -46,7 +46,8 @@
                 <td>{{ i.short_desc }}</td>
                 <td>{{ i.product_size }}</td>
                 <td class="text-center">
-                  <mat-icon> border_color</mat-icon>
+                  <!-- <mat-icon> border_color</mat-icon> -->
+                  <button (click)="gitId(i)">edit</button>
                 </td>
                 <td class="text-center">
                   <mat-icon (click)="removeProdItem(i.id)">delete</mat-icon>
