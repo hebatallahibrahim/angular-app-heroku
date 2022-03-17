@@ -17,23 +17,27 @@ export class ProductFilterComponent implements OnInit {
     'Highest price',
   ];
   categorys: string[] = [
-    'Bedroom',
+    '1',
     'Living Room',
     'Dining Room',
     'Garden Furniture',
     'Kitchens',
   ];
-  sub_categorys: string[] = ['Chair', 'Bed', 'Table'];
+  sub_categorys: string[] = ['1', 'Bed', 'Table'];
   constructor() {}
   onColorChange(event: any) {
     this.changeFilterEvent.emit({ id: event.value, eventType: 'color' });
   }
   onCategoryChange(event: any) {
-    this.changeFilterEvent.emit({ id: event.value, eventType: 'category' });
+    this.changeFilterEvent.emit({ id: event.value, eventType: 'category_id' });
   }
   onSubCategoryChange(event: any) {
-    this.changeFilterEvent.emit({ id: event.value, eventType: 'subCategory' });
+    this.changeFilterEvent.emit({
+      id: event.value,
+      eventType: 'sub_category_id',
+    });
   }
+  returnAllProducts() {}
 
   ngOnInit(): void {}
 }

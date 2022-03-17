@@ -15,7 +15,7 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Price</mat-label>
-          <mat-select >
+          <mat-select>
             <mat-option *ngFor="let price of prices" [value]="price">
               {{ price }}
             </mat-option>
@@ -40,6 +40,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+        <button class="btn btn-primary mb-3 ms-5" (click)="returnAllProducts()">
+          Show All Products
+        </button>
       </div>
     </div>
   </div>

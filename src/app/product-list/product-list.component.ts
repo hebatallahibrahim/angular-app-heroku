@@ -53,11 +53,18 @@ export class ProductListComponent implements OnInit {
   onchangeFilter(event: any) {
     if (event.eventType == 'color') {
       this.productArray = this.productArray.filter((x) => x.color == event.id);
-    } else if (event.eventType == 's') {
-      this.productArray = this.productArray.filter((x) => x.color == event.id);
-    }
-    if (event.eventType == 'color') {
-      this.productArray = this.productArray.filter((x) => x.color == event.id);
+    } else if (event.eventType == 'category_id') {
+      this.productArray = this.productArray.filter(
+        (x) => x.category_id == event.id
+      );
+    } else if (event.eventType == 'sub_category_id') {
+      this.productArray = this.productArray.filter(
+        (x) => x.sub_category_id == event.id
+      );
+      console.log(this.productArray);
+      console.log(event.id);
+      console.log(event);
+      console.log(this.productArray);
     }
   }
   clearFelter() {
