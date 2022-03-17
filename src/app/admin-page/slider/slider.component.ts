@@ -1,26 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { AdminService } from 'src/app/admin.service';
 import { Router } from '@angular/router';
-
+import { AdminService } from 'src/app/admin.service';
 @Component({
-  selector: 'app-add-subcategory',
-  templateUrl: './add-subcategory.component.html',
-  styleUrls: ['./add-subcategory.component.css']
+  selector: 'app-slider',
+  templateUrl: './slider.component.html',
+  styleUrls: ['./slider.component.css']
 })
-export class AddSubcategoryComponent implements OnInit {
+export class SliderComponent implements OnInit {
+
   formRegistration: FormGroup = new FormGroup({
     name: new FormControl(null),
     description: new FormControl(null),
     file: new FormControl(null),
     fileSource: new FormControl(null)
   });
-
   err: string | undefined;
   dangerAlertShow=false;
-  constructor(public _AdminService: AdminService, public _Router: Router) { }
+  sliderArray:any[]=[];
+  imagUrlSlider: string = 'http://127.0.0.1:8000/uploads/slider/';
+  constructor(private _AdminService: AdminService, private _Router: Router) { }
 
   ngOnInit(): void {
+    this._AdminService.getSlider().subscribe(
+      (res) => {
+        this.sliderArray=res.Slider;
+        console.log(this.sliderArray);
+      },
+      (err:any) => {
+        console.log(err);
+      }
+    );
   }
 
   onFileChange(event:any) {
@@ -38,22 +48,20 @@ export class AddSubcategoryComponent implements OnInit {
     formData.append('description', data.get('description').value);
     formData.append('image', data.get('fileSource').value);
 
-    this._AdminService.addSubCategory(formData).subscribe(
+    this._AdminService.addSlider(formData).subscribe(
       (data) => {
         console.log(data);
-        if (data.message == 'Subcategory added succesfully') {
+        if (data.message == 'Slider added succesfully') {
           this.dangerAlertShow=false;
-          this._Router.navigate(['/all-product']);
+          this._Router.navigate(['/home']);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
         this.dangerAlertShow=true;
-        console.log(this.dangerAlertShow);
         console.log(err);
       }
     );
   }
-
 }

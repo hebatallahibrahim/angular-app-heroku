@@ -201,6 +201,9 @@
     cursor: pointer;
     font-size: 1.5rem;
   }
+  td,th{
+    background: #455c71;
+  }
   .tm-login-col {
     max-width: 470px;
   }
@@ -209,4 +212,8 @@
   }
   .hide-alert{
     display: none;
+  }
+  .slider-img{
+      width: 100px;
+      height: 100px;
   }

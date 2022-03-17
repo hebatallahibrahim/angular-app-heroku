@@ -8,6 +8,7 @@ h2
 {
   font-style: bold;
   font-size: 2rem;
+  color:#B78D65;
 }
 .set_paragraph
 {
@@ -15,6 +16,12 @@ h2
     font-size: 1.5rem;
     line-height: 30px; 
    margin-bottom: 40px; 
+}
+.category-img{
+  height: 220px;
+}
+a{
+  cursor:pointer;
 }
 
 

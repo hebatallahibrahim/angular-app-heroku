@@ -51,6 +51,8 @@ import { TestComponent } from './test/test.component';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { ItemsComponent } from './product-list/items/items.component';
 import { FilterPipe } from './shared/filter.pipe';
+import { CategoryProductsComponent } from './category-products/category-products.component';
+import { SliderComponent } from './admin-page/slider/slider.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +94,8 @@ import { FilterPipe } from './shared/filter.pipe';
     AddSubcategoryComponent,
     ItemsComponent,
     FilterPipe,
+    CategoryProductsComponent,
+    SliderComponent,
   ],
   imports: [
     BrowserModule,

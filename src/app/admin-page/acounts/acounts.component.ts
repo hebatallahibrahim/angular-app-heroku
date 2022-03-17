@@ -20,6 +20,7 @@ export class AcountsComponent implements OnInit {
   arr2 = [1,2,3,4,5,6,7,8,9,10];
   usersArray:any[]=[];
   err: string | undefined;
+  dangerAlertShow=false;
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
@@ -43,19 +44,26 @@ export class AcountsComponent implements OnInit {
     formData.append('password', data.get('password').value);
     formData.append('region', data.get('region').value);
 
+    if(data.get('name').value!=null && data.get('email').value &&data.get('address').value && data.get('city').value && data.get('phone').value && data.get('region').value && data.get('password').value){
     this._AdminService.addUser(formData).subscribe(
       (data) => {
         console.log(data);
         if (data.message == 'User added succesfully') {
+          this.dangerAlertShow=false;
           this._Router.navigate(['/accounts']);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
+        this.dangerAlertShow=true;
+        console.log(this.dangerAlertShow);
         console.log(err);
       }
     );
+    }else{
+      this.dangerAlertShow=true;
+    }
   }
 
 }

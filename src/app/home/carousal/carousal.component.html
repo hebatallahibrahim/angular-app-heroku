@@ -1,16 +1,13 @@
 <div class="container-fluid">
   <div class="row">
       <ngb-carousel  class="carousal col-lg-612 col-md-12 col-sm-12">
-          <ng-template ngbSlide *ngFor="let i of images">
+          <ng-template ngbSlide *ngFor="let slider of sliderArray">
             <div class="picsum-img-wrapper">
-              <img [src]=i alt="Random first slide">
+              <img src="{{imagUrlSlider+slider.image}}" height="550px" width="100%" alt="Random first slide">
             </div>
             <div class="carousel-caption ">
-              <h3 class="d-flex justify-content-center"> TOP PRODUCTS </h3>
+              <h3 class="d-flex justify-content-center"> Welcome To Homo </h3>
             </div>
-            <button 
-             class="d-flex justify-content-center" 
-             routerLink="/product-details">show</button>
           </ng-template>
       </ngb-carousel>
 </div>

@@ -480,10 +480,12 @@ html {
     background: #8ab5d6;
   }
   
-  
-  
-  
-  
+  .show-alert{
+    display: block;
+  }
+  .hide-alert{
+    display: none;
+  }
     #barChart,
     #lineChart {
       max-height: 350px;

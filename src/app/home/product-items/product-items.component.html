@@ -1,23 +1,14 @@
-<section class="itemsproduct">        
+<section class="itemsproduct mb-5">        
   <div class="container"> 
      
-    <h1 class="d-flex justify-content-center m-5 p-5">Product Items</h1>      
-    <div class="row">     
-      <div class="col-lg-3 col-md-6 col-sm-12 mb-5 cart_product" *ngFor="let i of arr">
-        <div class="card" >
-              <img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg" alt="" />
-              <div class="card-body">
-                <h3 class="card-title d-flex justify-content-center align-items-center">
-                  prodct1</h3>
-                <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ad porro tenetur illum amet perferendis nihil soluta fugit iste, quo deleniti.
-                </p>   
-                <div class="butto d-flex justify-content-center align-items-center"> 
-                  <a href="#" routerLink="/product-details" class="btn1">Show Product</a>  
-                </div>                
-              </div>
-        </div>  
-      </div> 
+    <h1 class="d-flex justify-content-center m-5 p-5">Latest Products</h1>      
+    <div class="row gx-5">     
+          <app-product-item
+            class="col-3 ps-0 pe-0 one-item shadow-lg latest-pro"
+            *ngFor="let item of productArray"
+            [productItem]="item"
+          >
+          </app-product-item>
     </div>
   </div>     
 </section>

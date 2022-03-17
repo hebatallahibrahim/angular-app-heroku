@@ -26,9 +26,12 @@ import { CheckOutComponent } from './check-out/check-out.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
+import { CategoryProductsComponent } from './category-products/category-products.component';
+import { SliderComponent } from './admin-page/slider/slider.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'category-products/:id/:name', component: CategoryProductsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'resetPassword', component: FooterComponent },
   { path: 'signUp', component: RegisterComponent },
@@ -45,6 +48,7 @@ const routes: Routes = [
   { path: 'add-product', component: AddProductsComponent },
   { path: 'update-product', component: UpdateProductComponent },
   { path: 'accounts', component: AcountsComponent },
+  { path: 'slider', component: SliderComponent },
   { path: 'log-in', component: LogInComponent },
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'add-subcategory', component: AddSubcategoryComponent },
