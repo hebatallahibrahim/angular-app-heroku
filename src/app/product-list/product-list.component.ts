@@ -10,6 +10,7 @@ import { SearchService } from './../Service/search.service';
 })
 export class ProductListComponent implements OnInit {
   productArray: Product[] = [];
+  sortedProductArray:Product[]=[];
   mainProductArray: Product[] = [];
   searchKey: string = '';
   productItem!: Product;
@@ -17,6 +18,10 @@ export class ProductListComponent implements OnInit {
   itemAddToCart: EventEmitter<Product> = new EventEmitter<Product>();
   item_hearted = false;
   closeResult = '';
+  colorSearchFilter='';
+  priceSearchFilter='';
+  categorySearchFilterID=0;
+  subcatSearchFilterID=0;
   // itemAdd: EventEmitter<Product> = new EventEmitter<Product>();
   constructor(
     private productListService: ProductListService,
@@ -50,24 +55,105 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
-  onchangeFilter(event: any) {
-    if (event.eventType == 'color') {
-      this.productArray = this.productArray.filter((x) => x.color == event.id);
-    } else if (event.eventType == 'category_id') {
-      this.productArray = this.productArray.filter(
-        (x) => x.category_id == event.id
-      );
-    } else if (event.eventType == 'sub_category_id') {
-      this.productArray = this.productArray.filter(
-        (x) => x.sub_category_id == event.id
-      );
-      console.log(this.productArray);
-      console.log(event.id);
-      console.log(event);
-      console.log(this.productArray);
+  
+  onchangeColorFilter(event:any){
+    this.productArray=this.mainProductArray;
+    if(event.colorname!=''){
+    this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == event.colorname.trim().toLowerCase());
+    this.colorSearchFilter=event.colorname.trim().toLowerCase();
+    }else{
+      this.colorSearchFilter=''; 
+    }
+    
+    if(this.categorySearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.category_id == this.categorySearchFilterID);
+    }
+    if(this.subcatSearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
+    }
+    if(this.priceSearchFilter!=''){
+      if(event.priceorder=='Lowest To Highest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
+      }else if(event.priceorder=='Highest To Lowest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
+      }
     }
   }
-  clearFelter() {
+
+  onchangeCategoryFilter(event:any){
+    this.productArray=this.mainProductArray;
+    if(event.category_id!=''){
+    this.productArray = this.productArray.filter((x) => x.category_id == event.category_id);
+    this.categorySearchFilterID=event.category_id;
+    }else{
+      this.categorySearchFilterID=0;
+    }
+    if(this.colorSearchFilter!=''){
+      this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == this.colorSearchFilter);
+    }
+    if(this.subcatSearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
+    }
+    if(this.priceSearchFilter!=''){
+      if(event.priceorder=='Lowest To Highest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
+      }else if(event.priceorder=='Highest To Lowest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
+      }
+    }
+  }
+
+  onchangeSubCatFilter(event:any){
+    this.productArray=this.mainProductArray;
+    if(event.subcategory_id!=''){
+    this.productArray = this.productArray.filter((x) => x.sub_category_id == event.subcategory_id);
+    this.subcatSearchFilterID=event.subcategory_id;
+    }else{
+      this.subcatSearchFilterID=0;
+    }
+    if(this.colorSearchFilter!=''){
+      this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == this.colorSearchFilter);
+    }
+    if(this.categorySearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.category_id == this.categorySearchFilterID);
+    }
+    if(this.priceSearchFilter!=''){
+      if(event.priceorder=='Lowest To Highest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
+      }else if(event.priceorder=='Highest To Lowest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
+      }
+    }
+  }
+
+  onchangePriceFilter(event:any){
+    this.productArray=this.mainProductArray;
+    if(event.priceorder!=''){
+      if(event.priceorder=='Lowest To Highest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
+      }else if(event.priceorder=='Highest To Lowest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
+      }
+      this.priceSearchFilter=event.priceorder;
+    }else{
+      this.priceSearchFilter='';
+    }
+    if(this.colorSearchFilter!=''){
+      this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == this.colorSearchFilter);
+    }
+    if(this.categorySearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.category_id == this.categorySearchFilterID);
+    }
+    if(this.subcatSearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
+    }
+  }
+  
+  getAllProducts() {
+    this.colorSearchFilter='';
+    this.priceSearchFilter='';
+    this.categorySearchFilterID=0;
+    this.subcatSearchFilterID=0;
     this.productArray = this.mainProductArray;
   }
 }

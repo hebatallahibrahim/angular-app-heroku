@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { SearchService } from 'src/app/Service/search.service';
 
 @Component({
   selector: 'app-product-filter',
@@ -6,38 +7,66 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
   styleUrls: ['./product-filter.component.css'],
 })
 export class ProductFilterComponent implements OnInit {
-  @Output() changeFilterEvent = new EventEmitter<any>();
+  @Output() changeColorEvent = new EventEmitter<any>();
+  @Output() changePriceEvent = new EventEmitter<any>();
+  @Output() changeCategoryEvent = new EventEmitter<any>();
+  @Output() changeSubCatEvent = new EventEmitter<any>();
+  @Output() getAllProductsEvent = new EventEmitter<any>();
 
-  colors: string[] = ['red', 'blue', 'yellow'];
+  colors: string[] = ['white', 'blue', 'orange','beige','gray','brown','black','green'];
   prices: string[] = [
-    'Lowest price',
-    '1000-2000',
-    '2000-3000',
-    '3000-6000',
-    'Highest price',
+    'Lowest To Highest Price',
+    'Highest To Lowest Price',
   ];
-  categorys: string[] = [
-    '1',
-    'Living Room',
-    'Dining Room',
-    'Garden Furniture',
-    'Kitchens',
-  ];
-  sub_categorys: string[] = ['1', 'Bed', 'Table'];
-  constructor() {}
+  categoryArray:any[]=[];
+  subcategoryArray: any[] = [];
+  colorInitial='';
+  categoryInitial='';
+  priceInitial='';
+  subcatInitial='';
+  constructor(private searchService:SearchService) {}
   onColorChange(event: any) {
-    this.changeFilterEvent.emit({ id: event.value, eventType: 'color' });
+    this.changeColorEvent.emit({ colorname: event.value, eventType: 'color' });
+  }
+  onPriceChange(event:any){
+    this.changePriceEvent.emit({ priceorder:event.value, eventType:'price'});
   }
   onCategoryChange(event: any) {
-    this.changeFilterEvent.emit({ id: event.value, eventType: 'category_id' });
+    this.changeCategoryEvent.emit({ category_id: event.value, eventType: 'category_id' });
   }
   onSubCategoryChange(event: any) {
-    this.changeFilterEvent.emit({
-      id: event.value,
+    this.changeSubCatEvent.emit({
+      subcategory_id: event.value,
       eventType: 'sub_category_id',
     });
   }
-  returnAllProducts() {}
+  resetFilters(){
+    this.colorInitial='';
+    this.categoryInitial='';
+    this.priceInitial='';
+    this.subcatInitial='';
+    this.getAllProductsEvent.emit();
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.searchService.getAllCategories().subscribe(
+      (res) => {
+        this.categoryArray = res.category;
+        console.log(this.categoryArray);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+    this.searchService.getAllSubCategories().subscribe(
+      (res) => {
+        this.subcategoryArray = res.category;
+        console.log(this.categoryArray);
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  }
+
 }
