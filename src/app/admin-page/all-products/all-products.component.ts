@@ -11,6 +11,7 @@ export class AllProductsComponent implements OnInit {
   arr2 = [1,2,3,4,5,6,7,8,9,10];
   categoryArray : any[]=[];
   productArray : any[]=[];
+  SubCatArray : any[]=[];
   activetedRoute: any;
   productId: any;
   constructor(private _service : AdminService ) { 
@@ -23,6 +24,7 @@ export class AllProductsComponent implements OnInit {
       console.log(err)
     });
 
+
     this._service.getAllProduct()
     .subscribe((data: any) => {
       this.productArray = data.products;
@@ -30,18 +32,44 @@ export class AllProductsComponent implements OnInit {
     }, (err: any) => {
       console.log(err)
     });
+  
+  
+  this._service.getAllSubCat()
+  .subscribe((data: any) => {
+      console.log(this.SubCatArray)
+    this.SubCatArray = data.category;
+    console.log(this.SubCatArray)
+  }, (err: any) => {
+    console.log(err)
+  });
+}
+  removeCatItem(id: any): void {
+   
+    // this.productArray.splice(this.productArray.indexOf(item), 1);
+    this._service.deleteCategory(id).subscribe(res => {
+      console.log(res);
+      this.categoryArray = this.categoryArray.filter(item => item.id !== id);
+      })
+    
   }
 
- 
-  removeProdItem(item: any): void {
-    console.log(item);
-    // this.productArray.splice(this.productArray.indexOf(item), 1);
+  removeProdItem(id: any): void {
+    this._service.deleteProduct(id).subscribe(res => {
+      console.log(res);
+      this.productArray = this.productArray.filter(item => item.id !== id);
+      })
+    
+  }
+
+  removeSubCatItem(id: any): void {
+    this._service.deleteSubCat(id).subscribe(res => {
+      console.log(res);
+      this.SubCatArray = this.SubCatArray.filter(item => item.id !== id);
+      })
+    
   }
   ngOnInit(): void {
-    this.productId = this.activetedRoute.snapshot.paramMap.get('id'); // get id from url
-
-    console.log(this.productId);
-   
+    
   
   }
  

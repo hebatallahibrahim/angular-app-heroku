@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,17 +15,30 @@ export class AdminService {
   getAllProduct(): any {
     return this.http.get<any>('http://127.0.0.1:8000/api/product/view');
   }
-  addProduct(addProduct: any) {
-    this.http
-      .post('http://127.0.0.1:8000/api/product/store', addProduct)
-      .subscribe((respons) => {
-        console.log(respons);
-      });
+
+  getAllSubCat(): any {
+    return this.http.get<any>('http://127.0.0.1:8000/api/category/sub/view');
   }
 
-  updateProduct(update: any, postProduct: any) {
+  deleteCategory(id: any): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/api/category/delete/${id}`)
+  }
+
+  deleteProduct(id: any): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/api/product/delete/${id}`)
+  }
+
+  deleteSubCat(id: any): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/api/category/sub/delete/${id}`)
+  }
+
+  addProduct(addProduct: any) {
+    this.http.post('http://127.0.0.1:8000/api/product/store', addProduct)
+  }
+
+  updateProduct(id: any, postProduct: any) {
     this.http
-      .post(`http://127.0.0.1:8000/api/product/update/${update}`, postProduct)
+      .post(`http://127.0.0.1:8000/api/product/update/${id}`, postProduct)
       .subscribe((respons) => {
         console.log(respons);
       });
@@ -37,11 +51,8 @@ export class AdminService {
       });
   }
 
-  deleteProduct(deleteProduct: any) {
-    this.http
-      .delete(`http://127.0.0.1:8000/api/product/update/{${deleteProduct}}`)
-      .subscribe((respons) => {
-        console.log(respons);
-      });
-  }
+  
+
+
+
 }
