@@ -55,14 +55,14 @@
       
       <div class="row gx-0">
         
-        <div class="search-btn col-2 p-0 m-0 m-auto text-center" [ngClass]="{'show':!searchbtn,'hide':searchbtn}" (click)="search(searchTerm)">
+        <!--div class="search-btn col-2 p-0 m-0 m-auto text-center" [ngClass]="{'show':!searchbtn,'hide':searchbtn}" (click)="search(searchTerm)">
           <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
+        </div-->
         <div class="form-group col-10" [ngClass]="{'show':!searchbtn,'hide':searchbtn}">
           <input
             name="searchword"
             [(ngModel)]="searchTerm"
-            (keyup.enter)="search(searchTerm)"
+            (keyup)="search(searchTerm)"
             type="text"
             class="form-control"
             placeholder="Search..."

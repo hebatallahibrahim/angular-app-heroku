@@ -39,25 +39,31 @@
         </tr>
       </table>
     </div>
-  </div>
-  <div class="row m-3">
-    <div class="mb-3 col-lg-12 col-md-12 col-12 rate-comment">
-      <form [formGroup]="form">
-        <p>Rating this product</p>
-        <ngx-star-rating
+    <div class="mb-3 col-6 rate-comment">
+      <form [formGroup]="form" (ngSubmit)="getFormData(form)">
+        <h3>Rate this product</h3>
+        <div class="row justify-content-between">
+        <div class="col-6">
+        <p-rating class="stars" formControlName="rating" [(ngModel)]="ratingVal" id="rating" name="rating"></p-rating></div>
+        <!--ngx-star-rating
           formControlName="rating"
           [id]="'rating'"
-        ></ngx-star-rating>
-        <div class="fs-3">Rating: {{ form.value.rating }}</div>
-        <div class="add-comment">
+        ></ngx-star-rating-->
+        <!--div class="fs-3">Rating: {{ form.value.rating }}</div-->
+        <!--div class="add-comment">
           <h3 class="col-12">Add Comment</h3>
           <mat-form-field class="col-12">
             <input matInput />
           </mat-form-field>
-          <button class="btn btn-primary">Submit</button>
-        </div>
+        </div-->
+        <div class="col-6">
+        <button class="btn btn-primary submit-btn">Submit Rating</button></div>
+      </div>
       </form>
     </div>
+  </div>
+  <div class="row m-3 justify-content-between">
+    
   </div>
   <div class="row">
     <h3>Relative products</h3>

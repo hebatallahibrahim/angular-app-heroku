@@ -57,6 +57,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion'; //accordion and accordion tab
 import { BadgeModule } from 'primeng/badge';
+import {RatingModule} from 'primeng/rating';
 
 @NgModule({
   declarations: [
@@ -120,6 +121,7 @@ import { BadgeModule } from 'primeng/badge';
     SidebarModule,
     ButtonModule,
     BadgeModule,
+    RatingModule
   ],
   providers: [ProductListService],
 

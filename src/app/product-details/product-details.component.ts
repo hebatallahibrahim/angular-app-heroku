@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SwiperOptions } from 'swiper';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProductDetailsService } from './../Service/product-details.service';
 import { ProductListService } from './../Service/product-list.service';
+import { HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-product-details',
@@ -18,23 +19,28 @@ export class ProductDetailsComponent implements OnInit {
   images = [944, 1011, 984].map(
     (n) => `https://picsum.photos/id/${n}/1200/500`
   );
-  public form: FormGroup;
-  rating3: number;
+  //public form: FormGroup;
+  form: FormGroup = new FormGroup({
+    rating: new FormControl(null),
+  });
+  ratingVal: number = 5;
   productId!: any;
   productDetails!: any;
   relativeProduct!: any[];
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
+  err: string | undefined;
 
   constructor(
     private fb: FormBuilder,
+    public _Router: Router,
     private activetedRoute: ActivatedRoute,
     private _productDetailsService: ProductDetailsService,
     private productListService: ProductListService
   ) {
-    this.rating3 = 0;
-    this.form = this.fb.group({
-      rating: ['', Validators.required],
-    });
+    // this.rating3 = 0;
+    // this.form = this.fb.group({
+    //   rating: ['', Validators.required],
+    // });
   }
   customOptions: OwlOptions = {
     loop: true,
@@ -107,4 +113,40 @@ export class ProductDetailsComponent implements OnInit {
   // productCrusal(item: any) {
   //   console.log(item.id);
   // }
+  getFormData(data: any) {
+    if(data.get('rating').value==null){
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append("user_id",1);
+      this._productDetailsService.deleteRating(queryParams,this.productId).subscribe(
+        (res) => {
+        console.log(res);
+        if(data.message=='Rate deleted succesfully'){
+
+        }
+      },
+      (err)=>{
+        console.log(err);
+      }
+      );
+    }else{
+    var formData: any = new FormData();
+    formData.append('rate', data.get('rating').value);
+    formData.append('product_id', this.productId);
+    formData.append('user_id', 1);
+  
+    this._productDetailsService.addProductRating(formData,this.productId).subscribe(
+      (data) => {
+        console.log(data);
+        if (data.message == 'Rate updated succesfully') {
+          // this._Router.navigate(['/accounts']);
+        } else {
+          this.err = 'not valid data';
+        }
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+}
 }

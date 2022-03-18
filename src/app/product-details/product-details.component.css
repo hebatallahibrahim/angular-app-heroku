@@ -35,3 +35,15 @@
 .add-comment{
   margin-top:5%;
 }
+.submit-btn{
+  background-color: #876445 !important;
+  color: white;
+  transition: all 0.2s ease;
+  border: 1px solid #876445;
+}
+.submit-btn:hover{
+  background-color: #cb985d !important;
+  color: black;
+  border: 1px solid #cb985d;
+}
+
