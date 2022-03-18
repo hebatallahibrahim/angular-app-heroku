@@ -15,10 +15,17 @@ export class CategoryProductsComponent implements OnInit {
   categoryId:any;
   categoryName:any;
   constructor(private _HomeService: HomeService,public router: Router,private activetedRoute: ActivatedRoute) {
+    this.activetedRoute.params.subscribe( (params) => {
+      this.getCategoryData();
+    } );
   }
 
   
   ngOnInit(): void {
+    
+  }
+
+  getCategoryData(){
     this.categoryId = this.activetedRoute.snapshot.paramMap.get('id'); // get id from url
     this.categoryName = this.activetedRoute.snapshot.paramMap.get('name');
 
@@ -28,7 +35,7 @@ export class CategoryProductsComponent implements OnInit {
       .subscribe((data: any) => {
         this.productArray = data.message;
         console.log(this.productArray);
-      });
+    });
   }
 
 }
