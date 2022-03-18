@@ -20,6 +20,7 @@ export class ProductListComponent implements OnInit {
   closeResult = '';
   colorSearchFilter='';
   priceSearchFilter='';
+  nameSearch='';
   categorySearchFilterID=0;
   subcatSearchFilterID=0;
   // itemAdd: EventEmitter<Product> = new EventEmitter<Product>();
@@ -31,24 +32,9 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productListService.getAllProduct().subscribe(
       (result) => {
-        console.log(result);
 
         this.productArray = result.products;
         this.mainProductArray = result.products;
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-    this.searchService.search.subscribe(
-      (val: any) => {
-        this.searchKey = val;
-        console.log(this.searchKey);
-
-        this.productArray = this.productArray.filter(
-          (x) =>
-            x.name.includes(this.searchKey) || x.color.includes(this.searchKey)
-        );
       },
       (err) => {
         console.log(err);
@@ -62,7 +48,7 @@ export class ProductListComponent implements OnInit {
     this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == event.colorname.trim().toLowerCase());
     this.colorSearchFilter=event.colorname.trim().toLowerCase();
     }else{
-      this.colorSearchFilter=''; 
+      this.colorSearchFilter='';
     }
     
     if(this.categorySearchFilterID!=0){
@@ -72,11 +58,17 @@ export class ProductListComponent implements OnInit {
       this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
     }
     if(this.priceSearchFilter!=''){
-      if(event.priceorder=='Lowest To Highest Price'){
+      if(this.priceSearchFilter=='Lowest To Highest Price'){
         this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
-      }else if(event.priceorder=='Highest To Lowest Price'){
+      }else if(this.priceSearchFilter=='Highest To Lowest Price'){
         this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
       }
+    }
+    if(this.nameSearch!=''){
+      this.productArray = this.productArray.filter(
+        (x) => 
+          x.name.trim().toLowerCase().search(this.nameSearch)!=-1 || x.color.trim().toLowerCase().search(this.nameSearch)!=-1
+      );
     }
   }
 
@@ -95,11 +87,18 @@ export class ProductListComponent implements OnInit {
       this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
     }
     if(this.priceSearchFilter!=''){
-      if(event.priceorder=='Lowest To Highest Price'){
+      if(this.priceSearchFilter=='Lowest To Highest Price'){
         this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
-      }else if(event.priceorder=='Highest To Lowest Price'){
+      }else if(this.priceSearchFilter=='Highest To Lowest Price'){
         this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
       }
+    }
+    if(this.nameSearch!=''){
+      console.log(this.nameSearch);
+      this.productArray = this.productArray.filter(
+        (x) => 
+          x.name.trim().toLowerCase().search(this.nameSearch)!=-1 || x.color.trim().toLowerCase().search(this.nameSearch)!=-1
+      );
     }
   }
 
@@ -108,6 +107,7 @@ export class ProductListComponent implements OnInit {
     if(event.subcategory_id!=''){
     this.productArray = this.productArray.filter((x) => x.sub_category_id == event.subcategory_id);
     this.subcatSearchFilterID=event.subcategory_id;
+    console.log(this.productArray);
     }else{
       this.subcatSearchFilterID=0;
     }
@@ -118,11 +118,17 @@ export class ProductListComponent implements OnInit {
       this.productArray = this.productArray.filter((x) => x.category_id == this.categorySearchFilterID);
     }
     if(this.priceSearchFilter!=''){
-      if(event.priceorder=='Lowest To Highest Price'){
+      if(this.priceSearchFilter=='Lowest To Highest Price'){
         this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
-      }else if(event.priceorder=='Highest To Lowest Price'){
+      }else if(this.priceSearchFilter=='Highest To Lowest Price'){
         this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
       }
+    }
+    if(this.nameSearch!=''){
+      this.productArray = this.productArray.filter(
+        (x) => 
+          x.name.trim().toLowerCase().search(this.nameSearch)!=-1 || x.color.trim().toLowerCase().search(this.nameSearch)!=-1
+      );
     }
   }
 
@@ -138,6 +144,7 @@ export class ProductListComponent implements OnInit {
     }else{
       this.priceSearchFilter='';
     }
+
     if(this.colorSearchFilter!=''){
       this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == this.colorSearchFilter);
     }
@@ -147,6 +154,43 @@ export class ProductListComponent implements OnInit {
     if(this.subcatSearchFilterID!=0){
       this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
     }
+    if(this.nameSearch!=''){
+      this.productArray = this.productArray.filter(
+        (x) => 
+          x.name.trim().toLowerCase().search(this.nameSearch)!=-1 || x.color.trim().toLowerCase().search(this.nameSearch)!=-1
+      );
+    }
+  }
+
+  getProductsByName(event:any){
+    this.productArray=this.mainProductArray;
+    if(event.searchword!=''){
+    this.productArray = this.productArray.filter(
+      (x) => 
+        x.name.trim().toLowerCase().search(event.searchword)!=-1 || x.color.trim().toLowerCase().search(event.searchword)!=-1
+    );
+    this.nameSearch=event.searchword;
+    }else{
+      this.nameSearch='';
+    }
+
+    if(this.colorSearchFilter!=''){
+      this.productArray = this.productArray.filter((x) => x.color.trim().toLowerCase() == this.colorSearchFilter);
+    }
+    if(this.categorySearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.category_id == this.categorySearchFilterID);
+    }
+    if(this.subcatSearchFilterID!=0){
+      this.productArray = this.productArray.filter((x) => x.sub_category_id == this.subcatSearchFilterID);
+    }
+    if(this.priceSearchFilter!=''){
+      if(this.priceSearchFilter=='Lowest To Highest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => a.selling_price - b.selling_price);
+      }else if(this.priceSearchFilter=='Highest To Lowest Price'){
+        this.productArray = [...this.productArray].sort((a, b) => b.selling_price - a.selling_price);
+      }
+    }
+
   }
   
   getAllProducts() {
@@ -155,5 +199,11 @@ export class ProductListComponent implements OnInit {
     this.categorySearchFilterID=0;
     this.subcatSearchFilterID=0;
     this.productArray = this.mainProductArray;
+    if(this.nameSearch!=''){
+      this.productArray = this.productArray.filter(
+        (x) => 
+          x.name.trim().toLowerCase().search(this.nameSearch)!=-1 || x.color.trim().toLowerCase().search(this.nameSearch)!=-1
+      );
+    }
   }
 }

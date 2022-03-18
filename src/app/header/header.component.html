@@ -52,20 +52,26 @@
         </li>
       </ul>
 
+      
       <div class="row gx-0">
-        <div class="search-btn col-2 p-0 m-0 m-auto text-center">
+        
+        <div class="search-btn col-2 p-0 m-0 m-auto text-center" [ngClass]="{'show':!searchbtn,'hide':searchbtn}" (click)="search(searchTerm)">
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
-        <div class="form-group col-10">
+        <div class="form-group col-10" [ngClass]="{'show':!searchbtn,'hide':searchbtn}">
           <input
+            name="searchword"
             [(ngModel)]="searchTerm"
-            (keyup)="search($event)"
+            (keyup.enter)="search(searchTerm)"
             type="text"
             class="form-control"
             placeholder="Search..."
             aria-label="Search"
           />
         </div>
+      </div>
+      <div [ngClass]="{'show':searchbtn,'hide':!searchbtn}" (click)="goToProductList()" class="col-2 me-3">
+        <button class="btn ">Search</button>
       </div>
 
       <div role="button" class="button-group me-4" ngbDropdown>

@@ -19,6 +19,7 @@
 i:hover
 {
   color:#B78D65;
+  cursor: pointer;
 }
 .button-group p:hover
 {
@@ -54,3 +55,22 @@ a:hover
 /* .cdk-overlay-connected-position-bounding-box {
   right: 64px !important;
 } */
+.btn {
+  background-color: #B78D65;
+  color: white;
+  width: 100%;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+  border: none;
+}
+.btn:hover {
+  background-color: #cb985d;
+  color: white;
+  cursor: pointer;
+}
+.hide{
+  display: none;
+}
+.show{
+  display:block;
+}

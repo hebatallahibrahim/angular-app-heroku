@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../Model/product.model';
 import { HomeService } from 'src/app/Service/home.service';
@@ -17,6 +17,9 @@ export class HeaderComponent implements OnInit {
   accountDropdown = false;
   addedProducts: Product[] = [];
   togle: string = 'ngbDropdownToggle';
+  searchbtn=true;
+
+  @Output() searchEvent = new EventEmitter<any>();
 
   constructor(
     config: NgbDropdownConfig,
@@ -28,6 +31,11 @@ export class HeaderComponent implements OnInit {
   ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
+    if(_Router.url=='/product-list'){
+      this.searchbtn=false;
+    }else{
+      this.searchbtn=true;
+    }
   }
 
   dropdownOpen() {
@@ -62,7 +70,6 @@ export class HeaderComponent implements OnInit {
     this._HomeService.getAllCategories().subscribe(
       (res) => {
         this.categoryArray = res.category;
-        console.log(this.categoryArray);
       },
       (err: any) => {
         console.log(err);
@@ -77,8 +84,12 @@ export class HeaderComponent implements OnInit {
       categoryItem.name,
     ]); // send id to url
   }
-  search(event: any) {
-    this.searchTerm = (event.target as HTMLInputElement).value;
-    this.searchService.search.next(this.searchTerm);
+  search(searchname:any) {
+    console.log(searchname);
+    this.searchEvent.emit({ searchword: searchname});
+  }
+
+  goToProductList(){
+    this._Router.navigate(['/product-list']);
   }
 }

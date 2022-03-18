@@ -35,6 +35,7 @@ export class ProductFilterComponent implements OnInit {
     this.changeCategoryEvent.emit({ category_id: event.value, eventType: 'category_id' });
   }
   onSubCategoryChange(event: any) {
+    console.log(event.value);
     this.changeSubCatEvent.emit({
       subcategory_id: event.value,
       eventType: 'sub_category_id',
@@ -52,7 +53,6 @@ export class ProductFilterComponent implements OnInit {
     this.searchService.getAllCategories().subscribe(
       (res) => {
         this.categoryArray = res.category;
-        console.log(this.categoryArray);
       },
       (err: any) => {
         console.log(err);
@@ -61,7 +61,6 @@ export class ProductFilterComponent implements OnInit {
     this.searchService.getAllSubCategories().subscribe(
       (res) => {
         this.subcategoryArray = res.category;
-        console.log(this.categoryArray);
       },
       (err: any) => {
         console.log(err);
