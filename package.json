@@ -33,6 +33,8 @@
     "ngx-owl-carousel-o": "^7.0.1",
     "ngx-star-rating": "^2.1.0",
     "ngx-useful-swiper": "^10.0.1",
+    "primeicons": "^5.0.0",
+    "primeng": "^13.3.0",
     "rxjs": "~7.5.0",
     "swiper": "^6.8.4",
     "tslib": "^2.3.0",

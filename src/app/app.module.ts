@@ -53,6 +53,10 @@ import { ItemsComponent } from './product-list/items/items.component';
 import { FilterPipe } from './shared/filter.pipe';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { AccordionModule } from 'primeng/accordion'; //accordion and accordion tab
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   declarations: [
@@ -112,6 +116,10 @@ import { SliderComponent } from './admin-page/slider/slider.component';
     MaterialExampleModule,
     MatInputModule,
     FormsModule,
+    AccordionModule,
+    SidebarModule,
+    ButtonModule,
+    BadgeModule,
   ],
   providers: [ProductListService],
 

@@ -28,6 +28,7 @@ import { AuthGuard } from './auth.guard';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
+import { TestComponent } from './test/test.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -57,6 +58,7 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'check-out', component: CheckOutComponent },
   { path: 'profile/:id', component: ProfileComponent },
+  { path: 'test', component: TestComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

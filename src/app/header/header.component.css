@@ -1,9 +1,8 @@
-*
-{
+* {
   font-size: 1rem;
 }
 .div-logo {
-  color:#B78D65;
+  color: #b78d65;
   transition: all 0.5s ease;
 }
 .div-logo:hover {
@@ -11,28 +10,24 @@
 }
 
 ::ng-deep .menuCart {
-  min-width: 275px !important;
+  min-width: 100% !important;
 }
 ::ng-deep .mat-menu-content {
   width: 80% !important;
 }
-i:hover
-{
-  color:#B78D65;
+i:hover {
+  color: #b78d65;
 }
-.button-group p:hover
-{
-  color:#B78D65;
+.button-group p:hover {
+  color: #b78d65;
 }
-a
-{
+a {
   font-size: 1rem;
   color: black;
   text-decoration: none;
 }
-a:hover
-{
-  color:#B78D65;
+a:hover {
+  color: #b78d65;
 }
 
 .cart_p {

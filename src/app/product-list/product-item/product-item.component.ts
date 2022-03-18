@@ -27,6 +27,9 @@ export class ProductItemComponent implements OnInit {
   onItemAdded() {
     this.CartService.addToCart(this.productItem);
   }
+  addToCart(item: Product) {
+    this.CartService.addToCart(item);
+  }
   goTodetails(productItem: any) {
     this.router.navigate(['/product-details', productItem.id]); // send id to url
   }

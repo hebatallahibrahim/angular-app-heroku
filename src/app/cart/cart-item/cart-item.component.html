@@ -8,11 +8,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of addedProducts">
+    <tr *ngFor="let item of cartList">
       <td>
         <figure class="itemside">
           <div class="aside">
-            <img [src]="item.image" class="img-sm" width="60" height="60" />
+            <img
+              [src]="imagUrlProduct + item.image"
+              class="img-sm"
+              width="60"
+              height="60"
+            />
           </div>
           <figcaption class="info">
             <a href="#" class="title text-dark"> {{ item.name }} </a>
@@ -33,7 +38,7 @@
       </td>
       <td>
         <div class="price-wrap">
-          <var class="price">$1156.00</var>
+          <var class="price">{{ item.selling_price }}</var>
           <small class="text-muted"> $315.20 each </small>
         </div>
         <!-- price-wrap .// -->

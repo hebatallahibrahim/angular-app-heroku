@@ -5,6 +5,8 @@ import { HomeService } from 'src/app/Service/home.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from './../Service/cart.service';
 import { SearchService } from './../Service/search.service';
+import { Subject } from 'rxjs';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-header',
@@ -13,9 +15,16 @@ import { SearchService } from './../Service/search.service';
   providers: [NgbDropdownConfig],
 })
 export class HeaderComponent implements OnInit {
+  visibleSidebar2: any;
   searchTerm: string = '';
   accountDropdown = false;
+  imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   addedProducts: Product[] = [];
+  categoryArray: any[] = [];
+  productArray!: Product[];
+  categoryId: any;
+  categoryName: any;
+  cartCounter: number = 0;
   togle: string = 'ngbDropdownToggle';
 
   constructor(
@@ -24,10 +33,27 @@ export class HeaderComponent implements OnInit {
     public _HomeService: HomeService,
     public searchService: SearchService,
     public _Router: Router,
-    private activetedRoute: ActivatedRoute
+    private activetedRoute: ActivatedRoute,
+    private primengConfig: PrimeNGConfig
   ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
+  }
+
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+    this.cartService.cartHasBeenChanged.subscribe((res: Product[]) => {
+      this.cartCounter = res.length;
+      console.log(res);
+    });
+    this._HomeService.getAllCategories().subscribe(
+      (res) => {
+        this.categoryArray = res.category;
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 
   dropdownOpen() {
@@ -43,31 +69,6 @@ export class HeaderComponent implements OnInit {
   }
   removeItem(item: Product): void {
     this.addedProducts.splice(this.addedProducts.indexOf(item), 1);
-  }
-
-  categoryArray: any[] = [];
-  productArray!: Product[];
-  categoryId: any;
-  categoryName: any;
-
-  ngOnInit(): void {
-    this.cartService.cartHasBeenChanged.subscribe(
-      (res) => {
-        this.addedProducts = res;
-      },
-      (err) => {},
-      () => {}
-    );
-
-    this._HomeService.getAllCategories().subscribe(
-      (res) => {
-        this.categoryArray = res.category;
-        console.log(this.categoryArray);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
   }
 
   goToCategoryProducts(categoryItem: any) {

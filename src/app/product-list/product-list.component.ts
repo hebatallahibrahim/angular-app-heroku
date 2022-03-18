@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 import { Product } from '../Model/product.model';
 import { ProductListService } from '../Service/product-list.service';
 import { SearchService } from './../Service/search.service';
@@ -14,10 +15,10 @@ export class ProductListComponent implements OnInit {
   searchKey: string = '';
   productItem!: Product;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-  itemAddToCart: EventEmitter<Product> = new EventEmitter<Product>();
+
   item_hearted = false;
   closeResult = '';
-  // itemAdd: EventEmitter<Product> = new EventEmitter<Product>();
+
   constructor(
     private productListService: ProductListService,
     private searchService: SearchService
@@ -29,6 +30,9 @@ export class ProductListComponent implements OnInit {
         console.log(result);
 
         this.productArray = result.products;
+        this.productArray.forEach((a: any) => {
+          Object.assign(a, { quantity: 1, totalPrice: a.selling_price });
+        });
         this.mainProductArray = result.products;
       },
       (err) => {

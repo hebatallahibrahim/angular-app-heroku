@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from 'src/app/Model/product.model';
 
 import { CartService } from './../../Service/cart.service';
@@ -9,9 +9,22 @@ import { CartService } from './../../Service/cart.service';
   styleUrls: ['./cart-item.component.css'],
 })
 export class CartItemComponent implements OnInit {
+  @Input()
+  cartList: any[] = [];
+  totalAmount: any = 0;
+  cartitem!: Product;
   countries = COUNTRIES;
-  addedProducts: Product[] = [];
   counterValue: number = 0;
+  imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
+  ngOnInit(): void {
+    this.cartService.getProductData().subscribe((res) => {
+      this.cartList = res;
+      this.totalAmount = this.cartService.getTotalAmount();
+    });
+  }
+  removeCartItem(item: any) {
+    this.cartService.removeCatItem(item);
+  }
   increment() {
     this.counterValue++;
   }
@@ -19,26 +32,13 @@ export class CartItemComponent implements OnInit {
     this.counterValue--;
   }
   constructor(private cartService: CartService) {}
-
-  ngOnInit(): void {
-    this.cartService.cartHasBeenChanged.subscribe(
-      (res) => {
-        this.addedProducts = res;
-      },
-      (err) => {},
-      () => {}
-    );
-    console.log(this.addedProducts);
-  }
 }
-
 interface Country {
   name: string;
   img: string;
   count: number;
   total: number;
 }
-
 const COUNTRIES: Country[] = [
   {
     name: 'Russia',
@@ -65,3 +65,6 @@ const COUNTRIES: Country[] = [
     total: 255,
   },
 ];
+function InPut() {
+  throw new Error('Function not implemented.');
+}
