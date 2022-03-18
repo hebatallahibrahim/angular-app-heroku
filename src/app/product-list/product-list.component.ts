@@ -24,6 +24,7 @@ export class ProductListComponent implements OnInit {
   nameSearch = '';
   categorySearchFilterID = 0;
   subcatSearchFilterID = 0;
+
   constructor(
     private productListService: ProductListService,
     private searchService: SearchService
