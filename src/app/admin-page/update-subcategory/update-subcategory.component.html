@@ -1,0 +1,87 @@
+<app-navnar></app-navnar>
+<div class="container tm-mt-big tm-mb-big">
+  <div class="row ">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto ">
+      <div class="tm-bg-primary-dark tm-block tm-block-h-auto  ">
+        <div class="row ">
+          <div class="col-12">
+            <h2 class="tm-block-title d-flex justify-content-center mb-3">Update SubCategory</h2>
+          </div>
+        </div>
+        <div class="row tm-edit-product-row">
+          <div class="col-12"> 
+          <div>
+            <form 
+            [formGroup]="formRegistration"
+            (ngSubmit)="getFormData(formRegistration)"
+             action="#" method="post"
+             >
+              <div class="form-group mb-4">
+                <label
+                  for="name"
+                  > Name
+                </label>
+                <input
+                 formControlName="name"
+                  id="name"
+                  [(ngModel)]="post.name" 
+                  name="name"
+                  type="text"
+                  class="form-control "
+                  required
+                />
+              </div>
+              <div class="form-group mb-4">
+                <label
+                  for="description"
+                  > Description
+                </label>
+                <input
+                formControlName="description"
+                id="name"
+                [(ngModel)]="post.description" 
+                name="name"
+                type="text"
+                class="form-control "
+                
+                />
+              </div>
+            
+             
+             
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
+                <div class="form-group">
+
+                  <label class="mb-3" for="file">UPLOAD CATEGORY IMAGE</label>
+          
+                  <input 
+                      formControlName="file"
+                      id="file" 
+                      type="file" 
+                      class="form-control"
+                      (change)="onFileChange($event)">
+          
+                </div>
+              </div>
+          
+              <div class="container">    
+                <div class="row">
+                <div class="d-flex justify-content-center align-items-center">
+                  <button type="submit" class="btn btn-primary btn-block text-uppercase" 
+                 >
+                    Update SubCategory </button>
+                </div>
+               
+                </div>
+              </div>
+        
+           </form>
+           </div>
+            </div>
+           
+           
+      </div>
+    </div>
+  </div>
+</div>
+

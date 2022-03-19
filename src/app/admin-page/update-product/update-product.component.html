@@ -28,7 +28,8 @@
                   name="name"
                   type="text"
                   class="form-control "
-                  required      
+                  required  
+                  [(ngModel)]="post.name"   
                 />
               </div>
               <div class="form-group mb-4">
@@ -41,6 +42,7 @@
                   rows="3"
                   required
                   formControlName="description"
+                  [(ngModel)]="post.description"
                 ></textarea>
               </div>
               <div class="form-group mb-4">
@@ -53,6 +55,7 @@
                   rows="3"
                   required
                   formControlName="shortdesc"
+                  [(ngModel)]="post.short_desc" 
                 ></textarea>
               </div>
               <div class="row">
@@ -74,12 +77,14 @@
                       for="subcategory"
                       >Sub Category</label
                     >
+                    <!-- <p > {{post.sub_category_id}} </p> -->
                     <select
                       class="custom-select tm-select-accounts"
                       id="subcategory"  formControlName="subcategory"
                     >
-                      <option *ngFor="let item of subCategoryArray" [value]="item.id">{{item.name}}</option>
-                      
+                     
+                      <option *ngFor="let item of subCategoryArray" [value]="item.id" 
+                       >{{item.name}}</option>
                     </select>
                   </div>
               </div>
@@ -96,6 +101,7 @@
                         class="form-control validate"
                         data-large-mode="true"
                         formControlName="price"
+                        [(ngModel)]="post.selling_price" 
                       />
                     </div>
                     <div class="form-group mb-4 col-xs-12 col-sm-6">
@@ -109,6 +115,7 @@
                         type="number"
                         class="form-control "
                         formControlName="discount"
+                        [(ngModel)]="post.discount_price" 
                       />
                     </div>  
               </div>
@@ -125,6 +132,7 @@
                         class="form-control "
                         data-large-mode="true"
                         formControlName="quantity"
+                        [(ngModel)]="post.product_qty" 
                       />
                   </div>
                   <div class="form-group mb-4 col-xs-12 col-sm-6">
@@ -139,6 +147,7 @@
                       class="form-control "
                       data-large-mode="true"
                       formControlName="brand"
+                      [(ngModel)]="post.brand" 
                     />
                   </div>  
               </div>
@@ -155,6 +164,7 @@
                       class="form-control "
                       data-large-mode="true"
                       formControlName="productsize"
+                      [(ngModel)]="post.product_size" 
                     />
                 </div>
                 <div class="form-group mb-4 col-xs-12 col-sm-6">
@@ -169,6 +179,7 @@
                     class="form-control "
                     data-large-mode="true"
                     formControlName="color"
+                    [(ngModel)]="post.color" 
                   />
                 </div>
               </div>
@@ -182,7 +193,8 @@
                       id="file" 
                       type="file" 
                       class="form-control"
-                      (change)="onFileChange($event)">
+                      [(ngModel)]="post.image" 
+                      >
           
                 </div>
               </div>

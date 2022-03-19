@@ -78,6 +78,14 @@ import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CartService } from './Service/cart.service';
 import { ProductCartService } from './Service/productCart.service';
+import { AllContactUsComponent } from './admin-page/all-contact-us/all-contact-us.component';
+import { ContactItemsComponent } from './admin-page/contact-items/contact-items.component';
+import { ViewDetailsComponent } from './admin-page/view-details/view-details.component';
+import { ViewContactsDataComponent } from './admin-page/view-contacts-data/view-contacts-data.component';
+import { AllCategoryComponent } from './admin-page/all-category/all-category.component';
+import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
+import { AllSubcategoryComponent } from './admin-page/all-subcategory/all-subcategory.component';
+import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/update-subcategory.component';
 
 @NgModule({
   declarations: [
@@ -121,6 +129,14 @@ import { ProductCartService } from './Service/productCart.service';
     FilterPipe,
     CategoryProductsComponent,
     SliderComponent,
+    AllContactUsComponent,
+    ContactItemsComponent,
+    ViewDetailsComponent,
+    ViewContactsDataComponent,
+    AllCategoryComponent,
+    UpdateCategoryComponent,
+    AllSubcategoryComponent,
+    UpdateSubcategoryComponent,
   ],
   imports: [
     BrowserModule,

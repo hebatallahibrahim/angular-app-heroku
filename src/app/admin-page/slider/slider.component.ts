@@ -53,7 +53,7 @@ export class SliderComponent implements OnInit {
         console.log(data);
         if (data.message == 'Slider added succesfully') {
           this.dangerAlertShow=false;
-          this._Router.navigate(['/home']);
+          this._Router.navigate(['/slider']);
         } else {
           this.err = 'not valid data';
         }

@@ -9,145 +9,61 @@
 
         <div class="tm-product-table-container">
           <table
-            class="table table-bordered table-hover tm-table-small tm-product-table border"
+            class="table table-hover tm-table-small tm-product-table border"
           >
             <thead>
-              <tr>
-                <th scope="col">Id</th>
+              <tr >
+               
                 <th scope="col">NAME</th>
+                <th scope="col">Image</th>
                 <th scope="col">Color</th>
                 <th scope="col">Brand</th>
-                <th scope="col">Image</th>
                 <th scope="col">Price</th>
                 <th scope="col">Discount</th>
-                <th scope="col">AvgRate</th>
                 <th scope="col">Description</th>
-                <th scope="col">category_id</th>
-                <th scope="col">sub_category_id</th>
                 <th scope="col">short_desc</th>
                 <th scope="col">product_size</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delet</th>
+                
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let i of productArray">
-                <td>{{ i.id }}</td>
                 <td>{{ i.name }}</td>
-                <td>{{ i.color }}</td>
-                <td>{{ i.brand }}</td>
-                <td>{{ i.image }}</td>
-                <td>{{ i.selling_price }}</td>
+                <td><img
+                  src="{{ imagUrlProduct + i.image }}"
+                  width="150" height="150"
+                  class="img-fluid rounded-start slider-img"
+                  alt="item"
+                  /></td>
+                  <td>{{ i.color }}</td>
+                  <td>{{ i.selling_price }}</td>
+                  <td>{{ i.brand }}</td>
                 <td>{{ i.discount_price }}</td>
-                <td>{{ i.avgRate }}</td>
                 <td>{{ i.description }}</td>
-                <td>{{ i.category_id }}</td>
-                <td>{{ i.sub_category_id }}</td>
                 <td>{{ i.short_desc }}</td>
                 <td>{{ i.product_size }}</td>
                 <td class="text-center">
-                  <!-- <mat-icon> border_color</mat-icon> -->
-                  <button (click)="gitId(i)">edit</button>
+                 <a>
+                  <mat-icon [routerLink]="['/update-product/', i.id]" >border_color</mat-icon>
+                </a>
                 </td>
                 <td class="text-center">
+                  <a>
                   <mat-icon (click)="removeProdItem(i.id)">delete</mat-icon>
+                </a>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <!-- table container -->
-        <div>
+        <div class="d-flex justify-content-center align-items-center btn-add">
           <a
             routerLink="/add-product"
             class="btn btn-primary btn-block text-uppercase m-3"
             >Add product</a
           >
-          <a
-            routerLink="/update-product"
-            class="btn btn-primary btn-block text-uppercase m-3"
-            >Edit product
-          </a>
         </div>
-      </div>
-    </div>
-
-               <!-- category  -->
-    <div class="col-12 tm-block-col" id="categories">
-      <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-        <h2 class="tm-block-title">Product Categories</h2>
-        <div class="tm-product-table-container">
-          <table class="table table-hover tm-table-small tm-product-table">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">NAME</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-            
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let i of categoryArray">
-                <td class="tm-product-name">{{i.id}}</td>
-                <td class="tm-product-name">{{i.name}}</td>
-                <td class="tm-product-name">{{i.descripition}}</td>
-                <td class="tm-product-name">{{i.image}}</td>
-                <td class="text-center">
-                  <mat-icon (click)="removeCatItem(i.id)">delete</mat-icon> 
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- table container -->
-        <button
-          class="btn btn-primary btn-block text-uppercase mb-3"
-          routerLink="/add-category"
-        >
-          Add new category
-        </button>
-      </div>
-    </div>
-      
-
-              <!-- subcategory -->
-
-    <div class="col-12 tm-block-col" id="subcategories">
-      <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
-        <h2 class="tm-block-title">Product Sub Categories</h2>
-        <div class="tm-product-table-container">
-          <table class="table table-hover tm-table-small tm-product-table">
-            <thead>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">NAME</th>
-                <th scope="col">Description</th>
-                <th scope="col">Image</th>
-            
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let i of SubCatArray">
-                <td class="tm-product-name">{{i.id}}</td>
-                <td class="tm-product-name">{{i.name}}</td>
-                <td class="tm-product-name">{{i.description}}</td>
-                <td class="tm-product-name">{{i.image}}</td>
-                <td class="text-center">
-                  <mat-icon (click)="removeSubCatItem(i.id)">delete</mat-icon> 
-                </td>
-              </tr>
-             
-            </tbody>
-          </table>
-        </div>
-        <!-- table container -->
-        <button
-          class="btn btn-primary btn-block text-uppercase mb-3"
-          routerLink="/add-subcategory"
-        >
-          Add new Sub category
-        </button>
       </div>
     </div>
   </div>

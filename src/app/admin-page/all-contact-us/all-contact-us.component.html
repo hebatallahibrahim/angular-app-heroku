@@ -1,0 +1,50 @@
+<app-navnar></app-navnar>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <p class="text-black mt-5 mb-5">Welcome back, <b>Admin</b></p>
+        </div>
+    </div>
+    <div class="row tm-content-row">
+        <div class="col-12 tm-block-col">
+            <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                <h2 class="tm-block-title">Contact Us Messages </h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Message</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                   
+                        <tr *ngFor="let i of MessagesArray" >                        
+                            <td><b>{{i.fname}}</b></td>
+                            <td><b>{{i.lname}}</b></td>
+                            <td><b>{{i.email}}</b></td>
+                            <td><b>{{i.message}}</b></td>
+                            <td class="text-center">
+                                <a>
+                                <mat-icon [routerLink]="['/contact-view/', i.id]" > border_color</mat-icon>
+                               </a>
+                            </td>
+                            <td class="text-center">
+                                <a>
+                                <mat-icon (click)="removeContactItem(i.id)">delete</mat-icon>
+                               </a>
+                            </td>
+                         
+                        </tr>
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!-- /////////////////////////////////////////////////////// -->

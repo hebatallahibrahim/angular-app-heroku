@@ -8,52 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-products.component.css']
 })
 export class AllProductsComponent implements OnInit {
-  arr = [1,2,3,4,5,6,7,8,9,10];
-  arr2 = [1,2,3,4,5,6,7,8,9,10];
-  categoryArray : any[]=[];
   productArray : any[]=[];
-  SubCatArray : any[]=[];
+  imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   activetedRoute: any;
   productId: any;
-  constructor(private _service : adminservice , private rout : Router) { 
-
-    this._service.getAllCategory()
-    .subscribe((data: any) => {
-      this.categoryArray = data.category;
-      console.log(this.categoryArray)
-    }, (err: any) => {
-      console.log(err)
-    });
-
-
-    this._service.getAllProduct()
-    .subscribe((data: any) => {
-      this.productArray = data.products;
-      console.log(this.productArray)
-    }, (err: any) => {
-      console.log(err)
-    });
-  
-  
-  this._service.getAllSubCat()
-  .subscribe((data: any) => {
-      console.log(this.SubCatArray)
-    this.SubCatArray = data.category;
-    console.log(this.SubCatArray)
-  }, (err: any) => {
-    console.log(err)
-  });
-}
-  removeCatItem(id: any): void {
-   
-    // this.productArray.splice(this.productArray.indexOf(item), 1);
-    this._service.deleteCategory(id).subscribe(res => {
-      console.log(res);
-      this.categoryArray = this.categoryArray.filter(item => item.id !== id);
-      })
-    
-  }
-
+  constructor(
+    private _service : adminservice , 
+    private rout : Router
+    ) { }
+ 
   removeProdItem(id: any): void {
     this._service.deleteProduct(id).subscribe(res => {
       console.log(res);
@@ -61,24 +24,14 @@ export class AllProductsComponent implements OnInit {
       })
     
   }
-  
-  removeSubCatItem(id: any): void {
-    this._service.deleteSubCat(id).subscribe(res => {
-      console.log(res);
-      this.SubCatArray = this.SubCatArray.filter(item => item.id !== id);
-      })
-    
-  }
-
-  gitId(item:any)
-  {
-    this.rout.navigate(['/update-product',item.id])
-       console.log(item)
-  }
-
   ngOnInit(): void {
-    
-  
+    this._service.getAllProduct()
+    .subscribe((data: any) => {
+      this.productArray = data.products;
+      console.log(this.productArray)
+    }, (err: any) => {
+      console.log(err)
+    }); 
   }
  
 }

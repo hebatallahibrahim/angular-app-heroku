@@ -1,0 +1,56 @@
+<app-navnar></app-navnar>
+<div class="container mt-5">
+  <div class="row tm-content-row">
+
+    <div class="col-12 tm-block-col" id="subcategories">
+      <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+        <h2 class="tm-block-title">Product Sub Categories</h2>
+        <div class="tm-product-table-container">
+          <table class="table table-hover tm-table-small tm-product-table">
+            <thead>
+              <tr>
+               
+                <th scope="col">NAME</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+            
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of SubCatArray">
+               
+                <td class="tm-product-name">{{i.name}}</td>
+                <td><img
+                  src="{{ imagUrlSubCat + i.image }}"
+                  width="100" height="100"
+                  class="img-fluid rounded-start slider-img"
+                  alt="item"
+                  /></td>
+                <td class="tm-product-name">{{i.description}}</td>
+                
+                <td class="text-center">
+                    <a>
+                     <mat-icon [routerLink]="['/update-subcategory/', i.id]" >border_color</mat-icon>
+                   </a>
+                   </td>
+                   <td class="text-center">
+                     <a>
+                     <mat-icon (click)="removeSubCatItem(i.id)">delete</mat-icon>
+                   </a>
+                   </td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+        <!-- table container -->
+        <button
+          class="btn btn-primary btn-block text-uppercase mb-3"
+          routerLink="/add-subcategory"
+        >
+          Add new Sub category
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
