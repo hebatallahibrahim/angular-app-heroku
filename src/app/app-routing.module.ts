@@ -28,6 +28,13 @@ import { AuthGuard } from './auth.guard';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
+import { AllContactUsComponent } from './admin-page/all-contact-us/all-contact-us.component';
+import { ViewContactsDataComponent } from './admin-page/view-contacts-data/view-contacts-data.component';
+import { AllCategoryComponent } from './admin-page/all-category/all-category.component';
+import { AllSubcategoryComponent } from './admin-page/all-subcategory/all-subcategory.component';
+import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
+import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/update-subcategory.component';
+
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
@@ -57,6 +64,12 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'check-out', component: CheckOutComponent },
   { path: 'profile/:id', component: ProfileComponent },
+  { path: 'message' , component:AllContactUsComponent},
+  { path: 'contact-view/:postId' , component:ViewContactsDataComponent},
+  { path:'all-category' , component:AllCategoryComponent},
+  { path: 'all-sub-categry' , component:AllSubcategoryComponent},
+  { path:'update-category/:postId' , component:UpdateCategoryComponent},
+  { path:'update-subcategory/:postId' , component:UpdateSubcategoryComponent},
   { path: '**', component: NotFoundComponent },
 ];
 

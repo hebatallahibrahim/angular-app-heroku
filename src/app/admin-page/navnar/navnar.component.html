@@ -19,19 +19,19 @@
        
        
           <li class="nav-item">
-            <a class="nav-link active" href="/all-product#products">
+            <a class="nav-link active" routerLink="/all-product">
               <i class="fas fa-shopping-cart" style=" font-size: 1.5rem;"></i> Products
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="/all-product#categories">
+            <a class="nav-link active" routerLink="/all-category">
               <i class="fa-solid fa-list" style=" font-size: 1.5rem;"></i> Categories
             </a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link active" href="/all-product#subcategories">
+            <a class="nav-link active" routerLink="/all-sub-categry">
               <i class="fa-solid fa-sitemap" style=" font-size: 1.5rem;"></i> Sub Categories
             </a>
           </li>
@@ -45,6 +45,14 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/slider">
               <i class="fa-solid fa-arrows-left-right"></i> Slider
+            </a>
+          </li>
+
+          <li>
+            <a class="nav-link" routerLink="/message"> 
+              <mat-icon matBadge="{{MessagesArray.length}}" matBadgeColor="warn">
+                message
+              </mat-icon> Messages
             </a>
           </li>
         </ul>

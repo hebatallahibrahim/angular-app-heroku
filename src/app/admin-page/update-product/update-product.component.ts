@@ -14,7 +14,7 @@ import { Product } from 'src/app/Model/product.model';
 export class UpdateProductComponent implements OnInit {
   id!: any;
   post! :Product;
-  UpdateproductArray : any[]=[];
+  
     formRegistration: FormGroup = new FormGroup({
       name: new FormControl(null),
       description: new FormControl(null),
@@ -43,22 +43,16 @@ export class UpdateProductComponent implements OnInit {
     
     ngOnInit(): void {
 
-    this.id = this.activateroute.snapshot.paramMap.get('postId');
-    console.log();
-    this._serve.find(this.id).subscribe((data: any)=>{
-      this.post = data.$product;
-      this.formRegistration.setValue(
-        {
-          name: 'this.post.name',  
-        })
-      // console.log(this.post.name );
-    }); 
-
-    // old
+      this.id = this.activateroute.snapshot.params['postId']
+      console.log();
+      this._serve.find(this.id).subscribe((data: any)=>{
+        this.post = data.$product;
+      }); 
+   
       this._AdminService.getAllCategories().subscribe(
         (res) => {
           this.categoryArray=res.category;
-          // console.log(this.categoryArray);
+      
         },
         (err:any) => {
           console.log(err);
@@ -68,7 +62,6 @@ export class UpdateProductComponent implements OnInit {
       this._AdminService.getAllSubCategories().subscribe(
         (res) => {
           this.subCategoryArray=res.category;
-          // console.log(this.subCategoryArray);
         },
         (err:any) => {
           console.log(err);
@@ -86,6 +79,7 @@ export class UpdateProductComponent implements OnInit {
     }
     getFormData(data: any) {
 
+      console.log(data);
       var formData: any = new FormData();
       formData.append('name', data.get('name').value);
       formData.append('brand', data.get('brand').value);
@@ -104,6 +98,7 @@ export class UpdateProductComponent implements OnInit {
       formData.append('avgRate', 0);
     
       this._serve.updateProduct(this.id, formData).subscribe((res:any) => {
+        console.log(res);
         console.log('Post updated successfully!');
         this._Router.navigate(['/all-product']);
    })
