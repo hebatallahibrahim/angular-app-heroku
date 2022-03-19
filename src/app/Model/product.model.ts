@@ -17,5 +17,5 @@ export interface Product {
   sub_category_id: number;
   tags: string;
   updated_at: string;
-  count?: number;
+  count: number;
 }

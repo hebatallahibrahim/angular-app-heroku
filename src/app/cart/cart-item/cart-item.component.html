@@ -13,7 +13,7 @@
         <figure class="itemside">
           <div class="aside">
             <img
-              [src]="imagUrlProduct + item.image"
+              src="{{ imagUrlProduct + item.image }}"
               class="img-sm"
               width="60"
               height="60"
@@ -29,17 +29,28 @@
         </figure>
       </td>
       <td>
-        <select class="form-control">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-        </select>
+        <div class="field col-12 md:col-3">
+          <label for="{{ item.id }}"></label>
+          <p-inputNumber
+            [(ngModel)]="item.status"
+            (onInput)="changeItemSitus(item, $event.value)"
+            id="{{ item.id }}"
+            mode="decimal"
+            [showButtons]="true"
+            inputId="{{ item.id }}"
+            [min]="1"
+            [max]="100"
+            [size]="2"
+          >
+          </p-inputNumber>
+        </div>
       </td>
       <td>
         <div class="price-wrap">
-          <var class="price">{{ item.selling_price }}</var>
-          <small class="text-muted"> $315.20 each </small>
+          <var class="price pt-2">{{
+            item.selling_price | currency: "EGP"
+          }}</var>
+          <!-- <small class="text-muted">{{ totalAmount }} </small> -->
         </div>
         <!-- price-wrap .// -->
       </td>
@@ -47,13 +58,12 @@
         <a
           data-original-title="Save to Wishlist"
           title=""
-          href=""
           class="btn btn-light mr-2"
           data-toggle="tooltip"
         >
-          <i class="fa fa-heart"></i
+          <i class="fa fa-heart me-2"></i
         ></a>
-        <a href="" class="btn btn-light"> Remove</a>
+        <a class="btn btn-light" (click)="removeCartItem(item)"> Remove</a>
       </td>
     </tr>
   </tbody>

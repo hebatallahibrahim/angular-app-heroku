@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Product } from '../Model/product.model';
 import { CartService } from '../Service/cart.service';
+import { ProductCartService } from '../Service/productCart.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,12 +12,14 @@ import { CartService } from '../Service/cart.service';
 export class CartComponent implements OnInit {
   arr = [1, 2, 3, 4];
   cartList: any[] = [];
+
   totalAmount: any = 0;
   // auth login
   islogin: boolean = false;
   constructor(
     public _AuthService: AuthService,
-    private cartService: CartService
+    private cartService: CartService,
+    private productCartService: ProductCartService
   ) {
     _AuthService.UserData.subscribe((data) => {
       if (data) {
@@ -34,12 +37,11 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     // this.cartService.getProductData().subscribe((res) => {
-    //   this.cartList = res;
-    //   this.totalAmount = this.cartService.getTotalAmount();
     // });
+    this.totalAmount = this.productCartService.totalPrice();
   }
 
-  // removeCartItem(item: any) {
-  //   this.cartService.removeCatItem(item);
-  // }
+  removeCartItem() {
+    this.totalAmount = this.productCartService.totalPrice();
+  }
 }

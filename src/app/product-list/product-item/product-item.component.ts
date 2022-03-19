@@ -5,6 +5,8 @@ import { Product } from 'src/app/Model/product.model';
 import { CartService } from 'src/app/Service/cart.service';
 import { ProductListService } from 'src/app/Service/product-list.service';
 import { SearchService } from 'src/app/Service/search.service';
+import { environment } from 'src/environments/environment';
+import { ProductCartService } from './../../Service/productCart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -14,21 +16,23 @@ import { SearchService } from 'src/app/Service/search.service';
 export class ProductItemComponent implements OnInit {
   @Input()
   productItem!: Product;
-  imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
+  imagUrlProduct = environment.imagUrlProduct;
   item_hearted = false;
   closeResult = '';
   constructor(
     private modalService: NgbModal,
     private CartService: CartService,
     private router: Router,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private productCartService: ProductCartService
   ) {}
   ngOnInit(): void {}
   onItemAdded() {
-    this.CartService.addToCart(this.productItem);
+    // this.CartService.addToCart(this.productItem);
+    this.productCartService.addProduct(this.productItem);
   }
   addToCart(item: Product) {
-    this.CartService.addToCart(item);
+    this.productCartService.addProduct(item);
   }
   goTodetails(productItem: any) {
     this.router.navigate(['/product-details', productItem.id]); // send id to url

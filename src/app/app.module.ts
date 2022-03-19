@@ -54,9 +54,30 @@ import { FilterPipe } from './shared/filter.pipe';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
 import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
 import { AccordionModule } from 'primeng/accordion'; //accordion and accordion tab
 import { BadgeModule } from 'primeng/badge';
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { CalendarModule } from 'primeng/calendar';
+import { SliderModule } from 'primeng/slider';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ContextMenuModule } from 'primeng/contextmenu';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { ProgressBarModule } from 'primeng/progressbar';
+import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ToolbarModule } from 'primeng/toolbar';
+import { RatingModule } from 'primeng/rating';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CartService } from './Service/cart.service';
+import { ProductCartService } from './Service/productCart.service';
 
 @NgModule({
   declarations: [
@@ -120,8 +141,31 @@ import { BadgeModule } from 'primeng/badge';
     SidebarModule,
     ButtonModule,
     BadgeModule,
+    InputNumberModule,
+    TableModule,
+    CalendarModule,
+    SliderModule,
+    DialogModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    DropdownModule,
+    ToastModule,
+    InputTextModule,
+    ProgressBarModule,
+    FileUploadModule,
+    ToolbarModule,
+    RatingModule,
+    RadioButtonModule,
+    ConfirmDialogModule,
+    InputTextareaModule,
   ],
-  providers: [ProductListService],
+  providers: [
+    ProductListService,
+    MessageService,
+    ConfirmationService,
+    CartService,
+    ProductCartService,
+  ],
 
   bootstrap: [AppComponent],
 })

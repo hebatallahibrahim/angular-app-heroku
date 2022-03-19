@@ -3,19 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HomeService {
-
-  constructor(private _HttpClient: HttpClient) { }
+  constructor(private _HttpClient: HttpClient) {}
 
   getAllCategories(): Observable<any> {
-    return this._HttpClient
-      .get<any>('http://127.0.0.1:8000/api/category/view');
+    return this._HttpClient.get<any>('http://127.0.0.1:8000/api/category/view');
   }
 
   getCategoryProducts(id: any): Observable<any> {
-    return this._HttpClient.get<any>(`http://127.0.0.1:8000/api/category/${id}`);
+    return this._HttpClient.get<any>(
+      `http://127.0.0.1:8000/api/category/${id}`
+    );
   }
 
   getAllProduct(): any {
@@ -23,8 +23,6 @@ export class HomeService {
   }
 
   getSlider(): Observable<any> {
-    return this._HttpClient
-      .get<any>('http://127.0.0.1:8000/api/slider/view');
+    return this._HttpClient.get<any>('http://127.0.0.1:8000/api/slider/view');
   }
-
 }

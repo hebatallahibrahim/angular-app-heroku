@@ -6,36 +6,42 @@ import { Product } from '../Model/product.model';
 })
 export class CartService {
   constructor() {}
-
+  productcount: any = 1;
   cartDetalis: Product[] = [];
-  private cartArray: any = [];
+
   //
-  cartHasBeenChanged = new BehaviorSubject<any>([]);
+  // cartHasBeenChanged = new BehaviorSubject<any>([]);
+
   //
-  getProductData(): Observable<any>{
-    return this.cartHasBeenChanged.asObservable();
+  getCartDetails() {
+    // return this.cartHasBeenChanged.asObservable();
+    return this.cartDetalis
   }
   setProduct(product: any) {
     this.cartDetalis.push(...product);
-    this.cartHasBeenChanged.next(product);
+    // this.cartHasBeenChanged.next(product);
   }
   addToCart(product: Product) {
-    // console.log(product);
-    // if (this.cartArray.includes(product)) {
-    //   product.count!++;
-    // } else {
-    //   this.cartArray.push(product);
-    //   return this.cartHasBeenChanged.asObservable();
-    // }
-    this.cartDetalis.push(product);
-    this.cartHasBeenChanged.next(this.cartDetalis);
-    this.getTotalAmount();
+    if (this.cartDetalis.includes(product)) {
+      this.productcount = product.status;
+      product.status = product.status + 1;
+    } else {
+      this.cartDetalis.push(product);
+      // this.cartHasBeenChanged.next(this.cartDetalis);
+    }
+
+   
   }
   getTotalAmount() {
-    let grandTotal = 0;
-    this.cartDetalis.map((a: any) => {
-      grandTotal += a.count;
+   return this.cartDetalis.length
+  }
+  totalPrice() {
+    let totalPrice = 0;
+    this.cartDetalis.forEach((element: Product) => {
+      totalPrice += element.status * element.selling_price;
     });
+    // this.cartHasBeenChanged.next(this.cartDetalis);
+    return totalPrice;
   }
   removeCatItem(product: any) {
     this.cartDetalis.map((d: any, index: any) => {
@@ -43,6 +49,7 @@ export class CartService {
         this.cartDetalis.splice(index, 1);
       }
     });
+    // this.cartHasBeenChanged.next(this.cartDetalis);
   }
 }
 // subject && pehavior subject

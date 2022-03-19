@@ -15,11 +15,12 @@
     <div class="row">
       <main class="col-md-9">
         <div class="card">
-          <app-cart-item 
+          <app-cart-item
             class="table table-borderless table-shopping-cart"
+            (updateItems)="removeCartItem()"
           ></app-cart-item>
           <div class="card-body border-top">
-            <a href="#" class="btn btn-light">
+            <a routerLink="/product-list" class="btn btn-light">
               <i class="fa fa-chevron-left"></i> Continue shopping
             </a>
           </div>
@@ -40,20 +41,21 @@
           <div class="card-body">
             <dl class="dlist-align">
               <dt>Total price:</dt>
-              <dd class="text-right">USD 568</dd>
+              <dd class="text-right">{{ totalAmount | currency: "EGP" }}</dd>
             </dl>
             <dl class="dlist-align">
               <dt>Discount:</dt>
-              <dd class="text-right">USD 658</dd>
+              <dd class="text-right">0</dd>
             </dl>
             <dl class="dlist-align">
               <dt>Total:</dt>
-              <dd class="text-right h5"><strong>$1,650</strong></dd>
+              <dd class="text-right h5">
+                <strong>{{ totalAmount | currency: "EGP" }}</strong>
+              </dd>
             </dl>
             <hr />
             <p class="text-center mb-3">
-              <a 
-             routerLink="/payment" class="btn btn-primary float-md-right">
+              <a routerLink="/payment" class="btn btn-primary float-md-right">
                 Make Purchase
               </a>
             </p>

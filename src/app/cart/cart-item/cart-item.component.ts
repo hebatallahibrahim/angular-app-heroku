@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/Model/product.model';
-
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ProductCartService } from 'src/app/Service/productCart.service';
 import { CartService } from './../../Service/cart.service';
+import { Product } from './../../Model/product.model';
 
 @Component({
   selector: 'app-cart-item',
@@ -9,21 +9,29 @@ import { CartService } from './../../Service/cart.service';
   styleUrls: ['./cart-item.component.css'],
 })
 export class CartItemComponent implements OnInit {
-  @Input()
   cartList: any[] = [];
-  totalAmount: any = 0;
+  @Output() updateItems = new EventEmitter<any>();
+  value20: number = 1;
   cartitem!: Product;
-  countries = COUNTRIES;
   counterValue: number = 0;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   ngOnInit(): void {
-    this.cartService.getProductData().subscribe((res) => {
-      this.cartList = res;
-      this.totalAmount = this.cartService.getTotalAmount();
-    });
+    // this.cartService.getProductData().subscribe((res) => {
+    //   this.cartList = res;
+    //   debugger;
+    // });
+    this.cartList = this.productCartService.getProducts();
   }
   removeCartItem(item: any) {
-    this.cartService.removeCatItem(item);
+    this.productCartService.removeProduct(item);
+    this.cartList = this.productCartService.getProducts();
+    this.updateItems.emit();
+  }
+  changeItemSitus(product: Product, count: any) {
+    debugger;
+    product.status = count;
+    this.productCartService.onStaitusChang(product);
+    this.updateItems.emit();
   }
   increment() {
     this.counterValue++;
@@ -31,40 +39,8 @@ export class CartItemComponent implements OnInit {
   decrement() {
     this.counterValue--;
   }
-  constructor(private cartService: CartService) {}
-}
-interface Country {
-  name: string;
-  img: string;
-  count: number;
-  total: number;
-}
-const COUNTRIES: Country[] = [
-  {
-    name: 'Russia',
-    img: 'https://picsum.photos/100',
-    count: 17075200,
-    total: 150,
-  },
-  {
-    name: 'Canada',
-    img: 'https://picsum.photos/100',
-    count: 9976140,
-    total: 200,
-  },
-  {
-    name: 'United States',
-    img: 'https://picsum.photos/100',
-    count: 9629091,
-    total: 155,
-  },
-  {
-    name: 'China',
-    img: 'https://picsum.photos/100',
-    count: 9596960,
-    total: 255,
-  },
-];
-function InPut() {
-  throw new Error('Function not implemented.');
+  constructor(
+    private cartService: CartService,
+    private productCartService: ProductCartService
+  ) {}
 }
