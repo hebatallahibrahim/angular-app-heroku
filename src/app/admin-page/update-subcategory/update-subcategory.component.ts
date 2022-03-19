@@ -54,7 +54,7 @@ export class UpdateSubcategoryComponent implements OnInit {
     console.log(data);
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
-    formData.append('descripition', data.get('description').value);
+    formData.append('description', data.get('description').value);
     formData.append('image', data.get('fileSource').value);
 
     this._serve.updateSubCategry(this.id, formData).subscribe((res:any) => {
