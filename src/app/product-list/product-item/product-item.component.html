@@ -22,7 +22,12 @@
         class="link-item text-decoration-none link-dark"
       >
         <p class="text-center name-item p-0">{{ productItem.name }}</p>
-        <p class="text-center">{{ productItem.selling_price }} EGP</p>
+        <p class="text-center" [ngClass]="{'show':!productItem.discount_price,'hide':productItem.discount_price}">
+          {{calculatePrice(productItem)}} EGP
+        </p>
+        <p class="text-center" [ngClass]="{'show':productItem.discount_price,'hide':!productItem.discount_price}">
+          <del>{{ productItem.selling_price }}</del> {{calculatePrice(productItem)}} EGP
+        </p>
       </a>
       <div class="buttons d-flex justify-content-between">
         <button
@@ -64,7 +69,12 @@
         <div class="col-md-8">
           <div class="card-body">
             <h4 class="card-title">{{ productItem.name }}</h4>
-            <h5 class="card-title">{{ productItem.selling_price }}</h5>
+            <h5 class="card-title" [ngClass]="{'show':!productItem.discount_price,'hide':productItem.discount_price}">
+              {{calculatePrice(productItem)}} EGP
+            </h5>
+            <h5 class="card-title" [ngClass]="{'show':productItem.discount_price,'hide':!productItem.discount_price}">
+              <del>{{ productItem.selling_price }}</del> {{calculatePrice(productItem)}} EGP
+            </h5>
             <p class="card-text">
               {{ productItem.description }}
             </p>

@@ -21,4 +21,8 @@ export class ProductDetailsService {
   deleteRating(queryParams:any,id: any): Observable<any> {
     return this.http.delete(`http://127.0.0.1:8000/api/rate/delete/${id}`,{params:queryParams});
   }
+
+  getUserRating(queryParams:any,id: any): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/user/rate/${id}`,{params:queryParams});
+  }
 }

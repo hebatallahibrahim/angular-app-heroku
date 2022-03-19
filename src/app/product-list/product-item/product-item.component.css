@@ -43,3 +43,9 @@
   background-color: #cb985d;
   color: black;
 }
+.show{
+  display:block;
+}
+.hide{
+  display:none;
+}

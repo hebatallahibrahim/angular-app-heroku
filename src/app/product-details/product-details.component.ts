@@ -6,6 +6,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProductDetailsService } from './../Service/product-details.service';
 import { ProductListService } from './../Service/product-list.service';
 import { HttpParams } from '@angular/common/http';
+import { Product } from '../Model/product.model';
 
 @Component({
   selector: 'app-product-details',
@@ -23,8 +24,9 @@ export class ProductDetailsComponent implements OnInit {
   form: FormGroup = new FormGroup({
     rating: new FormControl(null),
   });
-  ratingVal: number = 5;
+  ratingVal: number=0;
   productId!: any;
+  userID:any=1;
   productDetails!: any;
   relativeProduct!: any[];
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
@@ -37,10 +39,12 @@ export class ProductDetailsComponent implements OnInit {
     private _productDetailsService: ProductDetailsService,
     private productListService: ProductListService
   ) {
-    // this.rating3 = 0;
-    // this.form = this.fb.group({
-    //   rating: ['', Validators.required],
-    // });
+    this.activetedRoute.params.subscribe( (params) => {
+      if(this.userID){
+        this.getUserRate();
+      }
+      this.getProductByID();
+    } );
   }
   customOptions: OwlOptions = {
     loop: true,
@@ -88,6 +92,16 @@ export class ProductDetailsComponent implements OnInit {
     spaceBetween: 50,
   };
   ngOnInit() {
+    
+    if(this.userID){
+      this.getUserRate();
+    }
+  }
+  // productCrusal(item: any) {
+  //   console.log(item.id);
+  // }
+
+  getProductByID(){
     this.productId = this.activetedRoute.snapshot.paramMap.get('id'); // get id from url
     this._productDetailsService.getProductByID(this.productId).subscribe(
       (result) => {
@@ -110,34 +124,61 @@ export class ProductDetailsComponent implements OnInit {
       }
     );
   }
-  // productCrusal(item: any) {
-  //   console.log(item.id);
-  // }
-  getFormData(data: any) {
-    if(data.get('rating').value==null){
-      let queryParams = new HttpParams();
-      queryParams = queryParams.append("user_id",1);
-      this._productDetailsService.deleteRating(queryParams,this.productId).subscribe(
-        (res) => {
-        console.log(res);
-        if(data.message=='Rate deleted succesfully'){
+
+  goTodetails(productItem: any) {
+    this._Router.navigate(['/product-details', productItem.id]); // send id to url
+  }
+
+  calculatePrice(product:Product){
+    if(product.discount_price){
+      return product.selling_price-(+product.discount_price);
+    }else{
+      return product.selling_price;
+    }
+  }
+  getUserRate(){
+    console.log(this.ratingVal);
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("user_id",this.userID);
+    this._productDetailsService.getUserRating(queryParams,this.productId).subscribe(
+      (res) => {
+      console.log(res);  
+      if(res.message!='No Rating found'){
+      this.ratingVal=res.user_rate.rate;
+      }
+    },
+    (err)=>{
+      console.log(err);
+    }
+    );
+  }
+
+  removeRate(){
+    this.ratingVal=0;
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("user_id",this.userID);
+    this._productDetailsService.deleteRating(queryParams,this.productId).subscribe(
+      (res) => {
+      console.log(res);
+      if(res.message=='Rate deleted succesfully'){
 
         }
-      },
-      (err)=>{
-        console.log(err);
-      }
-      );
-    }else{
+    },
+    (err)=>{
+      console.log(err);
+    }
+    );
+  }
+  getFormData(data: any) {
     var formData: any = new FormData();
     formData.append('rate', data.get('rating').value);
     formData.append('product_id', this.productId);
-    formData.append('user_id', 1);
+    formData.append('user_id', this.userID);
   
     this._productDetailsService.addProductRating(formData,this.productId).subscribe(
       (data) => {
         console.log(data);
-        if (data.message == 'Rate updated succesfully') {
+        if (data.message == 'Rate added succesfully' || data.message=='Product Rate updated succesfully') {
           // this._Router.navigate(['/accounts']);
         } else {
           this.err = 'not valid data';
@@ -147,6 +188,6 @@ export class ProductDetailsComponent implements OnInit {
         console.log(err);
       }
     );
-  }
+   }
 }
-}
+

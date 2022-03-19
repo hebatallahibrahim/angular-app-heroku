@@ -11,11 +11,45 @@
     </div>
     <div class="col-lg-6 col-md-5 col-12">
       <h1>{{ productDetails.name }}</h1>
-      <h4>{{ productDetails.selling_price }} EGP</h4>
+      <h3 [ngClass]="{'show':!productDetails.discount_price,'hide':productDetails.discount_price}">
+        {{calculatePrice(productDetails)}} EGP
+      </h3>
+      <h3 [ngClass]="{'show':productDetails.discount_price,'hide':!productDetails.discount_price}">
+        <del>{{ productDetails.selling_price }}</del> {{calculatePrice(productDetails)}} EGP
+      </h3>
       <button class="cart-button btn mb-4" routerLink="/cart">
         Add to cart
       </button>
-      <h3>product details</h3>
+      <form [formGroup]="form" (ngSubmit)="getFormData(form)">
+        <!-- <h3>Rate this product</h3> -->
+        <div class="row justify-content-between">
+        <div class="col-6">
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&starf;</span>&starf;
+            </span>
+          </ng-template>
+          
+          <ngb-rating class="pt-2" [(rate)]="ratingVal" formControlName="rating" [starTemplate]="t" [readonly]="false" [max]="5"></ngb-rating><span (click)="removeRate()" class="remove-rate">&#x2715;</span>
+          
+        </div>
+        <!--ngx-star-rating
+          formControlName="rating"
+          [id]="'rating'"
+        ></ngx-star-rating-->
+        <!--div class="fs-3">Rating: {{ form.value.rating }}</div-->
+        <!--div class="add-comment">
+          <h3 class="col-12">Add Comment</h3>
+          <mat-form-field class="col-12">
+            <input matInput />
+          </mat-form-field>
+        </div-->
+        <div class="col-4 me-5">
+        <button class="btn btn-primary submit-btn" [disabled]="!ratingVal">Submit Rating</button></div>
+      </div>
+      </form>
+      <h3>Product Details</h3>
+      
       <table style="width: 100%">
         <tr>
           <th>Description:</th>
@@ -34,32 +68,22 @@
           <td>{{ productDetails.color }}</td>
         </tr>
         <tr>
-          <th>Contact:</th>
+          <th>Dimensions:</th>
           <td>{{ productDetails.product_size }}</td>
+        </tr>
+        <tr>
+          <th>Rate: ({{productDetails.avgRate}})</th>
+          <ng-template #b let-fill="fill">
+            <span class="avgrate" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&starf;</span>&starf;
+            </span>
+          </ng-template>
+          <td class="pt-2"><ngb-rating  [(rate)]="productDetails.avgRate" [starTemplate]="b" [readonly]="true" [max]="5"></ngb-rating></td>
         </tr>
       </table>
     </div>
-    <div class="mb-3 col-6 rate-comment">
-      <form [formGroup]="form" (ngSubmit)="getFormData(form)">
-        <h3>Rate this product</h3>
-        <div class="row justify-content-between">
-        <div class="col-6">
-        <p-rating class="stars" formControlName="rating" [(ngModel)]="ratingVal" id="rating" name="rating"></p-rating></div>
-        <!--ngx-star-rating
-          formControlName="rating"
-          [id]="'rating'"
-        ></ngx-star-rating-->
-        <!--div class="fs-3">Rating: {{ form.value.rating }}</div-->
-        <!--div class="add-comment">
-          <h3 class="col-12">Add Comment</h3>
-          <mat-form-field class="col-12">
-            <input matInput />
-          </mat-form-field>
-        </div-->
-        <div class="col-6">
-        <button class="btn btn-primary submit-btn">Submit Rating</button></div>
-      </div>
-      </form>
+    <div class="my-3 col-6 rate-comment">
+      
     </div>
   </div>
   <div class="row m-3 justify-content-between">
@@ -69,9 +93,9 @@
     <h3>Relative products</h3>
     <owl-carousel-o [options]="customOptions">
       <ng-template carouselSlide *ngFor="let item of relativeProduct">
-        <div class="one-item m-2">
+        <div class="one-item m-2" (click)="goTodetails(item)">
           <div class="img-overlay text-center fs-5 rounded">
-            <a href="#">
+            <a>
               <img
                 src="{{ imagUrlProduct + item.image }}"
                 class="rounded"
@@ -80,18 +104,23 @@
                 alt="item"
               />
             </a>
-            <div
+            <!--div
               class="love"
               (click)="item_hearted = !item_hearted"
               [ngClass]="{ 'love-red': item_hearted }"
             >
               <i class="fa-solid fa-heart"></i>
-            </div>
+            </div-->
             <div class="container-fluid">
               <div class="row p-1">
                 <a href="#" class="link-item text-decoration-none link-dark">
                   <p class="text-center name-item p-0">{{ item.name }}</p>
-                  <p class="text-center">{{ item.selling_price }} EGP</p>
+                  <p [ngClass]="{'show':!item.discount_price,'hide':item.discount_price}">
+                    {{calculatePrice(item)}} EGP
+                  </p>
+                  <p [ngClass]="{'show':item.discount_price,'hide':!item.discount_price}">
+                    <del>{{ item.selling_price }}</del> {{calculatePrice(item)}} EGP
+                  </p>
                 </a>
               </div>
             </div>

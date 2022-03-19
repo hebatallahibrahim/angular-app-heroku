@@ -34,6 +34,14 @@ export class ProductItemComponent implements OnInit {
     this.router.navigate(['/product-details', productItem.id]); // send id to url
   }
 
+  calculatePrice(product:Product){
+    if(product.discount_price){
+      return product.selling_price-(+product.discount_price);
+    }else{
+      return product.selling_price;
+    }
+  }
+
   open(content: any) {
     this.modalService.open(content, { size: 'xl' }).result.then(
       (result) => {
