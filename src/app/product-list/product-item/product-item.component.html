@@ -10,7 +10,7 @@
   </a>
   <div
     class="love"
-    (click)="item_hearted = !item_hearted"
+    (click)="addOrRemoveWishlist()"
     [ngClass]="{ 'love-red': item_hearted }"
   >
     <i class="fa-solid fa-heart"></i>

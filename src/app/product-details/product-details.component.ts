@@ -40,10 +40,11 @@ export class ProductDetailsComponent implements OnInit {
     private productListService: ProductListService
   ) {
     this.activetedRoute.params.subscribe( (params) => {
+      this.ratingVal=0;
+      this.getProductByID();
       if(this.userID){
         this.getUserRate();
       }
-      this.getProductByID();
     } );
   }
   customOptions: OwlOptions = {
@@ -93,9 +94,6 @@ export class ProductDetailsComponent implements OnInit {
   };
   ngOnInit() {
     
-    if(this.userID){
-      this.getUserRate();
-    }
   }
   // productCrusal(item: any) {
   //   console.log(item.id);
@@ -137,7 +135,6 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   getUserRate(){
-    console.log(this.ratingVal);
     let queryParams = new HttpParams();
     queryParams = queryParams.append("user_id",this.userID);
     this._productDetailsService.getUserRating(queryParams,this.productId).subscribe(

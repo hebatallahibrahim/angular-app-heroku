@@ -1,7 +1,10 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Product } from '../Model/product.model';
 import { ProductListService } from '../Service/product-list.service';
+import { WishlistService } from '../Service/wishlist.service';
 import { SearchService } from './../Service/search.service';
 
 @Component({
@@ -16,8 +19,8 @@ export class ProductListComponent implements OnInit {
   searchKey: string = '';
   productItem!: Product;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-
-  item_hearted = false;
+  likedProducts:any[]=[];
+  userID=1;
   closeResult = '';
   colorSearchFilter = '';
   priceSearchFilter = '';
@@ -27,8 +30,14 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productListService: ProductListService,
-    private searchService: SearchService
-  ) {}
+    private searchService: SearchService,
+    private wishlistService:WishlistService,
+    private activatedRoute:ActivatedRoute
+  ) {
+    this.activatedRoute.params.subscribe( (params) => {
+      
+    });
+  }
 
   ngOnInit(): void {
     this.productListService.getAllProduct().subscribe(
@@ -43,6 +52,7 @@ export class ProductListComponent implements OnInit {
         console.log(err);
       }
     );
+    this.getLikedProducts();
   }
 
   onchangeColorFilter(event: any) {
@@ -264,5 +274,26 @@ export class ProductListComponent implements OnInit {
           x.color.trim().toLowerCase().search(this.nameSearch) != -1
       );
     }
+  }
+
+  getLikedProducts(){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("user_id",this.userID);
+    this.wishlistService.getWishlistProducts(queryParams).subscribe(
+      (res) => {
+      console.log(res);
+      for(let i=0;i<this.productArray.length;i++){
+        if (res.products.some((e: { product_id: number;user_id:number; })=> e.product_id == this.productArray[i].id && e.user_id==this.userID)) {
+          this.likedProducts[i]=true;
+        }else{
+          this.likedProducts[i]=false;
+        }
+      }
+      console.log("like",this.likedProducts);
+    },
+    (err)=>{
+      console.log(err);
+    }
+    );
   }
 }
