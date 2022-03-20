@@ -86,6 +86,7 @@ import { AllCategoryComponent } from './admin-page/all-category/all-category.com
 import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
 import { AllSubcategoryComponent } from './admin-page/all-subcategory/all-subcategory.component';
 import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/update-subcategory.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 @NgModule({
   declarations: [
@@ -137,6 +138,7 @@ import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/upda
     UpdateCategoryComponent,
     AllSubcategoryComponent,
     UpdateSubcategoryComponent,
+    WishlistComponent,
   ],
   imports: [
     BrowserModule,

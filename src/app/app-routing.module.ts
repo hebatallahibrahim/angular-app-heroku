@@ -35,6 +35,7 @@ import { AllCategoryComponent } from './admin-page/all-category/all-category.com
 import { AllSubcategoryComponent } from './admin-page/all-subcategory/all-subcategory.component';
 import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
 import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/update-subcategory.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
   { path: 'cart', component: CartComponent }, // canActivate: [AuthGuard],
+  { path: 'wishlist', component: WishlistComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'all-product', component: AllProductsComponent },
