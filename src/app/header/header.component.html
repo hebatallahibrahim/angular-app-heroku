@@ -122,7 +122,7 @@
         [style]="{ width: '50rem' }"
       >
         <div
-          class="empty fs-2 d-flex justify-content-center align-items-center"
+          class="empty mb-2 fs-2 d-flex justify-content-center align-items-center"
           *ngIf="cartCounter == 0"
         >
           No item selected
@@ -131,7 +131,6 @@
           <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
               Products
-              <p-button icon="pi pi-refresh"></p-button>
             </div>
           </ng-template>
           <ng-template pTemplate="header">
@@ -185,7 +184,7 @@
           type="button"
           (click)="visibleSidebar2 = false"
           label="Cancel"
-          styleClass="p-button-secondary"
+          styleClass="p-button-secondary ms-2"
         ></p-button>
       </p-sidebar>
 

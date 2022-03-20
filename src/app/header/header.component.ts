@@ -79,7 +79,6 @@ export class HeaderComponent implements OnInit {
   }
 
   calculateTotal(): any {
-    debugger;
     return this.productCartService.totalPrice();
   }
   totalAmountNow(): any {

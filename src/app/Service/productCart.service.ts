@@ -35,7 +35,6 @@ export class ProductCartService {
     }
   }
   onStaitusChang(product: any) {
-    debugger;
     if (this.getProducts().includes(product)) {
       this._ProductsSource.next({ ...this._ProductsSource.value, ...product });
     }

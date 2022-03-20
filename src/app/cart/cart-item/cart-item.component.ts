@@ -28,7 +28,6 @@ export class CartItemComponent implements OnInit {
     this.updateItems.emit();
   }
   changeItemSitus(product: Product, count: any) {
-    debugger;
     product.status = count;
     this.productCartService.onStaitusChang(product);
     this.updateItems.emit();
