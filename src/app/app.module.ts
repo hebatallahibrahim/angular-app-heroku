@@ -86,7 +86,10 @@ import { AllCategoryComponent } from './admin-page/all-category/all-category.com
 import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
 import { AllSubcategoryComponent } from './admin-page/all-subcategory/all-subcategory.component';
 import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/update-subcategory.component';
-
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import { AddUsersComponent } from './admin-page/add-users/add-users.component';
+import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -137,6 +140,8 @@ import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/upda
     UpdateCategoryComponent,
     AllSubcategoryComponent,
     UpdateSubcategoryComponent,
+    AddUsersComponent,
+    AddSliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -174,6 +179,8 @@ import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/upda
     RadioButtonModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [
     ProductListService,

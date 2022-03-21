@@ -35,6 +35,8 @@ import { AllCategoryComponent } from './admin-page/all-category/all-category.com
 import { AllSubcategoryComponent } from './admin-page/all-subcategory/all-subcategory.component';
 import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
 import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/update-subcategory.component';
+import { AddUsersComponent } from './admin-page/add-users/add-users.component';
+import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -72,6 +74,8 @@ const routes: Routes = [
   { path: 'all-sub-categry', component: AllSubcategoryComponent },
   { path: 'update-category/:postId', component: UpdateCategoryComponent },
   { path: 'update-subcategory/:postId', component: UpdateSubcategoryComponent },
+  { path: 'add-users',component:AddUsersComponent},
+  { path: 'add-slider' , component:AddSliderComponent},
   { path: '**', component: NotFoundComponent },
 ];
 

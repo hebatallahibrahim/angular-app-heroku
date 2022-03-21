@@ -2,7 +2,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <p class="text-black mt-5 mb-5">Welcome back, <b>Admin</b></p>
+            <p class="text-black mt-5 mb-5"></p>
         </div>
     </div>
     <div class="row tm-content-row">
@@ -28,12 +28,12 @@
                             <td><b>{{i.message}}</b></td>
                             <td class="text-center">
                                 <a>
-                                <mat-icon [routerLink]="['/contact-view/', i.id]" > border_color</mat-icon>
+                                <mat-icon [routerLink]="['/contact-view/', i.id]" > visibility</mat-icon>
                                </a>
                             </td>
                             <td class="text-center">
                                 <a>
-                                <mat-icon (click)="removeContactItem(i.id)">delete</mat-icon>
+                                <mat-icon (click)="removeContactItem(i.id)" >delete</mat-icon>
                                </a>
                             </td>
                          

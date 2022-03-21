@@ -58,7 +58,7 @@ textarea.input100 {
     background: #e6e6e6;
     font-size: 15px;
     line-height: 1.5;
-    color: #666666;
+    color: black;
 }
 .contact100-form-btn {
     width: 100%;
@@ -83,3 +83,9 @@ p
 {
     width: 50%;
 }
+.show-alert{
+    display: block;
+  }
+  .hide-alert{
+    display: none;
+  }

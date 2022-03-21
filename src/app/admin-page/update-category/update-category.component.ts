@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -12,15 +12,24 @@ import { Category } from 'src/app/Model/category.model';
 export class UpdateCategoryComponent implements OnInit {
   id!: any;
   post! :Category;
-
+  dangerAlertShow=false;
+  SuccessAlertShow=false;
   formRegistration: FormGroup = new FormGroup({
-    name: new FormControl(null),
-    description: new FormControl(null),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
+    description: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
     file: new FormControl(null),
     fileSource: new FormControl(null)
   });
   err: string | undefined;
-  dangerAlertShow=false;
+  
   constructor(
     public _serve:adminservice,
     private activateroute: ActivatedRoute,
@@ -56,11 +65,27 @@ export class UpdateCategoryComponent implements OnInit {
     formData.append('descripition', data.get('description').value);
     formData.append('image', data.get('fileSource').value);
 
-    this._serve.updateCategry(this.id, formData).subscribe((res:any) => {
-      console.log(res);
-      console.log('cat updated successfully!');
-      this._Router.navigate(['/all-category']);
- })
+    this._serve.updateCategry(this.id, formData).subscribe(
+
+      (data) => {
+        console.log(data);
+        if (data.message == 'success') 
+        {
+          this.SuccessAlertShow=true;
+          this.dangerAlertShow=false;
+           this.formRegistration.reset();
+          this._Router.navigate(['/all-category']);
+        } 
+        else 
+        {
+          this.err = 'not valid data';
+        }
+      },
+        (err) => {
+          this.SuccessAlertShow=false;
+          this.dangerAlertShow=true;
+          console.log(err);
+ });
 
   }
 

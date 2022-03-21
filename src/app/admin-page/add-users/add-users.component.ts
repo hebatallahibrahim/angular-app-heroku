@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
+import { FormControl, FormGroup,Validators } from '@angular/forms';
+import { AdminService } from 'src/app/admin.service';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: 'app-add-users',
+  templateUrl: './add-users.component.html',
+  styleUrls: ['./add-users.component.css']
 })
-export class RegisterComponent implements OnInit {
-  dangerAlertShow=false;
-  SuccessAlertShow=false;
+export class AddUsersComponent implements OnInit {
   formRegistration: FormGroup = new FormGroup({
     Name: new FormControl(null, [
       Validators.required,
@@ -29,13 +27,15 @@ export class RegisterComponent implements OnInit {
     City: new FormControl(null, Validators.required),
     Region: new FormControl(null, Validators.required),
   });
+  usersArray:any[]=[];
   err: string | undefined;
-  constructor(public _AuthService: AuthService, public _Router: Router) {}
+  dangerAlertShow=false;
+  SuccessAlertShow=false;
+  constructor(public _AdminService: AdminService, public _Router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
   getFormData(data: any) {
-    // console.log(FormData.value);
-
     var formData: any = new FormData();
     formData.append('name', data.get('Name').value);
     formData.append('email', data.get('Email').value);
@@ -45,26 +45,26 @@ export class RegisterComponent implements OnInit {
     formData.append('region', data.get('Region').value);
     formData.append('password', data.get('Password').value);
 
-    this._AuthService.signup(formData).subscribe(
+    this._AdminService.addUser(formData).subscribe(
       (data) => {
         console.log(data);
         if (data.message == 'success') {
-         
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
            this.formRegistration.reset();
-           this._Router.navigate(['/login']);
-        } 
-        else 
-        {
+          this._Router.navigate(['/accounts']);
+        } else {
           this.err = 'not valid data';
         }
       },
-        (err) => {
-          this.SuccessAlertShow=false;
-          this.dangerAlertShow=true;
-          console.log(err);
-        }
-      );
+      (err) => {
+        this.SuccessAlertShow=false;
+        this.dangerAlertShow=true;
+        console.log(this.dangerAlertShow);
+        console.log(err);
+      }
+    );
+    }
   }
-}
+
+

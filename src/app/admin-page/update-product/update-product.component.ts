@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup , Validators} from '@angular/forms';
 import { AdminService } from 'src/app/admin.service';
 import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,22 +15,60 @@ export class UpdateProductComponent implements OnInit {
   id!: any;
   post! :Product;
   
-    formRegistration: FormGroup = new FormGroup({
-      name: new FormControl(null),
-      description: new FormControl(null),
-      shortdesc: new FormControl(null),
-      category: new FormControl(null),
-      subcategory: new FormControl(null),
-      price: new FormControl(null),
-      quantity: new FormControl(null),
-      discount: new FormControl(null),
-      brand: new FormControl(null),
-      productsize: new FormControl(null),
-      color:new FormControl(null),
-      status:new FormControl(null),
-      file: new FormControl(null),
-      fileSource: new FormControl(null)
-    });
+  dangerAlertShow=false;
+  SuccessAlertShow=false;
+  formRegistration: FormGroup = new FormGroup({
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
+    description: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    shortdesc: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    category: new FormControl(null, 
+      Validators.required
+    ),
+    subcategory: new FormControl(null, 
+      Validators.required
+    ),
+    price: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    quantity: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    discount: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    brand: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
+    productsize:  new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    color:new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
+    status:new FormControl(null),
+    file: new FormControl(null),
+    fileSource: new FormControl(null)
+  });
     err: string | undefined;
     constructor(public _AdminService: AdminService, 
       public _serve:adminservice,
@@ -97,11 +135,27 @@ export class UpdateProductComponent implements OnInit {
       formData.append('tags', "tags");
       formData.append('avgRate', 0);
     
-      this._serve.updateProduct(this.id, formData).subscribe((res:any) => {
-        console.log(res);
-        console.log('Post updated successfully!');
-        this._Router.navigate(['/all-product']);
-   })
+      this._serve.updateProduct(this.id, formData).subscribe(
+        (data) => {
+          console.log(data);
+          if (data.message == 'success') 
+          {
+            this.SuccessAlertShow=true;
+            this.dangerAlertShow=false;
+             this.formRegistration.reset();
+            this._Router.navigate(['/all-product']);
+          } 
+          else 
+          {
+            this.err = 'not valid data';
+          }
+        },
+          (err) => {
+            this.SuccessAlertShow=false;
+            this.dangerAlertShow=true;
+            console.log(err);
+          
+        });
 
     }
 

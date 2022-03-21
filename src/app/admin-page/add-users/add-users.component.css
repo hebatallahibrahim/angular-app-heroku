@@ -6,6 +6,7 @@ html {
   }
   body {
     font-family: Roboto, Helvetica, Arial, sans-serif;
+    /* color */
     background-color: #4e657a;
     overflow-x: hidden;
   }
@@ -48,6 +49,7 @@ html {
   }
   .tm-block {
     padding: 40px;
+    /* color */
     -webkit-box-shadow: 1px 1px 5px 0 #455c71;
     -moz-box-shadow: 1px 1px 5px 0 #455c71;
     box-shadow: 1px 1px 5px 0 #455c71;
@@ -116,6 +118,7 @@ html {
   }
   .tm-notification-item {
     padding: 15px;
+    /* color */
     background-color: #4e657a;
     color: #fff;
     font-size: 95%;
@@ -134,12 +137,14 @@ html {
     font-size: 90%;
   }
   .table {
+      /* color */
     background-color: #50697f;
     color: #fff;
     font-size: 85%;
     margin-bottom: 0;
   }
   thead {
+      /* color */
     background-color: #486177;
     color: #fff;
   }
@@ -155,18 +160,7 @@ html {
     border-radius: 50%;
     margin-top: -3px;
   }
-  .moving {
-    background-color: #9be64d;
-    box-shadow: 0 0 8px #9be64d, inset 0 0 8px #9be64d;
-  }
-  .pending {
-    background-color: #efc54b;
-    box-shadow: 0 0 8px #efc54b, inset 0 0 8px #efc54b;
-  }
-  .cancelled {
-    background-color: #da534f;
-    box-shadow: 0 0 8px #da534f, inset 0 0 8px #da534f;
-  }
+  
   .tm-avatar {
     width: 345px;
   }
@@ -186,6 +180,7 @@ html {
     z-index: 1000;
     padding: 14px;
     border-radius: 50%;
+    /* color */
     background-color: rgba(57, 78, 100, 0.7);
     display: inline-block;
     width: 50px;
@@ -210,11 +205,13 @@ html {
     padding-right: 15px;
   }
   .form-control {
+      /* color */
     background-color: #54657d;
     color: #fff;
     border: 0;
   }
   .form-control:focus {
+      /* color */
     background-color: #60738e;
     color: #fff;
     border-color: transparent;
@@ -278,6 +275,7 @@ html {
   }
   .btn-primary:active,
   .btn-primary:hover {
+      /* color */
     color: #f5a623;
     background-color: transparent;
     border: 2px solid #f5a623;
@@ -290,6 +288,7 @@ html {
   }
   .table td,
   .table th {
+      /* color */
     border-top: 1px solid #415a70;
     padding: 15px 25px;
     vertical-align: middle;
@@ -306,6 +305,8 @@ html {
     color: #a0c0de;
   }
   .tm-bg-primary-dark {
+
+      /* color */
     background-color: #435c70;
   }
   .tm-bg-gray {
@@ -344,6 +345,7 @@ html {
     cursor: pointer;
     -webkit-appearance: none;
     appearance: none;
+    /* color change */
     background-color: #394e64;
     background-position: center;
     border-radius: 50%;
@@ -480,9 +482,6 @@ html {
   .hide-alert{
     display: none;
   }
-    #barChart,
-    #lineChart {
-      max-height: 350px;
-    }
+    
   
   

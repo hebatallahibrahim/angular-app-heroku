@@ -68,4 +68,11 @@ export class adminservice {
     return this.http.delete(`http://127.0.0.1:8000/api/contactUs/delete/${id}`)
   }
 
+  deleteUserAcount(id: any): Observable<any> {
+    return this.http.delete(`http://127.0.0.1:8000/api/adminuser/delete/${id}`)
+  }
+  deleteSlider(id: any): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/slider/delete/${id}`)
+  }
+
 }

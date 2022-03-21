@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AdminService } from 'src/app/admin.service';
+import { adminservice } from 'src/app/Service/admin.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-acounts',
@@ -21,7 +22,15 @@ export class AcountsComponent implements OnInit {
   usersArray:any[]=[];
   err: string | undefined;
   dangerAlertShow=false;
-  constructor(public _AdminService: AdminService, public _Router: Router) { }
+  constructor(public _AdminService: AdminService,
+    private _service : adminservice ,  public _Router: Router) { }
+
+  deleteUserAcount(id: any): void {
+    this._service.deleteProduct(id).subscribe(res => {
+      console.log(res);
+      this.usersArray = this.usersArray.filter(item => item.id !== id);
+      })
+    }
 
   ngOnInit(): void {
     this._AdminService.getAllUsers().subscribe(
@@ -34,36 +43,6 @@ export class AcountsComponent implements OnInit {
       }
     );
   }
-  getFormData(data: any) {
-    var formData: any = new FormData();
-    formData.append('name', data.get('name').value);
-    formData.append('email', data.get('email').value);
-    formData.append('address', data.get('address').value);
-    formData.append('city', data.get('city').value);
-    formData.append('phone', data.get('phone').value);
-    formData.append('password', data.get('password').value);
-    formData.append('region', data.get('region').value);
-
-    if(data.get('name').value!=null && data.get('email').value &&data.get('address').value && data.get('city').value && data.get('phone').value && data.get('region').value && data.get('password').value){
-    this._AdminService.addUser(formData).subscribe(
-      (data) => {
-        console.log(data);
-        if (data.message == 'User added succesfully') {
-          this.dangerAlertShow=false;
-          this._Router.navigate(['/accounts']);
-        } else {
-          this.err = 'not valid data';
-        }
-      },
-      (err) => {
-        this.dangerAlertShow=true;
-        console.log(this.dangerAlertShow);
-        console.log(err);
-      }
-    );
-    }else{
-      this.dangerAlertShow=true;
-    }
-  }
+  
 
 }

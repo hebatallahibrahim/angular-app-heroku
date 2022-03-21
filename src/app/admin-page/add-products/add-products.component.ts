@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/admin.service';
 import { Router } from '@angular/router';
 
@@ -9,21 +9,63 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-products.component.css']
 })
 export class AddProductsComponent implements OnInit {
+  dangerAlertShow=false;
+  SuccessAlertShow=false;
   formRegistration: FormGroup = new FormGroup({
-    name: new FormControl(null),
-    description: new FormControl(null),
-    shortdesc: new FormControl(null),
-    category: new FormControl(null),
-    subcategory: new FormControl(null),
-    price: new FormControl(null),
-    quantity: new FormControl(null),
-    discount: new FormControl(null),
-    brand: new FormControl(null),
-    productsize: new FormControl(null),
-    color:new FormControl(null),
+    name: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
+    description: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    shortdesc: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    category: new FormControl(null, 
+      Validators.required
+    ),
+    subcategory: new FormControl(null, 
+      Validators.required
+    ),
+    price: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    quantity: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    discount: new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    brand: new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
+    productsize:  new FormControl(null, [
+      Validators.required,
+      Validators.pattern("^[0-9]*$"),
+    ]),
+    color:new FormControl(null, [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(20),
+    ]),
     status:new FormControl(null),
-    file: new FormControl(null),
-    fileSource: new FormControl(null)
+    file: new FormControl(null, [
+      Validators.required
+    ]),
+    fileSource: new FormControl(null, [
+      Validators.required
+    ])
   });
   err: string | undefined;
   constructor(public _AdminService: AdminService, public _Router: Router) { }
@@ -83,12 +125,17 @@ export class AddProductsComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'Product added succesfully') {
-          this._Router.navigate(['/all-product']);
+          this.SuccessAlertShow=true;
+          this.dangerAlertShow=false;
+           this.formRegistration.reset();
+          this._Router.navigate(['/add-product']);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
+        this.SuccessAlertShow=false;
+        this.dangerAlertShow=true;
         console.log(err);
       }
     );
