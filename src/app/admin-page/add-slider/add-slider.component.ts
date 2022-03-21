@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup , Validators} from '@angular/forms';
-import { AdminService } from 'src/app/admin.service';
+import { FormControl, FormGroup ,Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/admin.service';
 
 @Component({
-  selector: 'app-add-category',
-  templateUrl: './add-category.component.html',
-  styleUrls: ['./add-category.component.css']
+  selector: 'app-add-slider',
+  templateUrl: './add-slider.component.html',
+  styleUrls: ['./add-slider.component.css']
 })
-export class AddCategoryComponent implements OnInit {
-  dangerAlertShow=false;
-  SuccessAlertShow=false;
+export class AddSliderComponent implements OnInit {
+
   formRegistration: FormGroup = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
@@ -30,42 +29,39 @@ export class AddCategoryComponent implements OnInit {
     ])
   });
   err: string | undefined;
- 
-  constructor(public _AdminService: AdminService, public _Router: Router) { }
+  dangerAlertShow=false;
+  SuccessAlertShow=false;
+  sliderArray:any[]=[];
+  
+  constructor(private _AdminService: AdminService, private _Router: Router) { }
 
   ngOnInit(): void {
+    
   }
+
   onFileChange(event:any) {
-
-
     if (event.target.files.length > 0) {
-
       const file = event.target.files[0];
-
       this.formRegistration.patchValue({
-
         fileSource: file
-
       });
-
     }
-
   }
+
   getFormData(data: any) {
-    console.log(data);
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
-    formData.append('descripition', data.get('description').value);
+    formData.append('description', data.get('description').value);
     formData.append('image', data.get('fileSource').value);
 
-    this._AdminService.addCategory(formData).subscribe(
+    this._AdminService.addSlider(formData).subscribe(
       (data) => {
         console.log(data);
         if (data.message == 'success') {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
            this.formRegistration.reset();
-          this._Router.navigate(['/all-category']);
+          this._Router.navigate(['/slider']);
         } else {
           this.err = 'not valid data';
         }
@@ -78,3 +74,6 @@ export class AddCategoryComponent implements OnInit {
     );
   }
 }
+
+
+

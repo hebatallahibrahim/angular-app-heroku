@@ -22,14 +22,25 @@
                   > Name
                 </label>
                 <input
+                [class.is-invalid]="
+                formRegistration.get('name')?.invalid &&
+                formRegistration.get('name')?.touched"
                  formControlName="name"
                   id="name"
-                  [(ngModel)]="post.name" 
                   name="name"
                   type="text"
                   class="form-control "
+                  [(ngModel)]="post.name" 
                   required
                 />
+                <span
+                *ngIf="
+                  formRegistration.get('name')?.invalid &&
+                  formRegistration.get('name')?.touched
+                "
+                class="m-3 p-2 text-danger"
+                >name should be more than 2 char
+              </span>
               </div>
               <div class="form-group mb-4">
                 <label
@@ -37,14 +48,25 @@
                   > Description
                 </label>
                 <input
+                [class.is-invalid]="
+                formRegistration.get('description')?.invalid &&
+                formRegistration.get('description')?.touched"
                  formControlName="description"
                   id="description"
-                  [(ngModel)]="post.descripition" 
                   name="description"
                   type="text"
                   class="form-control "
+                  [(ngModel)]="post.descripition" 
                   required
                 />
+                <span
+                *ngIf="
+                  formRegistration.get('description')?.invalid &&
+                  formRegistration.get('description')?.touched
+                "
+                class="m-3 p-2 text-danger"
+                >Description should be more than 2 char
+              </span>
               </div>
             
              
@@ -64,16 +86,24 @@
                 </div>
               </div>
           
-              <div class="container">    
-                <div class="row">
-                <div class="d-flex justify-content-center align-items-center" [ngClass]="{'col-6':dangerAlertShow,'col-12':!dangerAlertShow}">
+                
+              <div class="row">
+                <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
+                class="alert alert-danger col-12 m-3 p-3 " role="alert">
+                  Please Enter Valid Data
+                </div>
+                <div [ngClass]="{'show-alert':SuccessAlertShow,'hide-alert':!SuccessAlertShow}" 
+                class="alert alert-success col-12 m-3 p-3" role="alert">
+                    Product Added Successfully 
+                </div>
+                <div></div>
                   <button type="submit" class="btn btn-primary btn-block text-uppercase" 
                  >
                     Update Category </button>
                 </div>
+                
+             
                
-                </div>
-              </div>
         
            </form>
            </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { adminservice } from 'src/app/Service/admin.service';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/admin.service';
 @Component({
@@ -9,18 +10,21 @@ import { AdminService } from 'src/app/admin.service';
 })
 export class SliderComponent implements OnInit {
 
-  formRegistration: FormGroup = new FormGroup({
-    name: new FormControl(null),
-    description: new FormControl(null),
-    file: new FormControl(null),
-    fileSource: new FormControl(null)
-  });
+ 
   err: string | undefined;
   dangerAlertShow=false;
   sliderArray:any[]=[];
   imagUrlSlider: string = 'http://127.0.0.1:8000/uploads/slider/';
-  constructor(private _AdminService: AdminService, private _Router: Router) { }
+  constructor(private _AdminService: AdminService, private _Router: Router
+    , private _service : adminservice ) { }
 
+  removeSliderItem(id: any): void {
+    this._service.deleteSlider(id).subscribe(res => {
+      console.log(res);
+      this.sliderArray = this.sliderArray.filter(item => item.id !== id);
+      })
+    
+  }
   ngOnInit(): void {
     this._AdminService.getSlider().subscribe(
       (res) => {
@@ -33,35 +37,7 @@ export class SliderComponent implements OnInit {
     );
   }
 
-  onFileChange(event:any) {
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      this.formRegistration.patchValue({
-        fileSource: file
-      });
-    }
-  }
+ 
 
-  getFormData(data: any) {
-    var formData: any = new FormData();
-    formData.append('name', data.get('name').value);
-    formData.append('description', data.get('description').value);
-    formData.append('image', data.get('fileSource').value);
-
-    this._AdminService.addSlider(formData).subscribe(
-      (data) => {
-        console.log(data);
-        if (data.message == 'Slider added succesfully') {
-          this.dangerAlertShow=false;
-          this._Router.navigate(['/slider']);
-        } else {
-          this.err = 'not valid data';
-        }
-      },
-      (err) => {
-        this.dangerAlertShow=true;
-        console.log(err);
-      }
-    );
-  }
+  
 }

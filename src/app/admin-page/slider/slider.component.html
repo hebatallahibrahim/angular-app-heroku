@@ -1,127 +1,52 @@
 <app-navnar></app-navnar>
-<div class="container tm-mt-big tm-mb-big">
-    <div class="row ">
-      <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto ">
-        <div class="tm-bg-primary-dark tm-block tm-block-h-auto  ">
-          <div class="row ">
-            <div class="col-12">
-              <h2 class="tm-block-title d-flex justify-content-center mb-3">Add Slider</h2>
-            </div>
-          </div>
-          <div class="row tm-edit-product-row">
-            <div class="col-12"> 
-            <div>
-              <form 
-              [formGroup]="formRegistration"
-              (ngSubmit)="getFormData(formRegistration)"
-               action="#" method="post"
-               >
-                <div class="form-group mb-4">
-                  <label
-                    for="name"
-                    > Name
-                  </label>
-                  <input
-                   formControlName="name"
-                    id="name"
-                    name="name"
-                    type="text"
-                    class="form-control "
-                    required
-                  />
-                </div>
-                <div class="form-group mb-4">
-                  <label
-                    for="description"
-                    > Description
-                  </label>
-                  <input
-                   formControlName="description"
-                    id="description"
-                    name="description"
-                    type="text"
-                    class="form-control "
-                    required
-                  />
-                </div>
-              
-               
-               
-                <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
-                  <div class="form-group">
-  
-                    <label class="mb-3" for="file">UPLOAD SLIDER IMAGE</label>
-            
-                    <input 
-                        formControlName="file"
-                        id="file" 
-                        type="file" 
-                        class="form-control"
-                        (change)="onFileChange($event)">
-            
-                  </div>
-                </div>
-            
-                <div class="container">    
-                    <div class="row">
-                    <div class="d-flex justify-content-center align-items-center" >
-                      <button type="submit" 
-                      routerLink="/slider"
-                      class="btn btn-primary btn-block text-uppercase" 
-                     >
-                        Add Slider </button>
-                    </div>
-                    <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" class="alert alert-danger col-6 mt-3" role="alert">
-                      Enter Valid Data
-                    </div>
-                    </div>
-                  </div>
-          
-             </form>
-             </div>
-              </div>
-          
-        </div>
-      </div>
-    </div>
-    </div>
-    <div class="col-12 mt-5">
-        <div class="tm-bg-primary-dark p-5">
-          <h2 class="tm-block-title">Slider</h2>
-          <div class="tm-product-table-container">
-            <table class="table tm-table-small tm-product-table">
-              <thead>
-                <tr>
-                  <th scope="col">NAME</th>
-                  <th scope="col">DESCRIPTION</th>
-                  <th scope="col">IMAGE</th>
-                  <th scope="col">&nbsp;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let slider of sliderArray">
-                  <td>{{slider.name}}</td>
-                  <td>{{slider.description}}</td>
-                  <td><img
-                    src="{{ imagUrlSlider + slider.image }}"
-                    class="img-fluid rounded-start slider-img"
-                    alt="item"
-                  /></td>
-                  <td class="text-center">
-                    <a href="#" class="tm-product-delete-link">
-                      <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                    </a>
-                  </td>
-                </tr>
-              
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-  </div>
-  
-  
+<div class="container mt-5">
+  <div class="row tm-content-row">
 
-  
-  
+    <div class="col-12 tm-block-col" id="subcategories">
+      <div class="tm-bg-primary-dark tm-block tm-block-product-categories">
+        <h2 class="tm-block-title">Product Slider</h2>
+        <div class="tm-product-table-container">
+          <table class="table table-hover tm-table-small tm-product-table">
+            <thead>
+              <tr>
+               
+                <th scope="col">NAME</th>
+                <th scope="col">Image</th>
+                <th scope="col">Description</th>
+            
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let i of sliderArray">
+               
+                <td class="tm-product-name">{{i.name}}</td>
+                <td><img
+                  src="{{ imagUrlSlider + i.image }}"
+                  width="100" height="100"
+                  class="img-fluid rounded-start slider-img"
+                  alt="item"
+                  /></td>
+                <td class="tm-product-name">{{i.description}}</td>
+                   <td class="text-center">
+                     <a>
+                     <mat-icon (click)="removeSliderItem(i.id)">delete</mat-icon>
+                   </a>
+                   </td>
+              </tr>
+             
+            </tbody>
+          </table>
+        </div>
+        <!-- table container -->
+        <div class="d-flex justify-content-center align-items-center btn-add">
+        <button
+          class="btn btn-primary btn-block text-uppercase mb-3"
+          routerLink="/add-slider"
+        >
+          Add new Slider
+        </button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

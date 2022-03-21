@@ -41,3 +41,9 @@ label
 	background-color: #cb985d;
 	cursor: pointer;
 }
+.show-alert{
+    display: block;
+  }
+  .hide-alert{
+    display: none;
+  }

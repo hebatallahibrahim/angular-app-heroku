@@ -142,6 +142,15 @@
               />
             </div>
           </div>
+          <div class="row">
+            <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
+            class="alert alert-danger col-12 m-3 p-3 " role="alert">
+              Please Enter Valid Data
+            </div>
+            <div [ngClass]="{'show-alert':SuccessAlertShow,'hide-alert':!SuccessAlertShow}" 
+            class="alert alert-success col-12 m-3 p-3" role="alert">
+                Successfully Registration
+            </div>
           <button
           [disabled]="formRegistration.invalid == true"
           type="submit"
@@ -150,7 +159,8 @@
           >
           SignUp
         </button>
-        <!-- routerLink="/login" -->
+          </div>
+       
         </form>
       </div>
     </div>
