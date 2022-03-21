@@ -1,0 +1,12 @@
+<app-header></app-header>
+<div class="con-item container-fluid pt-5 pb-5">
+    <div class="row row-item d-flex justify-content-center">
+      <app-product-item
+        class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
+        *ngFor="let item of likedProducts"
+        [productItem]="item" [item_hearted]="true"
+      >
+      </app-product-item>
+    </div>
+</div>
+<app-footer></app-footer>

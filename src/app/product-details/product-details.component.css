@@ -46,6 +46,9 @@
   color: black;
   border: 1px solid #cb985d;
 }
+.submit-btn:enabled{
+  border:2px solid rgb(255, 174, 0);
+}
 .star {
   position: relative;
   display: inline-block;
@@ -79,7 +82,21 @@
 .hide{
   display:none;
 }
-/* .relative-pro{
-  width:100%;
-  display: inline-block !important;
-} */
+.love {
+  position: absolute;
+  top: 5%;
+  left: 87%;
+  font-size: 1.5rem;
+  transition: all 0.1s ease;
+}
+.love:hover {
+  content: "";
+  transform: scale(1.1);
+  color: red;
+}
+.love-red{
+  color:red;
+}
+.img-overlay {
+  position: relative;
+}

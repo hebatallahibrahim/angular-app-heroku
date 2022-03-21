@@ -7,6 +7,7 @@ import { ProductDetailsService } from './../Service/product-details.service';
 import { ProductListService } from './../Service/product-list.service';
 import { HttpParams } from '@angular/common/http';
 import { Product } from '../Model/product.model';
+import { WishlistService } from '../Service/wishlist.service';
 
 @Component({
   selector: 'app-product-details',
@@ -14,7 +15,7 @@ import { Product } from '../Model/product.model';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  item_hearted = false;
+  item_hearted!:any;
   arr = [1, 2, 3, 4];
   array = [1, 2, 3, 4];
   images = [944, 1011, 984].map(
@@ -37,11 +38,13 @@ export class ProductDetailsComponent implements OnInit {
     public _Router: Router,
     private activetedRoute: ActivatedRoute,
     private _productDetailsService: ProductDetailsService,
-    private productListService: ProductListService
+    private productListService: ProductListService,
+    private wishlistService:WishlistService
   ) {
     this.activetedRoute.params.subscribe( (params) => {
       this.ratingVal=0;
       this.getProductByID();
+      this.getLikedProduct();
       if(this.userID){
         this.getUserRate();
       }
@@ -98,6 +101,65 @@ export class ProductDetailsComponent implements OnInit {
   // productCrusal(item: any) {
   //   console.log(item.id);
   // }
+  addOrRemoveWishlist() {
+    this.item_hearted = !this.item_hearted;
+    if (this.item_hearted) {
+      var formData: any = new FormData();
+      formData.append('product_id', this.productDetails.id);
+      formData.append('user_id', this.userID);
+
+      this.wishlistService
+        .addToWishlist(formData, this.productDetails.id)
+        .subscribe(
+          (data) => {
+            console.log(data);
+            if (data.message == 'Product updated succesfully') {
+              // this._Router.navigate(['/accounts']);
+            } else {
+              this.err = 'not valid data';
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    } else {
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this.wishlistService
+        .deleteFromWishlist(queryParams, this.productDetails.id)
+        .subscribe(
+          (res) => {
+            console.log(res);
+            if (res.message == 'Wishlist deleted succesfully') {
+            }
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+    }
+  }
+
+  getLikedProduct(){
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("user_id",this.userID);
+    this.wishlistService.getWishlistProducts(queryParams).subscribe(
+      (res) => {
+      console.log(res);
+      console.log("id",this.productDetails);
+      console.log("itemheart",this.item_hearted);
+      if (res.products.some((e: { product_id: number;user_id:number; })=> e.product_id == this.productDetails.id && e.user_id==this.userID)) {
+        this.item_hearted=true;
+      }else{
+        this.item_hearted=false;
+      }
+    },
+    (err)=>{
+      console.log(err);
+    }
+    );
+  }
 
   getProductByID(){
     this.productId = this.activetedRoute.snapshot.paramMap.get('id'); // get id from url

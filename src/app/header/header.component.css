@@ -70,3 +70,7 @@ a:hover {
 .show {
   display: block;
 }
+.wishlist{
+  font-size: 2rem;
+  color: #b78d65;
+}

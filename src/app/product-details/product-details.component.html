@@ -1,14 +1,22 @@
 <app-header></app-header>
 <div class="container">
   <div class="row m-3">
-    <div class="col-lg-6 col-md-7 col-12">
+    <div class="col-lg-6 col-md-7 col-12 img-overlay">
       <img
         src="{{ imagUrlProduct + productDetails.image }}"
         width="500"
         height="500"
         alt="img 1"
       />
+      <div
+      class="love"
+      (click)="addOrRemoveWishlist()"
+      [ngClass]="{ 'love-red': item_hearted }"
+      >
+      <i class="fa-solid fa-heart"></i>
+      </div>
     </div>
+    
     <div class="col-lg-6 col-md-5 col-12">
       <h1>{{ productDetails.name }}</h1>
       <h3 [ngClass]="{'show':!productDetails.discount_price,'hide':productDetails.discount_price}">
