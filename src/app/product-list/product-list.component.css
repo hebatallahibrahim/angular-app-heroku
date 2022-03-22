@@ -8,3 +8,25 @@
 .one-item:hover {
   transform: scale(0.9);
 }
+.show-way{
+  margin-right: 3%;
+  margin-bottom: 2%;
+  font-size: 2.5rem;
+  padding: 0;
+}
+i{
+  padding: 0;
+  cursor: pointer;
+  color: #876445;
+  border: 3px solid white;
+  border-radius: 5px;
+}
+i:hover{
+  color:#cb985d;
+}
+.one-item-row {
+  transition: all 0.5s ease;
+}
+.one-item-row:hover {
+  transform: scale(0.9);
+}

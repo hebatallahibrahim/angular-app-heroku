@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
   totalAmount: any = 0;
+  userID!:number;
   @Output() searchEvent = new EventEmitter<any>();
 
   constructor(
@@ -64,6 +65,8 @@ export class HeaderComponent implements OnInit {
     // this.totalAmount = this.calculateTotal();
     // this.cartCounter = this.totalAmountNow();
 
+    this.userID=1;
+    
     this._HomeService.getAllCategories().subscribe(
       (res) => {
         this.categoryArray = res.category;

@@ -12,7 +12,7 @@ export class WishlistComponent implements OnInit {
 
   likedProducts:any[]=[];
   productArray:any[]=[];
-  userID=2;
+  userID=1;
   count=0;
 
   constructor(private wishlistService:WishlistService,private productListService:ProductListService) { }
