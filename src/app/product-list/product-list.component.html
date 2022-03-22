@@ -1,17 +1,19 @@
 <app-header (searchEvent)="getProductsByName($event)"></app-header>
-<app-product-filter (changeColorEvent)="onchangeColorFilter($event)"
-(changeCategoryEvent)="onchangeCategoryFilter($event)"
-(changeSubCatEvent)="onchangeSubCatFilter($event)"
-(changePriceEvent)="onchangePriceFilter($event)"
-(getAllProductsEvent)="getAllProducts()"
+<app-product-filter
+  (changeColorEvent)="onchangeColorFilter($event)"
+  (changeCategoryEvent)="onchangeCategoryFilter($event)"
+  (changeSubCatEvent)="onchangeSubCatFilter($event)"
+  (changePriceEvent)="onchangePriceFilter($event)"
+  (getAllProductsEvent)="getAllProducts()"
 >
 </app-product-filter>
 <div class="con-item container-fluid pt-5 pb-5">
   <div class="row row-item d-flex justify-content-center">
     <app-product-item
       class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
-      *ngFor="let item of productArray; let i=index"
-      [productItem]="item" [item_hearted]="likedProducts[i]"
+      *ngFor="let item of productArray; let i = index"
+      [productItem]="item"
+      [item_hearted]="likedProducts[i]"
     >
     </app-product-item>
   </div>

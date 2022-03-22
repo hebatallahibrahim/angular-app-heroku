@@ -20,7 +20,7 @@ export class ProductItemComponent implements OnInit {
   productItem!: Product;
   imagUrlProduct = environment.imagUrlProduct;
   err: string | undefined;
-  userID = 1;
+  userID = 6;
   @Input()
   item_hearted!: any;
   closeResult = '';
@@ -39,9 +39,9 @@ export class ProductItemComponent implements OnInit {
     // this.CartService.addToCart(this.productItem);
     this.productCartService.addProduct(this.productItem);
   }
-  addToCart(item: Product) {
-    this.productCartService.addProduct(item);
-  }
+  // addToCart(item: Product) {
+  //   this.productCartService.addProduct(item);
+  // }
   goTodetails(productItem: any) {
     this.router.navigate(['/product-details', productItem.id]); // send id to url
   }
@@ -103,6 +103,9 @@ export class ProductItemComponent implements OnInit {
         this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
       }
     );
+  }
+  openLg(content: any) {
+    this.modalService.open(content, { size: 'lg' });
   }
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {

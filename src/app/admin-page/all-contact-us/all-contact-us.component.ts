@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
@@ -22,25 +22,25 @@ export class AllContactUsComponent implements OnInit {
     private activateroute: ActivatedRoute,
     private modalService: NgbModal
   ) {}
+  messageChange: EventEmitter<any> = new EventEmitter();
 
-  removeContactItem(id: any): void {
-    this._service.deleteContactUsMessage(id).subscribe((res) => {
+  removeContactItem(id: any) {
+    this._service.deleteContactUsMessage(id);
+    this._service.messagesHasBeenChanged.subscribe((res: any) => {
+      this.MessagesArray = res;
       console.log(res);
-      this.MessagesArray = this.MessagesArray.filter((item) => item.id !== id);
     });
-    this.MessagesArray;
+    // .subscribe((res) => {
   }
 
   ngOnInit() {
-    this._service.getAllContactUsMessages().subscribe(
-      (data: any) => {
-        console.log(data);
-        this.MessagesArray = data.ALLContactUs;
-        console.log(this.MessagesArray);
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    this._service.getAllContactUsMessages().subscribe((res: any) => {
+      this.MessagesArray = res.ALLContactUs;
+      console.log(this.MessagesArray);
+      this.postMessage();
+    });
+  }
+  postMessage() {
+    return this._service.setMessage(this.MessagesArray);
   }
 }

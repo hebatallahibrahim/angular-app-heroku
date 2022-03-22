@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   categoryArray: any[] = [];
   categoryId: any;
   categoryName: any;
-  cartCounter: number = 0;
+  cartCounter: any = false;
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
   totalAmount: any = 0;
@@ -87,6 +87,9 @@ export class HeaderComponent implements OnInit {
   openCart() {
     this.visibleSidebar2 = true;
     this.addedProducts = this.productCartService.getProducts();
+    if (this.addedProducts.length != 0) {
+      this.cartCounter = true;
+    }
   }
   removeItem(item: Product): void {
     this.productCartService.removeProduct(item);

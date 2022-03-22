@@ -119,7 +119,7 @@
       >
         <div
           class="empty mb-2 fs-2 d-flex justify-content-center align-items-center"
-          *ngIf="cartCounter == 0"
+          *ngIf="cartCounter != true"
         >
           No item selected
         </div>
@@ -185,7 +185,7 @@
       </p-sidebar>
 
       <a class="me-4" routerLink="/wishlist">
-      <i class="fa-solid fa-heart wishlist"></i>
+        <i class="fa-solid fa-heart wishlist"></i>
       </a>
 
       <i

@@ -15,7 +15,7 @@ export class CartService {
   //
   getCartDetails() {
     // return this.cartHasBeenChanged.asObservable();
-    return this.cartDetalis
+    return this.cartDetalis;
   }
   setProduct(product: any) {
     this.cartDetalis.push(...product);
@@ -29,11 +29,9 @@ export class CartService {
       this.cartDetalis.push(product);
       // this.cartHasBeenChanged.next(this.cartDetalis);
     }
-
-   
   }
   getTotalAmount() {
-   return this.cartDetalis.length
+    return this.cartDetalis.length;
   }
   totalPrice() {
     let totalPrice = 0;
