@@ -85,22 +85,26 @@
         <button class="btn">Search</button>
       </div>
 
-      <div role="button" class="button-group me-4" ngbDropdown>
+      <a *ngIf="!userID" routerLink="/login" class="me-4">Login</a>
+      <div *ngIf="userID" role="button" class="button-group me-4" ngbDropdown>
         <div
           href="/"
           class="d-flex align-items-center mb-2 me-2 mb-lg-0 text-dark text-decoration-none"
           id="dropdownConfig"
           ngbDropdownToggle
         >
-          <a routerLink="/login">Login</a>
+          <a>useremail</a>
         </div>
 
         <ul ngbDropdownMenu class="text-small" aria-labelledby="dropdownConfig">
           <li>
-            <a ngbDropdownItem href="#"> Settings </a>
+            <a ngbDropdownItem routerLink="/profile"> Profile </a>
           </li>
           <li>
-            <a ngbDropdownItem routerLink="/profile"> Profile </a>
+            <a ngbDropdownItem routerLink="/wishlist"> Wishlist </a>
+          </li>
+          <li>
+            <a ngbDropdownItem href="#"> Settings </a>
           </li>
           <li>
             <hr ngbDropdownDivider />

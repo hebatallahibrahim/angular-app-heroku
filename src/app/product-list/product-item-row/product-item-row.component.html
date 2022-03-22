@@ -1,0 +1,63 @@
+<!--div class="img-overlay text-end fs-5 rounded" height="530px">
+    <div class="container-fluid">
+      <div class="row p-3">
+        
+  
+          <button class="col-6 btn button-item rounded" (click)="open(content)">
+            More details
+          </button>
+        </div>
+      </div>
+    </div>
+  </div-->
+  
+<div class="container p-0">
+    <div class="row">
+        <div class="col-4 img-overlay fs-5 rounded">
+            <a (click)="goTodetails(productItem)">
+                <img
+                  src="{{ imagUrlProduct + productItem.image }}"
+                  class="card-img-top rounded-top"
+                  alt="item"
+                  width="150"
+                  height="350"
+                />
+              </a>
+              <div
+                class="love"
+                (click)="addOrRemoveWishlist()"
+                [ngClass]="{ 'love-red': item_hearted }"
+              >
+                <i class="fa-solid fa-heart"></i>
+              </div>
+        </div>
+        <div class="col-8 m-auto">
+        <div class="row">
+          <div class="col-9">   
+            <a
+          (click)="goTodetails(productItem)"
+           class="link-item text-decoration-none link-dark"
+        >
+        
+          <h2 class="name-item p-0">{{ productItem.name }}</h2></a></div> 
+          <div class="col-3 text-end"><h3 class="price-item" [ngClass]="{'show':!productItem.discount_price,'hide':productItem.discount_price}">
+            {{calculatePrice(productItem)}} EGP
+          </h3>
+          <h3 class="price-item" [ngClass]="{'show':productItem.discount_price,'hide':!productItem.discount_price}">
+            <del>{{ productItem.selling_price }}</del> {{calculatePrice(productItem)}} EGP
+          </h3></div>
+        </div>
+        <p>Description: {{productItem.description}}</p>
+        <p>Dimensions: {{productItem.product_size}}</p>
+        <p>Color: {{productItem.color}}</p>
+        <p>Brand: {{productItem.brand}}</p>    
+        <div class="buttons">
+          <button
+            class="col-6 btn button-item rounded me-1"
+            (click)="onItemAdded()"
+          >
+            Add to cart
+          </button>
+        </div>
+    </div>
+</div>  

@@ -1,0 +1,61 @@
+.card-img-top {
+    transform: scale(1);
+    backface-visibility: hidden;
+    filter: brightness(110%);
+    transition: all 0.2s;
+  }
+  .card-img-top:hover {
+    transform: scale(1);
+    filter: brightness(100%);
+  }
+  .img-overlay {
+    position: relative;
+  }
+  .con-details {
+    width: 100%;
+  }
+  .love {
+    position: absolute;
+    top: 5%;
+    left:87%;
+    transition: all 0.1s ease;
+  }
+  .love:hover {
+    content: "";
+    transform: scale(1.1);
+    color: red;
+  }
+  .love-red{
+    color:red;
+  }
+  .link-item:hover {
+    color: #876445;
+  }
+  .button-item {
+    background-color: #876445;
+    color: white;
+    transition: all 0.2s ease;
+  }
+  .button-item:hover {
+    background-color: #cb985d;
+    color: black;
+  }
+  a{
+    cursor: pointer;
+  }
+  .show{
+    display:block;
+  }
+  .hide{
+    display:none;
+  }
+  .name-item{
+      color: black;
+      text-shadow: 1px 1px white;
+  }
+  .name-item:hover{
+    color: #cb985d;
+  }
+  .price-item{
+      font-weight: bold;
+  }
