@@ -12,22 +12,25 @@
     <i (click)="productsRow=!productsRow;productsGrid=!productsGrid" class="fa-regular fa-rectangle-list me-3"></i>
     <i (click)="productsGrid=!productsGrid;productsRow=!productsRow" class="fa-solid fa-border-all"></i>
   </div>
+  <div class="alert alert-success text-center m-auto w-50" role="alert" *ngIf="isVisible">Wishlist Updated</div>
   <div *ngIf="productsGrid" class="row row-item d-flex justify-content-center">
-    <app-product-item 
+    <app-product-item (LikedProductEvent)="likeProduct($event)"
       class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
-      *ngFor="let item of productArray; let i = index"
+      *ngFor="let item of productArraySlice; let i=index"
       [productItem]="item"
-      [item_hearted]="likedProducts[i]"
+      [item_hearted]="likedProductsSlice[i]?.heart"
     >
     </app-product-item>
   </div>
   <div *ngIf="productsRow" class="row row-item d-flex justify-content-center">
-    <app-product-item-row 
+    <app-product-item-row (LikedProductEvent)="likeProduct($event)"
       class="ps-0 pe-0 m-2 shadow-lg"
-      *ngFor="let item of productArray; let i=index"
-      [productItem]="item" [item_hearted]="likedProducts[i]"
+      *ngFor="let item of productArraySlice; let i=index"
+      [productItem]="item" [item_hearted]="likedProductsSlice[i]?.heart"
     >
     </app-product-item-row>
   </div>
+  <mat-paginator #paginator [length]="productArray.length" [pageSize]="9" (page)="onPageChange($event)" aria-label="Select page">
+  </mat-paginator>  
 </div>
 <app-footer></app-footer>

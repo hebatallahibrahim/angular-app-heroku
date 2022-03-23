@@ -1,5 +1,6 @@
 .con-item {
   background-color: #f4dfba;
+  position: relative;
 }
 .one-item {
   width: 30%;
@@ -29,4 +30,13 @@ i:hover{
 }
 .one-item-row:hover {
   transform: scale(0.9);
+}
+.alert{
+  position: absolute;
+  left: 24%;
+  top: 5%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  z-index: 1;
+  background-color: rgba(168, 219, 168, 0.733);
 }

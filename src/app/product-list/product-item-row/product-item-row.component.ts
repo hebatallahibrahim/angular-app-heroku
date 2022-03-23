@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/Model/product.model';
 import { ProductCartService } from 'src/app/Service/productCart.service';
@@ -14,7 +14,7 @@ import { HttpParams } from '@angular/common/http';
   styleUrls: ['./product-item-row.component.css']
 })
 export class ProductItemRowComponent implements OnInit {
-
+  @Output() LikedProductEvent = new EventEmitter<any>();
   @Input()
   productItem!: Product;
   imagUrlProduct = environment.imagUrlProduct;
@@ -90,6 +90,10 @@ export class ProductItemRowComponent implements OnInit {
             console.log(err);
           }
         );
+    }
+    if(this.router.url=='/product-list'){
+      console.log("hi");
+    this.LikedProductEvent.emit({product_id:this.productItem.id,heart:this.item_hearted});
     }
   }
 }
