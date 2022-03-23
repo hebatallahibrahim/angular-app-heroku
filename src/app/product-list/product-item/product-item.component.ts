@@ -1,5 +1,5 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/app/Model/product.model';
@@ -9,6 +9,7 @@ import { SearchService } from 'src/app/Service/search.service';
 import { environment } from 'src/environments/environment';
 import { ProductCartService } from './../../Service/productCart.service';
 import { WishlistService } from 'src/app/Service/wishlist.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 @Component({
   selector: 'app-product-item',
@@ -16,11 +17,12 @@ import { WishlistService } from 'src/app/Service/wishlist.service';
   styleUrls: ['./product-item.component.css'],
 })
 export class ProductItemComponent implements OnInit {
+  @Output() LikedProductEvent = new EventEmitter<any>();
   @Input()
   productItem!: Product;
   imagUrlProduct = environment.imagUrlProduct;
   err: string | undefined;
-  userID = 6;
+  userID = 1;
   @Input()
   item_hearted!: any;
   closeResult = '';
@@ -88,6 +90,10 @@ export class ProductItemComponent implements OnInit {
             console.log(err);
           }
         );
+    }
+    if(this.router.url=='/product-list'){
+      console.log("hi");
+    this.LikedProductEvent.emit({product_id:this.productItem.id,heart:this.item_hearted});
     }
   }
 
