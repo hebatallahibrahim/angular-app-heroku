@@ -92,7 +92,7 @@ import { MessageModule } from 'primeng/message';
 import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
 import { ProductItemRowComponent } from './product-list/product-item-row/product-item-row.component';
-
+import { PaginatorModule } from 'primeng/paginator';
 @NgModule({
   declarations: [
     AppComponent,
@@ -186,6 +186,7 @@ import { ProductItemRowComponent } from './product-list/product-item-row/product
     InputTextareaModule,
     MessagesModule,
     MessageModule,
+    PaginatorModule,
   ],
   providers: [
     ProductListService,

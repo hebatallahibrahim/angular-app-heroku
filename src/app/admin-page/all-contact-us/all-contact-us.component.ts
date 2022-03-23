@@ -28,7 +28,6 @@ export class AllContactUsComponent implements OnInit {
     this._service.deleteContactUsMessage(id);
     this._service.messagesHasBeenChanged.subscribe((res: any) => {
       this.MessagesArray = res;
-      console.log(res);
     });
     // .subscribe((res) => {
   }
@@ -36,7 +35,6 @@ export class AllContactUsComponent implements OnInit {
   ngOnInit() {
     this._service.getAllContactUsMessages().subscribe((res: any) => {
       this.MessagesArray = res.ALLContactUs;
-      console.log(this.MessagesArray);
       this.postMessage();
     });
   }

@@ -26,11 +26,8 @@ export class ProductItemComponent implements OnInit {
   closeResult = '';
   constructor(
     private modalService: NgbModal,
-    private CartService: CartService,
     private wishlistService: WishlistService,
-    private activatedRoute: ActivatedRoute,
     private router: Router,
-    private searchService: SearchService,
     private productCartService: ProductCartService
   ) {}
 

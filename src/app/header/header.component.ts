@@ -52,18 +52,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.primengConfig.ripple = true;
-    // debugger;
-    // this.cartService.cartHasBeenChanged.subscribe((res: any[]) => {
-    //   this.addedProducts = res;
-    //   this.cartCounter = res.length;
-    //   this.totalAmount = this.cartService.getTotalAmount();
-    //   //   console.log(res);
-    // });
-
-    // this.addedProducts = this.cartService.getCartDetails();
-    // this.totalAmount = this.calculateTotal();
-    // this.cartCounter = this.totalAmountNow();
+ 
 
     this.userID=1;
     

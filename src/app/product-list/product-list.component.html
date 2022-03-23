@@ -9,23 +9,36 @@
 </app-product-filter>
 <div class="con-item container-fluid pt-3 pb-5">
   <div class="text-end show-way">
-    <i (click)="productsRow=!productsRow;productsGrid=!productsGrid" class="fa-regular fa-rectangle-list me-3"></i>
-    <i (click)="productsGrid=!productsGrid;productsRow=!productsRow" class="fa-solid fa-border-all"></i>
+    <i
+      (click)="productsRow = !productsRow; productsGrid = !productsGrid"
+      class="fa-regular fa-rectangle-list me-3"
+    ></i>
+    <i
+      (click)="productsGrid = !productsGrid; productsRow = !productsRow"
+      class="fa-solid fa-border-all"
+    ></i>
   </div>
+
   <div *ngIf="productsGrid" class="row row-item d-flex justify-content-center">
-    <app-product-item 
+    <app-product-item
       class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
       *ngFor="let item of productArray; let i = index"
       [productItem]="item"
       [item_hearted]="likedProducts[i]"
     >
     </app-product-item>
+    <p-paginator
+      [rows]="10"
+      [totalRecords]="120"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    ></p-paginator>
   </div>
   <div *ngIf="productsRow" class="row row-item d-flex justify-content-center">
-    <app-product-item-row 
+    <app-product-item-row
       class="ps-0 pe-0 m-2 shadow-lg"
-      *ngFor="let item of productArray; let i=index"
-      [productItem]="item" [item_hearted]="likedProducts[i]"
+      *ngFor="let item of productArray; let i = index"
+      [productItem]="item"
+      [item_hearted]="likedProducts[i]"
     >
     </app-product-item-row>
   </div>

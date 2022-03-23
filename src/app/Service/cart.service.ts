@@ -1,4 +1,5 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Product } from '../Model/product.model';
 @Injectable({
@@ -49,6 +50,5 @@ export class CartService {
     });
     // this.cartHasBeenChanged.next(this.cartDetalis);
   }
+
 }
-// subject && pehavior subject
-// rxjs

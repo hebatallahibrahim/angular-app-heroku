@@ -15,11 +15,11 @@ export class CartItemComponent implements OnInit {
   cartitem!: Product;
   counterValue: number = 0;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
+  constructor(
+    private productCartService: ProductCartService
+  ) {}
   ngOnInit(): void {
-    // this.cartService.getProductData().subscribe((res) => {
-    //   this.cartList = res;
-    //   debugger;
-    // });
+   
     this.cartList = this.productCartService.getProducts();
   }
   removeCartItem(item: any) {
@@ -38,8 +38,4 @@ export class CartItemComponent implements OnInit {
   decrement() {
     this.counterValue--;
   }
-  constructor(
-    private cartService: CartService,
-    private productCartService: ProductCartService
-  ) {}
 }

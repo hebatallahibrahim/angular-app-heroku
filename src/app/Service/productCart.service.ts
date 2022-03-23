@@ -1,8 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Product } from '../Model/product.model';
 
-import { AppComponent } from './../app.component';
 
 @Injectable({ providedIn: 'root' })
 export class ProductCartService {
@@ -14,7 +14,7 @@ export class ProductCartService {
   // Exposed observable (read-only).
   readonly Products$ = this._ProductsSource.asObservable();
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   // Get last value without subscribing to the Products$ observable (synchronously).
   getProducts(): Product[] {
@@ -62,5 +62,16 @@ export class ProductCartService {
     });
     // this.cartHasBeenChanged.next(this.cartDetalis);
     return totalPrice;
+  }
+  postCart(product_id: any, postData: any) {
+    this.http.post(`http://127.0.0.1:8000/api/cart/${product_id}`, postData);
+  }
+  getCart(queryParams: any) {
+    this.http.get(`http://127.0.0.1:8000/api/user/cart`, {
+      params: queryParams,
+    });
+  }
+  deleteCartItem(product_id: any) {
+    this.http.delete(`http://127.0.0.1:8000/api/cart/${product_id}`);
   }
 }
