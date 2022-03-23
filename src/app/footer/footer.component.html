@@ -45,29 +45,29 @@
 
 
       <div class="col-lg-4 col-md-4 col-sm-12 ">
-          <h5>Subscribe to our newsletter</h5>
-          <p>Monthly digest of whats new and exciting from us.</p>
-          <form 
-          [formGroup]="formRegistration"
-          (ngSubmit)="getFormData(formRegistration)"
-          >
-          <div class="row">
-         
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <input
-                  id="newsletter1"
-                  type="text"
-                  class="form-control"
-                  placeholder="Email address"
-                  formControlName="Email"
-                />
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <button class="btn "type="submit">Subscribe</button>
-           </div>
+        <h4>Subscribe to get emails about our latest products</h4>
+        <!--p>Monthly digest of whats new and exciting from us.</p-->
+        <form 
+        [formGroup]="formSubscription"
+        (ngSubmit)="getFormData(formSubscription)"
+        >
+        <div class="row">
+       
+          <div class="col-lg-6 col-md-6 col-sm-12">
+              <input
+                id="email"
+                type="email"
+                class="form-control"
+                placeholder="Email address"
+                formControlName="Email"
+              />
           </div>
-        </form>
-      </div>
+          <div class="col-lg-6 col-md-6 col-sm-12">
+              <button class="btn "type="submit">Subscribe</button>
+         </div>
+        </div>
+      </form>
+     </div>
     </div>
 
     <div class=" p-5 mt-4 border-top row ml-5">

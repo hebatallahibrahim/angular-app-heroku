@@ -190,7 +190,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   calculatePrice(product:Product){
-    if(product.discount_price){
+    if(product.discount_price && (+product.discount_price)!=0){
       return product.selling_price-(+product.discount_price);
     }else{
       return product.selling_price;
