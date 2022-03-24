@@ -25,3 +25,7 @@ a:hover
     color: white;
     cursor: pointer;
   }
+  .alert{
+      width:50%;
+      margin: 0 auto;
+  }

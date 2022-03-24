@@ -40,3 +40,12 @@ i:hover{
   z-index: 1;
   background-color: rgba(168, 219, 168, 0.733);
 }
+.paginator::ng-deep{
+  background-color: #f4dfba;
+  color: #876445;
+  border-top: 1px solid #876445c0;
+  border-bottom: 1px solid #876445c0;
+  box-shadow: 2px 2px 10px 4px  #876445;
+  margin-top: 3%;
+  font-weight: bold;
+}

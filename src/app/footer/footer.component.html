@@ -65,6 +65,8 @@
           <div class="col-lg-6 col-md-6 col-sm-12">
               <button class="btn "type="submit">Subscribe</button>
          </div>
+         <div *ngIf="failedAlert" class="alert alert-danger" role="alert">Enter a Valid Email</div>
+         <div *ngIf="subscribedAlert" class="alert alert-success" role="alert">Subscribed Successfully</div>
         </div>
       </form>
      </div>

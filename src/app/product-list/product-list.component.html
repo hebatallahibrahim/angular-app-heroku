@@ -29,11 +29,6 @@
       [item_hearted]="likedProductsSlice[i]?.heart"
     >
     </app-product-item>
-    <p-paginator
-      [rows]="10"
-      [totalRecords]="120"
-      [rowsPerPageOptions]="[10, 20, 30]"
-    ></p-paginator>
   </div>
   <div *ngIf="productsRow" class="row row-item d-flex justify-content-center">
 
@@ -45,7 +40,7 @@
     >
     </app-product-item-row>
   </div>
-  <mat-paginator #paginator [length]="productArray.length" [pageSize]="9" (page)="onPageChange($event)" aria-label="Select page">
+  <mat-paginator #paginator class="paginator" [length]="productArray.length" [pageSize]="9" (page)="onPageChange($event)" aria-label="Select page">
   </mat-paginator>  
 </div>
 <app-footer></app-footer>

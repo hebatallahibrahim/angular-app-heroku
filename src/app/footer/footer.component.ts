@@ -7,7 +7,9 @@ import { contactUsService } from '../Service/contact-us.service';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  
+  subscribedAlert=false;
+  failedAlert=false;
+
   formSubscription: FormGroup = new FormGroup({
     Email: new FormControl(null)  
   });
@@ -23,13 +25,17 @@ export class FooterComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'success') {
-      
+          this.subscribedAlert=true;
+          this.formSubscription.reset();
+          setTimeout(() => (this.subscribedAlert = false), 3500);
         } else {
           this.err = 'not valid data';
         }
       },
       (err) => {
         console.log(err);
+        this.failedAlert=true;
+        setTimeout(() => (this.failedAlert = false), 3000);
       }
     );
   }

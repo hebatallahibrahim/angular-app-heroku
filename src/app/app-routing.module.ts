@@ -38,6 +38,7 @@ import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/upda
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
+import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'dashbord', component: DashboardComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
+  { path: 'cancel-subscription', component: CancelSubscriptionComponent },
   { path: 'check-out', component: CheckOutComponent },
   { path: 'profile/:id', component: ProfileComponent },
   { path: 'test', component: TestComponent },
