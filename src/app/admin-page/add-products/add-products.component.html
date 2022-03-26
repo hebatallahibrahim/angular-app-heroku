@@ -39,7 +39,7 @@
                       formRegistration.get('name')?.touched
                     "
                     class="m-3 p-2 text-danger"
-                    >name should be more than 2 char
+                    >Description should be more than 2 char
                   </span>
                 </div>
                 <div class="form-group mb-4">
@@ -301,14 +301,7 @@
                       (change)="onFileChange($event)"
                     />
                   </div>
-                  <span
-                    *ngIf="
-                      formRegistration.get('file')?.invalid &&
-                      formRegistration.get('file')?.touched
-                    "
-                    class="m-3 p-2 text-danger"
-                    >upload valid image
-                  </span>
+                 
                 </div>
 
                 <div

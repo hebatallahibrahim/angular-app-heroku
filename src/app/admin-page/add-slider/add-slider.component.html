@@ -86,14 +86,7 @@
                       (change)="onFileChange($event)">
           
                 </div>
-                <span
-                *ngIf="
-                  formRegistration.get('file')?.invalid &&
-                  formRegistration.get('file')?.touched
-                "
-                class="m-3 p-2 text-danger"
-                >upload valid image
-              </span>
+             
               </div>
           
               <div class="col-12 d-flex justify-content-center align-items-center">

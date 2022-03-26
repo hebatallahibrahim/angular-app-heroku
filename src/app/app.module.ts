@@ -92,6 +92,7 @@ import { MessageModule } from 'primeng/message';
 import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
 import { ProductItemRowComponent } from './product-list/product-item-row/product-item-row.component';
+import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
 
 @NgModule({
   declarations: [
@@ -147,6 +148,7 @@ import { ProductItemRowComponent } from './product-list/product-item-row/product
     AddUsersComponent,
     AddSliderComponent,
     ProductItemRowComponent,
+    AdminRegistrationComponent,
   ],
   imports: [
     BrowserModule,

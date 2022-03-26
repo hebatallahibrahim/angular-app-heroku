@@ -155,7 +155,13 @@
     max-width: 470px;
   }
   
-  
+  .show-alert{
+    display: block;
+  }
+  .hide-alert{
+    display: none;
+  }
+    
   
   
   

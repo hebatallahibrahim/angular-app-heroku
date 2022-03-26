@@ -1,0 +1,166 @@
+<app-navnar></app-navnar>
+<div class="container mt-5">
+    <!-- row -->
+<div class="row tm-content-row d-flex justify-content-center align-items-center">
+<div class="col-12 tm-block-col tm-col-account-settings ">
+    <div class="tm-bg-primary-dark tm-block tm-block-settings">
+      <h2 class="tm-block-title"> Admin Registration</h2>
+      <form
+      [formGroup]="formRegistration"
+      (ngSubmit)="getFormData(formRegistration)"
+       action="#" method="post"
+    >
+      <div class="form-group mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input
+          [class.is-invalid]="
+            formRegistration.get('Name')?.invalid &&
+            formRegistration.get('Name')?.touched
+          "
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="Name"
+        />
+        <span
+          *ngIf="
+            formRegistration.get('Name')?.invalid &&
+            formRegistration.get('Name')?.touched
+          "
+          class="m-3 p-2 text-danger"
+          >name should be more than 4 char
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input
+          [class.is-invalid]="
+            formRegistration.get('Email')?.invalid &&
+            formRegistration.get('Email')?.touched
+          "
+          type="email"
+          class="form-control"
+          id="Email"
+          formControlName="Email"
+        />
+        <span
+          *ngIf="
+            formRegistration.get('Email')?.invalid &&
+            formRegistration.get('Email')?.touched
+          "
+          class="m-3 p-2 text-danger"
+          >please enter valide email
+        </span>
+      </div>
+      <div class="form-group mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input
+          [class.is-invalid]="
+            formRegistration.get('Password')?.invalid &&
+            formRegistration.get('Password')?.touched
+          "
+          type="password"
+          class="form-control"
+          id="Password"
+          formControlName="Password"
+        />
+        <span
+          *ngIf="
+            formRegistration.get('Password')?.invalid &&
+            formRegistration.get('Password')?.touched
+          "
+          class="m-3 p-2 text-danger"
+          >password must start with capital char
+        </span>
+      </div>
+
+      <div class="form-group mb-3">
+        <label for="Phone" class="form-label">Phone</label>
+        <input
+          [class.is-invalid]="
+            formRegistration.get('Phone')?.invalid &&
+            formRegistration.get('Phone')?.touched
+          "
+          type="text"
+          class="form-control"
+          id="Phone"
+          formControlName="Phone"
+        />
+        <span
+          *ngIf="
+            formRegistration.get('Phone')?.invalid &&
+            formRegistration.get('Phone')?.touched
+          "
+          class="m-3 p-2 text-danger"
+          >please enter valid phone number</span
+        >
+      </div>
+      <div class="form-group mb-3">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="Address" class="form-label">Address</label>
+          <input
+            [class.is-invalid]="
+              formRegistration.get('Address')?.invalid &&
+              formRegistration.get('Address')?.touched
+            "
+            type="text"
+            class="form-control"
+            id="Address"
+            formControlName="Address"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="City" class="form-label">City</label>
+          <input
+            [class.is-invalid]="
+              formRegistration.get('City')?.invalid &&
+              formRegistration.get('City')?.touched
+            "
+            type="text"
+            class="form-control"
+            id="City"
+            formControlName="City"
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="Region" class="form-label">Region</label>
+          <input
+            [class.is-invalid]="
+              formRegistration.get('Region')?.invalid &&
+              formRegistration.get('Region')?.touched
+            "
+            type="text"
+            class="form-control"
+            id="Region"
+            formControlName="Region"
+          />
+        </div>
+      </div>
+      </div>
+      <div class="container">    
+        <div class="row">
+            <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
+            class="alert alert-danger col-12 m-3 p-3 " role="alert">
+            Please Enter Valid Data
+        </div>
+        <div [ngClass]="{'show-alert':SuccessAlertShow,'hide-alert':!SuccessAlertShow}" 
+        class="alert alert-success col-12 m-3 p-3" role="alert">
+        Product Added Successfully 
+    </div>
+    <div class="d-flex justify-content-center align-items-center" >
+          <button type="submit" class="btn btn-primary btn-block text-uppercase" 
+          
+         >
+            Add </button>
+        </div>
+        
+        </div>
+      </div>
+   
+    </form>
+    </div>
+  </div>
+</div>
+</div>

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { UserData } from 'userData';
+import {AdminData} from './DataOfAdmin'
 // import {AdminData}from 'adminData'
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class AuthService {
       data
     ); //wating api
   }
-
+ 
   signin(data: any): Observable<any> {
     return this._HttpClient.post(
       'https://route-egypt-api.herokuapp.com/signin',
@@ -35,12 +36,29 @@ export class AuthService {
     );
     this.UserData.next(users);
   }
+///////////////////////////////admin//////////////////////////
 
-  //admin auth
-  //  AdminData= new BehaviorSubject(null);
-  //  adminSignIn(data: any):Observable<any>
-  //  {
-  //   return this._HttpClient.post('',data);// waiting api
-
-  //  }
+adminSignUp(data: any): Observable<any> {
+  return this._HttpClient.post(
+    ' http://127.0.0.1:8000/api/signup',
+    data
+  );
+}
+adminLogIn(data: any): Observable<any> {
+  return this._HttpClient.post('http://127.0.0.1:8000/api/login',data);
+}
+adminData=new BehaviorSubject(null);
+saveAdminObjectData(user: any, access_token: any) 
+{
+  let Admin: any = new AdminData(
+    user.Name,
+    user.Email,
+    user.Phone,
+    user.Address,
+    user.City,
+    user.Region,
+    access_token
+  )
+  this.adminData.next(Admin);
+}
 }

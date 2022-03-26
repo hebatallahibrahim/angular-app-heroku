@@ -51,8 +51,7 @@ export class AddProductsComponent implements OnInit {
       Validators.maxLength(20),
     ]),
     productsize:  new FormControl(null, [
-      Validators.required,
-      Validators.pattern("^[0-9]*$"),
+      Validators.required
     ]),
     color:new FormControl(null, [
       Validators.required,

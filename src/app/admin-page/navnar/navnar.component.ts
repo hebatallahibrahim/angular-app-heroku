@@ -2,20 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { contactUs } from 'src/app/Model/contactUs.model';
+import { AuthService } from '../../auth.service';
+
 @Component({
   selector: 'app-navnar',
   templateUrl: './navnar.component.html',
   styleUrls: ['./navnar.component.css'],
 })
 export class NavnarComponent implements OnInit {
+  islogin : boolean=false;
   MessagesArray: any;
   constructor(
     private _service: adminservice,
-    private router: Router,
-    private activateroute: ActivatedRoute
-  ) {}
+    public _auth: AuthService,
+    public _Router: Router
+  
+  ) {
+    _auth.adminData.subscribe(data=>
+      {
+        console.log()
+        if(data)
+       {
+         this.islogin=true;
+       }
+      else
+      {
+         this.islogin=false;
+      }
+      })
+   
+  }
 
   ngOnInit(): void {
     this._service.messagesHasBeenChanged.subscribe((res: any) => {
