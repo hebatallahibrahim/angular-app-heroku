@@ -19,10 +19,10 @@
     
     <div class="col-lg-6 col-md-5 col-12">
       <h1>{{ productDetails.name }}</h1>
-      <h3 [ngClass]="{'show':!productDetails.discount_price,'hide':productDetails.discount_price}">
+      <h3 [ngClass]="{'show':!productDetails.discount_price || (+productDetails.discount_price)==0,'hide':productDetails.discount_price && (+productDetails.discount_price)!=0}">
         {{calculatePrice(productDetails)}} EGP
       </h3>
-      <h3 [ngClass]="{'show':productDetails.discount_price,'hide':!productDetails.discount_price}">
+      <h3 [ngClass]="{'show':productDetails.discount_price && (+productDetails.discount_price)!=0,'hide':!productDetails.discount_price || (+productDetails.discount_price)==0}">
         <del>{{ productDetails.selling_price }}</del> {{calculatePrice(productDetails)}} EGP
       </h3>
       <button class="cart-button btn mb-4" routerLink="/cart">

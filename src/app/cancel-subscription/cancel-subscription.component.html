@@ -1,0 +1,59 @@
+<app-header></app-header>
+
+<div
+  class="container-contact100 d-flex justify-content-center align-items-center"
+>
+  <div
+    class="wrap-contact100 row shadow-lg rounded d-flex justify-content-center align-items-center m-5"
+  >
+    <div class="form-content col-12 p-5">
+      <!-- alert -->
+    
+      <form
+        [formGroup]="formUnsubscription"
+        (ngSubmit)="getFormData(formUnsubscription)"
+        action="#"
+        method="post"
+      >
+        <span class="contact100-form-title"> Please Write Your Email to Cancel its Subscription </span>
+        <div class="row">
+          <div class="wrap-input100">
+            <input
+              class="input100"
+              formControlName="email"
+              type="text"
+              placeholder="Email"
+            />
+            <span
+            *ngIf="
+              formUnsubscription.get('email')?.invalid &&
+              formUnsubscription.get('email')?.touched
+            "
+            class="m-3 p-2 text-danger"
+            >please enter valid email
+          </span>
+            <span class="focus-input100"></span>
+          </div>
+          <div class="container-fluid">    
+            <div class="row">
+              <div *ngIf="SuccessAlertShow" class="alert alert-success col-12 my-3 p-3" role="alert">
+                 Done
+              </div>
+              <div *ngIf="dangerAlertShow" class="alert alert-danger col-12 my-3 p-3" role="alert">
+                The Email you Entered is not valid
+             </div>
+            <div class="container-contact100-form-btn pt-4" >
+              <button type="submit" class="btn contact100-form-btn btn-block text-uppercase" 
+             >
+                Confirm </button>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

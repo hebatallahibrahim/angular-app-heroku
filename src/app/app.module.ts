@@ -93,6 +93,7 @@ import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
 import { ProductItemRowComponent } from './product-list/product-item-row/product-item-row.component';
 import { PaginatorModule } from 'primeng/paginator';
+import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -147,6 +148,7 @@ import { PaginatorModule } from 'primeng/paginator';
     AddUsersComponent,
     AddSliderComponent,
     ProductItemRowComponent,
+    CancelSubscriptionComponent,
   ],
   imports: [
     BrowserModule,

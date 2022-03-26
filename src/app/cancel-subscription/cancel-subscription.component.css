@@ -1,0 +1,31 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    
+}
+
+input{
+    margin-top: 2%;
+    outline: 1px solid #cb985d;
+    border: 1px solid rgb(198, 198, 204);
+    border-radius: 5px;
+    padding:1%;
+}
+.wrap-contact100 {
+    width: 70%;
+    background: #fff;
+    border-radius: 5%;
+    overflow: hidden;
+    
+}
+.btn{
+    background-color: #cb985d;
+    color: black;
+    padding: 1%;
+}
+.btn:hover{
+    background-color: #876445;
+    color: white;
+    padding: 1%;
+}

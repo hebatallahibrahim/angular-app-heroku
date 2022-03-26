@@ -75,8 +75,6 @@ export class ProductListComponent implements OnInit {
     this.paginator.firstPage();
     for (let i = 0; i < this.likedProducts.length; i++) {
       if (this.likedProducts[i].id == event.product_id) {
-        console.log(event.product_id);
-        console.log(event.heart);
         this.likedProducts[i].heart = event.heart;
       }
     }
@@ -230,7 +228,6 @@ export class ProductListComponent implements OnInit {
       }
     }
     if (this.nameSearch != '') {
-      console.log(this.nameSearch);
       this.productArray = this.productArray.filter(
         (x) =>
           x.name.trim().toLowerCase().search(this.nameSearch) != -1 ||

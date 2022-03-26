@@ -46,8 +46,10 @@
     >
     </app-product-item-row>
   </div>
+
   <mat-paginator
     #paginator
+    class="paginator"
     [length]="productArray.length"
     [pageSize]="9"
     (page)="onPageChange($event)"
