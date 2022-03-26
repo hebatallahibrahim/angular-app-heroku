@@ -52,6 +52,23 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.userID = 1;
 
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append('user_id', this.userID);
+    this.productCartService.getCart(queryParams).subscribe({
+      next: (res: any) => {
+        this.addedProducts = res.Cart;
+        console.log(this.addedProducts);
+        if (this.addedProducts.length != 0) {
+          this.cartCounter = this.addedProducts.length;
+          console.log(this.cartCounter);
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {},
+    });
+
     this._HomeService.getAllCategories().subscribe({
       next: (res) => {
         this.categoryArray = res.category;
@@ -71,24 +88,27 @@ export class HeaderComponent implements OnInit {
     return this.productCartService.totalPrice();
   }
   totalAmountNow(): any {
+    console.log(this.addedProducts);
+
     return this.productCartService.getTotalAmount();
   }
   openCart() {
     this.visibleSidebar2 = true;
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    return this.productCartService.getCart(queryParams).subscribe({
-      next: (res: any) => {
-        this.addedProducts = res.Cart;
-        if (this.addedProducts.length != 0) {
-          this.cartCounter = true;
-        }
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-      complete: () => {},
-    });
+    // let queryParams = new HttpParams();
+    // queryParams = queryParams.append('user_id', this.userID);
+    // return this.productCartService.getCart(queryParams).subscribe({
+    //   next: (res: any) => {
+    //     this.addedProducts = res.Cart;
+    //     console.log(this.addedProducts);
+    //     if (this.addedProducts.length != 0) {
+    //       this.cartCounter = true;
+    //     }
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err);
+    //   },
+    //   complete: () => {},
+    // });
   }
   removeItem(item: any) {
     this.addedProducts.map((d: any, index: any) => {

@@ -154,11 +154,11 @@
                   class="shadow-4"
                 />
               </td>
-              <td>{{ product.selling_price }}</td>
-              <td>{{ product.status }}</td>
+              <td>{{ product.price }}</td>
+              <td>{{ product.count }}</td>
               <td>
                 <p-rating
-                  [ngModel]="product.avgRate"
+                  [ngModel]="product.avg_rate"
                   [readonly]="true"
                   [cancel]="false"
                 ></p-rating>
