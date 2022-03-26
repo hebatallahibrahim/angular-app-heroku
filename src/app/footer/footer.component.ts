@@ -9,6 +9,7 @@ import { contactUsService } from '../Service/contact-us.service';
 export class FooterComponent implements OnInit {
   subscribedAlert=false;
   failedAlert=false;
+  existedEmailAlert=false;
 
   formSubscription: FormGroup = new FormGroup({
     Email: new FormControl(null)  
@@ -28,7 +29,12 @@ export class FooterComponent implements OnInit {
           this.subscribedAlert=true;
           this.formSubscription.reset();
           setTimeout(() => (this.subscribedAlert = false), 3500);
-        } else {
+        } else if(data.message == 'email existed') {
+          this.existedEmailAlert=true;
+          this.formSubscription.reset();
+          setTimeout(() => (this.existedEmailAlert = false), 3500);
+        }
+        else {
           this.err = 'not valid data';
         }
       },
