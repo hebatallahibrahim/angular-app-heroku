@@ -34,13 +34,12 @@ export class ProductItemComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-  onItemAdded() {
-    // this.CartService.addToCart(this.productItem);
-    this.productCartService.addProduct(this.productItem);
+  onItemAdded(item: any) {
+    // this.productCartService.addProduct(this.productItem);
+    const postData = { product_id: item.id, user_id: this.userID };
+    this.productCartService.postCart(postData);
   }
-  // addToCart(item: Product) {
-  //   this.productCartService.addProduct(item);
-  // }
+
   goTodetails(productItem: any) {
     this.router.navigate(['/product-details', productItem.id]); // send id to url
   }
@@ -91,9 +90,12 @@ export class ProductItemComponent implements OnInit {
           }
         );
     }
-    if(this.router.url=='/product-list'){
-      console.log("hi");
-    this.LikedProductEvent.emit({product_id:this.productItem.id,heart:this.item_hearted});
+    if (this.router.url == '/product-list') {
+      console.log('hi');
+      this.LikedProductEvent.emit({
+        product_id: this.productItem.id,
+        heart: this.item_hearted,
+      });
     }
   }
 

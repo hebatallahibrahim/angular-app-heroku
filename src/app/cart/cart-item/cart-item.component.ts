@@ -15,11 +15,8 @@ export class CartItemComponent implements OnInit {
   cartitem!: Product;
   counterValue: number = 0;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-  constructor(
-    private productCartService: ProductCartService
-  ) {}
+  constructor(private productCartService: ProductCartService) {}
   ngOnInit(): void {
-   
     this.cartList = this.productCartService.getProducts();
   }
   removeCartItem(item: any) {
@@ -29,6 +26,8 @@ export class CartItemComponent implements OnInit {
   }
   changeItemSitus(product: Product, count: any) {
     product.status = count;
+    console.log(count);
+
     this.productCartService.onStaitusChang(product);
     this.updateItems.emit();
   }

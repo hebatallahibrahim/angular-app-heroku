@@ -605,7 +605,6 @@ export class ProductListComponent implements OnInit {
               heart: false,
             });
           }
-          console.log('like', this.likedProducts);
         }
 
         this.mainLikedProducts = [...this.likedProducts];

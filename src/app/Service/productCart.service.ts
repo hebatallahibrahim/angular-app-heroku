@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Product } from '../Model/product.model';
-
 
 @Injectable({ providedIn: 'root' })
 export class ProductCartService {
@@ -15,7 +14,7 @@ export class ProductCartService {
   readonly Products$ = this._ProductsSource.asObservable();
 
   constructor(private http: HttpClient) {}
-
+  userID = 1;
   // Get last value without subscribing to the Products$ observable (synchronously).
   getProducts(): Product[] {
     return this._ProductsSource.getValue();
@@ -35,14 +34,16 @@ export class ProductCartService {
     }
   }
   onStaitusChang(product: any) {
-    if (this.getProducts().includes(product)) {
-      this._ProductsSource.next({ ...this._ProductsSource.value, ...product });
+    const arr = this.getProducts();
+    if (arr.includes(product)) {
+      const index = arr.findIndex((i) => i.id == product.id);
+      arr[index] = product;
+      this._ProductsSource.next(arr);
     }
   }
 
   removeProduct(product: Product): void {
     const Products = this.getProducts().filter((p) => p.id !== product.id);
-    this._setProducts(Products);
   }
 
   adoptProduct(product: Product): void {
@@ -57,21 +58,44 @@ export class ProductCartService {
   totalPrice() {
     let totalPrice = 0;
     let productList = this.getProducts();
+    console.log(this.getProducts());
     productList.forEach((element: Product) => {
       totalPrice += element.status * element.selling_price;
     });
-    // this.cartHasBeenChanged.next(this.cartDetalis);
     return totalPrice;
   }
-  postCart(product_id: any, postData: any) {
-    this.http.post(`http://127.0.0.1:8000/api/cart/${product_id}`, postData);
+  postCart(postData: any) {
+    this.http.post(`http://127.0.0.1:8000/api/cart`, postData).subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
+    });
   }
-  getCart(queryParams: any) {
-    this.http.get(`http://127.0.0.1:8000/api/user/cart`, {
+  getCart(queryParams: any): Observable<any> {
+    return this.http.get(`http://127.0.0.1:8000/api/user/cart`, {
       params: queryParams,
     });
   }
-  deleteCartItem(product_id: any) {
-    this.http.delete(`http://127.0.0.1:8000/api/cart/${product_id}`);
+  deleteCartItem(product_id: any, queryParams: any) {
+    this.http
+      .delete(`http://127.0.0.1:8000/api/cart/${product_id}`, {
+        params: queryParams,
+      })
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {},
+      });
   }
+}
+function params(arg0: string, params: any, queryParams: any) {
+  throw new Error('Function not implemented.');
 }

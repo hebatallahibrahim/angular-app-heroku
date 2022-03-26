@@ -163,12 +163,12 @@
                   [cancel]="false"
                 ></p-rating>
               </td>
-              <td><i class="pi pi-trash"></i></td>
+              <td><i (click)="removeItem(product)" class="pi pi-trash"></i></td>
             </tr>
           </ng-template>
           <ng-template pTemplate="summary">
             <div class="flex align-items-between justify-content-between">
-              <strong>Total: {{ calculateTotal() }} </strong>
+              <strong>Total: {{ 0 }} </strong>
             </div>
           </ng-template>
         </p-table>
