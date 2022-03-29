@@ -583,7 +583,6 @@ export class ProductListComponent implements OnInit {
     queryParams = queryParams.append('user_id', this.userID);
     this.wishlistService.getWishlistProducts(queryParams).subscribe(
       (res) => {
-        console.log(res);
         for (let i = 0; i < this.productArray.length; i++) {
           if (
             res.products.some(

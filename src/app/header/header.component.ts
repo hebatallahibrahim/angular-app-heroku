@@ -3,13 +3,13 @@ import { NgbDropdownConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from '../Model/product.model';
 import { HomeService } from 'src/app/Service/home.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CartService } from './../Service/cart.service';
 import { SearchService } from './../Service/search.service';
 import { Subject, Observable } from 'rxjs';
 import { PrimeNGConfig } from 'primeng/api';
 import { ChangeDetectionStrategy } from '@angular/compiler';
 import { ProductCartService } from '../Service/productCart.service';
 import { HttpParams } from '@angular/common/http';
+import { CartService } from 'src/app/Service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -22,15 +22,16 @@ export class HeaderComponent implements OnInit {
   searchTerm: string = '';
   accountDropdown = false;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-  addedProducts: any[] = [];
+  addedProducts: any = [];
   categoryArray: any[] = [];
   categoryId: any;
   categoryName: any;
-  cartCounter: any = false;
+  cartCounter: any = 0;
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
   totalAmount: any = 0;
-  userID!: number;
+  userID = 1;
+
   @Output() searchEvent = new EventEmitter<any>();
 
   constructor(
@@ -38,7 +39,8 @@ export class HeaderComponent implements OnInit {
     public _HomeService: HomeService,
     public searchService: SearchService,
     public _Router: Router,
-    private productCartService: ProductCartService
+    private productCartService: ProductCartService,
+    private cartService: CartService
   ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
@@ -50,21 +52,30 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userID = 1;
+    console.log(this.cartService.getApiCart());
 
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    this.productCartService.getCart(queryParams).subscribe({
-      next: (res: any) => {
-        this.addedProducts = res.Cart;
-        console.log(this.addedProducts);
-        if (this.addedProducts.length != 0) {
-          this.cartCounter = this.addedProducts.length;
-          console.log(this.cartCounter);
-        }
+    // this.cartService.cartHasBeenChanged.subscribe({
+    //   next: (res) => {
+    //     this.addedProducts = res;
+    //     console.log(res);
+
+    //     this.totalAmount = this.cartService.totalPriceCart();
+    //     this.cartService.counterChanged.subscribe({
+    //       next: (res) => {
+    //         this.cartCounter = res;
+    //         console.log(this.cartCounter);
+    //       },
+    //     });
+    //   },
+    // });
+
+    this.cartService.cartHasBeenChanged.subscribe({
+      next: (res) => {
+        console.log(res);
+        this.addedProducts = res;
       },
-      error: (err: any) => {
-        console.log(err);
+      error: (error) => {
+        console.log(error);
       },
       complete: () => {},
     });
@@ -80,6 +91,19 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  getCart() {
+    // let queryParams = new HttpParams();
+    // queryParams = queryParams.append('user_id', this.userID);
+    // this.productCartService.getCart(queryParams).subscribe((res: any) => {
+    //   this.categoryId = res.Cart;
+    //   if (this.categoryId) {
+    //     this.categoryId.forEach((item: any) => {
+    //       this.cartCounter += item['count'];
+    //       console.log(this.cartCounter);
+    //     });
+    //   }
+    // });
+  }
   dropdownOpen() {
     this.accountDropdown = true;
   }
@@ -89,7 +113,6 @@ export class HeaderComponent implements OnInit {
   }
   totalAmountNow(): any {
     console.log(this.addedProducts);
-
     return this.productCartService.getTotalAmount();
   }
   openCart() {
@@ -111,12 +134,12 @@ export class HeaderComponent implements OnInit {
     // });
   }
   removeItem(item: any) {
-    this.addedProducts.map((d: any, index: any) => {
-      if (item.product_id == d.product_id) {
-        this.addedProducts.splice(index, 1);
-      }
-    });
-    this.productCartService.deleteCartItem(item.product_id, {
+    // this.addedProducts.map((d: any, index: any) => {
+    //   if (item.product_id == d.product_id) {
+    //     this.addedProducts.splice(index, 1);
+    //   }
+    // });
+    this.cartService.deleteCartItem(item, {
       user_id: this.userID,
     });
   }

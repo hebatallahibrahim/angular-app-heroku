@@ -70,7 +70,7 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cancel-subscription', component: CancelSubscriptionComponent },
   { path: 'check-out', component: CheckOutComponent },
-  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'test', component: TestComponent },
   { path: 'message', component: AllContactUsComponent },
   { path: 'contact-view/:postId', component: ViewContactsDataComponent },

@@ -17,11 +17,11 @@ export class CartItemComponent implements OnInit {
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   constructor(private productCartService: ProductCartService) {}
   ngOnInit(): void {
-    this.cartList = this.productCartService.getProducts();
+    // this.cartList = this.productCartService.getProducts();
   }
   removeCartItem(item: any) {
     this.productCartService.removeProduct(item);
-    this.cartList = this.productCartService.getProducts();
+    // this.cartList = this.productCartService.getProducts();
     this.updateItems.emit();
   }
   changeItemSitus(product: Product, count: any) {

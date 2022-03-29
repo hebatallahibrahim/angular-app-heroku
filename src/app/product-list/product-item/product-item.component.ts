@@ -3,13 +3,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/app/Model/product.model';
-import { CartService } from 'src/app/Service/cart.service';
+
 import { ProductListService } from 'src/app/Service/product-list.service';
 import { SearchService } from 'src/app/Service/search.service';
 import { environment } from 'src/environments/environment';
 import { ProductCartService } from './../../Service/productCart.service';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { CartService } from './../../Service/cart.service';
 
 @Component({
   selector: 'app-product-item',
@@ -30,14 +31,14 @@ export class ProductItemComponent implements OnInit {
     private modalService: NgbModal,
     private wishlistService: WishlistService,
     private router: Router,
-    private productCartService: ProductCartService
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {}
   onItemAdded(item: any) {
     // this.productCartService.addProduct(this.productItem);
     const postData = { product_id: item.id, user_id: this.userID };
-    this.productCartService.postCart(postData);
+    this.cartService.postCart(postData, item);
   }
 
   goTodetails(productItem: any) {

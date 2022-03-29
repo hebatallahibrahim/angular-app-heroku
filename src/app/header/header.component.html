@@ -154,7 +154,7 @@
                   class="shadow-4"
                 />
               </td>
-              <td>{{ product.price }}</td>
+              <td>{{ product.price - product.discount }}</td>
               <td>{{ product.count }}</td>
               <td>
                 <p-rating
@@ -168,7 +168,7 @@
           </ng-template>
           <ng-template pTemplate="summary">
             <div class="flex align-items-between justify-content-between">
-              <strong>Total: {{ 0 }} </strong>
+              <strong>Total: {{ totalAmount }} </strong>
             </div>
           </ng-template>
         </p-table>
@@ -194,7 +194,7 @@
         role="button"
         pBadge
         style="font-size: 2rem"
-        value="{{ totalAmountNow() }}"
+        value="{{ cartCounter }}"
         severity="danger"
       ></i>
     </div>
