@@ -17,12 +17,24 @@ export class PaymentComponent implements OnInit {
 
   checkMethod(){
     if(this.selectedValue=="cod"){
-      this._Router.navigate(['/check-out']);
+      var formData: any = new FormData();
+      formData.append('email', "nada@gmail.com");
+      formData.append('InvoiceValue',5);
+      this.paymentService.cashOnDelivery(formData).subscribe(
+        (data)=>{
+          this._Router.navigate(['/user-orders']);
+        },
+        (err)=>{
+          console.log(err);
+        }
+      );
+      
     }else if(this.selectedValue=="other"){
       var formData: any = new FormData();
       formData.append('CustomerName', "nada");
       formData.append('CustomerEmail', "nada@gmail.com");
       formData.append('InvoiceValue',5);
+      formData.append('CustomerMobile',"01150627811");
 
       this.paymentService.payByOtherMethods(formData).subscribe(
           (data) => {

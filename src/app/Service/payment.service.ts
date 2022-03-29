@@ -9,6 +9,12 @@ export class PaymentService {
 
   constructor(private _HttpClient: HttpClient) { }
 
+  cashOnDelivery(data:any):Observable<any>{
+    return this._HttpClient.post(
+      `http://127.0.0.1:8000/api/cash/order`,
+      data
+    );
+  }
   payByOtherMethods(data: any): Observable<any> {
     return this._HttpClient.post(
       `http://127.0.0.1:8000/api/pay`,

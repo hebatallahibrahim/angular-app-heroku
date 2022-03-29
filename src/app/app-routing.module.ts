@@ -39,6 +39,7 @@ import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -55,6 +56,7 @@ const routes: Routes = [
   { path: 'forgetPass', component: ForgetPasswordComponent },
   { path: 'cart', component: CartComponent }, // canActivate: [AuthGuard],
   { path: 'wishlist', component: WishlistComponent },
+  { path: 'user-orders', component:UserOrdersComponent},
   { path: 'payment', component: PaymentComponent },
   { path: 'admin', component: AdminPageComponent },
   { path: 'all-product', component: AllProductsComponent },
@@ -70,7 +72,7 @@ const routes: Routes = [
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cancel-subscription', component: CancelSubscriptionComponent },
   { path: 'check-out', component: CheckOutComponent },
-  { path: 'profile/:id', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'test', component: TestComponent },
   { path: 'message', component: AllContactUsComponent },
   { path: 'contact-view/:postId', component: ViewContactsDataComponent },

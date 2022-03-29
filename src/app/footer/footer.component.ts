@@ -10,6 +10,7 @@ export class FooterComponent implements OnInit {
   subscribedAlert=false;
   failedAlert=false;
   existedEmailAlert=false;
+  isLoading=false;
 
   formSubscription: FormGroup = new FormGroup({
     Email: new FormControl(null)  
@@ -19,12 +20,14 @@ export class FooterComponent implements OnInit {
 
   ngOnInit(): void {}
   getFormData(data: any) {
+    this.isLoading=true;
     var formData: any = new FormData();
     formData.append('email', data.get('Email').value);
 
     this.contactusService.subscribeToUpdates(formData).subscribe(
       (data) => {
         console.log(data);
+        this.isLoading=false;
         if (data.message == 'success') {
           this.subscribedAlert=true;
           this.formSubscription.reset();
@@ -39,6 +42,7 @@ export class FooterComponent implements OnInit {
         }
       },
       (err) => {
+        this.isLoading=false;
         console.log(err);
         this.failedAlert=true;
         setTimeout(() => (this.failedAlert = false), 3000);

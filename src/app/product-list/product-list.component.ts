@@ -37,6 +37,7 @@ export class ProductListComponent implements OnInit {
   productsGrid = true;
   count = 0;
   isVisible = false;
+  isFetching = false;
   @ViewChild('paginator') paginator!: MatPaginator;
 
   constructor(
@@ -51,8 +52,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.primengConfig.ripple = true;
+    this.isFetching=true;
     this.productListService.getAllProduct().subscribe(
       (result) => {
+        this.isFetching=false;
         this.productArray = result.products;
         this.productArray.forEach((a: any) => {
           Object.assign(a, { quantity: 1, totalPrice: a.selling_price });
