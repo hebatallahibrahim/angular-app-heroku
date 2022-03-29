@@ -49,3 +49,7 @@ i:hover{
   margin-top: 3%;
   font-weight: bold;
 }
+.spinner{
+  position: relative;
+  left:45%;
+}

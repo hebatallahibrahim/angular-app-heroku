@@ -29,3 +29,17 @@ a:hover
       width:50%;
       margin: 0 auto;
   }
+  .row{
+      position: relative;
+  }
+  .spinner{
+      position: absolute;
+      top:0%;
+      left:40%;
+  }
+  .show{
+      display:block;
+  }
+  .hide{
+      display:none;
+  }

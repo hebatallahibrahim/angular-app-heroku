@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AddCategoryComponent implements OnInit {
   dangerAlertShow=false;
   SuccessAlertShow=false;
+  isLoading=false;
   formRegistration: FormGroup = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
@@ -52,6 +53,7 @@ export class AddCategoryComponent implements OnInit {
 
   }
   getFormData(data: any) {
+    this.isLoading=true;
     console.log(data);
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
@@ -61,6 +63,7 @@ export class AddCategoryComponent implements OnInit {
     this._AdminService.addCategory(formData).subscribe(
       (data) => {
         console.log(data);
+        this.isLoading=false;
         if (data.message == 'success') {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
@@ -71,6 +74,7 @@ export class AddCategoryComponent implements OnInit {
         }
       },
       (err) => {
+        this.isLoading=false;
         this.SuccessAlertShow=false;
         this.dangerAlertShow=true;
         console.log(err);

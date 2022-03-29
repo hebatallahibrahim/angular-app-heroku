@@ -11,8 +11,6 @@
 .card
 {
     width: 15rem; 
-    height: 20rem;
-  
 }
 .favourits
 {
@@ -34,4 +32,30 @@ input
 {
     outline: none;
     border:none;
+    font-weight: bold;
+}
+.btn{
+    background-color: #876445;
+    color: white;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    border: none;
+}
+.btn:hover {
+    background-color: #cb985d;
+    color: white;
+    cursor: pointer;
+}
+.card-shadow{
+    box-shadow: 1px 1px 25px #876445;
+}
+.cart{
+    background-color: #876445;
+}
+.cart:hover {
+    background-color: #cb985d;
+    cursor: pointer;
+}
+a{
+    text-decoration: none;
 }

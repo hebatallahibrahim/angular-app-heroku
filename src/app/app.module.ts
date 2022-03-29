@@ -94,6 +94,8 @@ import { AddSliderComponent } from './admin-page/add-slider/add-slider.component
 import { ProductItemRowComponent } from './product-list/product-item-row/product-item-row.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,6 +151,7 @@ import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscr
     AddSliderComponent,
     ProductItemRowComponent,
     CancelSubscriptionComponent,
+    UserOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -189,6 +192,7 @@ import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscr
     MessagesModule,
     MessageModule,
     PaginatorModule,
+    ProgressSpinnerModule
   ],
   providers: [
     ProductListService,

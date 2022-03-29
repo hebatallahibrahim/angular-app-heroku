@@ -26,6 +26,7 @@
   >
     Wishlist Updated
   </div>
+  <p-progressSpinner class="spinner" *ngIf="isFetching"></p-progressSpinner>
   <div *ngIf="productsGrid" class="row row-item d-flex justify-content-center">
     <app-product-item
       (LikedProductEvent)="likeProduct($event)"

@@ -70,7 +70,7 @@
             
              
              
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload spinner-parent" >
                 <div class="form-group">
 
                   <label class="mb-3" for="file">UPLOAD CATEGORY IMAGE</label>
@@ -94,8 +94,9 @@
                 class="m-3 p-2 text-danger"
                 >upload valid image
               </span>
+              <p-progressSpinner class="spinner" *ngIf="isLoading"></p-progressSpinner>
               </div>
-          
+      
               <div class="col-12 d-flex justify-content-center align-items-center">
                 <div class="row">
                   <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
