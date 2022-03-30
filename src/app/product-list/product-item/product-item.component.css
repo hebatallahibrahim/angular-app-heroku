@@ -27,8 +27,8 @@
   transform: scale(1.1);
   color: red;
 }
-.love-red{
-  color:red;
+.love-red {
+  color: red;
 }
 .link-item:hover {
   color: #876445;
@@ -43,9 +43,13 @@
   background-color: #cb985d;
   color: black;
 }
-.show{
-  display:block;
+.show {
+  display: block;
 }
-.hide{
-  display:none;
+.hide {
+  display: none;
+}
+.btn-hover:hover {
+  background-color: #cb985d;
+  color: white;
 }

@@ -10,14 +10,48 @@ import { Product } from './../../Model/product.model';
 })
 export class CartItemComponent implements OnInit {
   cartList: any[] = [];
+  addedProducts: any = [];
+  cartCounter: any = 0;
+  totalAmount: any = 0;
   @Output() updateItems = new EventEmitter<any>();
   value20: number = 1;
   cartitem!: Product;
   counterValue: number = 0;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-  constructor(private productCartService: ProductCartService) {}
+  constructor(
+    private productCartService: ProductCartService,
+    private cartService: CartService
+  ) {}
   ngOnInit(): void {
     // this.cartList = this.productCartService.getProducts();
+    this.cartService.getApiCart();
+    this.cartService.cartHasBeenChanged.subscribe({
+      next: (res) => {
+        console.log(res);
+        this.addedProducts = res;
+        let counter = 0,
+          amount = 0,
+          lastprice = 0,
+          total = 0;
+        this.addedProducts.forEach((element: any) => {
+          counter += element.count;
+          if (element.discount || element.count++) {
+            lastprice = element.price - element.discount;
+            amount = lastprice * element.count;
+            total += amount;
+          } else {
+            amount = element.price * element.count;
+            total += amount;
+          }
+        });
+        this.cartCounter = counter;
+        this.totalAmount = total;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
   }
   removeCartItem(item: any) {
     this.productCartService.removeProduct(item);

@@ -71,7 +71,7 @@
     ></button>
   </div>
   <div class="modal-body">
-    <div class="card mb-3" style="max-width: 540px">
+    <div class="card mb-3 border border-white" style="max-width: 540px">
       <div class="row g-0">
         <div class="col-md-4">
           <img
@@ -108,9 +108,12 @@
             <p class="card-text">
               <small class="text-muted">{{ productItem.short_desc }}</small>
               <br />
-              <small class="text-muted">{{ productItem.product_size }}</small
+              <small class="text-muted"
+                >Size: {{ productItem.product_size }}</small
               ><br />
-              <small class="text-muted">{{ productItem.product_size }}</small>
+              <small class="text-muted"
+                >In Stock: {{ productItem.product_qty }}</small
+              >
             </p>
           </div>
         </div>
@@ -119,12 +122,18 @@
   </div>
   <div class="modal-footer">
     <button
-      routerLink="/cart"
       type="button"
-      class="btn btn-outline-dark"
-      (click)="modal.close('Save click')"
+      class="btn-hover btn btn-outline-dark me-2"
+      (click)="onItemAdded(productItem)"
     >
       Add to cart
+    </button>
+    <button
+      type="button"
+      class="btn-hover btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Close
     </button>
   </div>
 </ng-template>

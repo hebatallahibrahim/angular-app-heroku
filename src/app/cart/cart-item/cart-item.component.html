@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of cartList">
+    <tr *ngFor="let item of addedProducts">
       <td>
         <figure class="itemside">
           <div class="aside">
@@ -32,7 +32,7 @@
         <div class="field col-12 md:col-3">
           <label for="{{ item.id }}"></label>
           <p-inputNumber
-            [(ngModel)]="item.status"
+            [(ngModel)]="item.count"
             (onInput)="changeItemSitus(item, $event.value)"
             id="{{ item.id }}"
             mode="decimal"
@@ -48,7 +48,7 @@
       <td>
         <div class="price-wrap">
           <var class="price pt-2">{{
-            item.selling_price | currency: "EGP"
+            item.price - item.discount | currency: "EGP"
           }}</var>
           <!-- <small class="text-muted">{{ totalAmount }} </small> -->
         </div>

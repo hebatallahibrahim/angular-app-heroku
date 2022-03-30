@@ -90,10 +90,9 @@ export class CartService {
               console.log(element);
               if (element.product_id == product.id) {
                 console.log('incremt');
+                // element.count++;
+                // console.log(element.count);
                 this.cartHasBeenChanged.next(this.addedProducts);
-                element.count++;
-                this.cartCounter = element.count;
-                console.log(element.count);
               }
             });
             console.log('increament');
@@ -122,6 +121,8 @@ export class CartService {
           this.addedProducts.map((d: any, index: any) => {
             if (product.product_id == d.product_id) {
               this.addedProducts.splice(index, 1);
+              console.log(d);
+              console.log(index);
             }
           });
           this.cartHasBeenChanged.next(this.addedProducts);

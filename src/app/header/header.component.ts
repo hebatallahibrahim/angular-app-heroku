@@ -27,9 +27,9 @@ export class HeaderComponent implements OnInit {
   categoryId: any;
   categoryName: any;
   cartCounter: any = 0;
+  totalAmount: any = 0;
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
-  totalAmount: any = 0;
   userID = 1;
 
   @Output() searchEvent = new EventEmitter<any>();
@@ -52,27 +52,28 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.cartService.getApiCart());
-
-    // this.cartService.cartHasBeenChanged.subscribe({
-    //   next: (res) => {
-    //     this.addedProducts = res;
-    //     console.log(res);
-
-    //     this.totalAmount = this.cartService.totalPriceCart();
-    //     this.cartService.counterChanged.subscribe({
-    //       next: (res) => {
-    //         this.cartCounter = res;
-    //         console.log(this.cartCounter);
-    //       },
-    //     });
-    //   },
-    // });
-
+    this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
         console.log(res);
         this.addedProducts = res;
+        let counter = 0,
+          amount = 0,
+          lastprice = 0,
+          total = 0;
+        this.addedProducts.forEach((element: any) => {
+          counter += element.count;
+          if (element.discount || element.count++) {
+            lastprice = element.price - element.discount;
+            amount = lastprice * element.count;
+            total += amount;
+          } else {
+            amount = element.price * element.count;
+            total += amount;
+          }
+        });
+        this.cartCounter = counter;
+        this.totalAmount = total;
       },
       error: (error) => {
         console.log(error);
