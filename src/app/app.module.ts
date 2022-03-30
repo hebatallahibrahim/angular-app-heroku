@@ -96,6 +96,8 @@ import { PaginatorModule } from 'primeng/paginator';
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -152,6 +154,7 @@ import { UserOrdersComponent } from './user-orders/user-orders.component';
     ProductItemRowComponent,
     CancelSubscriptionComponent,
     UserOrdersComponent,
+    AdminRegistrationComponent,
   ],
   imports: [
     BrowserModule,

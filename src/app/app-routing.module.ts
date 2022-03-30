@@ -38,8 +38,13 @@ import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/upda
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
+
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+
+import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
+import { AdminAuthGuard } from './admin-auth.guard';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -58,7 +63,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'user-orders', component:UserOrdersComponent},
   { path: 'payment', component: PaymentComponent },
-  { path: 'admin', component: AdminPageComponent },
+  { path: 'admin',canActivate: [AdminAuthGuard], component: AdminPageComponent },
   { path: 'all-product', component: AllProductsComponent },
   { path: 'add-product', component: AddProductsComponent },
   { path: 'update-product/:postId', component: UpdateProductComponent },
@@ -82,6 +87,7 @@ const routes: Routes = [
   { path: 'update-subcategory/:postId', component: UpdateSubcategoryComponent },
   { path: 'add-users', component: AddUsersComponent },
   { path: 'add-slider', component: AddSliderComponent },
+  { path: 'admin-register', component:AdminRegistrationComponent},
   { path: '**', component: NotFoundComponent },
 ];
 

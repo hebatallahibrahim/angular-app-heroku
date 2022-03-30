@@ -68,25 +68,8 @@
                 >Description should be more than 2 char
               </span>
                
-              </div>
-            
-             
-             
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
-                <div class="form-group">
-
-                  <label class="mb-3" for="file">UPLOAD CATEGORY IMAGE</label>
-          
-                  <input 
-                      formControlName="file"
-                      id="file" 
-                      type="file" 
-                      class="form-control"
-                      (change)="onFileChange($event)">
-          
-                </div>
-              </div>
-          
+              </div> 
+              <div class="col-12 d-flex justify-content-center align-items-center">     
               <div class="row">
                 <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
                 class="alert alert-danger col-12 m-3 p-3 " role="alert">
@@ -101,7 +84,7 @@
                  >
                     Update Category </button>
                 </div>
-        
+        </div>
            </form>
            </div>
             </div>

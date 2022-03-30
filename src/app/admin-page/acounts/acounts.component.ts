@@ -23,7 +23,9 @@ export class AcountsComponent implements OnInit {
   err: string | undefined;
   dangerAlertShow=false;
   constructor(public _AdminService: AdminService,
-    private _service : adminservice ,  public _Router: Router) { }
+    private _service : adminservice ,  public _Router: Router) { 
+      
+    }
 
   deleteUserAcount(id: any): void {
     this._service.deleteProduct(id).subscribe(res => {
