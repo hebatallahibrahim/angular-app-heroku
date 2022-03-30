@@ -21,4 +21,10 @@ export class PaymentService {
       data
     );
   }
+  getAllUserOrders(email:any):Observable<any> {
+    return this._HttpClient.get<any>(`http://127.0.0.1:8000/api/user/orders/${email}`);
+  }
+  deleteUserOrder(id:any):Observable<any>{
+    return this._HttpClient.delete<any>(`http://127.0.0.1:8000/api/user/order/${id}`);
+  }
 }
