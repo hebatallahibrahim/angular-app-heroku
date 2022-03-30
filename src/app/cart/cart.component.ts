@@ -49,8 +49,6 @@ export class CartComponent implements OnInit {
         console.log(res);
         this.addedProducts = res;
         let counter = 0,
-          amount = 0,
-          lastprice = 0,
           total = 0,
           totalDiscount = 0,
           priceWithoutDiscount = 0;
