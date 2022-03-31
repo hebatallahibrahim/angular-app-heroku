@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AddSubcategoryComponent implements OnInit {
   dangerAlertShow=false;
   SuccessAlertShow=false;
+  isLoading=false;
   formRegistration: FormGroup = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
@@ -22,6 +23,9 @@ export class AddSubcategoryComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(50),
     ]),
+    category: new FormControl(null, [
+      Validators.required,
+    ]),
     file: new FormControl(null, [
       Validators.required
     ]),
@@ -30,10 +34,20 @@ export class AddSubcategoryComponent implements OnInit {
     ])
   });
   err: string | undefined;
+  categoryArray:any[]=[]; 
  
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
+    this._AdminService.getAllCategories().subscribe(
+      (res) => {
+        this.categoryArray=res.category;
+        console.log(this.categoryArray);
+      },
+      (err:any) => {
+        console.log(err);
+      }
+    );
   }
   onFileChange(event:any) {
 
@@ -52,15 +66,18 @@ export class AddSubcategoryComponent implements OnInit {
 
   }
   getFormData(data: any) {
+    this.isLoading=true;
     console.log(data);
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
     formData.append('description', data.get('description').value);
+    formData.append('category_id', data.get('category').value);
     formData.append('image', data.get('fileSource').value);
 
     this._AdminService.addSubCategory(formData).subscribe(
       (data) => {
         console.log(data);
+        this.isLoading=false;
         if (data.message == 'success') {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
@@ -71,6 +88,7 @@ export class AddSubcategoryComponent implements OnInit {
         }
       },
       (err) => {
+        this.isLoading=false;
         this.SuccessAlertShow=false;
         this.dangerAlertShow=true;
         console.log(err);

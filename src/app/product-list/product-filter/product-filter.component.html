@@ -36,9 +36,11 @@
             [(ngModel)]="categoryInitial"
           >
             <mat-option value="">All</mat-option>
+
             <mat-option
               *ngFor="let category of categoryArray"
               [value]="category.id"
+              (click)="getSubCategorybyCatID(category.id)"
             >
               {{ category.name }}
             </mat-option>

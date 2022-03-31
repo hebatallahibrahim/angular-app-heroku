@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class AddProductsComponent implements OnInit {
   dangerAlertShow=false;
   SuccessAlertShow=false;
+  isLoading=false;
   formRegistration: FormGroup = new FormGroup({
     name: new FormControl(null, [
       Validators.required,
@@ -81,11 +82,13 @@ export class AddProductsComponent implements OnInit {
       (err:any) => {
         console.log(err);
       }
-    );
+    ); 
+  }
 
-    this._AdminService.getAllSubCategories().subscribe(
+  getSubCategorybyCatID(category_id:any){
+    this._AdminService.getAllSubCategoriesbyCat(category_id).subscribe(
       (res) => {
-        this.subCategoryArray=res.category;
+        this.subCategoryArray=res.subcategories;
         console.log(this.subCategoryArray);
       },
       (err:any) => {
@@ -103,6 +106,7 @@ export class AddProductsComponent implements OnInit {
     }
   }
   getFormData(data: any) {
+    this.isLoading=true;
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
     formData.append('brand', data.get('brand').value);
@@ -122,6 +126,7 @@ export class AddProductsComponent implements OnInit {
 
     this._AdminService.addProduct(formData).subscribe(
       (data) => {
+        this.isLoading=false;
         console.log(data);
         if (data.message == 'Product added succesfully') {
           this.SuccessAlertShow=true;
@@ -133,6 +138,7 @@ export class AddProductsComponent implements OnInit {
         }
       },
       (err) => {
+        this.isLoading=false;
         this.SuccessAlertShow=false;
         this.dangerAlertShow=true;
         console.log(err);

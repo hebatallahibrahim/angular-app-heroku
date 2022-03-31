@@ -1,13 +1,63 @@
 <app-header></app-header>
 <div class="con-item container-fluid pt-5 pb-5">
-    <div class="row row-item d-flex justify-content-center">
-      <h1 class="text-center">{{categoryName}}</h1>  
+    <div class="row row-item d-flex justify-content-center spinner-parent">
+      <h1 class="text-center">{{categoryName}}</h1>
+      <!--p-progressSpinner class="spinner" *ngIf="isLoading"></p-progressSpinner>  
       <app-product-item
         class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
         *ngFor="let item of productArray"
         [productItem]="item"
       >
-      </app-product-item>
+      </app-product-item-->
+      <div class="text-end show-way">
+        <i
+          (click)="productsRow = true; productsGrid = false"
+          class="fa-regular fa-rectangle-list me-3"
+        ></i>
+        <i
+          (click)="productsGrid = true; productsRow = false"
+          class="fa-solid fa-border-all"
+        ></i>
+      </div>
+    
+      <div
+        class="alert alert-success text-center m-auto w-50"
+        role="alert"
+        *ngIf="isVisible"
+      >
+        Wishlist Updated
+      </div>
+      <p-progressSpinner class="spinner" *ngIf="isFetching"></p-progressSpinner>
+      <div *ngIf="productsGrid" class="row row-item d-flex justify-content-center">
+        <app-product-item
+          (LikedProductEvent)="likeProduct($event)"
+          class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"
+          *ngFor="let item of productArraySlice; let i = index"
+          [productItem]="item"
+          [item_hearted]="likedProductsSlice[i]?.heart"
+        >
+        </app-product-item>
+      </div>
+      <div *ngIf="productsRow" class="row row-item d-flex justify-content-center">
+        <app-product-item-row
+          (LikedProductEvent)="likeProduct($event)"
+          class="ps-0 pe-0 m-2 shadow-lg"
+          *ngFor="let item of productArraySlice; let i = index"
+          [productItem]="item"
+          [item_hearted]="likedProductsSlice[i]?.heart"
+        >
+        </app-product-item-row>
+      </div>
+    
+      <mat-paginator
+        #paginator
+        class="paginator"
+        [length]="productArray.length"
+        [pageSize]="9"
+        (page)="onPageChange($event)"
+        aria-label="Select page"
+      >
+      </mat-paginator>
     </div>
-  </div>
+</div>
 <app-footer></app-footer>

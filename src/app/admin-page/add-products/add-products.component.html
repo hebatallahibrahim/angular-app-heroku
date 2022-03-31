@@ -98,7 +98,7 @@
                     >
                       <option
                         *ngFor="let item of categoryArray"
-                        [value]="item.id"
+                        [value]="item.id" (click)="getSubCategorybyCatID(item.id)"
                       >
                         {{ item.name }}
                       </option>
@@ -286,9 +286,9 @@
                 <div
                   class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload"
                 >
-                  <div class="form-group">
+                  <div class="form-group spinner-parent">
                     <label class="mb-3" for="file">UPLOAD PRODUCT IMAGE</label>
-
+                    <p-progressSpinner class="spinner" *ngIf="isLoading"></p-progressSpinner>
                     <input
                       [class.is-invalid]="
                         formRegistration.get('file')?.invalid &&

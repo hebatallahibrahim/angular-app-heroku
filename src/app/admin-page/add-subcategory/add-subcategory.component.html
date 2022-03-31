@@ -5,7 +5,7 @@
       <div class="tm-bg-primary-dark tm-block tm-block-h-auto  ">
         <div class="row ">
           <div class="col-12">
-            <h2 class="tm-block-title d-flex justify-content-center mb-3">Add Category</h2>
+            <h2 class="tm-block-title d-flex justify-content-center mb-3">Add SubCategory</h2>
           </div>
         </div>
         <div class="row tm-edit-product-row">
@@ -68,11 +68,37 @@
               </span>
               </div>
             
+              <div class="form-group mb-4">
+                <label for="category">Category</label>
+                <select
+                  [class.is-invalid]="
+                    formRegistration.get('category')?.invalid &&
+                    formRegistration.get('category')?.touched
+                  "
+                  class="custom-select tm-select-accounts"
+                  id="category"
+                  formControlName="category"
+                >
+                  <option
+                    *ngFor="let item of categoryArray"
+                    [value]="item.id"
+                  >
+                    {{ item.name }}
+                  </option>
+                </select>
+                <span
+                  *ngIf="
+                    formRegistration.get('category')?.invalid &&
+                    formRegistration.get('category')?.touched
+                  "
+                  class="m-3 p-2 text-danger"
+                  >category required
+                </span>
+              </div>
              
-             
-              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload" >
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4 images_upload spinner-parent" >
                 <div class="form-group">
-
+                  <p-progressSpinner class="spinner" *ngIf="isLoading"></p-progressSpinner>
                   <label class="mb-3" for="file">UPLOAD CATEGORY IMAGE</label>
           
                   <input 

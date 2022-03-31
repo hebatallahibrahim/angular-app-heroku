@@ -61,6 +61,11 @@ export class AdminService {
       .get<any>('http://127.0.0.1:8000/api/category/sub/view');
   }
 
+  getAllSubCategoriesbyCat(category_id:any): Observable<any> {
+    return this._HttpClient
+      .get<any>(`http://127.0.0.1:8000/api/category/catsub/view/${category_id}`);
+  }
+
   getSlider(): Observable<any> {
     return this._HttpClient
       .get<any>('http://127.0.0.1:8000/api/slider/view');

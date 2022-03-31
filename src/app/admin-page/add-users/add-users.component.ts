@@ -31,11 +31,13 @@ export class AddUsersComponent implements OnInit {
   err: string | undefined;
   dangerAlertShow=false;
   SuccessAlertShow=false;
+  isLoading=false;
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
   }
   getFormData(data: any) {
+    this.isLoading=true;
     var formData: any = new FormData();
     formData.append('name', data.get('Name').value);
     formData.append('email', data.get('Email').value);
@@ -48,6 +50,7 @@ export class AddUsersComponent implements OnInit {
     this._AdminService.addUser(formData).subscribe(
       (data) => {
         console.log(data);
+        this.isLoading=false;
         if (data.message == 'success') {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
@@ -58,6 +61,7 @@ export class AddUsersComponent implements OnInit {
         }
       },
       (err) => {
+        this.isLoading=false;
         this.SuccessAlertShow=false;
         this.dangerAlertShow=true;
         console.log(this.dangerAlertShow);

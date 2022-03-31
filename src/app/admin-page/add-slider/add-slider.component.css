@@ -217,3 +217,11 @@
       width: 100px;
       height: 100px;
   }
+  .spinner-parent{
+    position: relative;
+  }
+  .spinner{
+    position: absolute;
+    top: 0%;
+    left: 40%;
+  }

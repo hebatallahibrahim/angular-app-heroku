@@ -10,11 +10,11 @@
 <div class="con-item container-fluid pt-3 pb-5">
   <div class="text-end show-way">
     <i
-      (click)="productsRow = !productsRow; productsGrid = !productsGrid"
+      (click)="productsRow = true; productsGrid = false"
       class="fa-regular fa-rectangle-list me-3"
     ></i>
     <i
-      (click)="productsGrid = !productsGrid; productsRow = !productsRow"
+      (click)="productsGrid = true; productsRow = false"
       class="fa-solid fa-border-all"
     ></i>
   </div>
