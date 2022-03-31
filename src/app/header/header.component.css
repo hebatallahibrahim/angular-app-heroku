@@ -1,14 +1,18 @@
 * {
   font-size: 1rem;
 }
+.bg-header
+{
+    background-color: #B78D65;
+   
+}
 .div-logo {
-  color: #b78d65;
+  color: white;
   transition: all 0.5s ease;
 }
 .div-logo:hover {
-  color: #e4c6aa;
+  color: #ecc9a8;
 }
-
 ::ng-deep .menuCart {
   min-width: 100% !important;
 }
@@ -17,7 +21,7 @@
 }
 
 i:hover {
-  color: #b78d65;
+  color: #ecc9a8;
   cursor: pointer;
 }
 .button-group p:hover {
@@ -25,11 +29,11 @@ i:hover {
 }
 a {
   font-size: 1rem;
-  color: black;
+  color: white;
   text-decoration: none;
 }
 a:hover {
-  color: #b78d65;
+  color: #ecc9a8;
 }
 
 .cart_p {
@@ -52,21 +56,30 @@ a:hover {
   right: 64px !important;
 } */
 .btn {
-  background-color: #b78d65;
-  color: white;
+  background-color: white;
+  color: black;
   width: 100%;
   margin: 0 auto;
   transition: all 0.5s ease;
   border: none;
 }
 .btn:hover {
-  background-color: #cb985d;
+  background-color: #ecc9a8;
   color: white;
   cursor: pointer;
+}
+.dropdownstyle{
+  color: white !important;
+}
+.dropdownstyle a{
+  color: black !important;
 }
 .hide {
   display: none;
 }
 .show {
   display: block;
+}
+.ul-style a{
+  color: black !important;
 }

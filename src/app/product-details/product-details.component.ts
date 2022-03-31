@@ -28,7 +28,7 @@ export class ProductDetailsComponent implements OnInit {
   ratingVal: number=0;
   productId!: any;
   userID:any=1;
-  productDetails!: any;
+  productDetails: any={};
   relativeProduct!: any[];
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   err: string | undefined;
@@ -190,10 +190,10 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   calculatePrice(product:Product){
-    if(product.discount_price && (+product.discount_price)!=0){
-      return product.selling_price-(+product.discount_price);
+    if(product?.discount_price && (+product?.discount_price)!=0){
+      return product?.selling_price-(+product?.discount_price);
     }else{
-      return product.selling_price;
+      return product?.selling_price;
     }
   }
   getUserRate(){

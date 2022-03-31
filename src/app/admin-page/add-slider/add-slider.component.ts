@@ -31,6 +31,7 @@ export class AddSliderComponent implements OnInit {
   err: string | undefined;
   dangerAlertShow=false;
   SuccessAlertShow=false;
+  isLoading=false;
   sliderArray:any[]=[];
   
   constructor(private _AdminService: AdminService, private _Router: Router) { }
@@ -49,6 +50,7 @@ export class AddSliderComponent implements OnInit {
   }
 
   getFormData(data: any) {
+    this.isLoading=true;
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
     formData.append('description', data.get('description').value);
@@ -57,6 +59,7 @@ export class AddSliderComponent implements OnInit {
     this._AdminService.addSlider(formData).subscribe(
       (data) => {
         console.log(data);
+        this.isLoading=false;
         if (data.message == 'success') {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
@@ -67,6 +70,7 @@ export class AddSliderComponent implements OnInit {
         }
       },
       (err) => {
+        this.isLoading=false;
         this.SuccessAlertShow=false;
         this.dangerAlertShow=true;
         console.log(err);

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { AdminService } from 'src/app/admin.service';
 import { SearchService } from 'src/app/Service/search.service';
 
 @Component({
@@ -24,7 +25,7 @@ export class ProductFilterComponent implements OnInit {
   categoryInitial='';
   priceInitial='';
   subcatInitial='';
-  constructor(private searchService:SearchService) {}
+  constructor(private searchService:SearchService,private adminService:AdminService) {}
   onColorChange(event: any) {
     this.changeColorEvent.emit({ colorname: event.value, eventType: 'color' });
   }
@@ -32,7 +33,19 @@ export class ProductFilterComponent implements OnInit {
     this.changePriceEvent.emit({ priceorder:event.value, eventType:'price'});
   }
   onCategoryChange(event: any) {
+    if(event.value==""){ this.subcategoryArray=[];}
     this.changeCategoryEvent.emit({ category_id: event.value, eventType: 'category_id' });
+  }
+  getSubCategorybyCatID(category_id:any){
+    this.adminService.getAllSubCategoriesbyCat(category_id).subscribe(
+      (res) => {
+        this.subcategoryArray=res.subcategories;
+        console.log(this.subcategoryArray);
+      },
+      (err:any) => {
+        console.log(err);
+      }
+    );
   }
   onSubCategoryChange(event: any) {
     console.log(event.value);
@@ -58,14 +71,14 @@ export class ProductFilterComponent implements OnInit {
         console.log(err);
       }
     );
-    this.searchService.getAllSubCategories().subscribe(
-      (res) => {
-        this.subcategoryArray = res.category;
-      },
-      (err: any) => {
-        console.log(err);
-      }
-    );
+    // this.searchService.getAllSubCategories().subscribe(
+    //   (res) => {
+    //     this.subcategoryArray = res.category;
+    //   },
+    //   (err: any) => {
+    //     console.log(err);
+    //   }
+    // );
   }
 
 }

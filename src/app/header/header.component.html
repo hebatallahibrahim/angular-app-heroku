@@ -1,4 +1,4 @@
-<header class="p-3 border-bottom">
+<header class="p-3 border-bottom bg-header">
   <div class="container-fluid">
     <div
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -33,10 +33,10 @@
         </li>
 
         <li>
-          <div role="button" class="button-group mt-2 px-2" ngbDropdown>
+          <div role="button" class="button-group mt-2 px-2 dropdownstyle" ngbDropdown>
             <div
               href="/"
-              class="d-flex align-items-center text-dark text-decoration-none"
+              class="d-flex align-items-center text-decoration-none"
               id="dropdownConfig"
               ngbDropdownToggle
             >
@@ -45,7 +45,7 @@
 
             <ul
               ngbDropdownMenu
-              class="text-small"
+              class="text-small text-dark ul-style"
               aria-labelledby="dropdownConfig"
             >
               <li *ngFor="let category of categoryArray">
@@ -89,14 +89,14 @@
       <div *ngIf="userID" role="button" class="button-group me-4" ngbDropdown>
         <div
           href="/"
-          class="d-flex align-items-center mb-2 me-2 mb-lg-0 text-dark text-decoration-none"
+          class="d-flex align-items-center mb-2 me-2 mb-lg-0 dropdownstyle text-decoration-none"
           id="dropdownConfig"
           ngbDropdownToggle
         >
-          <a>useremail</a>
+          useremail
         </div>
 
-        <ul ngbDropdownMenu class="text-small" aria-labelledby="dropdownConfig">
+        <ul ngbDropdownMenu class="text-small ul-style" aria-labelledby="dropdownConfig">
           <li>
             <a ngbDropdownItem routerLink="/profile"> Profile </a>
           </li>
@@ -193,7 +193,7 @@
 
       <i
         (click)="openCart()"
-        class="pi pi-shopping-cart p-mr-4 p-text-secondary"
+        class="pi pi-shopping-cart p-mr-4 text-light"
         role="button"
         pBadge
         style="font-size: 2rem"

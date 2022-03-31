@@ -96,10 +96,14 @@ export class UpdateProductComponent implements OnInit {
           console.log(err);
         }
       );
-  
-      this._AdminService.getAllSubCategories().subscribe(
+
+    }
+
+    getSubCategorybyCatID(category_id:any){
+      this._AdminService.getAllSubCategoriesbyCat(category_id).subscribe(
         (res) => {
-          this.subCategoryArray=res.category;
+          this.subCategoryArray=res.subcategories;
+          console.log(this.subCategoryArray);
         },
         (err:any) => {
           console.log(err);

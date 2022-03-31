@@ -91,8 +91,7 @@ export class ProductItemComponent implements OnInit {
           }
         );
     }
-    if (this.router.url == '/product-list') {
-      console.log('hi');
+    if (this.router.url == '/product-list' || this.router.url.split('/')[1]=='category-products') {
       this.LikedProductEvent.emit({
         product_id: this.productItem.id,
         heart: this.item_hearted,

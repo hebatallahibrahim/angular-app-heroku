@@ -1,5 +1,5 @@
 .con-item {
-  background-color: #f4dfba;
+  background-color: white;
   position: relative;
 }
 .one-item {
@@ -19,7 +19,6 @@ i{
   padding: 0;
   cursor: pointer;
   color: #876445;
-  border: 3px solid white;
   border-radius: 5px;
 }
 i:hover{
@@ -41,7 +40,7 @@ i:hover{
   background-color: rgba(168, 219, 168, 0.733);
 }
 .paginator::ng-deep{
-  background-color: #f4dfba;
+  background-color: white;
   color: #876445;
   border-top: 1px solid #876445c0;
   border-bottom: 1px solid #876445c0;
