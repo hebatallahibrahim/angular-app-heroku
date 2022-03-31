@@ -13,7 +13,7 @@ export class CartItemComponent implements OnInit {
   addedProducts: any = [];
   cartCounter: any = 0;
   totalAmount: any = 0;
-  @Output() updateItems = new EventEmitter<any>();
+  userID = 1;
   value20: number = 1;
   cartitem!: Product;
   counterValue: number = 0;
@@ -27,7 +27,6 @@ export class CartItemComponent implements OnInit {
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
-        console.log(res);
         this.addedProducts = res;
         let counter = 0,
           amount = 0,
@@ -54,16 +53,13 @@ export class CartItemComponent implements OnInit {
     });
   }
   removeCartItem(item: any) {
-    this.productCartService.removeProduct(item);
-    // this.cartList = this.productCartService.getProducts();
-    this.updateItems.emit();
+    this.cartService.deleteCartItem(item, {
+      user_id: this.userID,
+    });
   }
-  changeItemSitus(product: Product, count: any) {
-    product.status = count;
-    console.log(count);
-
-    this.productCartService.onStaitusChang(product);
-    this.updateItems.emit();
+  changeItemSitus(product: any, count: any) {
+    product.count = count;
+    this.cartService.onStaitusChang(product);
   }
   increment() {
     this.counterValue++;

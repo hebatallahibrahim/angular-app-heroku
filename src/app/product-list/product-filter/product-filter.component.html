@@ -5,7 +5,10 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Color</mat-label>
-          <mat-select (selectionChange)="onColorChange($event)" [(ngModel)]="colorInitial">
+          <mat-select
+            (selectionChange)="onColorChange($event)"
+            [(ngModel)]="colorInitial"
+          >
             <mat-option value="">All</mat-option>
             <mat-option *ngFor="let color of colors" [value]="color">
               {{ color }}
@@ -16,7 +19,10 @@
       <div>
         <mat-form-field appearance="fill">
           <mat-label>Price</mat-label>
-          <mat-select (selectionChange)="onPriceChange($event)" [(ngModel)]="priceInitial">
+          <mat-select
+            (selectionChange)="onPriceChange($event)"
+            [(ngModel)]="priceInitial"
+          >
             <mat-option value="">All</mat-option>
             <mat-option *ngFor="let price of prices" [value]="price">
               {{ price }}
@@ -25,16 +31,25 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Category</mat-label>
-          <mat-select (selectionChange)="onCategoryChange($event)" [(ngModel)]="categoryInitial">
+          <mat-select
+            (selectionChange)="onCategoryChange($event)"
+            [(ngModel)]="categoryInitial"
+          >
             <mat-option value="">All</mat-option>
-            <mat-option *ngFor="let category of categoryArray" [value]="category.id">
+            <mat-option
+              *ngFor="let category of categoryArray"
+              [value]="category.id"
+            >
               {{ category.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <mat-label>Sub Category</mat-label>
-          <mat-select (selectionChange)="onSubCategoryChange($event)" [(ngModel)]="subcatInitial">
+          <mat-select
+            (selectionChange)="onSubCategoryChange($event)"
+            [(ngModel)]="subcatInitial"
+          >
             <mat-option value="">All</mat-option>
             <mat-option
               *ngFor="let sub_category of subcategoryArray"

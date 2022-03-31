@@ -11,48 +11,8 @@ export class CartService {
   addedProducts: any = [];
   cartCounter: any = 0;
   userID = 1;
-  //
-  // cartHasBeenChanged = new BehaviorSubject<any>([]);
 
-  // //
-  // getCartDetails() {
-  //   // return this.cartHasBeenChanged.asObservable();
-  //   return this.cartDetalis;
-  // }
-  // setProduct(product: any) {
-  //   this.cartDetalis.push(...product);
-  //   // this.cartHasBeenChanged.next(product);
-  // }
-  // addToCart(product: Product) {
-  //   if (this.cartDetalis.includes(product)) {
-  //     this.productcount = product.status;
-  //     product.status = product.status + 1;
-  //   } else {
-  //     this.cartDetalis.push(product);
-  //     // this.cartHasBeenChanged.next(this.cartDetalis);
-  //   }
-  // }
-  // getTotalAmount() {
-  //   return this.cartDetalis.length;
-  // }
-  // totalPrice() {
-  //   let totalPrice = 0;
-  //   this.cartDetalis.forEach((element: Product) => {
-  //     totalPrice += element.status * element.selling_price;
-  //   });
-  //   // this.cartHasBeenChanged.next(this.cartDetalis);
-  //   return totalPrice;
-  // }
-  // removeCatItem(product: any) {
-  //   this.cartDetalis.map((d: any, index: any) => {
-  //     if (product.id == d.id) {
-  //       this.cartDetalis.splice(index, 1);
-  //     }
-  //   });
-  //   // this.cartHasBeenChanged.next(this.cartDetalis);
-  // }
   public cartHasBeenChanged = new BehaviorSubject<any>([]);
-  public counterChanged = new BehaviorSubject<number>(0);
 
   //
 
@@ -65,7 +25,6 @@ export class CartService {
       })
       .subscribe({
         next: (res: any) => {
-          console.log(res);
           this.addedProducts = res.Cart;
           this.cartHasBeenChanged.next(this.addedProducts);
         },
@@ -74,6 +33,20 @@ export class CartService {
         },
         complete: () => {},
       });
+  }
+  onStaitusChang(product: any) {
+    console.log(this.addedProducts);
+    const arr = this.addedProducts;
+    if (arr.includes(product)) {
+      const index = arr.findIndex((i: any) => {
+        console.log(i);
+        i.product_id == product.product_id;
+      });
+      console.log(this.addedProducts);
+
+      arr[index] = product;
+      this.cartHasBeenChanged.next(arr);
+    }
   }
 
   postCart(postData: any, product: any) {
@@ -84,29 +57,14 @@ export class CartService {
       )
       .subscribe({
         next: (res) => {
-          console.log(this.addedProducts);
-          if (res.message == 'Item increament  to CART') {
-            this.addedProducts.forEach((element: any) => {
-              console.log(element);
-              if (element.product_id == product.id) {
-                console.log('incremt');
-                // element.count++;
-                // console.log(element.count);
-                this.cartHasBeenChanged.next(this.addedProducts);
-              }
-            });
-            console.log('increament');
-          } else if ((res.message = 'Product added succesfully')) {
-            this.getApiCart();
-            this.cartHasBeenChanged.next(this.addedProducts);
-            console.log(this.addedProducts);
-          }
+          this.getApiCart();
         },
         error: (err) => {
           console.log(err);
         },
         complete: () => {},
       });
+    this.cartHasBeenChanged.next(this.addedProducts);
   }
 
   deleteCartItem(product: any, queryParams: any) {

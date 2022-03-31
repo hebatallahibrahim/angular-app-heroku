@@ -55,7 +55,6 @@ export class HeaderComponent implements OnInit {
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
-        console.log(res);
         this.addedProducts = res;
         let counter = 0,
           amount = 0,
@@ -135,11 +134,6 @@ export class HeaderComponent implements OnInit {
     // });
   }
   removeItem(item: any) {
-    // this.addedProducts.map((d: any, index: any) => {
-    //   if (item.product_id == d.product_id) {
-    //     this.addedProducts.splice(index, 1);
-    //   }
-    // });
     this.cartService.deleteCartItem(item, {
       user_id: this.userID,
     });

@@ -46,7 +46,6 @@ export class CartComponent implements OnInit {
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
-        console.log(res);
         this.addedProducts = res;
         let counter = 0,
           total = 0,
@@ -54,8 +53,7 @@ export class CartComponent implements OnInit {
           priceWithoutDiscount = 0;
         this.addedProducts.forEach((element: any) => {
           counter += element.count;
-          console.log(totalDiscount);
-          console.log(priceWithoutDiscount);
+
           if (element.discount || element.count++) {
             totalDiscount += +element.discount * +element.count;
             priceWithoutDiscount += +element.price * +element.count;

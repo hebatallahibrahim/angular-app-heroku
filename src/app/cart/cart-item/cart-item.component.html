@@ -47,7 +47,7 @@
       </td>
       <td>
         <div class="price-wrap">
-          <var class="price pt-2">{{
+          <var class="price pt-4">{{
             item.price - item.discount | currency: "EGP"
           }}</var>
           <!-- <small class="text-muted">{{ totalAmount }} </small> -->
@@ -55,15 +55,7 @@
         <!-- price-wrap .// -->
       </td>
       <td class="text-right">
-        <a
-          data-original-title="Save to Wishlist"
-          title=""
-          class="btn btn-light mr-2"
-          data-toggle="tooltip"
-        >
-          <i class="fa fa-heart me-2"></i
-        ></a>
-        <a class="btn btn-light" (click)="removeCartItem(item)"> Remove</a>
+        <a class="btn-hover btn btn-light" (click)="removeCartItem(item)"> Remove</a>
       </td>
     </tr>
   </tbody>
