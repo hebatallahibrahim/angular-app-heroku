@@ -78,7 +78,17 @@ export class adminservice {
   }
   messagesHasBeenChanged = new BehaviorSubject<any>([]);
   getAllContactUsMessages(): any {
-    return this.http.get<any>('http://127.0.0.1:8000/api/contactUs');
+    return this.http.get<any>('http://127.0.0.1:8000/api/contactUs').subscribe({
+      next: (res) => {
+        console.log(res);
+        this.MessagesArray = res.ALLContactUs;
+        this.messagesHasBeenChanged.next(this.MessagesArray);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+      complete: () => {},
+    });
   }
   setMessage(arr: any) {
     this.MessagesArray = arr;
@@ -100,6 +110,7 @@ export class adminservice {
     console.log(this.MessagesArray);
   }
   sendMasseage() {
+    this.messagesHasBeenChanged.next(this.MessagesArray);
     return this.MessagesArray;
   }
   deleteUserAcount(id: any): Observable<any> {

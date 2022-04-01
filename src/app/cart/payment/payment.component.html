@@ -6,35 +6,51 @@
         <h2>Payment</h2>
       </div>
       <div class="row">
-      <form class="col-6">
-        <div class="card-details">
-          <h3 class="title">Choose Payment Method</h3>
-          <div class="row">
-            <p-radioButton name="method" value="cod" [(ngModel)]="selectedValue" inputId="cod"></p-radioButton>
-            <label for="cod">Cash On Delivery</label>
-            <p-radioButton name="method" value="other" [(ngModel)]="selectedValue" inputId="other"></p-radioButton>
-            <label for="other">Pay by Online Methods</label>
-            <div class="form-group col-sm-12">
-              <button type="button" class="btn btn-primary btn-block" (click)="checkMethod()" >Submit Order</button>
+        <form class="col-6">
+          <div class="card-details">
+            <h3 class="title">Choose Payment Method</h3>
+            <div class="row">
+              <p-radioButton
+                name="method"
+                value="cod"
+                [(ngModel)]="selectedValue"
+                inputId="cod"
+              ></p-radioButton>
+              <label for="cod">Cash On Delivery</label>
+              <p-radioButton
+                name="method"
+                value="other"
+                [(ngModel)]="selectedValue"
+                inputId="other"
+              ></p-radioButton>
+              <label for="other">Pay by Online Methods</label>
+              <div class="form-group col-sm-12">
+                <button
+                  type="button"
+                  class="btn btn-primary btn-block"
+                  (click)="checkMethod()"
+                >
+                  Submit Order
+                </button>
+              </div>
             </div>
           </div>
+        </form>
+        <div class="col-6 products">
+          <h3 class="title">Checkout</h3>
+          <div class="item" *ngFor="let item of addedProducts">
+            <span class="price">{{ item.price | currency: "EGP" }}</span>
+            <p class="item-name">{{ item.name }}</p>
+            <p class="item-description ps-2">{{ item.count }}</p>
+            <br />
+            <p class="item-description">{{ item.discription }}</p>
+          </div>
+
+          <div class="total">
+            Total<span class="price">{{ totalAmount }}</span>
+          </div>
         </div>
-      </form>
-      <div class="col-6 products">
-        <h3 class="title">Checkout</h3>
-        <div class="item">
-          <span class="price">$200</span>
-          <p class="item-name">Product 1</p>
-          <p class="item-description">Lorem ipsum dolor sit amet</p>
-        </div>
-        <div class="item">
-          <span class="price">$120</span>
-          <p class="item-name">Product 2</p>
-          <p class="item-description">Lorem ipsum dolor sit amet</p>
-        </div>
-        <div class="total">Total<span class="price">$320</span></div>
       </div>
-    </div>
     </div>
   </section>
 </main>

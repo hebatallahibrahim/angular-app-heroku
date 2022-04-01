@@ -33,12 +33,9 @@ export class AllContactUsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._service.getAllContactUsMessages().subscribe((res: any) => {
-      this.MessagesArray = res.ALLContactUs;
-      this.postMessage();
+    this._service.getAllContactUsMessages();
+    this._service.messagesHasBeenChanged.subscribe((res: any) => {
+      this.MessagesArray = res;
     });
-  }
-  postMessage() {
-    return this._service.setMessage(this.MessagesArray);
   }
 }
