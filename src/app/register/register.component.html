@@ -1,19 +1,22 @@
 <app-header></app-header>
-<div class="con container-fluid d-flex justify-content-center align-items-center">
+<div
+  class="con container-fluid d-flex justify-content-center mt-5 align-items-center"
+>
   <div class="row">
     <div class="cart shadow-lg rounded">
       <div class="d-flex justify-content-center">
         <h3>SignUp</h3>
       </div>
       <div>
-                   <!-- error message  -->
+        <!-- error message  -->
         <!-- <div class="alert alert-danger m-2">
           {{err}}
         </div> -->
         <form
           [formGroup]="formRegistration"
           (ngSubmit)="getFormData(formRegistration)"
-           action="#" method="post"
+          action="#"
+          method="post"
         >
           <div class="form-group mb-3">
             <label for="name" class="form-label">Name</label>
@@ -144,24 +147,34 @@
             </div>
           </div>
           <div class="row">
-            <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
-            class="alert alert-danger col-11 m-2 p-2 " role="alert">
-            This e-mail registered befor 
+            <div
+              [ngClass]="{
+                'show-alert': dangerAlertShow,
+                'hide-alert': !dangerAlertShow
+              }"
+              class="alert alert-danger col-11 m-2 p-2"
+              role="alert"
+            >
+              This e-mail registered befor
             </div>
-            <div [ngClass]="{'show-alert':SuccessAlertShow,'hide-alert':!SuccessAlertShow}" 
-            class="alert alert-success col-11 m-2 p-2" role="alert">
-                Successfully Registration
+            <div
+              [ngClass]="{
+                'show-alert': SuccessAlertShow,
+                'hide-alert': !SuccessAlertShow
+              }"
+              class="alert alert-success col-11 m-2 p-2"
+              role="alert"
+            >
+              Successfully Registration
             </div>
-          <button
-          [disabled]="formRegistration.invalid == true"
-          type="submit"
-          class="btn_signup shadow-lg"
-          
-          >
-          SignUp
-        </button>
+            <button
+              [disabled]="formRegistration.invalid == true"
+              type="submit"
+              class="btn_signup shadow-lg"
+            >
+              SignUp
+            </button>
           </div>
-       
         </form>
       </div>
     </div>

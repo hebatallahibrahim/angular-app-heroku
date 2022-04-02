@@ -49,7 +49,7 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { TestComponent } from './test/test.component';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
-import { ItemsComponent } from './product-list/items/items.component';
+
 import { FilterPipe } from './shared/filter.pipe';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
@@ -94,7 +94,7 @@ import { AddSliderComponent } from './admin-page/add-slider/add-slider.component
 import { ProductItemRowComponent } from './product-list/product-item-row/product-item-row.component';
 import { PaginatorModule } from 'primeng/paginator';
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
-import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
 import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.component';
@@ -139,7 +139,6 @@ import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
     CheckOutComponent,
     TestComponent,
     AddSubcategoryComponent,
-    ItemsComponent,
     FilterPipe,
     CategoryProductsComponent,
     SliderComponent,
@@ -158,7 +157,7 @@ import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
     CancelSubscriptionComponent,
     UserOrdersComponent,
     AdminRegistrationComponent,
-  
+
     AdminLogOutComponent,
     UserLogOutComponent,
     UserGetInfoComponent,
@@ -202,7 +201,7 @@ import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
     MessagesModule,
     MessageModule,
     PaginatorModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
   ],
   providers: [
     ProductListService,

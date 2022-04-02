@@ -14,8 +14,8 @@ export class UserGetInfoComponent implements OnInit {
   ngOnInit(): void {
     const user: any = localStorage.getItem('user');
     const userObj = JSON.parse(user);
-    console.log(userObj.user); 
     console.log(userObj.user.id); 
+    console.log(userObj.user); 
     console.log(userObj.user.name); 
     console.log(userObj.user.email);
     console.log(userObj.user.phone);
