@@ -6,8 +6,8 @@
         <h2>Payment</h2>
       </div>
       <div class="row">
-        <form class="col-6">
-          <div class="card-details">
+        <form class="col-6 p-0 m-0">
+          <div class="card-details shadow">
             <h3 class="title">Choose Payment Method</h3>
             <div class="row">
               <p-radioButton
@@ -36,23 +36,19 @@
             </div>
           </div>
         </form>
-        <div class="col-6 products">
+        <div class="col-5 ms-5 shadow products">
           <h3 class="title">Checkout</h3>
           <div class="item" *ngFor="let item of addedProducts">
-            <span class="price"
-              >{{ item.price - item.discount | currency: "EGP" }} *
-              {{ item.count }}</span
-            >
-            <p class="item-name">
-              {{ item.name }}
-            </p>
+            <p class="item-name">{{ item.name }}</p>
+            <span class="item-description ps-2">{{ item.count }}X </span>
+            <span class="price">{{ item.price - item.discount + "EGP" }}</span>
 
-            <p class="item-description ps-2">{{ item.description }}</p>
             <br />
           </div>
 
           <div class="total">
-            Total<span class="price">{{ totalAmount | currency: "EGP" }}</span>
+            Total Price:
+            <span class="total">{{ totalAmount | currency: "EGP" }}</span>
           </div>
         </div>
       </div>

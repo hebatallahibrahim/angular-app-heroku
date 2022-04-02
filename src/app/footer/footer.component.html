@@ -11,9 +11,6 @@
             <a href="/product-list" routelink="/product-list" class="nav-link p-0 ">Products</a>
           </li>
           <li class="nav-item mb-2">
-            <a href="/cart" routelink="/cart" class="nav-link p-0 ">Cart</a>
-          </li>
-          <li class="nav-item mb-2">
             <a href="/contactUs" routelink="/contactUs" class="nav-link p-0 ">Contact Us</a>
           </li>
           <li class="nav-item mb-2">
@@ -25,20 +22,10 @@
       <div class="col-lg-3 col-md-3 col-6">
         <h3>Category</h3>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 ">Beds</a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 ">Chairs</a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 ">Office</a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 ">Sofa</a>
-          </li>
-          <li class="nav-item mb-2">
-            <a href="#" class="nav-link p-0 ">Tables</a>
+          <li *ngFor="let category of categoryArray">
+            <a (click)="goToCategoryProducts(category)"
+              >{{ category.name }}
+            </a>
           </li>
         </ul>
       </div>

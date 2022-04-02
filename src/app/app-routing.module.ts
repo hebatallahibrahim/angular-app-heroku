@@ -45,15 +45,14 @@ import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.c
 import { UserLogOutComponent } from './user-log-out/user-log-out.component';
 import { UserGuardGuard } from './Service/user-guard.guard';
 import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
-
-
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'category-products/:id/:name', component: CategoryProductsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'resetPassword', component: FooterComponent },
+  { path: 'resetPassword/:token', component: ResetPasswordComponent },
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent }, //don't forgrt to put /:id
@@ -62,37 +61,109 @@ const routes: Routes = [
   { path: 'aboutUs', component: AboutUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
   { path: 'cart', canActivate: [UserGuardGuard], component: CartComponent }, // canActivate: [AuthGuard],
-  { path: 'wishlist', canActivate: [UserGuardGuard],component: WishlistComponent },
-  { path: 'user-orders',canActivate: [UserGuardGuard], component:UserOrdersComponent},
-  { path: 'payment',canActivate: [UserGuardGuard], component: PaymentComponent },
-  { path: 'admin',canActivate: [AuthGuard], component: AdminPageComponent },
-  { path: 'all-product',canActivate: [AuthGuard],  component: AllProductsComponent },
-  { path: 'add-product',canActivate: [AuthGuard],  component: AddProductsComponent },
-  { path: 'update-product/:postId',canActivate: [AuthGuard], component: UpdateProductComponent },
-  { path: 'accounts',canActivate: [AuthGuard],  component: AcountsComponent },
-  { path: 'slider',canActivate: [AuthGuard],  component: SliderComponent },
+  {
+    path: 'wishlist',
+    canActivate: [UserGuardGuard],
+    component: WishlistComponent,
+  },
+  {
+    path: 'user-orders',
+    canActivate: [UserGuardGuard],
+    component: UserOrdersComponent,
+  },
+  {
+    path: 'payment',
+    canActivate: [UserGuardGuard],
+    component: PaymentComponent,
+  },
+  { path: 'admin', canActivate: [AuthGuard], component: AdminPageComponent },
+  {
+    path: 'all-product',
+    canActivate: [AuthGuard],
+    component: AllProductsComponent,
+  },
+  {
+    path: 'add-product',
+    canActivate: [AuthGuard],
+    component: AddProductsComponent,
+  },
+  {
+    path: 'update-product/:postId',
+    canActivate: [AuthGuard],
+    component: UpdateProductComponent,
+  },
+  { path: 'accounts', canActivate: [AuthGuard], component: AcountsComponent },
+  { path: 'slider', canActivate: [AuthGuard], component: SliderComponent },
   { path: 'log-in', component: LogInComponent },
-  { path: 'add-category',canActivate: [AuthGuard],  component: AddCategoryComponent },
-  { path: 'add-subcategory',canActivate: [AuthGuard],  component: AddSubcategoryComponent },
-  { path: 'dashbord',canActivate: [AuthGuard],  component: DashboardComponent },
+  {
+    path: 'add-category',
+    canActivate: [AuthGuard],
+    component: AddCategoryComponent,
+  },
+  {
+    path: 'add-subcategory',
+    canActivate: [AuthGuard],
+    component: AddSubcategoryComponent,
+  },
+  { path: 'dashbord', canActivate: [AuthGuard], component: DashboardComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cancel-subscription', component: CancelSubscriptionComponent },
-  { path: 'check-out',canActivate: [UserGuardGuard], component: CheckOutComponent },
-  { path: 'profile',canActivate: [UserGuardGuard], component: ProfileComponent },
+  {
+    path: 'check-out',
+    canActivate: [UserGuardGuard],
+    component: CheckOutComponent,
+  },
+  {
+    path: 'profile',
+    canActivate: [UserGuardGuard],
+    component: ProfileComponent,
+  },
   { path: 'test', component: TestComponent },
-  { path: 'message',canActivate: [AuthGuard],  component: AllContactUsComponent },
-  { path: 'contact-view/:postId',canActivate: [AuthGuard],  component: ViewContactsDataComponent },
-  { path: 'all-category',canActivate: [AuthGuard],  component: AllCategoryComponent },
-  { path: 'all-sub-categry',canActivate: [AuthGuard],  component: AllSubcategoryComponent },
-  { path: 'update-category/:postId',canActivate: [AuthGuard], component: UpdateCategoryComponent },
-  { path: 'update-subcategory/:postId',canActivate: [AuthGuard],  component: UpdateSubcategoryComponent },
-  { path: 'add-users',canActivate: [AuthGuard], component: AddUsersComponent },
-  { path: 'add-slider',canActivate: [AuthGuard],  component: AddSliderComponent },
-  { path: 'admin-register',canActivate: [AuthGuard],  component:AdminRegistrationComponent},
-  { path: 'admin-log-out', component:AdminLogOutComponent},
-  { path: 'user-log-out', component:UserLogOutComponent},
-  { path: 'info' , component:UserGetInfoComponent},
+  {
+    path: 'message',
+    canActivate: [AuthGuard],
+    component: AllContactUsComponent,
+  },
+  {
+    path: 'contact-view/:postId',
+    canActivate: [AuthGuard],
+    component: ViewContactsDataComponent,
+  },
+  {
+    path: 'all-category',
+    canActivate: [AuthGuard],
+    component: AllCategoryComponent,
+  },
+  {
+    path: 'all-sub-categry',
+    canActivate: [AuthGuard],
+    component: AllSubcategoryComponent,
+  },
+  {
+    path: 'update-category/:postId',
+    canActivate: [AuthGuard],
+    component: UpdateCategoryComponent,
+  },
+  {
+    path: 'update-subcategory/:postId',
+    canActivate: [AuthGuard],
+    component: UpdateSubcategoryComponent,
+  },
+  { path: 'add-users', canActivate: [AuthGuard], component: AddUsersComponent },
+  {
+    path: 'add-slider',
+    canActivate: [AuthGuard],
+    component: AddSliderComponent,
+  },
+  {
+    path: 'admin-register',
+    canActivate: [AuthGuard],
+    component: AdminRegistrationComponent,
+  },
+  { path: 'admin-log-out', component: AdminLogOutComponent },
+  { path: 'user-log-out', component: UserLogOutComponent },
+  { path: 'info', component: UserGetInfoComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

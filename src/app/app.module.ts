@@ -100,6 +100,7 @@ import { AdminRegistrationComponent } from './admin-page/admin-registration/admi
 import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.component';
 import { UserLogOutComponent } from './user-log-out/user-log-out.component';
 import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -157,10 +158,10 @@ import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
     CancelSubscriptionComponent,
     UserOrdersComponent,
     AdminRegistrationComponent,
-
     AdminLogOutComponent,
     UserLogOutComponent,
     UserGetInfoComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Login } from './../Model/login.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -25,5 +26,19 @@ export class LoginService {
       .subscribe((get: any) => {
         console.log(get[Object.keys(get)[1]]);
       });
+  }
+
+  forgetPassword(data: any): Observable<any> {
+    return this.http.post(
+      `http://127.0.0.1:8000/api/forget_password`,
+      data
+    );
+  }
+
+  resetPassword(data: any): Observable<any> {
+    return this.http.post(
+      `http://127.0.0.1:8000/api/reset_password`,
+      data
+    );
   }
 }
