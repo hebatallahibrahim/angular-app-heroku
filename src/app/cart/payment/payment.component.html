@@ -39,15 +39,20 @@
         <div class="col-6 products">
           <h3 class="title">Checkout</h3>
           <div class="item" *ngFor="let item of addedProducts">
-            <span class="price">{{ item.price | currency: "EGP" }}</span>
-            <p class="item-name">{{ item.name }}</p>
-            <p class="item-description ps-2">{{ item.count }}</p>
+            <span class="price"
+              >{{ item.price - item.discount | currency: "EGP" }} *
+              {{ item.count }}</span
+            >
+            <p class="item-name">
+              {{ item.name }}
+            </p>
+
+            <p class="item-description ps-2">{{ item.description }}</p>
             <br />
-            <p class="item-description">{{ item.discription }}</p>
           </div>
 
           <div class="total">
-            Total<span class="price">{{ totalAmount }}</span>
+            Total<span class="price">{{ totalAmount | currency: "EGP" }}</span>
           </div>
         </div>
       </div>

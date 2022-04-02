@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  dangerAlertShow=false;
-  SuccessAlertShow=false;
+  dangerAlertShow = false;
+  SuccessAlertShow = false;
   formRegistration: FormGroup = new FormGroup({
     Name: new FormControl(null, [
       Validators.required,
@@ -21,18 +21,18 @@ export class RegisterComponent implements OnInit {
     Email: new FormControl(null, [Validators.required, Validators.email]),
     Password: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^[A-Z][a-z0-9]{3,8}$'),
+      Validators.pattern('^[A-Z][a-z0-9]{3,10}$'),
     ]),
     Phone: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^01[0125][0-9]{15}$'),
+      Validators.pattern('^01[0125][0-9]{8}$'),
     ]),
     Address: new FormControl(null, Validators.required),
     City: new FormControl(null, Validators.required),
     Region: new FormControl(null, Validators.required),
   });
   err: string | undefined;
-  constructor( private router:Router, private auth:AuthenticationService) { }
+  constructor(private router: Router, private auth: AuthenticationService) {}
 
   ngOnInit(): void {}
   getFormData(data: any) {
@@ -51,22 +51,19 @@ export class RegisterComponent implements OnInit {
       (data) => {
         console.log(data);
         if (data.message == 'success') {
-         
-          this.SuccessAlertShow=true;
-          this.dangerAlertShow=false;
-           this.formRegistration.reset();
-           this.router.navigate(['/login']);
-        } 
-        else 
-        {
+          this.SuccessAlertShow = true;
+          this.dangerAlertShow = false;
+          this.formRegistration.reset();
+          this.router.navigate(['/login']);
+        } else {
           this.err = 'not valid data';
         }
       },
-        (err) => {
-          this.SuccessAlertShow=false;
-          this.dangerAlertShow=true;
-          console.log(err);
-        }
-      );
+      (err) => {
+        this.SuccessAlertShow = false;
+        this.dangerAlertShow = true;
+        console.log(err);
+      }
+    );
   }
 }
