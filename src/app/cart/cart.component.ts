@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AuthService } from '../auth.service';
+
 import { Product } from '../Model/product.model';
 import { CartService } from '../Service/cart.service';
 import { ProductCartService } from '../Service/productCart.service';
@@ -21,18 +21,11 @@ export class CartComponent implements OnInit {
   // auth login
   islogin: boolean = false;
   constructor(
-    public _AuthService: AuthService,
+    
     private cartService: CartService,
     private productCartService: ProductCartService
   ) {
-    _AuthService.UserData.subscribe((data) => {
-      if (data) {
-        this.islogin = true;
-      }
-      {
-        this.islogin = false;
-      }
-    });
+  
 
     // _AuthService.UserData.subscribe({
 

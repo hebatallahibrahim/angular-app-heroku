@@ -47,6 +47,13 @@ export class AuthenticationService {
     });
   }
 
+  adminSignUp(data: any): Observable<any> {
+    return this.http.post(
+      ' http://127.0.0.1:8000/api/signup',
+      data
+    );
+  }
+
 
   logout(): void {
    

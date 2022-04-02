@@ -12,12 +12,12 @@ export class AddUsersComponent implements OnInit {
     Name: new FormControl(null, [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(8),
+      Validators.maxLength(25),
     ]),
     Email: new FormControl(null, [Validators.required, Validators.email]),
     Password: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^[A-Z][a-z0-9]{3,8}$'),
+      Validators.pattern('^[A-Z][a-z0-9]{3,15}$'),
     ]),
     Phone: new FormControl(null, [
       Validators.required,

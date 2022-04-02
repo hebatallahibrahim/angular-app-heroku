@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../auth.service';
-
 import { AuthenticationService } from '../Service/authentication.service';
 import { Router } from '@angular/router';
 @Component({
@@ -21,11 +19,11 @@ export class RegisterComponent implements OnInit {
     Email: new FormControl(null, [Validators.required, Validators.email]),
     Password: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^[A-Z][a-z0-9]{3,8}$'),
+      Validators.pattern('^[A-Z][a-z0-9]{3,15}$'),
     ]),
     Phone: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^01[0125][0-9]{15}$'),
+      Validators.pattern('^01[0125][0-9]{8}$'),
     ]),
     Address: new FormControl(null, Validators.required),
     City: new FormControl(null, Validators.required),

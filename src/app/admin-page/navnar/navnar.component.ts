@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth.service';
 import { AuthenticationService } from 'src/app/Service/authentication.service';
 
 @Component({

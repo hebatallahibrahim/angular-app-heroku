@@ -10,6 +10,7 @@ import { ChangeDetectionStrategy } from '@angular/compiler';
 import { ProductCartService } from '../Service/productCart.service';
 import { HttpParams } from '@angular/common/http';
 import { CartService } from 'src/app/Service/cart.service';
+import { AuthenticationService } from '../Service/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -31,6 +32,8 @@ export class HeaderComponent implements OnInit {
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
   userID = 1;
+  //  auth protection
+  loggedIn:boolean = false;
 
   @Output() searchEvent = new EventEmitter<any>();
 
@@ -40,7 +43,8 @@ export class HeaderComponent implements OnInit {
     public searchService: SearchService,
     public _Router: Router,
     private productCartService: ProductCartService,
-    private cartService: CartService
+    private cartService: CartService,
+    private auth:AuthenticationService
   ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
@@ -90,6 +94,15 @@ export class HeaderComponent implements OnInit {
       },
       complete: () => {},
     });
+
+
+    //  auth protection
+    this.auth.status().subscribe((res) => {
+      this.loggedIn = res;
+      console.log('navbar:' + this.loggedIn);
+    }, (err) => {
+      console.log(err);
+    })
   }
 
   getCart() {

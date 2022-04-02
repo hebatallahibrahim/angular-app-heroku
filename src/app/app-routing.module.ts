@@ -41,10 +41,10 @@ import { AddSliderComponent } from './admin-page/add-slider/add-slider.component
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
-import { AdminAuthGuard } from './admin-auth.guard';
-import { TestUserInfoComponent } from './test-user-info/test-user-info.component';
 import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.component';
 import { UserLogOutComponent } from './user-log-out/user-log-out.component';
+import { UserGuardGuard } from './Service/user-guard.guard';
+import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
 
 
 
@@ -61,10 +61,10 @@ const routes: Routes = [
   { path: 'contactUs', component: ContactUsComponent },
   { path: 'aboutUs', component: AboutUsComponent }, // add about us component
   { path: 'forgetPass', component: ForgetPasswordComponent },
-  { path: 'cart', component: CartComponent }, // canActivate: [AuthGuard],
-  { path: 'wishlist', component: WishlistComponent },
-  { path: 'user-orders', component:UserOrdersComponent},
-  { path: 'payment', component: PaymentComponent },
+  { path: 'cart', canActivate: [UserGuardGuard], component: CartComponent }, // canActivate: [AuthGuard],
+  { path: 'wishlist', canActivate: [UserGuardGuard],component: WishlistComponent },
+  { path: 'user-orders',canActivate: [UserGuardGuard], component:UserOrdersComponent},
+  { path: 'payment',canActivate: [UserGuardGuard], component: PaymentComponent },
   { path: 'admin',canActivate: [AuthGuard], component: AdminPageComponent },
   { path: 'all-product',canActivate: [AuthGuard],  component: AllProductsComponent },
   { path: 'add-product',canActivate: [AuthGuard],  component: AddProductsComponent },
@@ -78,8 +78,8 @@ const routes: Routes = [
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cancel-subscription', component: CancelSubscriptionComponent },
-  { path: 'check-out', component: CheckOutComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'check-out',canActivate: [UserGuardGuard], component: CheckOutComponent },
+  { path: 'profile',canActivate: [UserGuardGuard], component: ProfileComponent },
   { path: 'test', component: TestComponent },
   { path: 'message',canActivate: [AuthGuard],  component: AllContactUsComponent },
   { path: 'contact-view/:postId',canActivate: [AuthGuard],  component: ViewContactsDataComponent },
@@ -89,10 +89,10 @@ const routes: Routes = [
   { path: 'update-subcategory/:postId',canActivate: [AuthGuard],  component: UpdateSubcategoryComponent },
   { path: 'add-users',canActivate: [AuthGuard], component: AddUsersComponent },
   { path: 'add-slider',canActivate: [AuthGuard],  component: AddSliderComponent },
-  { path: 'test1' , component:TestUserInfoComponent},
   { path: 'admin-register',canActivate: [AuthGuard],  component:AdminRegistrationComponent},
   { path: 'admin-log-out', component:AdminLogOutComponent},
   { path: 'user-log-out', component:UserLogOutComponent},
+  { path: 'info' , component:UserGetInfoComponent},
   { path: '**', component: NotFoundComponent },
 ];
 

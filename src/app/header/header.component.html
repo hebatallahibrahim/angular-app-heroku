@@ -77,29 +77,43 @@
           />
         </div>
       </div>
-      <div
+      <!-- <div
         [ngClass]="{ show: searchbtn, hide: !searchbtn }"
         (click)="goToProductList()"
         class="col-2 me-3"
       >
         <button class="btn">Search</button>
-      </div>
+      </div> -->
 
-      <a *ngIf="!userID" routerLink="/login" class="me-4">Login</a>
-      <div *ngIf="userID" role="button" class="button-group me-4" ngbDropdown>
+      <ul
+      class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center pl-5"
+      >
+      <li class="m-1 ">
+        <a *ngIf="!loggedIn"
+         class="nav-link px-2 link-dark btn_signup"  routerLink="/login"
+          >Log in</a>
+      </li>
+      <li class="m-1">
+        <a *ngIf="!loggedIn"
+         class="nav-link px-2 link-dark btn_signup " routerLink="/signUp"
+          >SignUp</a
+        >
+      </li>
+    </ul>
+      <div *ngIf="loggedIn" role="button" class="button-group me-4" ngbDropdown>
         <div
           href="/"
           class="d-flex align-items-center mb-2 me-2 mb-lg-0 text-dark text-decoration-none"
           id="dropdownConfig"
           ngbDropdownToggle
         >
-          <a>useremail</a>
+         
+          <a *ngIf="loggedIn">welcom user </a>
         </div>
 
-        <ul ngbDropdownMenu class="text-small" aria-labelledby="dropdownConfig">
-          <li>
-            <a ngbDropdownItem routerLink="/login"> login </a>
-          </li>
+        <ul *ngIf="loggedIn"
+        ngbDropdownMenu class="text-small" aria-labelledby="dropdownConfig">
+          
           <li>
             <a ngbDropdownItem routerLink="/profile"> Profile </a>
           </li>
@@ -109,14 +123,14 @@
           <li>
             <a ngbDropdownItem routerLink="/user-orders"> Orders </a>
           </li>
-          <li>
+          <!-- <li>
             <a ngbDropdownItem href="#"> Settings </a>
-          </li>
+          </li> -->
           <li>
             <hr ngbDropdownDivider />
           </li>
           <li>
-            <a ngbDropdownItem href="#"> Sign out </a>
+            <a ngbDropdownItem  routerLink="/user-log-out"> Sign out </a>
           </li>
         </ul>
       </div>
@@ -193,9 +207,7 @@
           styleClass="p-button-secondary ms-2"
         ></p-button>
       </p-sidebar>
-      <li>
-        <a  routerLink="/login"> login </a>
-      </li>
+      
       <i
         (click)="openCart()"
         class="pi pi-shopping-cart p-mr-4 p-text-secondary"
