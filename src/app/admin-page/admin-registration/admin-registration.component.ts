@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup,Validators } from '@angular/forms';
-import { AuthService } from '../../auth.service';
+
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/Service/authentication.service';
 @Component({
   selector: 'app-admin-registration',
   templateUrl: './admin-registration.component.html',
@@ -13,12 +14,12 @@ export class AdminRegistrationComponent implements OnInit {
     Name: new FormControl(null, [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(8),
+      Validators.maxLength(25),
     ]),
     Email: new FormControl(null, [Validators.required, Validators.email]),
     Password: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^[A-Z][a-z0-9]{3,8}$'),
+      Validators.pattern('^[A-Z][a-z0-9]{3,15}$'),
     ]),
     Phone: new FormControl(null, [
       Validators.required,
@@ -32,7 +33,7 @@ export class AdminRegistrationComponent implements OnInit {
   err: string | undefined;
   dangerAlertShow=false;
   SuccessAlertShow=false;
-  constructor(public _auth: AuthService, public _Router: Router) { }
+  constructor(private auth:AuthenticationService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -46,14 +47,14 @@ export class AdminRegistrationComponent implements OnInit {
     formData.append('region', data.get('Region').value);
     formData.append('password', data.get('Password').value);
 
-    this._auth.adminSignUp(formData).subscribe(
+    this.auth.adminSignUp(formData).subscribe(
       (data) => {
         console.log(data);
         if (data.message == 'success') {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
            this.formRegistration.reset();
-          this._Router.navigate(['/log-in']);
+          this.router.navigate(['/log-in']);
         } 
       },
       
