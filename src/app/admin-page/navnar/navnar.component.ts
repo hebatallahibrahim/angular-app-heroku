@@ -3,6 +3,7 @@ import { adminservice } from 'src/app/Service/admin.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth.service';
+import { AuthenticationService } from 'src/app/Service/authentication.service';
 
 @Component({
   selector: 'app-navnar',
@@ -10,33 +11,27 @@ import { AuthService } from '../../auth.service';
   styleUrls: ['./navnar.component.css'],
 })
 export class NavnarComponent implements OnInit {
-  islogin : boolean=false;
+ 
   MessagesArray: any;
-  constructor(
-    private _service: adminservice,
-    public _auth: AuthService,
-    public _Router: Router
-  
-  ) {
-    _auth.adminData.subscribe(data=>
-      {
-        console.log()
-        if(data)
-       {
-         this.islogin=true;
-       }
-      else
-      {
-         this.islogin=false;
-      }
-      })
-   
-  }
+  loggedIn:boolean = false;
+  constructor(private auth:AuthenticationService
+    ,private _service: adminservice) { }
 
   ngOnInit(): void {
+    
+    this.auth.status().subscribe((res) => {
+      this.loggedIn = res;
+      console.log('navbar:' + this.loggedIn);
+    }, (err) => {
+      console.log(err);
+    })
+
     this._service.messagesHasBeenChanged.subscribe((res: any) => {
       console.log(res);
       this.MessagesArray = res;
     });
   }
-}
+  }
+
+
+

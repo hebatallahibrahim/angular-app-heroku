@@ -3,60 +3,50 @@
 >
   <div class="row-login row rounded p-3 shadow-lg bg-body">
     <div class="col m-5">
-      <form
-        [formGroup]="formLogin"
-        (ngSubmit)="getFormData(formLogin)"
-        action="#"
-        method="post"
-        class="form_class"
-      >
-        <div class="form_class-title d-flex justify-content-center">
-          <h1 class="title">Login</h1>
-        </div>
-        <div class="row mb-3 p-2">
-          <label for="email" class="form-label">Email address</label>
-          <input
-            [class.is-invalid]="
-              formLogin.get('Email')?.invalid && formLogin.get('Email')?.touched
-            "
-            type="email"
-            class="form-control"
-            id="Email"
-            formControlName="Email"
-          />
-        </div>
-        <div class="row mb-3 p-2">
-          <label for="password" class="form-label">Password</label>
-          <input
-            [class.is-invalid]="
-              formLogin.get('Password')?.invalid &&
-              formLogin.get('Password')?.touched
-            "
-            type="password"
-            class="form-control"
-            id="Password"
-            formControlName="Password"
-          />
-        </div>
-        <div
-          class="row form_class-last mb-3 form-check d-flex justify-content-between"
-        >
-          <div class="col-6 col-md-12">
-            <input type="checkbox" class="form-check-input" id="remember" />
-            <label class="form-check-label" for="remember"> Remember me</label>
-          </div>
-          <div class="col-6 col-md-12"></div>
-          <a
-            routerLink="/forgetPass"
-            class="form_class-link col-6 col-md-12 p-0"
-            >Forget password?</a
-          >
-          <div class="col-6 col-md-12"></div>
-        </div>
-
-        <button type="submit" class="form-login_submit btn shadow-sm mb-2 mt-1">
-          Log In
-        </button>
+      <form 
+              (ngSubmit)="onSubmit(loginForm)" 
+              #loginForm="ngForm"
+                  action="#" method="post"
+               class="tm-login-form">
+               <div class="form-group mb-3">
+                <label for="Email" class="form-label"
+                
+                >Email</label>
+                <input
+                
+                  name="email" ngModel
+                  type="email"
+                  class="form-control"
+                  id="Email"
+                  
+                />
+              
+              </div>
+              <div class="form-group mb-3">
+                <label for="Password" class="form-label">Password</label>
+                <input
+               
+                  name="password" ngModel
+                  type="password"
+                  class="form-control"
+                  id="Password"
+                 
+                />
+             
+              </div>
+                <div class="form-group mt-4">
+             
+            
+                  <button
+                    type="submit" 
+                    class="btn btn-primary btn-block text-uppercase"
+                  >
+                    Login
+                  </button>
+                  <!-- <a routerLink="/admin-register"> or register? </a> -->
+                </div>
+               
+            
 
         <p class="d-flex justify-content-center">
           Don't have an account?

@@ -20,7 +20,7 @@
        
           <li class="nav-item">
             <a 
-            *ngIf= 'islogin == true'
+            *ngIf="loggedIn"
             class="nav-link active" 
             routerLink="/all-product">
               <i class="fas fa-shopping-cart" style=" font-size: 1.5rem;"></i> Products
@@ -29,7 +29,7 @@
 
           <li class="nav-item">
             <a 
-            *ngIf= 'islogin == true'
+            *ngIf="loggedIn"
             class="nav-link active" 
             routerLink="/all-category">
               <i class="fa-solid fa-list" style=" font-size: 1.5rem;"></i> Categories
@@ -38,7 +38,7 @@
 
           <li class="nav-item">
             <a 
-            *ngIf= 'islogin == true'
+            *ngIf="loggedIn"
             class="nav-link active" 
             routerLink="/all-sub-categry">
               <i class="fa-solid fa-sitemap" style=" font-size: 1.5rem;"></i> Sub Categories
@@ -47,7 +47,7 @@
 
           <li class="nav-item">
             <a 
-            *ngIf= 'islogin == true'
+            *ngIf="loggedIn"
             class="nav-link" routerLink="/accounts">
               <i class="far fa-user"></i> Accounts
             </a>
@@ -55,7 +55,7 @@
 
           <li class="nav-item">
             <a 
-            *ngIf= 'islogin == true'
+            *ngIf="loggedIn"
             class="nav-link" 
             routerLink="/slider">
               <i class="fa-solid fa-arrows-left-right"></i> Slider
@@ -64,7 +64,7 @@
 
           <li>
             <a 
-            *ngIf= 'islogin == true'
+            *ngIf="loggedIn"
             class="nav-link" 
             routerLink="/message"> 
               <mat-icon matBadge="{{MessagesArray.length}}" matBadgeColor="warn">
@@ -72,14 +72,32 @@
               </mat-icon> Messages
             </a>
           </li>
+
+          <li class="nav-item">
+            <a 
+            *ngIf="loggedIn"
+            class="nav-link" 
+            routerLink="/admin-register">
+              <i class="fa-solid fa-arrows-left-right"></i> add admin
+            </a>
+          </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
             <a 
-            
+           *ngIf="!loggedIn"
             class="nav-link d-block" 
             routerLink="/log-in">
               Admin, <b>LogIn</b>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a 
+           *ngIf="loggedIn"
+            class="nav-link d-block" 
+            routerLink="/admin-log-out">
+              Admin, <b>LogOut</b>
             </a>
           </li>
         </ul>
