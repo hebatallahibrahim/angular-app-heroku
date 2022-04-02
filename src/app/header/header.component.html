@@ -33,7 +33,11 @@
         </li>
 
         <li>
-          <div role="button" class="button-group mt-2 px-2 dropdownstyle" ngbDropdown>
+          <div
+            role="button"
+            class="button-group mt-2 px-2 dropdownstyle"
+            ngbDropdown
+          >
             <div
               href="/"
               class="d-flex align-items-center text-decoration-none"
@@ -96,7 +100,11 @@
           useremail
         </div>
 
-        <ul ngbDropdownMenu class="text-small ul-style" aria-labelledby="dropdownConfig">
+        <ul
+          ngbDropdownMenu
+          class="text-small ul-style"
+          aria-labelledby="dropdownConfig"
+        >
           <li>
             <a ngbDropdownItem routerLink="/profile"> Profile </a>
           </li>
@@ -125,8 +133,8 @@
         [style]="{ width: '50rem' }"
       >
         <div
-          class="empty mb-2 fs-2 d-flex justify-content-center align-items-center"
-          *ngIf="cartCounter != true"
+          class="empty m-4 fs-2 d-flex justify-content-center align-items-center"
+          *ngIf="addedProducts.length == 0"
         >
           No item selected
         </div>
