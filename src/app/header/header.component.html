@@ -106,6 +106,9 @@
           aria-labelledby="dropdownConfig"
         >
           <li>
+            <a ngbDropdownItem routerLink="/login"> login </a>
+          </li>
+          <li>
             <a ngbDropdownItem routerLink="/profile"> Profile </a>
           </li>
           <li>
@@ -198,7 +201,9 @@
           styleClass="p-button-secondary ms-2"
         ></p-button>
       </p-sidebar>
-
+      <li>
+        <a  routerLink="/login"> login </a>
+      </li>
       <i
         (click)="openCart()"
         class="pi pi-shopping-cart p-mr-4 text-light"

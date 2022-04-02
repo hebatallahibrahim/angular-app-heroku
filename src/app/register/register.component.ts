@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+
+import { AuthenticationService } from '../Service/authentication.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
@@ -14,7 +16,7 @@ export class RegisterComponent implements OnInit {
     Name: new FormControl(null, [
       Validators.required,
       Validators.minLength(4),
-      Validators.maxLength(8),
+      Validators.maxLength(50),
     ]),
     Email: new FormControl(null, [Validators.required, Validators.email]),
     Password: new FormControl(null, [
@@ -23,14 +25,14 @@ export class RegisterComponent implements OnInit {
     ]),
     Phone: new FormControl(null, [
       Validators.required,
-      Validators.pattern('^01[0125][0-9]{8}$'),
+      Validators.pattern('^01[0125][0-9]{15}$'),
     ]),
     Address: new FormControl(null, Validators.required),
     City: new FormControl(null, Validators.required),
     Region: new FormControl(null, Validators.required),
   });
   err: string | undefined;
-  constructor(public _AuthService: AuthService, public _Router: Router) {}
+  constructor( private router:Router, private auth:AuthenticationService) { }
 
   ngOnInit(): void {}
   getFormData(data: any) {
@@ -45,7 +47,7 @@ export class RegisterComponent implements OnInit {
     formData.append('region', data.get('Region').value);
     formData.append('password', data.get('Password').value);
 
-    this._AuthService.signup(formData).subscribe(
+    this.auth.signup(formData).subscribe(
       (data) => {
         console.log(data);
         if (data.message == 'success') {
@@ -53,7 +55,7 @@ export class RegisterComponent implements OnInit {
           this.SuccessAlertShow=true;
           this.dangerAlertShow=false;
            this.formRegistration.reset();
-           this._Router.navigate(['/login']);
+           this.router.navigate(['/login']);
         } 
         else 
         {

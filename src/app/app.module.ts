@@ -97,6 +97,9 @@ import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscr
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
+import { TestUserInfoComponent } from './test-user-info/test-user-info.component';
+import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.component';
+import { UserLogOutComponent } from './user-log-out/user-log-out.component';
 
 @NgModule({
   declarations: [
@@ -155,6 +158,9 @@ import { AdminRegistrationComponent } from './admin-page/admin-registration/admi
     CancelSubscriptionComponent,
     UserOrdersComponent,
     AdminRegistrationComponent,
+    TestUserInfoComponent,
+    AdminLogOutComponent,
+    UserLogOutComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,7 +24,7 @@ import { DashboardComponent } from './admin-page/dashboard/dashboard.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ProfileComponent } from './profile/profile.component';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './Service/auth.guard';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
@@ -38,12 +38,14 @@ import { UpdateSubcategoryComponent } from './admin-page/update-subcategory/upda
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AddUsersComponent } from './admin-page/add-users/add-users.component';
 import { AddSliderComponent } from './admin-page/add-slider/add-slider.component';
-
 import { CancelSubscriptionComponent } from './cancel-subscription/cancel-subscription.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
-
 import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
 import { AdminAuthGuard } from './admin-auth.guard';
+import { TestUserInfoComponent } from './test-user-info/test-user-info.component';
+import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.component';
+import { UserLogOutComponent } from './user-log-out/user-log-out.component';
+
 
 
 const routes: Routes = [
@@ -63,31 +65,34 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'user-orders', component:UserOrdersComponent},
   { path: 'payment', component: PaymentComponent },
-  { path: 'admin',canActivate: [AdminAuthGuard], component: AdminPageComponent },
-  { path: 'all-product', component: AllProductsComponent },
-  { path: 'add-product', component: AddProductsComponent },
-  { path: 'update-product/:postId', component: UpdateProductComponent },
-  { path: 'accounts', component: AcountsComponent },
-  { path: 'slider', component: SliderComponent },
+  { path: 'admin',canActivate: [AuthGuard], component: AdminPageComponent },
+  { path: 'all-product',canActivate: [AuthGuard],  component: AllProductsComponent },
+  { path: 'add-product',canActivate: [AuthGuard],  component: AddProductsComponent },
+  { path: 'update-product/:postId',canActivate: [AuthGuard], component: UpdateProductComponent },
+  { path: 'accounts',canActivate: [AuthGuard],  component: AcountsComponent },
+  { path: 'slider',canActivate: [AuthGuard],  component: SliderComponent },
   { path: 'log-in', component: LogInComponent },
-  { path: 'add-category', component: AddCategoryComponent },
-  { path: 'add-subcategory', component: AddSubcategoryComponent },
-  { path: 'dashbord', component: DashboardComponent },
+  { path: 'add-category',canActivate: [AuthGuard],  component: AddCategoryComponent },
+  { path: 'add-subcategory',canActivate: [AuthGuard],  component: AddSubcategoryComponent },
+  { path: 'dashbord',canActivate: [AuthGuard],  component: DashboardComponent },
   { path: 'about-us', component: AboutUsComponent },
   { path: 'contact-us', component: ContactUsComponent },
   { path: 'cancel-subscription', component: CancelSubscriptionComponent },
   { path: 'check-out', component: CheckOutComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'test', component: TestComponent },
-  { path: 'message', component: AllContactUsComponent },
-  { path: 'contact-view/:postId', component: ViewContactsDataComponent },
-  { path: 'all-category', component: AllCategoryComponent },
-  { path: 'all-sub-categry', component: AllSubcategoryComponent },
-  { path: 'update-category/:postId', component: UpdateCategoryComponent },
-  { path: 'update-subcategory/:postId', component: UpdateSubcategoryComponent },
-  { path: 'add-users', component: AddUsersComponent },
-  { path: 'add-slider', component: AddSliderComponent },
-  { path: 'admin-register', component:AdminRegistrationComponent},
+  { path: 'message',canActivate: [AuthGuard],  component: AllContactUsComponent },
+  { path: 'contact-view/:postId',canActivate: [AuthGuard],  component: ViewContactsDataComponent },
+  { path: 'all-category',canActivate: [AuthGuard],  component: AllCategoryComponent },
+  { path: 'all-sub-categry',canActivate: [AuthGuard],  component: AllSubcategoryComponent },
+  { path: 'update-category/:postId',canActivate: [AuthGuard], component: UpdateCategoryComponent },
+  { path: 'update-subcategory/:postId',canActivate: [AuthGuard],  component: UpdateSubcategoryComponent },
+  { path: 'add-users',canActivate: [AuthGuard], component: AddUsersComponent },
+  { path: 'add-slider',canActivate: [AuthGuard],  component: AddSliderComponent },
+  { path: 'test1' , component:TestUserInfoComponent},
+  { path: 'admin-register',canActivate: [AuthGuard],  component:AdminRegistrationComponent},
+  { path: 'admin-log-out', component:AdminLogOutComponent},
+  { path: 'user-log-out', component:UserLogOutComponent},
   { path: '**', component: NotFoundComponent },
 ];
 
