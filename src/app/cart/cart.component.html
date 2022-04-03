@@ -40,18 +40,19 @@
         <div class="card">
           <div class="card-body">
             <dl class="dlist-align">
-              <dt>Total price:</dt>
+              <dt class="mb-2">Total price:</dt>
               <dd class="text-right">{{ AlltotalAmount | currency: "EGP" }}</dd>
             </dl>
             <dl class="dlist-align">
-              <dt>{{ totalDiscount | currency: "EGP" }}</dt>
+              <dt class="mb-2">Discount:</dt>
+              <dd class="text-right">{{ totalDiscount | currency: "EGP" }}</dd>
             </dl>
             <dl class="dlist-align">
-              <dt>Total:</dt>
-              <dd class="text-right h5">
-                <strong>{{
+              <dt class="mb-2">Total:</dt>
+              <dd class="text-right ">
+                {{
                   AlltotalAmount - totalDiscount | currency: "EGP"
-                }}</strong>
+                }}
               </dd>
             </dl>
             <hr />
