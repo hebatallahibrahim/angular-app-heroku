@@ -10,36 +10,27 @@ export class UserOrdersComponent implements OnInit {
 
   orderArray:any[]=[];
   selectedOrders:any[]=[];
-  userEmail="nada@gmail.com";
+  userObj:any={};
+  isLoading=true;
   constructor(private paymentService:PaymentService) { }
 
   ngOnInit(): void {
+    const user: any = localStorage.getItem('user');
+    this.userObj = JSON.parse(user);
     this.getOrders();
   }
 
-  removeProdItem(id: any): void {
-    this.paymentService.deleteUserOrder(id).subscribe(
-      (res) => {
-      console.log(res);
-      if(res.status==200){
-      this.orderArray = this.orderArray.filter(item => item.id !== id);
-      }
-      },
-      (err)=>{
-        console.log(err);
-      }
-    )
-    
-  }
 
   getOrders(){
-    this.paymentService.getAllUserOrders(this.userEmail).subscribe(
+    this.paymentService.getAllUserOrders(this.userObj.user.email).subscribe(
       (data)=>{
         console.log(data);
+        this.isLoading=false;
         this.orderArray=data.orders;
       },
       (err)=>{
         console.log(err);
+        this.isLoading=false;
       }
     );
   }

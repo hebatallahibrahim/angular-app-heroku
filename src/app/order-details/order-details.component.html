@@ -5,7 +5,7 @@
                   <!-- product  -->
       <div class="col-12 tm-block-col" id="products">
         <div class="tm-bg-primary-dark tm-block tm-block-products">
-          <h2 class="tm-block-title">Your Orders</h2>
+          <h2 class="tm-block-title">Order Products</h2>
   
           <div class="tm-product-table-container">
             <table
@@ -13,25 +13,20 @@
             >
               <thead class="spinner-parent">
                 <p-progressSpinner class="spinner" [ngClass]="{'show':isLoading,'hide':!isLoading}"></p-progressSpinner>
-                <tr >
-                  <th scope="col">Order ID</th>
-                  <th scope="col">Total Price</th>
-                  <th scope="col">Order Date</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Phone</th>
-                  <th scope="col">Payment Type</th>
+                <tr>
+                  <th scope="col">Product Name</th>
+                  <th scope="col">Count</th>
+                  <th scope="col">Price</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let i of orderArray">
-                  <td>{{ i.id }}</td>
-                  <td>{{i.amount+" EGP"}}</td>
-                  <td>{{ i.order_date+"-"+i.order_month+"-"+i.order_year}}</td>
-                  <td>{{ i.address }}</td>
-                  <td>{{ i.phone }}</td>
-                  <td>{{ i.payment_type }}</td>
-                  <td><a routerLink="/order-details/{{i.id}}">Order Details</a></td>
+                <tr *ngFor="let i of orderItems">
+                  <td>{{ i.product_name }}</td>
+                  <td>{{i.qty}}</td>
+                  <td>{{i.price+" EGP"}}</td>
+                  
+                  <td><a routerLink="/product-details/{{i.product_id}}">Product Details</a></td>
                 </tr>
               </tbody>
             </table>

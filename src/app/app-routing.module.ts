@@ -46,6 +46,7 @@ import { UserLogOutComponent } from './user-log-out/user-log-out.component';
 import { UserGuardGuard } from './Service/user-guard.guard';
 import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { OrderDetailsComponent } from './order-details/order-details.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -70,6 +71,11 @@ const routes: Routes = [
     path: 'user-orders',
     canActivate: [UserGuardGuard],
     component: UserOrdersComponent,
+  },
+  {
+    path: 'order-details/:id',
+    canActivate: [UserGuardGuard],
+    component: OrderDetailsComponent
   },
   {
     path: 'payment',

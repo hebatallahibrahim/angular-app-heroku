@@ -27,4 +27,7 @@ export class PaymentService {
   deleteUserOrder(id:any):Observable<any>{
     return this._HttpClient.delete<any>(`http://127.0.0.1:8000/api/user/order/${id}`);
   }
+  getOrderItems(order_id:any):Observable<any> {
+    return this._HttpClient.get<any>(`http://127.0.0.1:8000/api/orders/details/${order_id}`);
+  }
 }
