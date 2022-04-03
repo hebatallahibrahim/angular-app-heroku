@@ -4,70 +4,66 @@
 >
   <div class="row-login row rounded p-3 shadow-lg bg-body">
     <div class="col m-5">
-      <form 
-              (ngSubmit)="onSubmit(loginForm)" 
-              #loginForm="ngForm"
-                  action="#" method="post"
-               class="tm-login-form">
-               <div class="form-group mb-3">
-                <label for="Email" class="form-label"
-                
-                >Email</label>
-                <input
-                
-                  name="email" ngModel
-                  type="email"
-                  class="form-control"
-                  id="Email"
-                  
-                />
-              
-              </div>
-              <div class="form-group mb-3">
-                <label for="Password" class="form-label">Password</label>
-                <input
-               
-                  name="password" ngModel
-                  type="password"
-                  class="form-control"
-                  id="Password"
-                 
-                />
-             
-              </div>
-               
-               
-              <div
-              class="row form_class-last mb-3 form-check d-flex justify-content-between"
-            >
-           
-              <a href="#" class="form_class-forget col-6 col-md-12 p-0"
-                >Forget password?</a
-              >
-            </div>
-            <div
-            [ngClass]="{
-              'show-alert': dangerAlertShow,
-              'hide-alert': !dangerAlertShow
-            }"
-            class="alert alert-danger col-11 m-2 p-2"
-            role="alert"
+      <form
+        (ngSubmit)="onSubmit(loginForm)"
+        #loginForm="ngForm"
+        action="#"
+        method="post"
+        class="tm-login-form"
+      >
+        <div class="form-group mb-3">
+          <label for="Email" class="form-label">Email</label>
+          <input
+            name="email"
+            ngModel
+            type="email"
+            class="form-control"
+            id="Email"
+          />
+        </div>
+        <div class="form-group mb-3">
+          <label for="Password" class="form-label">Password</label>
+          <input
+            name="password"
+            ngModel
+            type="password"
+            class="form-control"
+            id="Password"
+          />
+        </div>
+
+        <div
+          class="row form_class-last mb-3 form-check d-flex justify-content-between"
+        >
+          <a
+            routerLink="/forgetPass"
+            class="form_class-forget col-6 col-md-12 p-0"
+            >Forget password?</a
           >
+        </div>
+        <div
+          [ngClass]="{
+            'show-alert': dangerAlertShow,
+            'hide-alert': !dangerAlertShow
+          }"
+          class="alert alert-danger col-11 m-2 p-2"
+          role="alert"
+        >
           InValid Email or Password
-          </div>
-          <div
-            [ngClass]="{
-              'show-alert': SuccessAlertShow,
-              'hide-alert': !SuccessAlertShow
-            }"
-            class="alert alert-success col-11 m-2 p-2"
-            role="alert"
-          >
-            login success
-          </div>
-            <button type="submit" class="form-login_submit btn shadow-sm mb-2 mt-1">
-              Submit
-            </button>
+        </div>
+        <div
+          [ngClass]="{
+            'show-alert': SuccessAlertShow,
+            'hide-alert': !SuccessAlertShow
+          }"
+          class="alert alert-success col-11 m-2 p-2"
+          role="alert"
+        >
+          login success
+        </div>
+        <button type="submit" class="form-login_submit btn shadow-sm mb-2 mt-1">
+          Submit
+        </button>
       </form>
     </div>
   </div>
