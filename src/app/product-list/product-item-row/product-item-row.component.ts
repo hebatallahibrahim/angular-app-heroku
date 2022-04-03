@@ -11,7 +11,7 @@ import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-product-item-row',
   templateUrl: './product-item-row.component.html',
-  styleUrls: ['./product-item-row.component.css']
+  styleUrls: ['./product-item-row.component.css'],
 })
 export class ProductItemRowComponent implements OnInit {
   @Output() LikedProductEvent = new EventEmitter<any>();
@@ -24,19 +24,18 @@ export class ProductItemRowComponent implements OnInit {
   item_hearted!: any;
   closeResult = '';
   constructor(
-    private CartService: CartService,
+    private cartService: CartService,
     private wishlistService: WishlistService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private searchService: SearchService,
-    private productCartService: ProductCartService) { }
+    private productCartService: ProductCartService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  onItemAdded() {
-    // this.CartService.addToCart(this.productItem);
-    this.productCartService.addProduct(this.productItem);
+  onItemAdded(item: any) {
+    const postData = { product_id: item.id, user_id: this.userID };
+    this.cartService.postCart(postData, item);
   }
   addToCart(item: Product) {
     this.productCartService.addProduct(item);
@@ -91,9 +90,12 @@ export class ProductItemRowComponent implements OnInit {
           }
         );
     }
-    if(this.router.url=='/product-list'){
-      console.log("hi");
-    this.LikedProductEvent.emit({product_id:this.productItem.id,heart:this.item_hearted});
+    if (this.router.url == '/product-list') {
+      console.log('hi');
+      this.LikedProductEvent.emit({
+        product_id: this.productItem.id,
+        heart: this.item_hearted,
+      });
     }
   }
 }
