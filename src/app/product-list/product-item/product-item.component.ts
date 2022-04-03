@@ -46,7 +46,7 @@ export class ProductItemComponent implements OnInit {
   }
   confirm1() {
     this.confirmationService.confirm({
-      message: 'please log in to add product',
+      message: 'please login first',
       header: 'Attention',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -57,6 +57,7 @@ export class ProductItemComponent implements OnInit {
             detail: 'You have accepted',
           },
         ];
+        this.router.navigate(['/login']);
       },
       reject: () => {
         this.msgs = [
@@ -69,6 +70,7 @@ export class ProductItemComponent implements OnInit {
       },
     });
   }
+
   onItemAdded(item: any) {
     // this.productCartService.addProduct(this.productItem);
     const user: any = localStorage.getItem('user');
@@ -100,7 +102,6 @@ export class ProductItemComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
       this.item_hearted = !this.item_hearted;
       if (this.item_hearted) {
         var formData: any = new FormData();
@@ -147,18 +148,6 @@ export class ProductItemComponent implements OnInit {
           heart: this.item_hearted,
         });
       }
-    } else {
-      console.log('user not logged in yet');
-    }
-
-    if (
-      this.router.url == '/product-list' ||
-      this.router.url.split('/')[1] == 'category-products'
-    ) {
-      this.LikedProductEvent.emit({
-        product_id: this.productItem.id,
-        heart: this.item_hearted,
-      });
     } else {
       this.confirm1();
       console.log('user not logged in yet');

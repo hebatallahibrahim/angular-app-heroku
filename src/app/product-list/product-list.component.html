@@ -29,6 +29,7 @@
   </div>
   <p-progressSpinner class="spinner" *ngIf="isFetching"></p-progressSpinner>
   <div *ngIf="productsGrid" class="row row-item d-flex justify-content-center">
+  
     <app-product-item
       (LikedProductEvent)="likeProduct($event)"
       class="col-4 ps-0 pe-0 m-2 one-item shadow-lg"

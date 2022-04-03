@@ -14,11 +14,14 @@ import { HttpParams } from '@angular/common/http';
 import { Product } from '../Model/product.model';
 import { WishlistService } from '../Service/wishlist.service';
 import { CartService } from '../Service/cart.service';
-
+import { PrimeNGConfig } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { Message } from 'primeng/api';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css'],
+  providers: [ConfirmationService],
 })
 export class ProductDetailsComponent implements OnInit {
   item_hearted!: any;
@@ -33,11 +36,12 @@ export class ProductDetailsComponent implements OnInit {
   });
   ratingVal: number = 0;
   productId!: any;
-  userID: any ;
+  userID: any;
   productDetails: any = {};
   relativeProduct!: any[];
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   err: string | undefined;
+  msgs: Message[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +50,9 @@ export class ProductDetailsComponent implements OnInit {
     private _productDetailsService: ProductDetailsService,
     private productListService: ProductListService,
     private wishlistService: WishlistService,
-    private cartService: CartService
+    private cartService: CartService,
+    private confirmationService: ConfirmationService,
+    private primengConfig: PrimeNGConfig
   ) {
     this.activetedRoute.params.subscribe((params) => {
       this.ratingVal = 0;
@@ -55,6 +61,32 @@ export class ProductDetailsComponent implements OnInit {
       if (this.userID) {
         this.getUserRate();
       }
+    });
+  }
+  confirm1() {
+    this.confirmationService.confirm({
+      message: 'please login first',
+      header: 'Attention',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.msgs = [
+          {
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'You have accepted',
+          },
+        ];
+        this._Router.navigate(['/login']);
+      },
+      reject: () => {
+        this.msgs = [
+          {
+            severity: 'info',
+            summary: 'Rejected',
+            detail: 'You have rejected',
+          },
+        ];
+      },
     });
   }
   customOptions: OwlOptions = {
@@ -103,96 +135,91 @@ export class ProductDetailsComponent implements OnInit {
     spaceBetween: 50,
   };
   ngOnInit() {
-
+    this.primengConfig.ripple = true;
   }
-  // productCrusal(item: any) {
-  //   console.log(item.id);
-  // }
+
   addOrRemoveWishlist() {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    this.item_hearted = !this.item_hearted;
-    if (this.item_hearted) {
-      var formData: any = new FormData();
-      formData.append('product_id', this.productDetails.id);
-      formData.append('user_id', this.userID);
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      this.item_hearted = !this.item_hearted;
+      if (this.item_hearted) {
+        var formData: any = new FormData();
+        formData.append('product_id', this.productDetails.id);
+        formData.append('user_id', this.userID);
 
-      this.wishlistService
-        .addToWishlist(formData, this.productDetails.id)
-        .subscribe(
-          (data) => {
-            console.log(data);
-            if (data.message == 'Product updated succesfully') {
-              // this._Router.navigate(['/accounts']);
-            } else {
-              this.err = 'not valid data';
+        this.wishlistService
+          .addToWishlist(formData, this.productDetails.id)
+          .subscribe(
+            (data) => {
+              console.log(data);
+              if (data.message == 'Product updated succesfully') {
+                // this._Router.navigate(['/accounts']);
+              } else {
+                this.err = 'not valid data';
+              }
+            },
+            (err) => {
+              console.log(err);
             }
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+          );
+      } else {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('user_id', this.userID);
+        this.wishlistService
+          .deleteFromWishlist(queryParams, this.productDetails.id)
+          .subscribe(
+            (res) => {
+              console.log(res);
+              if (res.message == 'Wishlist deleted succesfully') {
+              }
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      }
     } else {
-      let queryParams = new HttpParams();
-      queryParams = queryParams.append('user_id', this.userID);
-      this.wishlistService
-        .deleteFromWishlist(queryParams, this.productDetails.id)
-        .subscribe(
-          (res) => {
-            console.log(res);
-            if (res.message == 'Wishlist deleted succesfully') {
-            }
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+      this.confirm1();
+      console.log('user not logged in yet');
     }
-  }
-  else
-  {
-    console.log("user not logged in yet");
-  }
   }
 
   getLikedProduct() {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    this.wishlistService.getWishlistProducts(queryParams).subscribe(
-      (res) => {
-        console.log(res);
-        console.log('id', this.productDetails);
-        console.log('itemheart', this.item_hearted);
-        if (
-          res.products.some(
-            (e: { product_id: number; user_id: number }) =>
-              e.product_id == this.productDetails.id && e.user_id == this.userID
-          )
-        ) {
-          this.item_hearted = true;
-        } else {
-          this.item_hearted = false;
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this.wishlistService.getWishlistProducts(queryParams).subscribe(
+        (res) => {
+          console.log(res);
+          console.log('id', this.productDetails);
+          console.log('itemheart', this.item_hearted);
+          if (
+            res.products.some(
+              (e: { product_id: number; user_id: number }) =>
+                e.product_id == this.productDetails.id &&
+                e.user_id == this.userID
+            )
+          ) {
+            this.item_hearted = true;
+          } else {
+            this.item_hearted = false;
+          }
+        },
+        (err) => {
+          console.log(err);
         }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-  else
-  {
-    console.log("user not logged in yet");
-  }
+      );
+    } else {
+      this.confirm1();
+      console.log('user not logged in yet');
+    }
   }
 
   getProductByID() {
@@ -232,113 +259,103 @@ export class ProductDetailsComponent implements OnInit {
   }
   getUserRate() {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    this._productDetailsService
-      .getUserRating(queryParams, this.productId)
-      .subscribe(
-        (res) => {
-          console.log(res);
-          if (res.message != 'No Rating found') {
-            this.ratingVal = res.user_rate.rate;
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this._productDetailsService
+        .getUserRating(queryParams, this.productId)
+        .subscribe(
+          (res) => {
+            console.log(res);
+            if (res.message != 'No Rating found') {
+              this.ratingVal = res.user_rate.rate;
+            }
+          },
+          (err) => {
+            console.log(err);
           }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-  }
-  else
-  {
-    console.log("user not logged in yet");
-  }
+        );
+    } else {
+      this.confirm1();
+      console.log('user not logged in yet');
+    }
   }
 
   removeRate() {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    this.ratingVal = 0;
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    this._productDetailsService
-      .deleteRating(queryParams, this.productId)
-      .subscribe(
-        (res) => {
-          console.log(res);
-          if (res.message == 'Rate deleted succesfully') {
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      this.ratingVal = 0;
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this._productDetailsService
+        .deleteRating(queryParams, this.productId)
+        .subscribe(
+          (res) => {
+            console.log(res);
+            if (res.message == 'Rate deleted succesfully') {
+            }
+          },
+          (err) => {
+            console.log(err);
           }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-  }
-  else
-  {
-    console.log("user not logged in yet ");
-  }
+        );
+    } else {
+      this.confirm1();
+      console.log('user not logged in yet ');
+    }
   }
   getFormData(data: any) {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    var formData: any = new FormData();
-    formData.append('rate', data.get('rating').value);
-    formData.append('product_id', this.productId);
-    formData.append('user_id', this.userID);
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      var formData: any = new FormData();
+      formData.append('rate', data.get('rating').value);
+      formData.append('product_id', this.productId);
+      formData.append('user_id', this.userID);
 
-    this._productDetailsService
-      .addProductRating(formData, this.productId)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          if (
-            data.message == 'Rate added succesfully' ||
-            data.message == 'Product Rate updated succesfully'
-          ) {
-            // this._Router.navigate(['/accounts']);
-          } else {
-            this.err = 'not valid data';
+      this._productDetailsService
+        .addProductRating(formData, this.productId)
+        .subscribe(
+          (data) => {
+            console.log(data);
+            if (
+              data.message == 'Rate added succesfully' ||
+              data.message == 'Product Rate updated succesfully'
+            ) {
+              // this._Router.navigate(['/accounts']);
+            } else {
+              this.err = 'not valid data';
+            }
+          },
+          (err) => {
+            console.log(err);
           }
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
-
-    }
-    else
-    {
-      console.log("user not logged in yet");
+        );
+    } else {
+      this.confirm1();
+      console.log('user not logged in yet');
     }
   }
   onItemAdded(item: any) {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    console.log(item);
-    const postData = { product_id: item.id, user_id: this.userID };
-    this.cartService.postCart(postData, item);
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      console.log(item);
+      const postData = { product_id: item.id, user_id: this.userID };
+      this.cartService.postCart(postData, item);
+    } else {
+      this.confirm1();
+      console.log('user not logged in yet');
+    }
   }
-  else
-  {
-    console.log("user not logged in yet");
-  }
-  }
-  
 }
