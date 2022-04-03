@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
   likedProducts: any[] = [];
   sortedLikedProducts: any[] = [];
   likedProductsSlice: any[] = [];
-  userID = 1;
+  userID :any;
   closeResult = '';
   colorSearchFilter = '';
   priceSearchFilter = '';
@@ -51,6 +51,10 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.primengConfig.ripple = true;
     this.isFetching=true;
     this.productListService.getAllProduct().subscribe(

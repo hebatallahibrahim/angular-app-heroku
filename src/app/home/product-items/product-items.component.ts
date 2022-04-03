@@ -11,11 +11,15 @@ import { WishlistService } from 'src/app/Service/wishlist.service';
 export class ProductItemsComponent implements OnInit {
   arr = [1,2,3,4];
   productArray:any[]=[];
-  userID=1;
+  userID:any;
   likedProducts:any[]=[];
   constructor(private _HomeService: HomeService,private wishlistService:WishlistService) { }
 
   ngOnInit(): void {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this._HomeService.getAllProduct().subscribe(
       (result:any) => {
         if(result.products.length>3){

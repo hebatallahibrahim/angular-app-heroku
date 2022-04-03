@@ -13,7 +13,7 @@ export class CartItemComponent implements OnInit {
   addedProducts: any = [];
   cartCounter: any = 0;
   totalAmount: any = 0;
-  userID = 1;
+  userID :any;
   value20: number = 1;
   cartitem!: Product;
   counterValue: number = 0;
@@ -23,6 +23,10 @@ export class CartItemComponent implements OnInit {
     private cartService: CartService
   ) {}
   ngOnInit(): void {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     // this.cartList = this.productCartService.getProducts();
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({

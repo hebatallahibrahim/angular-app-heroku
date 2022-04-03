@@ -33,7 +33,7 @@ export class ProductDetailsComponent implements OnInit {
   });
   ratingVal: number = 0;
   productId!: any;
-  userID: any = 1;
+  userID: any ;
   productDetails: any = {};
   relativeProduct!: any[];
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
@@ -102,7 +102,12 @@ export class ProductDetailsComponent implements OnInit {
     },
     spaceBetween: 50,
   };
-  ngOnInit() {}
+  ngOnInit() {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
+  }
   // productCrusal(item: any) {
   //   console.log(item.id);
   // }

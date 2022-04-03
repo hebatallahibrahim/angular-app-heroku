@@ -11,7 +11,7 @@ import { WishlistService } from '../Service/wishlist.service';
 export class WishlistComponent implements OnInit {
   likedProducts: any[] = [];
   productArray: any[] = [];
-  userID = 1;
+  userID :any;
   count = 0;
 
   constructor(
@@ -20,6 +20,12 @@ export class WishlistComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
+  
     this.productListService.getAllProduct().subscribe(
       (result) => {
         this.productArray = result.products;

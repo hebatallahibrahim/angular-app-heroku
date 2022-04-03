@@ -13,8 +13,13 @@ export class ProductCartService {
 
   // Exposed observable (read-only).
 
-  constructor(private http: HttpClient) {}
-  userID = 1;
+  constructor(private http: HttpClient) {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
+  }
+  userID :any ;
   addedProducts: Product[] = [];
   cartCounter: number = 0;
   // Get last value without subscribing to the Products$ observable (synchronously).
