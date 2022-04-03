@@ -101,6 +101,7 @@ import { AdminLogOutComponent } from './admin-page/admin-log-out/admin-log-out.c
 import { UserLogOutComponent } from './user-log-out/user-log-out.component';
 import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { OrderDatailsComponent } from './admin-page/order-datails/order-datails.component';
 
 @NgModule({
   declarations: [
@@ -162,6 +163,7 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     UserLogOutComponent,
     UserGetInfoComponent,
     ResetPasswordComponent,
+    OrderDatailsComponent,
   ],
   imports: [
     BrowserModule,

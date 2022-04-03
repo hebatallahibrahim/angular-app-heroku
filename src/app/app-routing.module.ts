@@ -46,6 +46,7 @@ import { UserLogOutComponent } from './user-log-out/user-log-out.component';
 import { UserGuardGuard } from './Service/user-guard.guard';
 import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { OrderDatailsComponent } from './admin-page/order-datails/order-datails.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -120,6 +121,7 @@ const routes: Routes = [
     component: ProfileComponent,
   },
   { path: 'test', component: TestComponent },
+
   {
     path: 'message',
     canActivate: [AuthGuard],
@@ -164,6 +166,7 @@ const routes: Routes = [
   { path: 'admin-log-out', component: AdminLogOutComponent },
   { path: 'user-log-out', component: UserLogOutComponent },
   { path: 'info', component: UserGetInfoComponent },
+  { path: 'admin-order', component: OrderDatailsComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

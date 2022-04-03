@@ -50,16 +50,7 @@ export class adminservice {
   getAllSubCat(): any {
     return this.http
       .get<any>('http://127.0.0.1:8000/api/category/sub/view')
-      .subscribe(
-        (data: any) => {
-          console.log(data);
-          this.MessagesArray = data.ALLContactUs;
-          console.log(this.MessagesArray);
-        },
-        (err: any) => {
-          console.log(err);
-        }
-      );
+     
   }
 
   deleteSubCat(id: any): Observable<any> {
@@ -118,5 +109,11 @@ export class adminservice {
   }
   deleteSlider(id: any): Observable<any> {
     return this.http.get(`http://127.0.0.1:8000/api/slider/delete/${id}`);
+  }
+
+  getAllOrdes(): any {
+    return this.http
+      .get<any>('http://127.0.0.1:8000/api/user/orders/list')
+     
   }
 }
