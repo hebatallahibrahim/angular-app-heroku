@@ -1,8 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-
-import { Product } from '../Model/product.model';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from '../Service/cart.service';
-import { ProductCartService } from '../Service/productCart.service';
 
 @Component({
   selector: 'app-cart',
@@ -20,22 +17,15 @@ export class CartComponent implements OnInit {
 
   // auth login
   islogin: boolean = false;
-  constructor(
-    
-    private cartService: CartService,
-    private productCartService: ProductCartService
-  ) {
-  
-
+  constructor(private cartService: CartService) {
     // _AuthService.UserData.subscribe({
-
     // })
   }
 
   ngOnInit(): void {
     // this.cartService.getProductData().subscribe((res) => {
     // });
-    this.totalAmount = this.productCartService.totalPrice();
+
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
@@ -63,9 +53,5 @@ export class CartComponent implements OnInit {
       },
       complete: () => {},
     });
-  }
-
-  removeCartItem() {
-    this.totalAmount = this.productCartService.totalPrice();
   }
 }

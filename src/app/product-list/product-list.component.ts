@@ -25,7 +25,7 @@ export class ProductListComponent implements OnInit {
   likedProducts: any[] = [];
   sortedLikedProducts: any[] = [];
   likedProductsSlice: any[] = [];
-  userID :any;
+  userID: any;
   closeResult = '';
   colorSearchFilter = '';
   priceSearchFilter = '';
@@ -51,15 +51,11 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
     this.primengConfig.ripple = true;
-    this.isFetching=true;
+    this.isFetching = true;
     this.productListService.getAllProduct().subscribe(
       (result) => {
-        this.isFetching=false;
+        this.isFetching = false;
         this.productArray = result.products;
         this.productArray.forEach((a: any) => {
           Object.assign(a, { quantity: 1, totalPrice: a.selling_price });
@@ -586,40 +582,48 @@ export class ProductListComponent implements OnInit {
   }
 
   getLikedProducts() {
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    this.wishlistService.getWishlistProducts(queryParams).subscribe(
-      (res) => {
-        for (let i = 0; i < this.productArray.length; i++) {
-          if (
-            res.products.some(
-              (e: { product_id: number; user_id: number }) =>
-                e.product_id == this.productArray[i].id &&
-                e.user_id == this.userID
-            )
-          ) {
-            this.likedProducts.push({
-              id: this.productArray[i].id,
-              heart: true,
-            });
-          } else {
-            this.likedProducts.push({
-              id: this.productArray[i].id,
-              heart: false,
-            });
+    const user: any = localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this.wishlistService.getWishlistProducts(queryParams).subscribe(
+        (res) => {
+          for (let i = 0; i < this.productArray.length; i++) {
+            if (
+              res.products.some(
+                (e: { product_id: number; user_id: number }) =>
+                  e.product_id == this.productArray[i].id &&
+                  e.user_id == this.userID
+              )
+            ) {
+              this.likedProducts.push({
+                id: this.productArray[i].id,
+                heart: true,
+              });
+            } else {
+              this.likedProducts.push({
+                id: this.productArray[i].id,
+                heart: false,
+              });
+            }
           }
-        }
 
-        this.mainLikedProducts = [...this.likedProducts];
-        if (this.likedProducts.length > 9) {
-          this.likedProductsSlice = this.likedProducts.slice(0, 9);
-        } else {
-          this.likedProductsSlice = this.likedProducts;
+          this.mainLikedProducts = [...this.likedProducts];
+          if (this.likedProducts.length > 9) {
+            this.likedProductsSlice = this.likedProducts.slice(0, 9);
+          } else {
+            this.likedProductsSlice = this.likedProducts;
+          }
+        },
+        (err) => {
+          console.log(err);
         }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      );
+    } else {
+      console.log('error');
+    }
   }
 }

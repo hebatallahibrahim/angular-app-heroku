@@ -7,7 +7,6 @@ import { SearchService } from './../Service/search.service';
 import { Subject, Observable } from 'rxjs';
 import { PrimeNGConfig } from 'primeng/api';
 import { ChangeDetectionStrategy } from '@angular/compiler';
-import { ProductCartService } from '../Service/productCart.service';
 import { HttpParams } from '@angular/common/http';
 import { CartService } from 'src/app/Service/cart.service';
 import { AuthenticationService } from '../Service/authentication.service';
@@ -31,9 +30,9 @@ export class HeaderComponent implements OnInit {
   totalAmount: any = 0;
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
-  userID :any ;
+  userID: any;
   //  auth protection
-  loggedIn:boolean = false;
+  loggedIn: boolean = false;
 
   @Output() searchEvent = new EventEmitter<any>();
 
@@ -42,9 +41,8 @@ export class HeaderComponent implements OnInit {
     public _HomeService: HomeService,
     public searchService: SearchService,
     public _Router: Router,
-    private productCartService: ProductCartService,
     private cartService: CartService,
-    private auth:AuthenticationService
+    private auth: AuthenticationService
   ) {
     // customize default values of dropdowns used by this component tree
     config.autoClose = false;
@@ -56,10 +54,6 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
@@ -98,59 +92,30 @@ export class HeaderComponent implements OnInit {
       complete: () => {},
     });
 
-
     //  auth protection
-    this.auth.status().subscribe((res) => {
-      this.loggedIn = res;
-      console.log('navbar:' + this.loggedIn);
-    }, (err) => {
-      console.log(err);
-    })
+    this.auth.status().subscribe(
+      (res) => {
+        this.loggedIn = res;
+        console.log('navbar:' + this.loggedIn);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
-  getCart() {
-    // let queryParams = new HttpParams();
-    // queryParams = queryParams.append('user_id', this.userID);
-    // this.productCartService.getCart(queryParams).subscribe((res: any) => {
-    //   this.categoryId = res.Cart;
-    //   if (this.categoryId) {
-    //     this.categoryId.forEach((item: any) => {
-    //       this.cartCounter += item['count'];
-    //       console.log(this.cartCounter);
-    //     });
-    //   }
-    // });
-  }
   dropdownOpen() {
     this.accountDropdown = true;
   }
 
-  calculateTotal(): any {
-    return this.productCartService.totalPrice();
-  }
-  totalAmountNow(): any {
-    console.log(this.addedProducts);
-    return this.productCartService.getTotalAmount();
-  }
   openCart() {
     this.visibleSidebar2 = true;
-    // let queryParams = new HttpParams();
-    // queryParams = queryParams.append('user_id', this.userID);
-    // return this.productCartService.getCart(queryParams).subscribe({
-    //   next: (res: any) => {
-    //     this.addedProducts = res.Cart;
-    //     console.log(this.addedProducts);
-    //     if (this.addedProducts.length != 0) {
-    //       this.cartCounter = true;
-    //     }
-    //   },
-    //   error: (err: any) => {
-    //     console.log(err);
-    //   },
-    //   complete: () => {},
-    // });
   }
   removeItem(item: any) {
+    const user: any = localStorage.getItem('user');
+    const userObj = JSON.parse(user);
+    this.userID = userObj.user.id;
+    console.log(this.userID);
     this.cartService.deleteCartItem(item, {
       user_id: this.userID,
     });

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/Model/product.model';
-import { ProductCartService } from 'src/app/Service/productCart.service';
+
 import { SearchService } from 'src/app/Service/search.service';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { environment } from 'src/environments/environment';
@@ -27,8 +27,7 @@ export class ProductItemRowComponent implements OnInit {
     private cartService: CartService,
     private wishlistService: WishlistService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private productCartService: ProductCartService
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,9 +41,7 @@ export class ProductItemRowComponent implements OnInit {
     const postData = { product_id: item.id, user_id: this.userID };
     this.cartService.postCart(postData, item);
   }
-  addToCart(item: Product) {
-    this.productCartService.addProduct(item);
-  }
+
   goTodetails(productItem: any) {
     this.router.navigate(['/product-details', productItem.id]); // send id to url
   }

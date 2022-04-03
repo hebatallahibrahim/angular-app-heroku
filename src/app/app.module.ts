@@ -77,7 +77,7 @@ import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CartService } from './Service/cart.service';
-import { ProductCartService } from './Service/productCart.service';
+
 import { AllContactUsComponent } from './admin-page/all-contact-us/all-contact-us.component';
 import { ContactItemsComponent } from './admin-page/contact-items/contact-items.component';
 import { ViewDetailsComponent } from './admin-page/view-details/view-details.component';
@@ -209,7 +209,6 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     MessageService,
     ConfirmationService,
     CartService,
-    ProductCartService,
   ],
 
   bootstrap: [AppComponent],

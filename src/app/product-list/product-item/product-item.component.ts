@@ -7,7 +7,7 @@ import { Product } from 'src/app/Model/product.model';
 import { ProductListService } from 'src/app/Service/product-list.service';
 import { SearchService } from 'src/app/Service/search.service';
 import { environment } from 'src/environments/environment';
-import { ProductCartService } from './../../Service/productCart.service';
+
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CartService } from './../../Service/cart.service';
@@ -23,7 +23,7 @@ export class ProductItemComponent implements OnInit {
   productItem!: Product;
   imagUrlProduct = environment.imagUrlProduct;
   err: string | undefined;
-  userID :any;
+  userID: any;
   @Input()
   item_hearted!: any;
   closeResult = '';
@@ -34,16 +34,19 @@ export class ProductItemComponent implements OnInit {
     private cartService: CartService
   ) {}
 
-  ngOnInit(): void {
-    const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-  }
+  ngOnInit(): void {}
   onItemAdded(item: any) {
     // this.productCartService.addProduct(this.productItem);
-    const postData = { product_id: item.id, user_id: this.userID };
-    this.cartService.postCart(postData, item);
+    const user: any = localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      const postData = { product_id: item.id, user_id: this.userID };
+      this.cartService.postCart(postData, item);
+    } else {
+      console.log('error');
+    }
   }
 
   goTodetails(productItem: any) {
@@ -59,6 +62,10 @@ export class ProductItemComponent implements OnInit {
   }
 
   addOrRemoveWishlist() {
+    const user: any = localStorage.getItem('user');
+    const userObj = JSON.parse(user);
+    this.userID = userObj.user.id;
+    console.log(this.userID);
     this.item_hearted = !this.item_hearted;
     if (this.item_hearted) {
       var formData: any = new FormData();
@@ -96,7 +103,10 @@ export class ProductItemComponent implements OnInit {
           }
         );
     }
-    if (this.router.url == '/product-list' || this.router.url.split('/')[1]=='category-products') {
+    if (
+      this.router.url == '/product-list' ||
+      this.router.url.split('/')[1] == 'category-products'
+    ) {
       this.LikedProductEvent.emit({
         product_id: this.productItem.id,
         heart: this.item_hearted,

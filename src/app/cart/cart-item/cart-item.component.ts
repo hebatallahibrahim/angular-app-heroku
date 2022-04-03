@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ProductCartService } from 'src/app/Service/productCart.service';
 import { CartService } from './../../Service/cart.service';
 import { Product } from './../../Model/product.model';
 
@@ -13,20 +12,17 @@ export class CartItemComponent implements OnInit {
   addedProducts: any = [];
   cartCounter: any = 0;
   totalAmount: any = 0;
-  userID :any;
+  userID: any;
   value20: number = 1;
   cartitem!: Product;
   counterValue: number = 0;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-  constructor(
-    private productCartService: ProductCartService,
-    private cartService: CartService
-  ) {}
+  constructor(private cartService: CartService) {}
   ngOnInit(): void {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
+    const user: any = localStorage.getItem('user');
+    const userObj = JSON.parse(user);
+    this.userID = userObj.user.id;
+    console.log(this.userID);
     // this.cartList = this.productCartService.getProducts();
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
