@@ -2,24 +2,31 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProductListService } from '../Service/product-list.service';
 import { WishlistService } from '../Service/wishlist.service';
-
+import { PrimeNGConfig } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
 @Component({
   selector: 'app-wishlist',
   templateUrl: './wishlist.component.html',
   styleUrls: ['./wishlist.component.css'],
+  providers: [ConfirmationService]
 })
 export class WishlistComponent implements OnInit {
   likedProducts: any[] = [];
   productArray: any[] = [];
   userID :any;
   count = 0;
-
+  msgs: Message[] = [];
+  position!: string;
   constructor(
     private wishlistService: WishlistService,
-    private productListService: ProductListService
+    private productListService: ProductListService,
+    private confirmationService: ConfirmationService, 
+    private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnInit(): void {
+    this.primengConfig.ripple = true;
     this.productListService.getAllProduct().subscribe(
       (result) => {
         this.productArray = result.products;
@@ -30,7 +37,13 @@ export class WishlistComponent implements OnInit {
     );
     this.getLikedProducts();
   }
-
+  confirm1() {
+    this.confirmationService.confirm({
+        message: 'please log in to add product',
+        header: 'Attention',
+        icon: 'pi pi-exclamation-triangle',
+    });
+}
   getLikedProducts() {
     const user: any = localStorage.getItem('user');
     if(user)
@@ -65,6 +78,7 @@ export class WishlistComponent implements OnInit {
     }
     else
     {
+      this. confirm1();
       console.log("user not logged in yet");
     }
    

@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
-import { Product } from '../Model/product.model';
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   constructor(private http: HttpClient) {}
+
   productcount: any = 1;
   addedProducts: any = [];
   cartCounter: any = 0;
@@ -15,7 +16,6 @@ export class CartService {
   public cartHasBeenChanged = new BehaviorSubject<any>([]);
 
   //
-
   getApiCart() {
     const user: any = localStorage.getItem('user');
     if (user) {
