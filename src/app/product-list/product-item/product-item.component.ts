@@ -41,7 +41,6 @@ export class ProductItemComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
       const postData = { product_id: item.id, user_id: this.userID };
       this.cartService.postCart(postData, item);
     } else {
@@ -63,62 +62,59 @@ export class ProductItemComponent implements OnInit {
 
   addOrRemoveWishlist() {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    this.item_hearted = !this.item_hearted;
-    if (this.item_hearted) {
-      var formData: any = new FormData();
-      formData.append('product_id', this.productItem.id);
-      formData.append('user_id', this.userID);
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      this.item_hearted = !this.item_hearted;
+      if (this.item_hearted) {
+        var formData: any = new FormData();
+        formData.append('product_id', this.productItem.id);
+        formData.append('user_id', this.userID);
 
-      this.wishlistService
-        .addToWishlist(formData, this.productItem.id)
-        .subscribe(
-          (data) => {
-            console.log(data);
-            if (data.message == 'Product updated succesfully') {
-              // this._Router.navigate(['/accounts']);
-            } else {
-              this.err = 'not valid data';
+        this.wishlistService
+          .addToWishlist(formData, this.productItem.id)
+          .subscribe(
+            (data) => {
+              console.log(data);
+              if (data.message == 'Product updated succesfully') {
+                // this._Router.navigate(['/accounts']);
+              } else {
+                this.err = 'not valid data';
+              }
+            },
+            (err) => {
+              console.log(err);
             }
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+          );
+      } else {
+        let queryParams = new HttpParams();
+        queryParams = queryParams.append('user_id', this.userID);
+        this.wishlistService
+          .deleteFromWishlist(queryParams, this.productItem.id)
+          .subscribe(
+            (res) => {
+              console.log(res);
+              if (res.message == 'Wishlist deleted succesfully') {
+              }
+            },
+            (err) => {
+              console.log(err);
+            }
+          );
+      }
+      if (
+        this.router.url == '/product-list' ||
+        this.router.url.split('/')[1] == 'category-products'
+      ) {
+        this.LikedProductEvent.emit({
+          product_id: this.productItem.id,
+          heart: this.item_hearted,
+        });
+      }
     } else {
-      let queryParams = new HttpParams();
-      queryParams = queryParams.append('user_id', this.userID);
-      this.wishlistService
-        .deleteFromWishlist(queryParams, this.productItem.id)
-        .subscribe(
-          (res) => {
-            console.log(res);
-            if (res.message == 'Wishlist deleted succesfully') {
-            }
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+      console.log('user not logged in yet');
     }
-    if (
-      this.router.url == '/product-list' ||
-      this.router.url.split('/')[1] == 'category-products'
-    ) {
-      this.LikedProductEvent.emit({
-        product_id: this.productItem.id,
-        heart: this.item_hearted,
-      });
-    }
-  }
-  else 
-  {
-    console.log("user not logged in yet");
-  }
   }
 
   open(content: any) {

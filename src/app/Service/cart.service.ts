@@ -10,13 +10,21 @@ export class CartService {
   productcount: any = 1;
   addedProducts: any = [];
   cartCounter: any = 0;
-  userID = 1;
+  userID: any = 0;
 
   public cartHasBeenChanged = new BehaviorSubject<any>([]);
 
   //
 
   getApiCart() {
+    const user: any = localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+    } else {
+      console.log('you must login');
+    }
     let queryParams = new HttpParams();
     queryParams = queryParams.append('user_id', this.userID);
     return this.http
@@ -34,17 +42,27 @@ export class CartService {
         complete: () => {},
       });
   }
-  onStaitusChang(product: any) {
-    const arr = this.addedProducts;
-    if (arr.includes(product)) {
-      const index = arr.findIndex((i: any) => {
-        console.log(i);
-        i.product_id == product.product_id;
+  onStaitusChang(product: any, count: any) {
+    const postData = {
+      product_id: product.product_id,
+      user_id: this.userID,
+      count: count,
+    };
+    this.http
+      .post<{ status: number; message: string }>(
+        `http://127.0.0.1:8000/api/update/cart`,
+        postData
+      )
+      .subscribe({
+        next: (res) => {
+          this.getApiCart();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+        complete: () => {},
       });
-
-      arr[index] = product;
-      this.cartHasBeenChanged.next(arr);
-    }
+    this.cartHasBeenChanged.next(this.addedProducts);
   }
 
   postCart(postData: any, product: any) {
@@ -90,7 +108,7 @@ export class CartService {
       });
   }
 
-  removeAllUserCart(user_id:any){
+  removeAllUserCart(user_id: any) {
     return this.http.delete(`http://127.0.0.1:8000/api/all-cart/${user_id}`);
   }
 }

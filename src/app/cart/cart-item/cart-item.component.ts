@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CartService } from './../../Service/cart.service';
 import { Product } from './../../Model/product.model';
+import { Router, RoutesRecognized } from '@angular/router';
+import { filter, pairwise } from 'rxjs';
 
 @Component({
   selector: 'app-cart-item',
@@ -17,9 +19,8 @@ export class CartItemComponent implements OnInit {
   cartitem!: Product;
   counterValue: number = 0;
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private router: Router) {}
   ngOnInit(): void {
-   
     // this.cartList = this.productCartService.getProducts();
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
@@ -52,23 +53,29 @@ export class CartItemComponent implements OnInit {
   }
   removeCartItem(item: any) {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    this.cartService.deleteCartItem(item, {
-      user_id: this.userID,
-    });
-  }
-  else
-  {
-    console.log("user not logged in yet");
-  }
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+      this.cartService.deleteCartItem(item, {
+        user_id: this.userID,
+      });
+    } else {
+      console.log('user not logged in yet');
+    }
   }
   changeItemSitus(product: any, count: any) {
-    product.count = count;
-    this.cartService.onStaitusChang(product);
+    // debugger;
+    // this.router.events
+    //   .pipe(
+    //     filter((evt: any) => evt instanceof RoutesRecognized),
+    //     pairwise()
+    //   )
+    //   .subscribe((events: RoutesRecognized[]) => {
+    //     console.log('previous', events[0].urlAfterRedirects); //previous url
+    //     console.log('current url', events[1].urlAfterRedirects); //current url
+    //   });
+    this.cartService.onStaitusChang(product, count);
   }
   increment() {
     this.counterValue++;
