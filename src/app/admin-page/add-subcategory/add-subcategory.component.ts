@@ -23,9 +23,9 @@ export class AddSubcategoryComponent implements OnInit {
       Validators.minLength(2),
       Validators.maxLength(50),
     ]),
-    category: new FormControl(null, [
-      Validators.required,
-    ]),
+    // category: new FormControl(null, [
+    //   Validators.required,
+    // ]),
     file: new FormControl(null, [
       Validators.required
     ]),
@@ -39,15 +39,15 @@ export class AddSubcategoryComponent implements OnInit {
   constructor(public _AdminService: AdminService, public _Router: Router) { }
 
   ngOnInit(): void {
-    this._AdminService.getAllCategories().subscribe(
-      (res) => {
-        this.categoryArray=res.category;
-        console.log(this.categoryArray);
-      },
-      (err:any) => {
-        console.log(err);
-      }
-    );
+    // this._AdminService.getAllCategories().subscribe(
+    //   (res) => {
+    //     this.categoryArray=res.category;
+    //     console.log(this.categoryArray);
+    //   },
+    //   (err:any) => {
+    //     console.log(err);
+    //   }
+    // );
   }
   onFileChange(event:any) {
 
@@ -71,7 +71,6 @@ export class AddSubcategoryComponent implements OnInit {
     var formData: any = new FormData();
     formData.append('name', data.get('name').value);
     formData.append('description', data.get('description').value);
-    formData.append('category_id', data.get('category').value);
     formData.append('image', data.get('fileSource').value);
 
     this._AdminService.addSubCategory(formData).subscribe(

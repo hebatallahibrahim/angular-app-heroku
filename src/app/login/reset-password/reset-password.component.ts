@@ -11,6 +11,7 @@ import { LoginService } from 'src/app/Service/login.service';
 export class ResetPasswordComponent implements OnInit {
 
   token!:any;
+  email!:any;
   isLoading=false;
   failedAlert=false;
   matchAlert=false;
@@ -29,8 +30,9 @@ export class ResetPasswordComponent implements OnInit {
     if(data.get('Password').value==data.get('confirmPassword').value){
       this.matchAlert=false;
       this.token = this.activetedRoute.snapshot.paramMap.get('token');
+      this.email = this.activetedRoute.snapshot.paramMap.get('email');
       var formData: any = new FormData();
-      formData.append('email', "nadaua2@gmail.com");
+      formData.append('email', this.email);
       formData.append('password', data.get('Password').value);
       formData.append('token', this.token);
       this.loginService.resetPassword(formData).subscribe(
