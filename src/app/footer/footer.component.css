@@ -3,14 +3,16 @@
     background-color: #B78D65;
    
 }
-a
-{
-    color:black;
-    font-size: 13px;
-}
-a:hover
+li a
 {
     color:white;
+    font-weight: bold;
+    font-size: 13px;
+    cursor:pointer;
+}
+li a:hover
+{
+    color:#ecc9a8;
 }
 .btn {
     background-color: #876445;

@@ -54,9 +54,10 @@ export class PaymentComponent implements OnInit {
     if (this.selectedValue == 'cod') {
       var formData: any = new FormData();
       formData.append('email', 'nada@gmail.com');
-      formData.append('InvoiceValue', 1000);
+      formData.append('InvoiceValue', this.totalAmount);
       this.paymentService.cashOnDelivery(formData).subscribe(
         (data) => {
+          this.cartService.removeAllUserCart(1).subscribe();
           this._Router.navigate(['/user-orders']);
         },
         (err) => {
@@ -67,7 +68,7 @@ export class PaymentComponent implements OnInit {
       var formData: any = new FormData();
       formData.append('CustomerName', 'nada');
       formData.append('CustomerEmail', 'nada@gmail.com');
-      formData.append('InvoiceValue', 1000);
+      formData.append('InvoiceValue', this.totalAmount);
       formData.append('CustomerMobile', '01150627811');
 
       this.paymentService.payByOtherMethods(formData).subscribe(

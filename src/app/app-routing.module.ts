@@ -44,6 +44,7 @@ import { UserOrdersComponent } from './user-orders/user-orders.component';
 
 import { AdminRegistrationComponent } from './admin-page/admin-registration/admin-registration.component';
 import { AdminAuthGuard } from './admin-auth.guard';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 
 const routes: Routes = [
@@ -51,7 +52,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'category-products/:id/:name', component: CategoryProductsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'resetPassword', component: FooterComponent },
+  { path: 'resetPassword/:token', component: ResetPasswordComponent },
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent }, //don't forgrt to put /:id

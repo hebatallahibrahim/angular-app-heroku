@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { contactUsService } from '../Service/contact-us.service';
+import { HomeService } from '../Service/home.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -11,14 +13,34 @@ export class FooterComponent implements OnInit {
   failedAlert=false;
   existedEmailAlert=false;
   isLoading=false;
+  categoryArray: any[] = [];
 
   formSubscription: FormGroup = new FormGroup({
     Email: new FormControl(null)  
   });
   err:string|undefined;
-  constructor(private contactusService:contactUsService) {}
+  constructor(private contactusService:contactUsService,private _HomeService:HomeService,private _Router:Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._HomeService.getAllCategories().subscribe({
+      next: (res) => {
+        this.categoryArray = res.category;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
+  }
+
+  goToCategoryProducts(categoryItem: any) {
+    this._Router.navigate([
+      '/category-products',
+      categoryItem.id,
+      categoryItem.name,
+    ]); // send id to url
+  }
+
   getFormData(data: any) {
     this.isLoading=true;
     var formData: any = new FormData();

@@ -91,4 +91,8 @@ export class CartService {
         complete: () => {},
       });
   }
+
+  removeAllUserCart(user_id:any){
+    return this.http.delete(`http://127.0.0.1:8000/api/all-cart/${user_id}`);
+  }
 }
