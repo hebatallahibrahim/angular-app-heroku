@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { Product } from '../Model/product.model';
 import { ProductListService } from '../Service/product-list.service';
@@ -45,7 +45,9 @@ export class ProductListComponent implements OnInit {
     private searchService: SearchService,
     private wishlistService: WishlistService,
     private activatedRoute: ActivatedRoute,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private router: Router
+
   ) {
     this.activatedRoute.params.subscribe((params) => {});
   }
@@ -623,6 +625,7 @@ export class ProductListComponent implements OnInit {
         }
       );
     } else {
+     
       console.log('error');
     }
   }

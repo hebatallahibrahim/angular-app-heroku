@@ -113,12 +113,19 @@ export class HeaderComponent implements OnInit {
   }
   removeItem(item: any) {
     const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-    this.userID = userObj.user.id;
-    console.log(this.userID);
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.cartService.deleteCartItem(item, {
       user_id: this.userID,
     });
+  }
+  else
+  {
+    console.log("user not logged in yet");
+  }
   }
 
   goToCategoryProducts(categoryItem: any) {
