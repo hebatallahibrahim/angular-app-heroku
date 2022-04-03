@@ -33,7 +33,6 @@ export class ProductFilterComponent implements OnInit {
     this.changePriceEvent.emit({ priceorder:event.value, eventType:'price'});
   }
   onCategoryChange(event: any) {
-    if(event.value==""){ this.subcategoryArray=[];}
     this.changeCategoryEvent.emit({ category_id: event.value, eventType: 'category_id' });
   }
   getSubCategorybyCatID(category_id:any){
@@ -71,14 +70,14 @@ export class ProductFilterComponent implements OnInit {
         console.log(err);
       }
     );
-    // this.searchService.getAllSubCategories().subscribe(
-    //   (res) => {
-    //     this.subcategoryArray = res.category;
-    //   },
-    //   (err: any) => {
-    //     console.log(err);
-    //   }
-    // );
+    this.searchService.getAllSubCategories().subscribe(
+      (res) => {
+        this.subcategoryArray = res.category;
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
   }
 
 }

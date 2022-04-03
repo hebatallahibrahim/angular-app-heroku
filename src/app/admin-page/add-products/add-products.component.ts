@@ -82,6 +82,14 @@ export class AddProductsComponent implements OnInit {
       (err:any) => {
         console.log(err);
       }
+    );
+    this._AdminService.getAllSubCategories().subscribe(
+      (res) => {
+        this.subCategoryArray=res.category;
+      },
+      (err:any) => {
+        console.log(err);
+      }
     ); 
   }
 

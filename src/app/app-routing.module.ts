@@ -52,7 +52,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'category-products/:id/:name', component: CategoryProductsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'resetPassword/:token', component: ResetPasswordComponent },
+  { path: 'resetPassword/:token/:email', component: ResetPasswordComponent },
   { path: 'signUp', component: RegisterComponent },
   { path: 'product-list', component: ProductListComponent },
   { path: 'product-details/:id', component: ProductDetailsComponent }, //don't forgrt to put /:id
