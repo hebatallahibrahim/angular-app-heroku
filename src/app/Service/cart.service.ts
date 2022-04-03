@@ -1,22 +1,29 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject, Observable } from 'rxjs';
-import { Product } from '../Model/product.model';
+import { BehaviorSubject } from 'rxjs';
+
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   constructor(private http: HttpClient) {}
+
   productcount: any = 1;
   addedProducts: any = [];
   cartCounter: any = 0;
-  userID = 1;
-
+  userID: any = 0;
   public cartHasBeenChanged = new BehaviorSubject<any>([]);
 
   //
-
   getApiCart() {
+    const user: any = localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      console.log(this.userID);
+    } else {
+      console.log('you must login');
+    }
     let queryParams = new HttpParams();
     queryParams = queryParams.append('user_id', this.userID);
     return this.http
@@ -92,7 +99,7 @@ export class CartService {
       });
   }
 
-  removeAllUserCart(user_id:any){
+  removeAllUserCart(user_id: any) {
     return this.http.delete(`http://127.0.0.1:8000/api/all-cart/${user_id}`);
   }
 }

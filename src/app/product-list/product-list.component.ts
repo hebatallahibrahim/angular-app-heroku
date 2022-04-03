@@ -8,10 +8,14 @@ import { ProductListService } from '../Service/product-list.service';
 import { WishlistService } from '../Service/wishlist.service';
 import { SearchService } from './../Service/search.service';
 import { PrimeNGConfig } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css'],
+  providers: [ConfirmationService]
 })
 export class ProductListComponent implements OnInit {
   productArray: Product[] = [];
@@ -38,6 +42,9 @@ export class ProductListComponent implements OnInit {
   count = 0;
   isVisible = false;
   isFetching = false;
+
+  msgs: Message[] = [];
+  position!: string;
   @ViewChild('paginator') paginator!: MatPaginator;
 
   constructor(
@@ -45,14 +52,30 @@ export class ProductListComponent implements OnInit {
     private searchService: SearchService,
     private wishlistService: WishlistService,
     private activatedRoute: ActivatedRoute,
-    private primengConfig: PrimeNGConfig,
-    private router: Router
+    private router: Router,
+    private confirmationService: ConfirmationService, 
+    private primengConfig: PrimeNGConfig
 
   ) {
     this.activatedRoute.params.subscribe((params) => {});
   }
 
+  confirm1() {
+    this.confirmationService.confirm({
+        message: 'Are you sure that you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+        },
+        reject: () => {
+            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
+}
+
   ngOnInit(): void {
+    
     this.primengConfig.ripple = true;
     this.isFetching = true;
     this.productListService.getAllProduct().subscribe(

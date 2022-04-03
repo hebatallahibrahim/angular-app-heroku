@@ -7,11 +7,14 @@ import { WishlistService } from 'src/app/Service/wishlist.service';
 import { environment } from 'src/environments/environment';
 import { CartService } from 'src/app/Service/cart.service';
 import { HttpParams } from '@angular/common/http';
-
+import { PrimeNGConfig } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
 @Component({
   selector: 'app-product-item-row',
   templateUrl: './product-item-row.component.html',
   styleUrls: ['./product-item-row.component.css'],
+  providers: [ConfirmationService]
 })
 export class ProductItemRowComponent implements OnInit {
   @Output() LikedProductEvent = new EventEmitter<any>();
@@ -20,6 +23,8 @@ export class ProductItemRowComponent implements OnInit {
   imagUrlProduct = environment.imagUrlProduct;
   err: string | undefined;
   userID: any;
+  msgs: Message[] = [];
+  position!: string;
   @Input()
   item_hearted!: any;
   closeResult = '';
@@ -27,13 +32,21 @@ export class ProductItemRowComponent implements OnInit {
     private cartService: CartService,
     private wishlistService: WishlistService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private confirmationService: ConfirmationService, 
+    private primengConfig: PrimeNGConfig
   ) {}
 
   ngOnInit(): void {
-  
+    this.primengConfig.ripple = true;
   }
-
+  confirm1() {
+    this.confirmationService.confirm({
+        message: 'please log in to add product',
+        header: 'Attention',
+        icon: 'pi pi-exclamation-triangle',
+    });
+}
   onItemAdded(item: any) {
     const user: any = localStorage.getItem('user');
     if(user)
@@ -46,7 +59,8 @@ export class ProductItemRowComponent implements OnInit {
     }
     else
     {
-      console.log("user not logged in yet")
+      this. confirm1();
+    console.log("user not logged in yet");
     }
 
   }
@@ -117,6 +131,7 @@ export class ProductItemRowComponent implements OnInit {
   }
   else
   {
+    this. confirm1();
     console.log("user not logged in yet");
   }
   }

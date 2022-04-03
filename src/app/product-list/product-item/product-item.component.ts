@@ -11,11 +11,14 @@ import { environment } from 'src/environments/environment';
 import { WishlistService } from 'src/app/Service/wishlist.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { CartService } from './../../Service/cart.service';
-
+import { PrimeNGConfig } from 'primeng/api';
+import {ConfirmationService} from 'primeng/api';
+import {Message} from 'primeng/api';
 @Component({
   selector: 'app-product-item',
   templateUrl: './product-item.component.html',
   styleUrls: ['./product-item.component.css'],
+  providers: [ConfirmationService]
 })
 export class ProductItemComponent implements OnInit {
   @Output() LikedProductEvent = new EventEmitter<any>();
@@ -24,6 +27,8 @@ export class ProductItemComponent implements OnInit {
   imagUrlProduct = environment.imagUrlProduct;
   err: string | undefined;
   userID: any;
+  msgs: Message[] = [];
+  position!: string;
   @Input()
   item_hearted!: any;
   closeResult = '';
@@ -31,10 +36,27 @@ export class ProductItemComponent implements OnInit {
     private modalService: NgbModal,
     private wishlistService: WishlistService,
     private router: Router,
-    private cartService: CartService
+    private cartService: CartService,
+    private confirmationService: ConfirmationService, 
+    private primengConfig: PrimeNGConfig
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.primengConfig.ripple = true;
+  }
+  confirm1() {
+    this.confirmationService.confirm({
+        message: 'please log in to add product',
+        header: 'Attention',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'You have accepted'}];
+        },
+        reject: () => {
+            this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+    });
+}
   onItemAdded(item: any) {
     // this.productCartService.addProduct(this.productItem);
     const user: any = localStorage.getItem('user');
@@ -45,7 +67,8 @@ export class ProductItemComponent implements OnInit {
       const postData = { product_id: item.id, user_id: this.userID };
       this.cartService.postCart(postData, item);
     } else {
-      console.log('error');
+      this. confirm1();
+      console.log("user not logged in yet");
     }
   }
 
@@ -117,6 +140,7 @@ export class ProductItemComponent implements OnInit {
   }
   else 
   {
+    this. confirm1();
     console.log("user not logged in yet");
   }
   }
