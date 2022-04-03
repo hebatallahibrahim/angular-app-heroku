@@ -56,6 +56,9 @@ export class ProductDetailsComponent implements OnInit {
   ) {
     this.activetedRoute.params.subscribe((params) => {
       this.ratingVal = 0;
+      const user: any = localStorage.getItem('user');
+      const userObj = JSON.parse(user);
+      this.userID=userObj.user.id;
       this.getProductByID();
       this.getLikedProduct();
       if (this.userID) {

@@ -14,6 +14,7 @@ export class PaymentComponent implements OnInit {
   categoryArray: any[] = [];
   cartCounter: any = 0;
   totalAmount: any = 0;
+  userObj:any={};
   constructor(
     private _Router: Router,
     private paymentService: PaymentService,
@@ -21,6 +22,10 @@ export class PaymentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    const user: any = localStorage.getItem('user');
+    this.userObj = JSON.parse(user);
+    // this.userID = userObj.user.id;
+    // console.log(this.userID);
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {
@@ -53,11 +58,13 @@ export class PaymentComponent implements OnInit {
   checkMethod() {
     if (this.selectedValue == 'cod') {
       var formData: any = new FormData();
-      formData.append('email', 'nada@gmail.com');
+      formData.append('email', this.userObj.user.email);
       formData.append('InvoiceValue', this.totalAmount);
+      formData.append('products',JSON.stringify(this.addedProducts));
       this.paymentService.cashOnDelivery(formData).subscribe(
         (data) => {
-          this.cartService.removeAllUserCart(1).subscribe();
+          console.log(data);
+          this.cartService.removeAllUserCart(this.userObj.user.id).subscribe();
           this._Router.navigate(['/user-orders']);
         },
         (err) => {
@@ -66,10 +73,11 @@ export class PaymentComponent implements OnInit {
       );
     } else if (this.selectedValue == 'other') {
       var formData: any = new FormData();
-      formData.append('CustomerName', 'nada');
-      formData.append('CustomerEmail', 'nada@gmail.com');
+      formData.append('CustomerName', this.userObj.user.name);
+      formData.append('CustomerEmail', this.userObj.user.email);
       formData.append('InvoiceValue', this.totalAmount);
-      formData.append('CustomerMobile', '01150627811');
+      formData.append('CustomerMobile', this.userObj.user.phone);
+      formData.append('products',JSON.stringify(this.addedProducts));
 
       this.paymentService.payByOtherMethods(formData).subscribe(
         (data) => {
