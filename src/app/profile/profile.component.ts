@@ -11,7 +11,10 @@ export class ProfileComponent implements OnInit {
 public isCollapsed = false;
 public isCollapseg = true;
 public btncollapse= false;
-userID=1;
+ 
+
+userID:any;
+
 userItem:any={};
 name="";
 failedAlert=false;
@@ -61,10 +64,14 @@ getFormData(data: any) {
         );
 }
 
-
   constructor(public  userService:UserService ) { }
 
 ngOnInit(): void {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
+
   this.getUserProfile();
   
   }

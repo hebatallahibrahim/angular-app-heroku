@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
   totalAmount: any = 0;
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
-  userID = 1;
+  userID :any ;
   //  auth protection
   loggedIn:boolean = false;
 
@@ -56,6 +56,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
       next: (res) => {

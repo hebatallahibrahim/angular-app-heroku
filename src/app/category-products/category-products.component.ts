@@ -23,7 +23,7 @@ export class CategoryProductsComponent implements OnInit {
   isFetching = false;
   productsRow = false;
   productsGrid = true;
-  userID=1;
+  userID:any;
   @ViewChild('paginator') paginator!: MatPaginator;
   constructor(
     private _HomeService: HomeService,
@@ -41,7 +41,12 @@ export class CategoryProductsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
+  }
 
   getCategoryData() {
     this.isFetching=true;

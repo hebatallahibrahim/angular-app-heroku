@@ -6,11 +6,16 @@ import { Product } from '../Model/product.model';
   providedIn: 'root',
 })
 export class CartService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
+  }
   productcount: any = 1;
   addedProducts: any = [];
   cartCounter: any = 0;
-  userID = 1;
+  userID :any ;
 
   public cartHasBeenChanged = new BehaviorSubject<any>([]);
 

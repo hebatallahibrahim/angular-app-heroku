@@ -19,7 +19,7 @@ export class ProductItemRowComponent implements OnInit {
   productItem!: Product;
   imagUrlProduct = environment.imagUrlProduct;
   err: string | undefined;
-  userID = 1;
+  userID :any;
   @Input()
   item_hearted!: any;
   closeResult = '';
@@ -32,6 +32,10 @@ export class ProductItemRowComponent implements OnInit {
     private productCartService: ProductCartService) { }
 
   ngOnInit(): void {
+    const user: any = localStorage.getItem('user');
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
   }
 
   onItemAdded() {
