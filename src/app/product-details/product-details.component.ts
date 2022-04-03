@@ -103,15 +103,18 @@ export class ProductDetailsComponent implements OnInit {
     spaceBetween: 50,
   };
   ngOnInit() {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
+
   }
   // productCrusal(item: any) {
   //   console.log(item.id);
   // }
   addOrRemoveWishlist() {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.item_hearted = !this.item_hearted;
     if (this.item_hearted) {
       var formData: any = new FormData();
@@ -150,8 +153,19 @@ export class ProductDetailsComponent implements OnInit {
         );
     }
   }
+  else
+  {
+    console.log("user not logged in yet");
+  }
+  }
 
   getLikedProduct() {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     let queryParams = new HttpParams();
     queryParams = queryParams.append('user_id', this.userID);
     this.wishlistService.getWishlistProducts(queryParams).subscribe(
@@ -174,6 +188,11 @@ export class ProductDetailsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  else
+  {
+    console.log("user not logged in yet");
+  }
   }
 
   getProductByID() {
@@ -212,6 +231,12 @@ export class ProductDetailsComponent implements OnInit {
     }
   }
   getUserRate() {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     let queryParams = new HttpParams();
     queryParams = queryParams.append('user_id', this.userID);
     this._productDetailsService
@@ -228,8 +253,19 @@ export class ProductDetailsComponent implements OnInit {
         }
       );
   }
+  else
+  {
+    console.log("user not logged in yet");
+  }
+  }
 
   removeRate() {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.ratingVal = 0;
     let queryParams = new HttpParams();
     queryParams = queryParams.append('user_id', this.userID);
@@ -246,7 +282,18 @@ export class ProductDetailsComponent implements OnInit {
         }
       );
   }
+  else
+  {
+    console.log("user not logged in yet ");
+  }
+  }
   getFormData(data: any) {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     var formData: any = new FormData();
     formData.append('rate', data.get('rating').value);
     formData.append('product_id', this.productId);
@@ -270,10 +317,28 @@ export class ProductDetailsComponent implements OnInit {
           console.log(err);
         }
       );
+
+    }
+    else
+    {
+      console.log("user not logged in yet");
+    }
   }
   onItemAdded(item: any) {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     console.log(item);
     const postData = { product_id: item.id, user_id: this.userID };
     this.cartService.postCart(postData, item);
   }
+  else
+  {
+    console.log("user not logged in yet");
+  }
+  }
+  
 }

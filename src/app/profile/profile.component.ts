@@ -41,7 +41,13 @@ getFormData(data: any) {
       formData.append('address', data.get('Address').value);
       formData.append('city', data.get('City').value);
       formData.append('region', data.get('Region').value);
-
+      
+      const user: any = localStorage.getItem('user');
+      if(user)
+      {
+    const userObj = JSON.parse(user);
+    this.userID=userObj.user.id;
+    console.log(this.userID)
       this.userService.upDateProfileUser(this.userID,formData)
         .subscribe(
           (data) => {
@@ -62,21 +68,29 @@ getFormData(data: any) {
             console.log(err);
           }
         );
+     }
+     else
+     {
+       console.log("user not logged in yet");
+     }
 }
 
   constructor(public  userService:UserService ) { }
 
 ngOnInit(): void {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
+  
 
   this.getUserProfile();
   
   }
 
   getUserProfile(){
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.userService.getProfileUser(this.userID).subscribe(
       (data)=>{
         this.userItem=data.User;
@@ -87,4 +101,9 @@ ngOnInit(): void {
       }
     );
   }
+  else
+  {
+    console.log("user not logged in yet")
+  }
+}
 }

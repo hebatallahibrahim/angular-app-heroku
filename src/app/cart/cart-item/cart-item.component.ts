@@ -19,10 +19,7 @@ export class CartItemComponent implements OnInit {
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   constructor(private cartService: CartService) {}
   ngOnInit(): void {
-    const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-    this.userID = userObj.user.id;
-    console.log(this.userID);
+   
     // this.cartList = this.productCartService.getProducts();
     this.cartService.getApiCart();
     this.cartService.cartHasBeenChanged.subscribe({
@@ -54,9 +51,20 @@ export class CartItemComponent implements OnInit {
     });
   }
   removeCartItem(item: any) {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.cartService.deleteCartItem(item, {
       user_id: this.userID,
     });
+  }
+  else
+  {
+    console.log("user not logged in yet");
+  }
   }
   changeItemSitus(product: any, count: any) {
     product.count = count;

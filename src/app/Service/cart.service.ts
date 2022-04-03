@@ -1,27 +1,24 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
+import { Product } from '../Model/product.model';
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   constructor(private http: HttpClient) {}
-
   productcount: any = 1;
   addedProducts: any = [];
   cartCounter: any = 0;
+  userID = 1;
 
   public cartHasBeenChanged = new BehaviorSubject<any>([]);
 
   //
 
   getApiCart() {
-    const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-    const userID = userObj.user.id;
     let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', userID);
+    queryParams = queryParams.append('user_id', this.userID);
     return this.http
       .get(`http://127.0.0.1:8000/api/user/cart`, {
         params: queryParams,
@@ -93,7 +90,7 @@ export class CartService {
       });
   }
 
-  removeAllUserCart(user_id: any) {
+  removeAllUserCart(user_id:any){
     return this.http.delete(`http://127.0.0.1:8000/api/all-cart/${user_id}`);
   }
 }

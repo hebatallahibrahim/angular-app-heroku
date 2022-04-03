@@ -63,9 +63,11 @@ export class ProductItemComponent implements OnInit {
 
   addOrRemoveWishlist() {
     const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-    this.userID = userObj.user.id;
-    console.log(this.userID);
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     this.item_hearted = !this.item_hearted;
     if (this.item_hearted) {
       var formData: any = new FormData();
@@ -112,6 +114,11 @@ export class ProductItemComponent implements OnInit {
         heart: this.item_hearted,
       });
     }
+  }
+  else 
+  {
+    console.log("user not logged in yet");
+  }
   }
 
   open(content: any) {

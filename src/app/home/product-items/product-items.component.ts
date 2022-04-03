@@ -16,10 +16,7 @@ export class ProductItemsComponent implements OnInit {
   constructor(private _HomeService: HomeService,private wishlistService:WishlistService) { }
 
   ngOnInit(): void {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
+ 
     this._HomeService.getAllProduct().subscribe(
       (result:any) => {
         if(result.products.length>3){
@@ -34,6 +31,12 @@ export class ProductItemsComponent implements OnInit {
   }
 
   getLikedProducts(){
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     let queryParams = new HttpParams();
     queryParams = queryParams.append("user_id",this.userID);
     this.wishlistService.getWishlistProducts(queryParams).subscribe(
@@ -52,6 +55,11 @@ export class ProductItemsComponent implements OnInit {
       console.log(err);
     }
     );
+    }
+    else
+    {
+      console.log("user not logged in yet");
+    }
   }
 
 }

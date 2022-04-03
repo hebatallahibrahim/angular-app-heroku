@@ -31,15 +31,24 @@ export class ProductItemRowComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-    this.userID = userObj.user.id;
-    console.log(this.userID);
+  
   }
 
   onItemAdded(item: any) {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+    const userObj = JSON.parse(user);
+    this.userID=userObj.user.id;
+    console.log(this.userID)
     const postData = { product_id: item.id, user_id: this.userID };
     this.cartService.postCart(postData, item);
+    }
+    else
+    {
+      console.log("user not logged in yet")
+    }
+
   }
 
   goTodetails(productItem: any) {
@@ -55,6 +64,12 @@ export class ProductItemRowComponent implements OnInit {
   }
 
   addOrRemoveWishlist() {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+    const userObj = JSON.parse(user);
+    this.userID=userObj.user.id;
+    console.log(this.userID)
     this.item_hearted = !this.item_hearted;
     if (this.item_hearted) {
       var formData: any = new FormData();
@@ -99,5 +114,10 @@ export class ProductItemRowComponent implements OnInit {
         heart: this.item_hearted,
       });
     }
+  }
+  else
+  {
+    console.log("user not logged in yet");
+  }
   }
 }

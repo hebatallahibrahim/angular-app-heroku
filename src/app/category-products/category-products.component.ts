@@ -42,10 +42,7 @@ export class CategoryProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
+ 
   }
 
   getCategoryData() {
@@ -97,6 +94,12 @@ export class CategoryProductsComponent implements OnInit {
   }
 
   getLikedProducts() {
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+  const userObj = JSON.parse(user);
+  this.userID=userObj.user.id;
+  console.log(this.userID)
     let queryParams = new HttpParams();
     queryParams = queryParams.append('user_id', this.userID);
     this.wishlistService.getWishlistProducts(queryParams).subscribe(
@@ -131,5 +134,10 @@ export class CategoryProductsComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+  else
+  {
+    console.log("user not logged in yet");
+  }
   }
 }

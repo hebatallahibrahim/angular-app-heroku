@@ -20,12 +20,6 @@ export class WishlistComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    const user: any = localStorage.getItem('user');
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-  
     this.productListService.getAllProduct().subscribe(
       (result) => {
         this.productArray = result.products;
@@ -38,29 +32,41 @@ export class WishlistComponent implements OnInit {
   }
 
   getLikedProducts() {
-    this.count = 0;
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    this.wishlistService.getWishlistProducts(queryParams).subscribe(
-      (res) => {
-        console.log(res);
-        for (let i = 0; i < this.productArray.length; i++) {
-          if (
-            res.products.some(
-              (e: { product_id: number; user_id: number }) =>
-                e.product_id == this.productArray[i].id &&
-                e.user_id == this.userID
-            )
-          ) {
-            this.likedProducts[this.count] = this.productArray[i];
-            this.count++;
+    const user: any = localStorage.getItem('user');
+    if(user)
+    {
+      const userObj = JSON.parse(user);
+      this.userID=userObj.user.id;
+      console.log(this.userID)
+      this.count = 0;
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this.wishlistService.getWishlistProducts(queryParams).subscribe(
+        (res) => {
+          console.log(res);
+          for (let i = 0; i < this.productArray.length; i++) {
+            if (
+              res.products.some(
+                (e: { product_id: number; user_id: number }) =>
+                  e.product_id == this.productArray[i].id &&
+                  e.user_id == this.userID
+              )
+            ) {
+              this.likedProducts[this.count] = this.productArray[i];
+              this.count++;
+            }
           }
+          console.log('like', this.likedProducts);
+        },
+        (err) => {
+          console.log(err);
         }
-        console.log('like', this.likedProducts);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+      );
+    }
+    else
+    {
+      console.log("user not logged in yet");
+    }
+   
   }
 }
