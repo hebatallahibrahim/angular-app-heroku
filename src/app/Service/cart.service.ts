@@ -38,14 +38,12 @@ export class CartService {
       });
   }
   onStaitusChang(product: any) {
-    console.log(this.addedProducts);
     const arr = this.addedProducts;
     if (arr.includes(product)) {
       const index = arr.findIndex((i: any) => {
         console.log(i);
         i.product_id == product.product_id;
       });
-      console.log(this.addedProducts);
 
       arr[index] = product;
       this.cartHasBeenChanged.next(arr);

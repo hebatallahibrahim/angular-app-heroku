@@ -32,6 +32,7 @@ export class CartItemComponent implements OnInit {
           amount = 0,
           lastprice = 0,
           total = 0;
+
         this.addedProducts.forEach((element: any) => {
           counter += element.count;
           if (element.discount || element.count++) {
