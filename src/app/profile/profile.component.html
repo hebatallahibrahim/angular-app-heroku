@@ -1,149 +1,276 @@
 <app-header></app-header>
-    <section class="container">
-        <div class="row my-5">
-            <div class="col-lg-4 col-sm-6 col-md-12 ">
-            <div class="container ">
-            <div class=" text-light mt-3 mb-3 ">
-                <div class="card shadow-sm  d-flex justify-content-center align-items-center"   > 
-                        <h3 class="text-center text-black pt-4">{{userItem.name}}</h3>
-                        <div class="icon rounded-circle d-flex justify-content-center mb-5  px-4 py-2">
-                            <i class="fa-solid fa-user " style="font-size: 10rem;color: white; "></i> 
-                        </div>
-                </div>   
+<section class="container">
+  <div class="row my-5">
+    <div class="col-lg-4 col-sm-6 col-md-12">
+      <div class="container-fluid p-0">
+        <div class="text-light mb-3">
+          <div
+            class="card shadow-sm d-flex justify-content-center align-items-center"
+          >
+            <h3 class="text-center text-black pt-4">{{ userItem.name }}</h3>
+            <div
+              class="icon rounded-circle d-flex justify-content-center mb-5 px-4 py-2"
+            >
+              <i
+                class="fa-solid fa-user"
+                style="font-size: 10rem; color: white"
+              ></i>
             </div>
-            </div>
-                <a routerLink="/cart"><div class=" text-light  mb-3 ">
-                    <div class="card cart d-flex justify-content-center align-items-center"> 
-                        <h2 class="text-center m-auto py-3"><i class="fa-solid fa-cart-shopping me-2"></i>Cart</h2>
-                    </div>   
-                </div></a>
-                <a routerLink="/wishlist"><div class=" text-light  mb-3 ">
-                    <div class="card cart d-flex justify-content-center align-items-center"> 
-                        <h2 class="text-center m-auto py-3"><i class="fa-solid fa-heart me-2"></i>Wishlist</h2>
-                    </div>   
-                </div></a>
-                <a routerLink="/user-orders"><div class=" text-light  mb-3 ">
-                    <div class="card cart d-flex justify-content-center align-items-center"> 
-                        <h2 class="text-center m-auto py-3"><i class="fa-solid fa-cash-register me-2"></i>Orders</h2>
-                    </div>   
-                </div></a>
-            </div>
-            <div class=" col-lg-8 col-sm-6 col-md-6 mt-12">
-                <div class="text-black card-shadow p-5" style="background-color: white;">
-                    <h3 class="text-center text-black p-3">User Information</h3>
-                    <div class="panel panel-default">
-                        <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" >
-                            <div class="my-3 col-sm-12">
-                                <label class=" d-inline">Name :</label> 
-                                <input type="text"class="form-control d-inline user-info disabled" disabled="disabled"[value]="name" >
-                            </div>
-                            <div class="my-3 col-sm-12">
-                                <label class=" d-inline">Email :</label> 
-                                <input type="text"class="form-control d-inline user-info disabled" disabled="disabled"[value]="userItem.email" >
-                            </div>
-                            <div class="my-3 col-sm-12">
-                                <label class=" d-inline">phone :</label> 
-                                <input type="text"class="form-control d-inline user-info "disabled="disabled" [value]="userItem.phone" >
-                            </div>
-                            <div class="my-3 col-sm-12">
-                                <label class=" d-inline">Address :</label> 
-                                <input type="text"class="form-control d-inline user-info" disabled="disabled"[value]="userItem.address" >
-                            </div>
-                            <div class="my-3 col-sm-12">
-                                <label class=" d-inline">City :</label> 
-                                <input type="text"class="form-control d-inline user-info"disabled="disabled"[value]="userItem.city" >
-                            </div>
-                            <div class="my-3 col-sm-12">
-                                <label class=" d-inline">Region :</label> 
-                                <input type="text"class="form-control d-inline user-info" disabled="disabled" [value]="userItem.region" >
-                            </div>
-                        </div>
-                        <div #aollapse="ngbCollapse" [(ngbCollapse)]="isCollapseg">
-                            <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
-                                <ngb-panel title="" id="config-panel-one">
-                                    <ng-template ngbPanelContent>
-                                        <form [formGroup]="formRegistration" (ngSubmit)="getFormData(formRegistration)" action="#" method="post">
-                                            <div class="">
-                                                <label class=" ">Name</label> 
-                                                <input 
-                                                [class.is-invalid]="
-                                                  formRegistration.get('Name')?.invalid &&
-                                                  formRegistration.get('Name')?.touched"
-                                                formControlName="Name"
-                                                type="text"class="form-control" [(ngModel)]="name" >
-                                                <span *ngIf="formRegistration.get('Name')?.invalid && formRegistration.get('Name')?.touched"class="m-3 p-2 text-danger">
-                                                    name should be more than 2 letters
-                                                </span>
-                                            </div>
-                                            <div class="">
-                                                <label class=" ">Email </label> 
-                                                <input
-                                                formControlName="Email"
-                                                [class.is-invalid]="formRegistration.get('Email')?.invalid && formRegistration.get('Email')?.touched" 
-                                                type="text"class="form-control " [(ngModel)]="userItem.email" >
-                                                <span *ngIf="formRegistration.get('Email')?.invalid && formRegistration.get('Email')?.touched" class="m-3 p-2 text-danger">
-                                                    please enter valid email
-                                                </span>
-                                            </div>
-                                            <div class="">
-                                                <label class=" ">Phone </label> 
-                                                <input
-                                                formControlName="Phone"
-                                                [class.is-invalid]="formRegistration.get('Phone')?.invalid && formRegistration.get('Phone')?.touched"  
-                                                type="text"class="form-control " [(ngModel)]="userItem.phone" >
-                                                <span *ngIf="formRegistration.get('Phone')?.invalid && formRegistration.get('Phone')?.touched" class="m-3 p-2 text-danger">
-                                                    please enter valid phone number
-                                                </span>
-                                            </div>
-                                            <div class="">
-                                                <label class=" ">Address </label> 
-                                                <input 
-                                                formControlName="Address"
-                                                [class.is-invalid]="formRegistration.get('Address')?.invalid && formRegistration.get('Address')?.touched" 
-                                                type="text"class="form-control " [(ngModel)]="userItem.address" >
-                                            </div>
-                                            <div class="">
-                                                <label class=" ">City </label> 
-                                                <input
-                                                [class.is-invalid]="formRegistration.get('City')?.invalid && formRegistration.get('City')?.touched" 
-                                                formControlName="City"
-                                                type="text"class="form-control  " [(ngModel)]="userItem.city" >
-                                            </div>
-                                            <div class="">
-                                                <label class=" ">Region </label> 
-                                                <input
-                                                [class.is-invalid]="formRegistration.get('Region')?.invalid && formRegistration.get('Region')?.touched" 
-                                                formControlName="Region"
-                                                type="text"class="form-control mb-3" [(ngModel)]="userItem.region" >
-                                            </div>
-                                                <button type="submit" 
-                                                class="btn btn-outline-secondary"  
-                                                [attr.aria-expanded]="!isCollapsed"
-                                                aria-controls="collapseExample">
-                                                 Submit</button>
-                                                 <div *ngIf="failedAlert" class="alert alert-danger" role="alert">Enter a Valid Data</div>
-                                                 <div *ngIf="emailExists" class="alert alert-danger" role="alert">Email Already Exists</div>
-                                        </form>
-                                    </ng-template>
-                                </ngb-panel>
-                            </ngb-accordion>
-                        </div>
-                        <div #btncollapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" >
-                           
-                                <button type="button" class="btn btn-outline-secondary" 
-                                (click)="collapse.toggle() ; aollapse.toggle() ; btncollapse.toggle(); " [attr.aria-expanded]="!isCollapsed"
-                                aria-controls="collapseExample"> Edit Profile</button>
-                          
-                        </div>
-                    </div>    
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </div>
+      <a routerLink="/cart"
+        ><div class="text-light mb-3">
+          <div
+            class="card cart d-flex justify-content-center align-items-center"
+          >
+            <h2 class="text-center m-auto py-3">
+              <i class="fa-solid fa-cart-shopping me-2"></i>Cart
+            </h2>
+          </div>
+        </div></a
+      >
+      <a routerLink="/wishlist"
+        ><div class="text-light mb-3">
+          <div
+            class="card cart d-flex justify-content-center align-items-center"
+          >
+            <h2 class="text-center m-auto py-3">
+              <i class="fa-solid fa-heart me-2"></i>Wishlist
+            </h2>
+          </div>
+        </div></a
+      >
+      <a routerLink="/user-orders"
+        ><div class="text-light mb-3">
+          <div
+            class="card cart d-flex justify-content-center align-items-center"
+          >
+            <h2 class="text-center m-auto py-3">
+              <i class="fa-solid fa-cash-register me-2"></i>Orders
+            </h2>
+          </div>
+        </div></a
+      >
+    </div>
+    <div class="col-lg-8 col-sm-6 col-md-6 mt-12">
+      <div class="text-black card-shadow p-5" style="background-color: white">
+        <h3 class="text-center text-black p-3">User Information</h3>
+        <div class="panel panel-default">
+          <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <div class="my-3 col-sm-12">
+              <label class="d-inline">Name :</label>
+              <input
+                type="text"
+                class="form-control d-inline user-info disabled"
+                disabled="disabled"
+                [value]="name"
+              />
+            </div>
+            <div class="my-3 col-sm-12">
+              <label class="d-inline">Email :</label>
+              <input
+                type="text"
+                class="form-control d-inline user-info disabled"
+                disabled="disabled"
+                [value]="userItem.email"
+              />
+            </div>
+            <div class="my-3 col-sm-12">
+              <label class="d-inline">phone :</label>
+              <input
+                type="text"
+                class="form-control d-inline user-info"
+                disabled="disabled"
+                [value]="userItem.phone"
+              />
+            </div>
+            <div class="my-3 col-sm-12">
+              <label class="d-inline">Address :</label>
+              <input
+                type="text"
+                class="form-control d-inline user-info"
+                disabled="disabled"
+                [value]="userItem.address"
+              />
+            </div>
+            <div class="my-3 col-sm-12">
+              <label class="d-inline">City :</label>
+              <input
+                type="text"
+                class="form-control d-inline user-info"
+                disabled="disabled"
+                [value]="userItem.city"
+              />
+            </div>
+            <div class="my-3 col-sm-12">
+              <label class="d-inline">Region :</label>
+              <input
+                type="text"
+                class="form-control d-inline user-info"
+                disabled="disabled"
+                [value]="userItem.region"
+              />
+            </div>
+          </div>
+          <div #aollapse="ngbCollapse" [(ngbCollapse)]="isCollapseg">
+            <ngb-accordion #acc="ngbAccordion" activeIds="config-panel-one">
+              <ngb-panel title="" id="config-panel-one">
+                <ng-template ngbPanelContent>
+                  <form
+                    [formGroup]="formRegistration"
+                    (ngSubmit)="getFormData(formRegistration)"
+                    action="#"
+                    method="post"
+                  >
+                    <div class="">
+                      <label class=" ">Name</label>
+                      <input
+                        [class.is-invalid]="
+                          formRegistration.get('Name')?.invalid &&
+                          formRegistration.get('Name')?.touched
+                        "
+                        formControlName="Name"
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="name"
+                      />
+                      <span
+                        *ngIf="
+                          formRegistration.get('Name')?.invalid &&
+                          formRegistration.get('Name')?.touched
+                        "
+                        class="m-3 p-2 text-danger"
+                      >
+                        name should be more than 2 letters
+                      </span>
+                    </div>
+                    <div class="">
+                      <label class=" ">Email </label>
+                      <input
+                        formControlName="Email"
+                        [class.is-invalid]="
+                          formRegistration.get('Email')?.invalid &&
+                          formRegistration.get('Email')?.touched
+                        "
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="userItem.email"
+                      />
+                      <span
+                        *ngIf="
+                          formRegistration.get('Email')?.invalid &&
+                          formRegistration.get('Email')?.touched
+                        "
+                        class="m-3 p-2 text-danger"
+                      >
+                        please enter valid email
+                      </span>
+                    </div>
+                    <div class="">
+                      <label class=" ">Phone </label>
+                      <input
+                        formControlName="Phone"
+                        [class.is-invalid]="
+                          formRegistration.get('Phone')?.invalid &&
+                          formRegistration.get('Phone')?.touched
+                        "
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="userItem.phone"
+                      />
+                      <span
+                        *ngIf="
+                          formRegistration.get('Phone')?.invalid &&
+                          formRegistration.get('Phone')?.touched
+                        "
+                        class="m-3 p-2 text-danger"
+                      >
+                        please enter valid phone number
+                      </span>
+                    </div>
+                    <div class="">
+                      <label class=" ">Address </label>
+                      <input
+                        formControlName="Address"
+                        [class.is-invalid]="
+                          formRegistration.get('Address')?.invalid &&
+                          formRegistration.get('Address')?.touched
+                        "
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="userItem.address"
+                      />
+                    </div>
+                    <div class="">
+                      <label class=" ">City </label>
+                      <input
+                        [class.is-invalid]="
+                          formRegistration.get('City')?.invalid &&
+                          formRegistration.get('City')?.touched
+                        "
+                        formControlName="City"
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="userItem.city"
+                      />
+                    </div>
+                    <div class="">
+                      <label class=" ">Region </label>
+                      <input
+                        [class.is-invalid]="
+                          formRegistration.get('Region')?.invalid &&
+                          formRegistration.get('Region')?.touched
+                        "
+                        formControlName="Region"
+                        type="text"
+                        class="form-control mb-3"
+                        [(ngModel)]="userItem.region"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-outline-secondary"
+                      [attr.aria-expanded]="!isCollapsed"
+                      aria-controls="collapseExample"
+                    >
+                      Submit
+                    </button>
+                    <div
+                      *ngIf="failedAlert"
+                      class="alert alert-danger"
+                      role="alert"
+                    >
+                      Enter a Valid Data
+                    </div>
+                    <div
+                      *ngIf="emailExists"
+                      class="alert alert-danger"
+                      role="alert"
+                    >
+                      Email Already Exists
+                    </div>
+                  </form>
+                </ng-template>
+              </ngb-panel>
+            </ngb-accordion>
+          </div>
+          <div #btncollapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="
+                collapse.toggle(); aollapse.toggle(); btncollapse.toggle()
+              "
+              [attr.aria-expanded]="!isCollapsed"
+              aria-controls="collapseExample"
+            >
+              Edit Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <app-footer></app-footer>
-
-
-    
-   
-
-         

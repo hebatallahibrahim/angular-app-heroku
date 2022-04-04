@@ -21,26 +21,27 @@ export class CartService {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
+
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append('user_id', this.userID);
+      this.http
+        .get(`http://127.0.0.1:8000/api/user/cart`, {
+          params: queryParams,
+        })
+        .subscribe({
+          next: (res: any) => {
+            this.addedProducts = res.Cart;
+            this.cartHasBeenChanged.next(this.addedProducts);
+          },
+          error: (err) => {
+            console.log(err);
+          },
+          complete: () => {},
+        });
     } else {
-      console.log('you must login');
+      this.addedProducts = [];
+      this.cartHasBeenChanged.next(this.addedProducts);
     }
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append('user_id', this.userID);
-    return this.http
-      .get(`http://127.0.0.1:8000/api/user/cart`, {
-        params: queryParams,
-      })
-      .subscribe({
-        next: (res: any) => {
-          this.addedProducts = res.Cart;
-          this.cartHasBeenChanged.next(this.addedProducts);
-        },
-        error: (err) => {
-          console.log(err);
-        },
-        complete: () => {},
-      });
   }
   onStaitusChang(product: any, count: any) {
     const postData = {

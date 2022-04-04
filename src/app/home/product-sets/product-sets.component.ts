@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
-import { NgbCarousel, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder } from '@angular/forms';
+import {
+  NgbCarousel,
+  NgbSlideEvent,
+  NgbSlideEventSource,
+} from '@ng-bootstrap/ng-bootstrap';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { SwiperOptions } from 'swiper';
 import { HomeService } from 'src/app/Service/home.service';
@@ -9,10 +13,12 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-sets',
   templateUrl: './product-sets.component.html',
-  styleUrls: ['./product-sets.component.css']
+  styleUrls: ['./product-sets.component.css'],
 })
 export class ProductSetsComponent implements OnInit {
-  images = [62, 83, 466, 965, 982, 1043, 738].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images = [62, 83, 466, 965, 982, 1043, 738].map(
+    (n) => `https://picsum.photos/id/${n}/900/500`
+  );
 
   paused = false;
   unpauseOnArrow = false;
@@ -34,11 +40,19 @@ export class ProductSetsComponent implements OnInit {
   }
 
   onSlide(slideEvent: NgbSlideEvent) {
-    if (this.unpauseOnArrow && slideEvent.paused &&
-      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT || slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)) {
+    if (
+      this.unpauseOnArrow &&
+      slideEvent.paused &&
+      (slideEvent.source === NgbSlideEventSource.ARROW_LEFT ||
+        slideEvent.source === NgbSlideEventSource.ARROW_RIGHT)
+    ) {
       this.togglePaused();
     }
-    if (this.pauseOnIndicator && !slideEvent.paused && slideEvent.source === NgbSlideEventSource.INDICATOR) {
+    if (
+      this.pauseOnIndicator &&
+      !slideEvent.paused &&
+      slideEvent.source === NgbSlideEventSource.INDICATOR
+    ) {
       this.togglePaused();
     }
   }
@@ -80,24 +94,30 @@ export class ProductSetsComponent implements OnInit {
     spaceBetween: 50,
   };
 
-  constructor(private fb: FormBuilder,private _HomeService: HomeService, private _Router: Router) {}
-    
-  categoryArray:any[]=[];
+  constructor(
+    private fb: FormBuilder,
+    private _HomeService: HomeService,
+    private _Router: Router
+  ) {}
+
+  categoryArray: any[] = [];
 
   ngOnInit(): void {
     this._HomeService.getAllCategories().subscribe(
       (res) => {
-        this.categoryArray=res.category;
-        console.log(this.categoryArray);
+        this.categoryArray = res.category;
       },
-      (err:any) => {
+      (err: any) => {
         console.log(err);
       }
     );
   }
 
   goToCategoryProducts(categoryItem: any) {
-    this._Router.navigate(['/category-products', categoryItem.id,categoryItem.name]); // send id to url
+    this._Router.navigate([
+      '/category-products',
+      categoryItem.id,
+      categoryItem.name,
+    ]); // send id to url
   }
-
 }

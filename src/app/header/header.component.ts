@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   userID: any;
   //  auth protection
   loggedIn: boolean = false;
-
+  signOutEvent = new EventEmitter<any>();
   @Output() searchEvent = new EventEmitter<any>();
 
   constructor(
@@ -54,34 +54,40 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cartService.getApiCart();
-    this.cartService.cartHasBeenChanged.subscribe({
-      next: (res) => {
-        this.addedProducts = res;
-        let counter = 0,
-          amount = 0,
-          lastprice = 0,
-          total = 0;
-        this.addedProducts.forEach((element: any) => {
-          counter += element.count;
-          if (element.discount || element.count++) {
-            lastprice = element.price - element.discount;
-            amount = lastprice * element.count;
-            total += amount;
-          } else {
-            amount = element.price * element.count;
-            total += amount;
-          }
-        });
-        this.cartCounter = counter;
-        this.totalAmount = total;
-      },
-      error: (error) => {
-        console.log(error);
-      },
-      complete: () => {},
-    });
-
+    const user: any = localStorage.getItem('user');
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      this.cartService.getApiCart();
+      this.cartService.cartHasBeenChanged.subscribe({
+        next: (res) => {
+          this.addedProducts = res;
+          let counter = 0,
+            amount = 0,
+            lastprice = 0,
+            total = 0;
+          this.addedProducts.forEach((element: any) => {
+            counter += element.count;
+            if (element.discount || element.count++) {
+              lastprice = element.price - element.discount;
+              amount = lastprice * element.count;
+              total += amount;
+            } else {
+              amount = element.price * element.count;
+              total += amount;
+            }
+          });
+          this.cartCounter = counter;
+          this.totalAmount = total;
+        },
+        error: (error) => {
+          console.log(error);
+        },
+        complete: () => {},
+      });
+    } else {
+      console.log('header not have user');
+    }
     this._HomeService.getAllCategories().subscribe({
       next: (res) => {
         this.categoryArray = res.category;
@@ -96,7 +102,6 @@ export class HeaderComponent implements OnInit {
     this.auth.status().subscribe(
       (res) => {
         this.loggedIn = res;
-        console.log('navbar:' + this.loggedIn);
       },
       (err) => {
         console.log(err);
@@ -113,19 +118,15 @@ export class HeaderComponent implements OnInit {
   }
   removeItem(item: any) {
     const user: any = localStorage.getItem('user');
-    if(user)
-    {
-  const userObj = JSON.parse(user);
-  this.userID=userObj.user.id;
-  console.log(this.userID)
-    this.cartService.deleteCartItem(item, {
-      user_id: this.userID,
-    });
-  }
-  else
-  {
-    console.log("user not logged in yet");
-  }
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      this.cartService.deleteCartItem(item, {
+        user_id: this.userID,
+      });
+    } else {
+      console.log('user not logged in yet');
+    }
   }
 
   goToCategoryProducts(categoryItem: any) {
@@ -142,5 +143,19 @@ export class HeaderComponent implements OnInit {
 
   goToProductList() {
     this._Router.navigate(['/product-list']);
+  }
+  signout() {
+    debugger;
+    this.cartService.getApiCart();
+    this.cartService.cartHasBeenChanged.subscribe({
+      next: (res) => {
+        this.addedProducts = [];
+        this.signOutEvent.emit(this.addedProducts);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+      complete: () => {},
+    });
   }
 }
