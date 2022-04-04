@@ -97,19 +97,29 @@ export class UpdateProductComponent implements OnInit {
         }
       );
 
-    }
-
-    getSubCategorybyCatID(category_id:any){
-      this._AdminService.getAllSubCategoriesbyCat(category_id).subscribe(
+      this._AdminService.getAllSubCategories().subscribe(
         (res) => {
-          this.subCategoryArray=res.subcategories;
-          console.log(this.subCategoryArray);
+          this.subCategoryArray=res.category;
+      
         },
         (err:any) => {
           console.log(err);
         }
       );
+
     }
+
+    // getSubCategorybyCatID(category_id:any){
+    //   this._AdminService.getAllSubCategoriesbyCat(category_id).subscribe(
+    //     (res) => {
+    //       this.subCategoryArray=res.subcategories;
+    //       console.log(this.subCategoryArray);
+    //     },
+    //     (err:any) => {
+    //       console.log(err);
+    //     }
+    //   );
+    // }
   
     onFileChange(event:any) {
       if (event.target.files.length > 0) {
