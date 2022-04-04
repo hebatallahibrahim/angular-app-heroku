@@ -28,7 +28,7 @@ import { AuthGuard } from './Service/auth.guard';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 import { CategoryProductsComponent } from './category-products/category-products.component';
 import { SliderComponent } from './admin-page/slider/slider.component';
-import { TestComponent } from './test/test.component';
+
 import { AllContactUsComponent } from './admin-page/all-contact-us/all-contact-us.component';
 import { ViewContactsDataComponent } from './admin-page/view-contacts-data/view-contacts-data.component';
 import { AllCategoryComponent } from './admin-page/all-category/all-category.component';
@@ -127,7 +127,6 @@ const routes: Routes = [
     canActivate: [UserGuardGuard],
     component: ProfileComponent,
   },
-  { path: 'test', component: TestComponent },
 
   {
     path: 'message',

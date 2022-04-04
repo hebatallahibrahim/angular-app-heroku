@@ -1,328 +1,336 @@
+<app-navnar></app-navnar>
+
 <div class="container tm-mt-big tm-mb-big">
-  <div class="row ">
-    
-    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto ">
-      <div class="tm-bg-primary-dark tm-block tm-block-h-auto  ">
-        <div class="row ">
+  <div class="row">
+    <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+      <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+        <div class="row">
           <div class="col-12">
-            <h2 class="tm-block-title d-flex justify-content-center mb-3">Update Product</h2>
+            <h2 class="tm-block-title d-flex justify-content-center mb-3">
+              Update Product
+            </h2>
           </div>
         </div>
         <div class="row tm-edit-product-row">
-          <div class="col-12"> 
-          <div>
-            <form 
-            [formGroup]="formRegistration"
-            (ngSubmit)="getFormData(formRegistration)"
-             action="#" method="post"
-             >
-             <div class="form-group mb-4">
-              <label
-                for="name"
-                >Product Name
-              </label>
-              <input
-              [class.is-invalid]="
-            formRegistration.get('name')?.invalid &&
-            formRegistration.get('name')?.touched"
-               formControlName="name"
-                id="name"
-                name="name"
-                type="text"
-                class="form-control "
-                [(ngModel)]="post.name" 
-                required
-              />
-              <span
-              *ngIf="
-                formRegistration.get('name')?.invalid &&
-                formRegistration.get('name')?.touched
-              "
-              class="m-3 p-2 text-danger"
-              >name should be more than 2 char
-            </span>
-            </div>
-            <div class="form-group mb-4">
-              <label
-                for="description"
-                >Description</label
+          <div class="col-12">
+            <div>
+              <form
+                [formGroup]="formRegistration"
+                (ngSubmit)="getFormData(formRegistration)"
+                action="#"
+                method="post"
               >
-              <textarea
-              [class.is-invalid]="
-            formRegistration.get('description')?.invalid &&
-            formRegistration.get('description')?.touched"
-                class="form-control "
-                rows="3"
-                required
-                formControlName="description"
-                [(ngModel)]="post.description" 
-                
-              ></textarea>
-              <span
-              *ngIf="
-                formRegistration.get('description')?.invalid &&
-                formRegistration.get('description')?.touched
-              "
-              class="m-3 p-2 text-danger"
-              >Description should be more than 2 char
-            </span>
+                <div class="form-group mb-4">
+                  <label for="name">Product Name </label>
+                  <input
+                    [class.is-invalid]="
+                      formRegistration.get('name')?.invalid &&
+                      formRegistration.get('name')?.touched
+                    "
+                    formControlName="name"
+                    id="name"
+                    name="name"
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="post.name"
+                    required
+                  />
+                  <span
+                    *ngIf="
+                      formRegistration.get('name')?.invalid &&
+                      formRegistration.get('name')?.touched
+                    "
+                    class="m-3 p-2 text-danger"
+                    >name should be more than 2 char
+                  </span>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="description">Description</label>
+                  <textarea
+                    [class.is-invalid]="
+                      formRegistration.get('description')?.invalid &&
+                      formRegistration.get('description')?.touched
+                    "
+                    class="form-control"
+                    rows="3"
+                    required
+                    formControlName="description"
+                    [(ngModel)]="post.description"
+                  ></textarea>
+                  <span
+                    *ngIf="
+                      formRegistration.get('description')?.invalid &&
+                      formRegistration.get('description')?.touched
+                    "
+                    class="m-3 p-2 text-danger"
+                    >Description should be more than 2 char
+                  </span>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="shortdesc">Short Description</label>
+                  <textarea
+                    [class.is-invalid]="
+                      formRegistration.get('shortdesc')?.invalid &&
+                      formRegistration.get('shortdesc')?.touched
+                    "
+                    class="form-control"
+                    rows="3"
+                    required
+                    formControlName="shortdesc"
+                    [(ngModel)]="post.short_desc"
+                  ></textarea>
+                  <span
+                    *ngIf="
+                      formRegistration.get('shortdesc')?.invalid &&
+                      formRegistration.get('shortdesc')?.touched
+                    "
+                    class="m-3 p-2 text-danger"
+                    >Short description should be more than 2 char
+                  </span>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-4">
+                    <label for="category">Category</label>
+                    <select
+                      [class.is-invalid]="
+                        formRegistration.get('category')?.invalid &&
+                        formRegistration.get('category')?.touched
+                      "
+                      class="custom-select tm-select-accounts"
+                      id="category"
+                      formControlName="category"
+                    >
+                      <option
+                        *ngFor="let item of categoryArray"
+                        [value]="item.id"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+                    <span
+                      *ngIf="
+                        formRegistration.get('category')?.invalid &&
+                        formRegistration.get('category')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >category required
+                    </span>
+                  </div>
+                  <div class="form-group mb-4">
+                    <label for="subcategory">Sub Category</label>
+                    <select
+                      [class.is-invalid]="
+                        formRegistration.get('subcategory')?.invalid &&
+                        formRegistration.get('subcategory')?.touched
+                      "
+                      class="custom-select tm-select-accounts"
+                      id="subcategory"
+                      formControlName="subcategory"
+                    >
+                      <option
+                        *ngFor="let item of subCategoryArray"
+                        [value]="item.id"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+                    <span
+                      *ngIf="
+                        formRegistration.get('subcategory')?.invalid &&
+                        formRegistration.get('subcategory')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >subcategory required
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label for="price">Price </label>
+                    <input
+                      [class.is-invalid]="
+                        formRegistration.get('price')?.invalid &&
+                        formRegistration.get('price')?.touched
+                      "
+                      id="price"
+                      name="price"
+                      type="number"
+                      class="form-control validate"
+                      data-large-mode="true"
+                      formControlName="price"
+                      [(ngModel)]="post.selling_price"
+                    />
+                    <span
+                      *ngIf="
+                        formRegistration.get('price')?.invalid &&
+                        formRegistration.get('price')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >price should be numbers only
+                    </span>
+                  </div>
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label for="discount">Discount </label>
+                    <input
+                      [class.is-invalid]="
+                        formRegistration.get('discount')?.invalid &&
+                        formRegistration.get('discount')?.touched
+                      "
+                      id="discount"
+                      name="discount"
+                      type="number"
+                      class="form-control"
+                      formControlName="discount"
+                      [(ngModel)]="post.discount_price"
+                    />
+                    <span
+                      *ngIf="
+                        formRegistration.get('discount')?.invalid &&
+                        formRegistration.get('discount')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >discount should be numbers only
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label for="quantity">Quantity </label>
+                    <input
+                      [class.is-invalid]="
+                        formRegistration.get('quantity')?.invalid &&
+                        formRegistration.get('quantity')?.touched
+                      "
+                      id="quantity"
+                      name="quantity"
+                      type="number"
+                      class="form-control"
+                      data-large-mode="true"
+                      formControlName="quantity"
+                      [(ngModel)]="post.product_qty"
+                    />
+                    <span
+                      *ngIf="
+                        formRegistration.get('quantity')?.invalid &&
+                        formRegistration.get('quantity')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >quantity should numbers only
+                    </span>
+                  </div>
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label for="brand">Brand </label>
+                    <input
+                      [class.is-invalid]="
+                        formRegistration.get('brand')?.invalid &&
+                        formRegistration.get('brand')?.touched
+                      "
+                      id="brand"
+                      name="brand"
+                      type="text"
+                      class="form-control"
+                      data-large-mode="true"
+                      formControlName="brand"
+                      [(ngModel)]="post.brand"
+                    />
+                    <span
+                      *ngIf="
+                        formRegistration.get('brand')?.invalid &&
+                        formRegistration.get('brand')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >brand should be more than 2 char
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label for="productsize">Product Size </label>
+                    <input
+                      [class.is-invalid]="
+                        formRegistration.get('productsize')?.invalid &&
+                        formRegistration.get('productsize')?.touched
+                      "
+                      id="productsize"
+                      name="productsize"
+                      type="text"
+                      class="form-control"
+                      data-large-mode="true"
+                      formControlName="productsize"
+                      [(ngModel)]="post.product_size"
+                    />
+                    <span
+                      *ngIf="
+                        formRegistration.get('productsize')?.invalid &&
+                        formRegistration.get('productsize')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >size should be numbers only
+                    </span>
+                  </div>
+                  <div class="form-group mb-4 col-xs-12 col-sm-6">
+                    <label for="color">Color </label>
+                    <input
+                      [class.is-invalid]="
+                        formRegistration.get('color')?.invalid &&
+                        formRegistration.get('color')?.touched
+                      "
+                      id="color"
+                      name="color"
+                      type="text"
+                      class="form-control"
+                      data-large-mode="true"
+                      formControlName="color"
+                      [(ngModel)]="post.color"
+                    />
+                    <span
+                      *ngIf="
+                        formRegistration.get('color')?.invalid &&
+                        formRegistration.get('color')?.touched
+                      "
+                      class="m-3 p-2 text-danger"
+                      >color should be more than 2 char
+                    </span>
+                  </div>
+                </div>
+
+                <div
+                  class="col-12 d-flex justify-content-center align-items-center"
+                >
+                  <div class="row">
+                    <div
+                      [ngClass]="{
+                        'show-alert': dangerAlertShow,
+                        'hide-alert': !dangerAlertShow
+                      }"
+                      class="alert alert-danger col-11 m-2 p-2"
+                      role="alert"
+                    >
+                      Please Enter Valid Data
+                    </div>
+                    <div
+                      [ngClass]="{
+                        'show-alert': SuccessAlertShow,
+                        'hide-alert': !SuccessAlertShow
+                      }"
+                      class="alert alert-success col-11 m-2 p-2"
+                      role="alert"
+                    >
+                      Product updated Successfully
+                    </div>
+                    <button
+                      type="submit"
+                      class="btn btn-primary btn-block text-uppercase"
+                    >
+                      Update Product
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div class="form-group mb-4">
-              <label
-                for="shortdesc"
-                >Short Description</label
-              >
-              <textarea
-              [class.is-invalid]="
-            formRegistration.get('shortdesc')?.invalid &&
-            formRegistration.get('shortdesc')?.touched"
-                class="form-control "
-                rows="3"
-                required
-                formControlName="shortdesc"
-                [(ngModel)]="post.short_desc" 
-              ></textarea>
-              <span
-              *ngIf="
-                formRegistration.get('shortdesc')?.invalid &&
-                formRegistration.get('shortdesc')?.touched
-              "
-              class="m-3 p-2 text-danger"
-              >Short description should be more than 2 char
-            </span>
-            </div>
-            <div class="row">
-              <div class="form-group mb-4">
-                <label
-                  for="category"
-                  >Category</label
-                >
-                <select
-                [class.is-invalid]="
-          formRegistration.get('category')?.invalid &&
-          formRegistration.get('category')?.touched"
-                  class="custom-select tm-select-accounts"
-                  id="category"  formControlName="category"
-                >
-                  <option *ngFor="let item of categoryArray" [value]="item.id">{{item.name}}</option>
-                  
-                </select>
-                <span
-                *ngIf="
-                  formRegistration.get('category')?.invalid &&
-                  formRegistration.get('category')?.touched
-                "
-                class="m-3 p-2 text-danger"
-                >category required
-              </span>
-              </div>
-              <div class="form-group mb-4">
-                <label
-                  for="subcategory"
-                  >Sub Category</label
-                >
-                <select
-                [class.is-invalid]="
-          formRegistration.get('subcategory')?.invalid &&
-          formRegistration.get('subcategory')?.touched"
-                  class="custom-select tm-select-accounts"
-                  id="subcategory"  formControlName="subcategory"
-                >
-                  <option *ngFor="let item of subCategoryArray" [value]="item.id">{{item.name}}</option>
-                  
-                </select>
-                <span
-                *ngIf="
-                  formRegistration.get('subcategory')?.invalid &&
-                  formRegistration.get('subcategory')?.touched
-                "
-                class="m-3 p-2 text-danger"
-                >subcategory  required
-              </span>
-              </div>
           </div>
-          <div class="row">
-            <div class="form-group mb-4 col-xs-12 col-sm-6">
-                <label
-                  for="price"
-                  >Price
-                </label>
-                <input
-                [class.is-invalid]="
-        formRegistration.get('price')?.invalid &&
-        formRegistration.get('price')?.touched"
-                  id="price"
-                  name="price"
-                  type="number"
-                  class="form-control validate"
-                  data-large-mode="true"
-                  formControlName="price"
-                  [(ngModel)]="post.selling_price" 
-                />
-                <span
-                *ngIf="
-                  formRegistration.get('price')?.invalid &&
-                  formRegistration.get('price')?.touched
-                "
-                class="m-3 p-2 text-danger"
-                >price should be numbers only
-              </span>
-              </div>
-              <div class="form-group mb-4 col-xs-12 col-sm-6">
-                <label
-                  for="discount"
-                  >Discount
-                </label>
-                <input
-                [class.is-invalid]="
-        formRegistration.get('discount')?.invalid &&
-        formRegistration.get('discount')?.touched"
-                  id="discount"
-                  name="discount"
-                  type="number"
-                  class="form-control "
-                  formControlName="discount"
-                  [(ngModel)]="post.discount_price" 
-                />
-                <span
-                *ngIf="
-                  formRegistration.get('discount')?.invalid &&
-                  formRegistration.get('discount')?.touched
-                "
-                class="m-3 p-2 text-danger"
-                >discount should be numbers only
-              </span>
-              </div>  
         </div>
-        <div class="row">
-          <div class="form-group mb-4 col-xs-12 col-sm-6">
-              <label
-                for="quantity"
-                >Quantity
-              </label>
-              <input
-              [class.is-invalid]="
-      formRegistration.get('quantity')?.invalid &&
-      formRegistration.get('quantity')?.touched"
-                id="quantity"
-                name="quantity"
-                type="number"
-                class="form-control "
-                data-large-mode="true"
-                formControlName="quantity"
-                [(ngModel)]="post. product_qty" 
-              />
-              <span
-              *ngIf="
-                formRegistration.get('quantity')?.invalid &&
-                formRegistration.get('quantity')?.touched
-              "
-              class="m-3 p-2 text-danger"
-              >quantity should numbers only
-            </span>
-          </div>
-          <div class="form-group mb-4 col-xs-12 col-sm-6">
-            <label
-              for="brand"
-              >Brand
-            </label>
-            <input
-            [class.is-invalid]="
-      formRegistration.get('brand')?.invalid &&
-      formRegistration.get('brand')?.touched"
-              id="brand"
-              name="brand"
-              type="text"
-              class="form-control "
-              data-large-mode="true"
-              formControlName="brand"
-              [(ngModel)]="post.brand" 
-            />
-            <span
-            *ngIf="
-              formRegistration.get('brand')?.invalid &&
-              formRegistration.get('brand')?.touched
-            "
-            class="m-3 p-2 text-danger"
-            >brand should be more than 2 char
-          </span>
-          </div>  
-      </div>
-      <div class="row">
-        <div class="form-group mb-4 col-xs-12 col-sm-6">
-            <label
-              for="productsize"
-              >Product Size
-            </label>
-            <input
-            [class.is-invalid]="
-            formRegistration.get('productsize')?.invalid &&
-            formRegistration.get('productsize')?.touched"
-              id="productsize"
-              name="productsize"
-              type="text"
-              class="form-control "
-              data-large-mode="true"
-              formControlName="productsize"
-              [(ngModel)]="post.product_size" 
-            />
-            <span
-            *ngIf="
-              formRegistration.get('productsize')?.invalid &&
-              formRegistration.get('productsize')?.touched
-            "
-            class="m-3 p-2 text-danger"
-            >size should be numbers only
-          </span>
-        </div>
-        <div class="form-group mb-4 col-xs-12 col-sm-6">
-          <label
-            for="color"
-            >Color
-          </label>
-          <input
-          [class.is-invalid]="
-      formRegistration.get('color')?.invalid &&
-      formRegistration.get('color')?.touched"
-            id="color"
-            name="color"
-            type="text"
-            class="form-control "
-            data-large-mode="true"
-            formControlName="color"
-            [(ngModel)]="post.color" 
-          />
-          <span
-          *ngIf="
-            formRegistration.get('color')?.invalid &&
-            formRegistration.get('color')?.touched
-          "
-          class="m-3 p-2 text-danger"
-          >color should be more than 2 char
-        </span>
-        </div>
-      </div>
-   
-          <div class="col-12 d-flex justify-content-center align-items-center">
-            <div class="row">
-              <div [ngClass]="{'show-alert':dangerAlertShow,'hide-alert':!dangerAlertShow}" 
-              class="alert alert-danger col-11 m-2 p-2 " role="alert">
-                Please Enter Valid Data
-              </div>
-              <div [ngClass]="{'show-alert':SuccessAlertShow,'hide-alert':!SuccessAlertShow}" 
-              class="alert alert-success col-11 m-2 p-2" role="alert">
-                  Product updated Successfully 
-              </div>
-            <button type="submit" class="btn btn-primary btn-block text-uppercase" 
-           >
-           Update Product </button>
-           </div>
-          </div>
-           </form>
-           </div>
-            </div> 
       </div>
     </div>
   </div>
 </div>
-

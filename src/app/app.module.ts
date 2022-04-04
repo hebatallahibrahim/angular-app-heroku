@@ -47,7 +47,6 @@ import { LogInComponent } from './admin-page/log-in/log-in.component';
 import { AddCategoryComponent } from './admin-page/add-category/add-category.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
-import { TestComponent } from './test/test.component';
 import { AddSubcategoryComponent } from './admin-page/add-subcategory/add-subcategory.component';
 
 import { FilterPipe } from './shared/filter.pipe';
@@ -79,8 +78,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CartService } from './Service/cart.service';
 
 import { AllContactUsComponent } from './admin-page/all-contact-us/all-contact-us.component';
-import { ContactItemsComponent } from './admin-page/contact-items/contact-items.component';
-import { ViewDetailsComponent } from './admin-page/view-details/view-details.component';
+
 import { ViewContactsDataComponent } from './admin-page/view-contacts-data/view-contacts-data.component';
 import { AllCategoryComponent } from './admin-page/all-category/all-category.component';
 import { UpdateCategoryComponent } from './admin-page/update-category/update-category.component';
@@ -141,14 +139,12 @@ import { OrderDataComponent } from './admin-page/order-data/order-data.component
     AddCategoryComponent,
     AboutUsComponent,
     CheckOutComponent,
-    TestComponent,
+
     AddSubcategoryComponent,
     FilterPipe,
     CategoryProductsComponent,
     SliderComponent,
     AllContactUsComponent,
-    ContactItemsComponent,
-    ViewDetailsComponent,
     ViewContactsDataComponent,
     AllCategoryComponent,
     UpdateCategoryComponent,
