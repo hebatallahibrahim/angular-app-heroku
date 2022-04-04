@@ -59,3 +59,9 @@ input
 a{
     text-decoration: none;
 }
+input[type="text"][disabled] {
+    
+    background-color: white;
+    font-size: 15px;
+    font-style: normal;
+ }

@@ -27,8 +27,8 @@ export class AcountsComponent implements OnInit {
       
     }
 
-  deleteUserAcount(id: any): void {
-    this._service.deleteProduct(id).subscribe(res => {
+  deleteUseacount(id: any): void {
+    this._service.deleteUserAcount(id).subscribe(res => {
       console.log(res);
       this.usersArray = this.usersArray.filter(item => item.id !== id);
       })
