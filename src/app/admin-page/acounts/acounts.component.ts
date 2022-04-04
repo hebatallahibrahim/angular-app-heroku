@@ -30,7 +30,6 @@ export class AcountsComponent implements OnInit {
 
   deleteUserAcount(id: any): void {
     this._service.deleteUserAcount(id).subscribe((res) => {
-      console.log(res);
       this.usersArray = this.usersArray.filter((item) => item.id !== id);
     });
   }
@@ -39,7 +38,6 @@ export class AcountsComponent implements OnInit {
     this._AdminService.getAllUsers().subscribe(
       (res) => {
         this.usersArray = res.user;
-        console.log(this.usersArray);
       },
       (err: any) => {
         console.log(err);
