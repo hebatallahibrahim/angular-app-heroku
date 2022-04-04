@@ -225,3 +225,6 @@
   {
     color: white; 
   }
+  .content + .content{
+    border-top:1px solid white ;
+  }
