@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-acounts',
   templateUrl: './acounts.component.html',
-  styleUrls: ['./acounts.component.css']
+  styleUrls: ['./acounts.component.css'],
 })
 export class AcountsComponent implements OnInit {
   formRegistration: FormGroup = new FormGroup({
@@ -18,33 +18,32 @@ export class AcountsComponent implements OnInit {
     phone: new FormControl(null),
     region: new FormControl(null),
   });
-  arr2 = [1,2,3,4,5,6,7,8,9,10];
-  usersArray:any[]=[];
+  arr2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  usersArray: any[] = [];
   err: string | undefined;
-  dangerAlertShow=false;
-  constructor(public _AdminService: AdminService,
-    private _service : adminservice ,  public _Router: Router) { 
-      
-    }
+  dangerAlertShow = false;
+  constructor(
+    public _AdminService: AdminService,
+    private _service: adminservice,
+    public _Router: Router
+  ) {}
 
   deleteUserAcount(id: any): void {
-    this._service.deleteProduct(id).subscribe(res => {
+    this._service.deleteUserAcount(id).subscribe((res) => {
       console.log(res);
-      this.usersArray = this.usersArray.filter(item => item.id !== id);
-      })
-    }
+      this.usersArray = this.usersArray.filter((item) => item.id !== id);
+    });
+  }
 
   ngOnInit(): void {
     this._AdminService.getAllUsers().subscribe(
       (res) => {
-        this.usersArray=res.user;
+        this.usersArray = res.user;
         console.log(this.usersArray);
       },
-      (err:any) => {
+      (err: any) => {
         console.log(err);
       }
     );
   }
-  
-
 }

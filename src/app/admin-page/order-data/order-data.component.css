@@ -1,0 +1,227 @@
+
+  .tm-site-icon {
+    color: #656565;
+  }
+  .tm-site-title {
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .tm-logout-icon {
+    font-size: 1.5em;
+  }
+  .tm-mt-big {
+    margin-top: 57px;
+  }
+  .tm-mb-big {
+    margin-bottom: 60px;
+  }
+  .tm-mt-small {
+    margin-top: 20px;
+  }
+  .tm-block-col {
+    margin-bottom: 30px;
+  }
+  .tm-block {
+    padding: 40px;
+    -webkit-box-shadow: 1px 1px 5px 0 #455c71;
+    -moz-box-shadow: 1px 1px 5px 0 #455c71;
+    box-shadow: 1px 1px 5px 0 #455c71;
+    min-height: 350px;
+    height: 100%;
+    max-height: 450px;
+  }
+  .tm-block-avatar,
+  .tm-block-settings {
+    max-height: none;
+  }
+  .tm-block-avatar {
+    height: auto;
+  }
+  .tm-block-h-auto {
+    min-height: 1px;
+    max-height: none;
+    height: auto;
+  }
+  .tm-block-scroll {
+    overflow-y: scroll;
+  }
+  .tm-block-overflow {
+    overflow: hidden;
+  }
+  .tm-block-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  
+  
+  .tm-content-row {
+    justify-content: space-between;
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .tm-col {
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 50px;
+  }
+
+
+  
+  .tm-avatar-container:hover .tm-avatar-delete-link {
+    display: block;
+  }
+ 
+  .tm-col-account-settings {
+    max-width: 822px;
+    width: 63%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .form-control {
+    background-color: #54657d;
+    color: #fff;
+    border: 0;
+  }
+  .form-control:focus {
+    background-color: #60738e;
+    color: #fff;
+    border-color: transparent;
+    box-shadow: 0 0 0 0.1rem rgb(180, 206, 233, 0.5);
+  }
+  .form-group label {
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  .tm-hide-sm {
+    display: block;
+  }
+ 
+  .form-control {
+    padding: 19px 18px;
+    border-radius: 0;
+    height: 50px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .btn {
+    border-radius: 0;
+    padding: 13px 28px;
+    transition: all 0.2s ease;
+    max-width: 100%;
+  }
+  .btn-small {
+    padding: 10px 24px;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #f5a623;
+    border: 2px solid #f5a623;
+    font-size: 90%;
+    font-weight: 600;
+  }
+  .btn-primary:active,
+  .btn-primary:hover {
+    color: #f5a623;
+    background-color: transparent;
+    border: 2px solid #f5a623;
+  }
+  .custom-file-input {
+    cursor: pointer;
+   
+  }
+  .custom-file-label {
+    border-radius: 0;
+  }
+  
+  .tm-bg-primary-dark {
+    background-color: #435c70;
+  }
+  .tm-bg-gray {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  .tm-table-mt {
+    margin-top: 66px;
+  }
+ 
+  
+ 
+  .tm-product-delete-link:hover .tm-product-delete-icon {
+    color: #6d8ca6;
+  }
+  .custom-select {
+    width: 100%;
+    border: none;
+    color: black;
+    height: 50px;
+    appearance: none;
+    border-radius: 0;
+    padding: 14px;
+  
+  }
+  .custom-select:focus {
+    outline: 0;
+  }
+  .custom-select {
+    height: 50px;
+    border-radius: 0;
+  }
+  .tm-product-img-dummy {
+    max-width: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: #aaa;
+  }
+  .tm-product-img-edit {
+    max-width: 100%;
+    position: relative;
+  }
+  .tm-product-img-edit i {
+    display: none;
+    position: absolute;
+  }
+  .tm-product-img-edit:hover i {
+    display: block;
+  }
+  .tm-upload-icon {
+    background: #455c71;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    text-align: center;
+    padding-top: 3px;
+    cursor: pointer;
+    font-size: 1.5rem;
+  }
+  td,th{
+    background: #455c71;
+  }
+  .tm-login-col {
+    max-width: 470px;
+  }
+  .show-alert{
+    display: block;
+  }
+  .hide-alert{
+    display: none;
+  }
+  .slider-img{
+      width: 100px;
+      height: 100px;
+  }
+  .contact_itile
+  {
+      color: white;
+  }
+  .content
+  {
+    color: white; 
+  }

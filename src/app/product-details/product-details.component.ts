@@ -58,7 +58,7 @@ export class ProductDetailsComponent implements OnInit {
       this.ratingVal = 0;
       const user: any = localStorage.getItem('user');
       const userObj = JSON.parse(user);
-      this.userID=userObj.user.id;
+      this.userID = userObj.user.id;
       this.getProductByID();
       this.getLikedProduct();
       if (this.userID) {
@@ -97,14 +97,14 @@ export class ProductDetailsComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     navSpeed: 700,
     navText: ['', ''],
     responsive: {
       0: {
         items: 1,
       },
-      400: {
+      600: {
         items: 2,
       },
       740: {
@@ -116,15 +116,6 @@ export class ProductDetailsComponent implements OnInit {
     },
     nav: true,
   };
-  slidesStore = [
-    { id: 1, img: 'https://picsum.photos/350/150' },
-    { id: 2, img: 'https://picsum.photos/350/150' },
-    { id: 3, img: 'https://picsum.photos/350/150' },
-    { id: 4, img: 'https://picsum.photos/350/150' },
-    { id: 5, img: 'https://picsum.photos/350/150' },
-    { id: 6, img: 'https://picsum.photos/350/150' },
-    { id: 7, img: 'https://picsum.photos/350/150' },
-  ];
 
   config: SwiperOptions = {
     pagination: {

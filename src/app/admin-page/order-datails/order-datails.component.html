@@ -1,41 +1,49 @@
 <app-navnar></app-navnar>
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <p class="text-black mt-5 mb-5"> <b></b></p>
-        </div>
+  <div class="row">
+    <div class="col">
+      <p class="text-black mt-5 mb-5"><b></b></p>
     </div>
-    <div class="row tm-content-row">
-        <div class="col-12 tm-block-col">
-            <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                <h2 class="tm-block-title">Orders List</h2>
-                <table
-                class="table table-hover tm-table-small tm-product-table border"
-              >
-                <thead>
-                  <tr >
-                    <th scope="col">Order ID</th>
-                    <th scope="col">Total Price</th>
-                    <th scope="col">Order Date</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Payment Type</th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let i of OrdeArray">
-                    <td>{{ i.id }}</td>
-                    <td>{{i.amount+" EGP"}}</td>
-                    <td>{{ i.order_date+"-"+i.order_month+"-"+i.order_year}}</td>
-                    <td>{{ i.address }}</td>
-                    <td>{{ i.phone }}</td>
-                    <td>{{ i.payment_type }}</td>
-                  
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-        </div>
+  </div>
+  <div class="row tm-content-row">
+    <div class="col-12 tm-block-col">
+      <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+        <h2 class="tm-block-title">Orders List</h2>
+        <table class="table table-hover tm-table-small tm-product-table border">
+          <thead>
+            <tr>
+              <th scope="col">Order ID</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Order Date</th>
+              <th scope="col">Address</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Payment Type</th>
+              <th scope="col">Email</th>
+              <th scope="col">More</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of OrdeArray">
+              <td>{{ i.id }}</td>
+              <td>{{ i.amount + " EGP" }}</td>
+              <td>
+                {{ i.order_date + "-" + i.order_month + "-" + i.order_year }}
+              </td>
+              <td>{{ i.address }}</td>
+              <td>{{ i.phone }}</td>
+              <td>{{ i.payment_type }}</td>
+              <td>{{ i.email }}</td>
+              <td>
+                <a>
+                  <mat-icon [routerLink]="['/order-view/', i.id]">
+                    visibility</mat-icon
+                  >
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>

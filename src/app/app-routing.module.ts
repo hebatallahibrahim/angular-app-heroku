@@ -48,7 +48,7 @@ import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { OrderDatailsComponent } from './admin-page/order-datails/order-datails.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
-
+import { OrderDataComponent } from './admin-page/order-data/order-data.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -77,7 +77,7 @@ const routes: Routes = [
   {
     path: 'order-details/:id',
     canActivate: [UserGuardGuard],
-    component: OrderDetailsComponent
+    component: OrderDetailsComponent,
   },
   {
     path: 'payment',
@@ -138,6 +138,11 @@ const routes: Routes = [
     path: 'contact-view/:postId',
     canActivate: [AuthGuard],
     component: ViewContactsDataComponent,
+  },
+  {
+    path: 'order-view/:postId',
+    canActivate: [AuthGuard],
+    component: OrderDataComponent,
   },
   {
     path: 'all-category',

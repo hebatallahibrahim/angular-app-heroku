@@ -1,0 +1,27 @@
+<app-navnar></app-navnar>
+<div class="container tm-mt-big tm-mb-big">
+  <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+    <div
+      *ngFor="let item of orderArray"
+      class="tm-bg-primary-dark tm-block tm-block-h-auto content"
+    >
+      <div>
+        <h1 class="contact_itile">View order details</h1>
+      </div>
+
+      <div class="p-4">
+        <strong class="para">Product Name&nbsp;:&nbsp;&nbsp;&nbsp;</strong>
+        <p class="d-inline">{{ item.product_name }}</p>
+      </div>
+
+      <div class="p-4">
+        <strong class="para">Product Price&nbsp;:&nbsp;&nbsp;&nbsp;</strong>
+        <p class="d-inline">{{ item.price | currency: "EGP" }}</p>
+      </div>
+      <div class="p-4">
+        <strong class="para">Quantity&nbsp;:&nbsp;&nbsp;&nbsp;</strong>
+        <p class="d-inline">{{ item.qty }}</p>
+      </div>
+    </div>
+  </div>
+</div>

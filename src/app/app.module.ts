@@ -103,6 +103,7 @@ import { UserGetInfoComponent } from './user-get-info/user-get-info.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 import { OrderDatailsComponent } from './admin-page/order-datails/order-datails.component';
 import { OrderDetailsComponent } from './order-details/order-details.component';
+import { OrderDataComponent } from './admin-page/order-data/order-data.component';
 
 @NgModule({
   declarations: [
@@ -166,6 +167,7 @@ import { OrderDetailsComponent } from './order-details/order-details.component';
     ResetPasswordComponent,
     OrderDatailsComponent,
     OrderDetailsComponent,
+    OrderDataComponent,
   ],
   imports: [
     BrowserModule,

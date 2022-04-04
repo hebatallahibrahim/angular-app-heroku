@@ -1,14 +1,14 @@
-<section class="itemsproduct mb-5">        
-  <div class="container"> 
-     
-    <h1 class="d-flex justify-content-center m-5 p-5">Latest Products</h1>      
-    <div class="row gx-5">     
-          <app-product-item
-            class="col-3 ps-0 pe-0 one-item shadow-lg latest-pro"
-            *ngFor="let item of productArray; let i=index"
-            [productItem]="item" [item_hearted]="likedProducts[i]"
-          >
-          </app-product-item>
+<section class="itemsproduct mb-5">
+  <div class="container">
+    <h1 class="d-flex justify-content-center m-5 p-5">Latest Products</h1>
+    <div class="row gx-5">
+      <app-product-item
+        class="col-4 ps-0 pe-0 one-item shadow-lg latest-pro"
+        *ngFor="let item of productArray; let i = index"
+        [productItem]="item"
+        [item_hearted]="likedProducts[i]"
+      >
+      </app-product-item>
     </div>
-  </div>     
+  </div>
 </section>

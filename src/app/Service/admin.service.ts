@@ -48,9 +48,7 @@ export class adminservice {
   }
 
   getAllSubCat(): any {
-    return this.http
-      .get<any>('http://127.0.0.1:8000/api/category/sub/view')
-     
+    return this.http.get<any>('http://127.0.0.1:8000/api/category/sub/view');
   }
 
   deleteSubCat(id: any): Observable<any> {
@@ -71,7 +69,6 @@ export class adminservice {
   getAllContactUsMessages(): any {
     return this.http.get<any>('http://127.0.0.1:8000/api/contactUs').subscribe({
       next: (res) => {
-        console.log(res);
         this.MessagesArray = res.ALLContactUs;
         this.messagesHasBeenChanged.next(this.MessagesArray);
       },
@@ -98,7 +95,6 @@ export class adminservice {
         );
         this.messagesHasBeenChanged.next(this.MessagesArray);
       });
-    console.log(this.MessagesArray);
   }
   sendMasseage() {
     this.messagesHasBeenChanged.next(this.MessagesArray);
@@ -112,8 +108,9 @@ export class adminservice {
   }
 
   getAllOrdes(): any {
-    return this.http
-      .get<any>('http://127.0.0.1:8000/api/user/orders/list')
-     
+    return this.http.get<any>('http://127.0.0.1:8000/api/user/orders/list');
+  }
+  getOrdersDetails(id: any): any {
+    return this.http.get<any>(`http://127.0.0.1:8000/api/orders/details/${id}`);
   }
 }

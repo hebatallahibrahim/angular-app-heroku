@@ -20,21 +20,16 @@ export class AuthenticationService {
     const localData: any = localStorage.getItem('user');
     if (!localData) {
       this.isLoggedIn.next(false);
-       console.log('User not lgged in !!');
        }
      else {
       const userObj = JSON.parse(localData);
-      console.log(userObj);
+    
       const token_expires_at = new Date(userObj.token_expires_at);
       const current_date = new Date();
-      console.log(token_expires_at);
-      console.log(current_date);
-    //   if (token_expires_at > current_date) {
+ 
+ 
         this.isLoggedIn.next(true);
-    //   } else {
-    //     this.isLoggedIn.next(false);
-    //      console.log('Token Expires!!');
-    //   }
+  
     }
     return this.isLoggedIn.asObservable();
   }
