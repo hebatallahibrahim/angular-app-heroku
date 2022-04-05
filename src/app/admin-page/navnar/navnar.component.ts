@@ -19,7 +19,7 @@ export class NavnarComponent implements OnInit {
 
   ngOnInit(): void {
     this._service.getAllContactUsMessages();
-    this.auth.status().subscribe(
+    this.auth.statuss().subscribe(
       (res) => {
         this.loggedIn = res;
         console.log('navbar:' + this.loggedIn);

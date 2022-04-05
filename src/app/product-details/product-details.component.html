@@ -53,7 +53,6 @@
       >
         Add to cart
       </button>
-      <form [formGroup]="form" (ngSubmit)="getFormData(form)">
         <!-- <h3>Rate this product</h3> -->
         <div class="row justify-content-between">
           <div class="col-6">
@@ -65,32 +64,14 @@
 
             <ngb-rating
               class="pt-2"
-              [(rate)]="ratingVal"
-              formControlName="rating"
+              [(ngModel)]="ratingVal"
+              (click)="getFormData(ratingVal)"
               [starTemplate]="t"
               [readonly]="false"
               [max]="5"
-            ></ngb-rating
-            ><span (click)="removeRate()" class="remove-rate">&#x2715;</span>
-          </div>
-          <!--ngx-star-rating
-          formControlName="rating"
-          [id]="'rating'"
-        ></ngx-star-rating-->
-          <!--div class="fs-3">Rating: {{ form.value.rating }}</div-->
-          <!--div class="add-comment">
-          <h3 class="col-12">Add Comment</h3>
-          <mat-form-field class="col-12">
-            <input matInput />
-          </mat-form-field>
-        </div-->
-          <div class="col-4 me-5">
-            <button class="btn btn-primary submit-btn" [disabled]="!ratingVal">
-              Submit Rating
-            </button>
+            ></ngb-rating>
           </div>
         </div>
-      </form>
       <h3>Product Details</h3>
 
       <table style="width: 100%">

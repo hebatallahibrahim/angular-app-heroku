@@ -25,7 +25,7 @@ export class LogInComponent implements OnInit {
         console.log(res);
         if (res.message == 'Admin log in succesfully'){
       // console.log(res);
-      localStorage.setItem('user', JSON.stringify(res))
+      localStorage.setItem('admin', JSON.stringify(res))
       this.SuccessAlertShow=true;
       this.dangerAlertShow=false;
       // redirect to dashboard

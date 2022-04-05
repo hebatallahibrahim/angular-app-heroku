@@ -31,11 +31,7 @@ export class ProductDetailsComponent implements OnInit {
   images = [944, 1011, 984].map(
     (n) => `https://picsum.photos/id/${n}/1200/500`
   );
-  //public form: FormGroup;
-  form: FormGroup = new FormGroup({
-    rating: new FormControl(null),
-  });
-  ratingVal: number = 0;
+  ratingVal!: number;
   productId!: any;
   userID: any;
   productDetails: any = {};
@@ -64,7 +60,10 @@ export class ProductDetailsComponent implements OnInit {
       this.ratingVal = 0;
       this.getProductByID();
       this.getLikedProduct();
-      if (this.userID) {
+      const user: any = localStorage.getItem('user');
+      if (user) {
+        const userObj = JSON.parse(user);
+        this.userID = userObj.user.id;
         this.getUserRate();
       }
     });
@@ -331,6 +330,7 @@ export class ProductDetailsComponent implements OnInit {
       this.confirm1();
     }
   }
+
   getOrderProducts() {
     this.productId = this.activetedRoute.snapshot.paramMap.get('id');
     const user: any = localStorage.getItem('user');
@@ -373,10 +373,11 @@ export class ProductDetailsComponent implements OnInit {
       this.userID = userObj.user.id;
       console.log(this.userID);
       var formData: any = new FormData();
-      formData.append('rate', data.get('rating').value);
+      formData.append('rate', this.ratingVal);
       formData.append('product_id', this.productId);
       formData.append('user_id', this.userID);
 
+      console.log(this.ratingVal);
       this._productDetailsService
         .addProductRating(formData, this.productId)
         .subscribe(
@@ -385,7 +386,7 @@ export class ProductDetailsComponent implements OnInit {
               data.message == 'Rate added succesfully' ||
               data.message == 'Product Rate updated succesfully'
             ) {
-              // this._Router.navigate(['/accounts']);
+              this.getProductByID();
             } else {
               this.err = 'not valid data';
             }
