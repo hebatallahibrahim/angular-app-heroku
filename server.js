@@ -1,8 +1,15 @@
 const express = require('express');
+const path = require('path');
+ 
 const app = express();
-// Run the app by serving the static files
-// in the dist directory
-app.use(express.static(__dirname + '/dist'));
-// Start the app by listening on the default
-// Heroku port
-app.listen(process.env.PORT || 12080);
+ 
+// Serve only the static files form the dist directory
+// Replace the '/dist/<to_your_project_name>'
+app.use(express.static(__dirname + '/dist/E-commers-furniture_-ITI-Project'));
+ 
+app.get('*', function(req,res) {
+  // Replace the '/dist/<to_your_project_name>/index.html'
+  res.sendFile(path.join(__dirname + '/dist/E-commers-furniture_-ITI-Project/index.html'));
+});
+// Start the app by listening on the default Heroku port
+app.listen(process.env.PORT || 8080);
