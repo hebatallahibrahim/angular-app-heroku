@@ -17,6 +17,7 @@ import { CartService } from '../Service/cart.service';
 import { PrimeNGConfig } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
 import { Message } from 'primeng/api';
+import { PaymentService } from '../Service/payment.service';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -42,7 +43,11 @@ export class ProductDetailsComponent implements OnInit {
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   err: string | undefined;
   msgs: Message[] = [];
-
+  orderItems: any[] = [];
+  order_products: any[] = [];
+  order_id: any;
+  openRate = false;
+  isLoading = true;
   constructor(
     private fb: FormBuilder,
     public _Router: Router,
@@ -52,7 +57,8 @@ export class ProductDetailsComponent implements OnInit {
     private wishlistService: WishlistService,
     private cartService: CartService,
     private confirmationService: ConfirmationService,
-    private primengConfig: PrimeNGConfig
+    private primengConfig: PrimeNGConfig,
+    private paymentService: PaymentService
   ) {
     this.activetedRoute.params.subscribe((params) => {
       this.ratingVal = 0;
@@ -61,6 +67,31 @@ export class ProductDetailsComponent implements OnInit {
       if (this.userID) {
         this.getUserRate();
       }
+    });
+  }
+  confirm2() {
+    this.confirmationService.confirm({
+      message: 'Please buy this product first',
+      header: 'Attention',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.msgs = [
+          {
+            severity: 'info',
+            summary: 'Confirmed',
+            detail: 'You have accepted',
+          },
+        ];
+      },
+      reject: () => {
+        this.msgs = [
+          {
+            severity: 'info',
+            summary: 'Rejected',
+            detail: 'You have rejected',
+          },
+        ];
+      },
     });
   }
   confirm1() {
@@ -136,6 +167,7 @@ export class ProductDetailsComponent implements OnInit {
   };
   ngOnInit() {
     this.primengConfig.ripple = true;
+    this.getOrderProducts();
   }
 
   addOrRemoveWishlist() {
@@ -143,7 +175,7 @@ export class ProductDetailsComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
+
       this.item_hearted = !this.item_hearted;
       if (this.item_hearted) {
         var formData: any = new FormData();
@@ -154,7 +186,6 @@ export class ProductDetailsComponent implements OnInit {
           .addToWishlist(formData, this.productDetails.id)
           .subscribe(
             (data) => {
-              console.log(data);
               if (data.message == 'Product updated succesfully') {
                 // this._Router.navigate(['/accounts']);
               } else {
@@ -172,7 +203,6 @@ export class ProductDetailsComponent implements OnInit {
           .deleteFromWishlist(queryParams, this.productDetails.id)
           .subscribe(
             (res) => {
-              console.log(res);
               if (res.message == 'Wishlist deleted succesfully') {
               }
             },
@@ -183,7 +213,6 @@ export class ProductDetailsComponent implements OnInit {
       }
     } else {
       this.confirm1();
-      console.log('user not logged in yet');
     }
   }
 
@@ -192,14 +221,11 @@ export class ProductDetailsComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
+
       let queryParams = new HttpParams();
       queryParams = queryParams.append('user_id', this.userID);
       this.wishlistService.getWishlistProducts(queryParams).subscribe(
         (res) => {
-          console.log(res);
-          console.log('id', this.productDetails);
-          console.log('itemheart', this.item_hearted);
           if (
             res.products.some(
               (e: { product_id: number; user_id: number }) =>
@@ -218,7 +244,6 @@ export class ProductDetailsComponent implements OnInit {
       );
     } else {
       this.confirm1();
-      console.log('user not logged in yet');
     }
   }
 
@@ -232,7 +257,6 @@ export class ProductDetailsComponent implements OnInit {
           .getProductBySubcategory(this.productDetails.sub_category_id)
           .subscribe(
             (result) => {
-              console.log(result);
               this.relativeProduct = result.message;
             },
             (err) => {
@@ -257,19 +281,19 @@ export class ProductDetailsComponent implements OnInit {
       return product?.selling_price;
     }
   }
+
   getUserRate() {
     const user: any = localStorage.getItem('user');
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
+
       let queryParams = new HttpParams();
       queryParams = queryParams.append('user_id', this.userID);
       this._productDetailsService
         .getUserRating(queryParams, this.productId)
         .subscribe(
           (res) => {
-            console.log(res);
             if (res.message != 'No Rating found') {
               this.ratingVal = res.user_rate.rate;
             }
@@ -280,7 +304,6 @@ export class ProductDetailsComponent implements OnInit {
         );
     } else {
       this.confirm1();
-      console.log('user not logged in yet');
     }
   }
 
@@ -289,7 +312,7 @@ export class ProductDetailsComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
+
       this.ratingVal = 0;
       let queryParams = new HttpParams();
       queryParams = queryParams.append('user_id', this.userID);
@@ -297,7 +320,6 @@ export class ProductDetailsComponent implements OnInit {
         .deleteRating(queryParams, this.productId)
         .subscribe(
           (res) => {
-            console.log(res);
             if (res.message == 'Rate deleted succesfully') {
             }
           },
@@ -307,12 +329,46 @@ export class ProductDetailsComponent implements OnInit {
         );
     } else {
       this.confirm1();
-      console.log('user not logged in yet ');
     }
   }
-  getFormData(data: any) {
+  getOrderProducts() {
+    this.productId = this.activetedRoute.snapshot.paramMap.get('id');
     const user: any = localStorage.getItem('user');
-    if (user) {
+    const userObj = JSON.parse(user);
+    this.paymentService.getAllUserOrders(userObj.user.email).subscribe(
+      (data) => {
+        this.isLoading = false;
+        this.orderItems = data.orders;
+        this.orderItems.forEach((index) => {
+          this.paymentService.getOrderItems(index.id).subscribe({
+            next: (res) => {
+              this.order_products = res.orderItems;
+              this.order_id = this.order_products.some(
+                (item) => item.product_id == this.productId
+              );
+              switch (this.order_id) {
+                case true:
+                  this.openRate = true;
+                  break;
+              }
+            },
+            error: (err) => {
+              console.log(err);
+            },
+            complete: () => {},
+          });
+        });
+      },
+      (err) => {
+        console.log(err);
+        this.isLoading = false;
+      }
+    );
+  }
+  getFormData(data: any) {
+    this.productId = this.activetedRoute.snapshot.paramMap.get('id');
+    const user: any = localStorage.getItem('user');
+    if (user && this.openRate == true) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
       console.log(this.userID);
@@ -325,7 +381,6 @@ export class ProductDetailsComponent implements OnInit {
         .addProductRating(formData, this.productId)
         .subscribe(
           (data) => {
-            console.log(data);
             if (
               data.message == 'Rate added succesfully' ||
               data.message == 'Product Rate updated succesfully'
@@ -340,8 +395,11 @@ export class ProductDetailsComponent implements OnInit {
           }
         );
     } else {
-      this.confirm1();
-      console.log('user not logged in yet');
+      if (!user) {
+        this.confirm1();
+      } else {
+        this.confirm2();
+      }
     }
   }
   onItemAdded(item: any) {
@@ -349,13 +407,10 @@ export class ProductDetailsComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
-      console.log(this.userID);
-      console.log(item);
       const postData = { product_id: item.id, user_id: this.userID };
       this.cartService.postCart(postData, item);
     } else {
       this.confirm1();
-      console.log('user not logged in yet');
     }
   }
 }

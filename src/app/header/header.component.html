@@ -116,7 +116,7 @@
           id="dropdownConfig"
           ngbDropdownToggle
         >
-          welcome user
+          {{ userName }}
         </div>
 
         <ul
@@ -141,7 +141,9 @@
             <hr ngbDropdownDivider />
           </li>
           <li>
-            <a ngbDropdownItem routerLink="/user-log-out" (click)="signout()"> Sign out </a>
+            <a ngbDropdownItem routerLink="/user-log-out" (click)="signout()">
+              Sign out
+            </a>
           </li>
         </ul>
       </div>
@@ -150,7 +152,7 @@
         [(visible)]="visibleSidebar2"
         position="right"
         [baseZIndex]="10000"
-        [style]="{ width: '50rem' }"
+        [style]="{ width: '57rem' }"
       >
         <div
           class="empty m-4 fs-2 d-flex justify-content-center align-items-center"

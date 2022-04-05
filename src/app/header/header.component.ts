@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
   togle: string = 'ngbDropdownToggle';
   searchbtn = true;
   userID: any;
+  userName: any;
   //  auth protection
   loggedIn: boolean = false;
   signOutEvent = new EventEmitter<any>();
@@ -58,6 +59,7 @@ export class HeaderComponent implements OnInit {
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
+      this.userName = userObj.user.name;
       this.cartService.getApiCart();
       this.cartService.cartHasBeenChanged.subscribe({
         next: (res) => {
