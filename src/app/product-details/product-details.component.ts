@@ -30,11 +30,7 @@ export class ProductDetailsComponent implements OnInit {
   images = [944, 1011, 984].map(
     (n) => `https://picsum.photos/id/${n}/1200/500`
   );
-  //public form: FormGroup;
-  form: FormGroup = new FormGroup({
-    rating: new FormControl(null),
-  });
-  ratingVal: number = 0;
+  ratingVal!: number;
   productId!: any;
   userID: any;
   productDetails: any = {};
@@ -55,11 +51,14 @@ export class ProductDetailsComponent implements OnInit {
     private primengConfig: PrimeNGConfig
   ) {
     this.activetedRoute.params.subscribe((params) => {
-      this.ratingVal = 0;
+      this.ratingVal=0;
       this.getProductByID();
       this.getLikedProduct();
-      if (this.userID) {
-        this.getUserRate();
+      const user: any = localStorage.getItem('user');
+      if (user) {
+      const userObj = JSON.parse(user);
+      this.userID = userObj.user.id;
+      this.getUserRate();
       }
     });
   }
@@ -310,17 +309,19 @@ export class ProductDetailsComponent implements OnInit {
       console.log('user not logged in yet ');
     }
   }
-  getFormData(data: any) {
+  getFormData(rate:any) {
+    console.log(rate);
     const user: any = localStorage.getItem('user');
     if (user) {
       const userObj = JSON.parse(user);
       this.userID = userObj.user.id;
       console.log(this.userID);
       var formData: any = new FormData();
-      formData.append('rate', data.get('rating').value);
+      formData.append('rate', this.ratingVal);
       formData.append('product_id', this.productId);
       formData.append('user_id', this.userID);
 
+      console.log(this.ratingVal);
       this._productDetailsService
         .addProductRating(formData, this.productId)
         .subscribe(
@@ -330,7 +331,7 @@ export class ProductDetailsComponent implements OnInit {
               data.message == 'Rate added succesfully' ||
               data.message == 'Product Rate updated succesfully'
             ) {
-              // this._Router.navigate(['/accounts']);
+              this.getProductByID();
             } else {
               this.err = 'not valid data';
             }

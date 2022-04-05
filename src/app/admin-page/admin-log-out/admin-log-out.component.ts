@@ -12,7 +12,7 @@ export class AdminLogOutComponent implements OnInit {
   constructor(private auth:AuthenticationService, private router:Router) { }
 
   ngOnInit(): void {
-    this.auth.logout();
+    this.auth.logoutt();
     this.router.navigate(['/log-in']);
   }
 

@@ -77,7 +77,6 @@ export class PaymentComponent implements OnInit {
       formData.append('CustomerEmail', this.userObj.user.email);
       formData.append('InvoiceValue', this.totalAmount);
       formData.append('CustomerMobile', this.userObj.user.phone);
-      formData.append('products',JSON.stringify(this.addedProducts));
 
       this.paymentService.payByOtherMethods(formData).subscribe(
         (data) => {
