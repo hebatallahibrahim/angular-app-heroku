@@ -44,35 +44,35 @@
         {{ calculatePrice(productDetails) }} EGP
       </h3>
       <p-confirmDialog
-          [style]="{ width: '50vw' }"
-          [baseZIndex]="10000"
-        ></p-confirmDialog>
+        [style]="{ width: '50vw' }"
+        [baseZIndex]="10000"
+      ></p-confirmDialog>
       <button
         class="cart-button btn mb-4"
         (click)="onItemAdded(productDetails)"
       >
         Add to cart
       </button>
-        <!-- <h3>Rate this product</h3> -->
-        <div class="row justify-content-between">
-          <div class="col-6">
-            <ng-template #t let-fill="fill">
-              <span class="star" [class.full]="fill === 100">
-                <span class="half" [style.width.%]="fill">&starf;</span>&starf;
-              </span>
-            </ng-template>
-
-            <ngb-rating
-              class="pt-2"
-              [(ngModel)]="ratingVal"
-              (click)="getFormData(ratingVal)"
-              [starTemplate]="t"
-              [readonly]="false"
-              [max]="5"
-            ></ngb-rating>
-          </div>
+      <!-- <h3>Rate this product</h3> -->
+      <div class="row justify-content-between">
+        <div class="col-6">
+          <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+              <span class="half" [style.width.%]="fill">&starf;</span>&starf;
+            </span>
+          </ng-template>
+          <p><strong>Rate This Product:</strong></p>
+          <ngb-rating
+            class="pt-2"
+            [(ngModel)]="ratingVal"
+            (click)="getFormData(ratingVal)"
+            [starTemplate]="t"
+            [readonly]="false"
+            [max]="5"
+          ></ngb-rating>
         </div>
-      <h3>Product Details</h3>
+      </div>
+      <h3 class="mt-4">Product Details</h3>
 
       <table style="width: 100%">
         <tr>

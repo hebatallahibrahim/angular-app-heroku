@@ -34,7 +34,7 @@ export class ProductDetailsComponent implements OnInit {
   ratingVal!: number;
   productId!: any;
   userID: any;
-  productDetails: any = {};
+  productDetails!: any;
   relativeProduct!: any[];
   imagUrlProduct: string = 'http://127.0.0.1:8000/uploads/product/';
   err: string | undefined;
@@ -165,6 +165,7 @@ export class ProductDetailsComponent implements OnInit {
     spaceBetween: 50,
   };
   ngOnInit() {
+    this.getProductByID();
     this.primengConfig.ripple = true;
     this.getOrderProducts();
   }
@@ -334,36 +335,44 @@ export class ProductDetailsComponent implements OnInit {
   getOrderProducts() {
     this.productId = this.activetedRoute.snapshot.paramMap.get('id');
     const user: any = localStorage.getItem('user');
-    const userObj = JSON.parse(user);
-    this.paymentService.getAllUserOrders(userObj.user.email).subscribe(
-      (data) => {
-        this.isLoading = false;
-        this.orderItems = data.orders;
-        this.orderItems.forEach((index) => {
-          this.paymentService.getOrderItems(index.id).subscribe({
-            next: (res) => {
-              this.order_products = res.orderItems;
-              this.order_id = this.order_products.some(
-                (item) => item.product_id == this.productId
-              );
-              switch (this.order_id) {
-                case true:
-                  this.openRate = true;
-                  break;
-              }
-            },
-            error: (err) => {
-              console.log(err);
-            },
-            complete: () => {},
+
+    if (user) {
+      const userObj = JSON.parse(user);
+      this.paymentService.getAllUserOrders(userObj.user.email).subscribe(
+        (data) => {
+          console.log(data);
+          this.isLoading = false;
+          this.orderItems = data.orders;
+          this.orderItems.forEach((index) => {
+            console.log(index);
+
+            this.paymentService.getOrderItems(index.id).subscribe({
+              next: (res) => {
+                this.order_products = res.orderItems;
+                this.order_id = this.order_products.some(
+                  (item) => item.product_id == this.productId
+                );
+                switch (this.order_id) {
+                  case true:
+                    this.openRate = true;
+                    break;
+                }
+              },
+              error: (err) => {
+                console.log(err);
+              },
+              complete: () => {},
+            });
           });
-        });
-      },
-      (err) => {
-        console.log(err);
-        this.isLoading = false;
-      }
-    );
+        },
+        (err) => {
+          console.log(err);
+          this.isLoading = false;
+        }
+      );
+    } else {
+      console.log('error');
+    }
   }
   getFormData(data: any) {
     this.productId = this.activetedRoute.snapshot.paramMap.get('id');
