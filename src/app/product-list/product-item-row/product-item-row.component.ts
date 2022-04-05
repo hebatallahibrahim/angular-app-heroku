@@ -20,7 +20,7 @@ export class ProductItemRowComponent implements OnInit {
   @Output() LikedProductEvent = new EventEmitter<any>();
   @Input()
   productItem!: Product;
-  imagUrlProduct = environment.imagUrlProduct;
+  imagUrlProduct = "http://127.0.0.1:8000/uploads/product/";
   err: string | undefined;
   userID: any;
   msgs: Message[] = [];
